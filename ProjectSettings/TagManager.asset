@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - physicsOverride
+  - platform
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Swingable
+  - Water
+  - UI
+  - buoyant
+  - LightShaft
+  - platform
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3483471047
+    locked: 0
+  - name: FoliageBackground
+    uniqueID: 3367252683
+    locked: 0
+  - name: Trees
+    uniqueID: 972656467
+    locked: 0
+  - name: FoliageForeground
+    uniqueID: 2194521147
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 2224149701
+    locked: 0
+  - name: InFrontOfPlayer
+    uniqueID: 799328815
+    locked: 0

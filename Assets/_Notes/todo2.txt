@@ -1,0 +1,86 @@
+player has grab trigger collider
+-- if in range of a swingable obj, and grab key is pressed, set isSwinging=true;
+-- When isSwinging:
+	- player main collider is set to trigger and player rb gravity = 0;
+
+
+- reset jumps when swing movement is enabled from CharacterController2D
+
+==========
+
+TRY:
+use normal velocity direct movement when play is not swinging and force-based movement when swinging.
+-- try to figure out how to get effect of fixed joint without using one so player can ascend, descend vine.
+	-- maybe just disable rigid body? 
+
+=======
+
+level gen
+
+- trees:
+	- setup procedural tree script, have that manage the production of vines from itself.
+	- change levelgenerator to instantiate trees instead of vines.
+
+================
+
+Animations:
+Idle: standing arms down bobby
+Running: legs; arms moving
+Jumping: Crouch and leap; arms up to grab
+Landing: impact; squash
+Falling: Flailing
+
+grab:
+
+
+================
+
+Sounds:
+vine stretch
+vine snap
+
+jump grunt
+land grunt
+
+vine grab sound
+
+falling yell
+
+background jungle noise
+
+bg music
+win music?
+
+
+
+-- Setup vine impact sound on player audio (plays when grab starts)
+
+================
+Thursday:
+	- Stamina and/or Enemy
+	- GOAL IMPLEMENTED (Done)
+
+Friday:
+	- menus
+	- RB and light or gameobject disable/enable;
+	- populate ground foilage
+	- Fail
+		- camera halt
+		- You Died text
+		- death sound
+		- water splash effect & sound
+		- floating hat anim
+
+	- locate memory leak
+	
+
+Saturday: 
+	- MENUS
+	- IF THERE'S TIME:
+		- player: when swinging, disable additional movement forces above a given velocity
+		- JUNGLE SOUND & MUSIC CONTINUOUS ACROSS SCENES
+			- add music gameobj with DontDestroyOnLoad script
+		- fix grab point on player
+		- make vines with weak points brown
+		- add tree variants
+		
