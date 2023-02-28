@@ -31,6 +31,7 @@ public class TargetRotation : MonoBehaviour
 
     public void setForce(float newForce) {
         force = newForce;
+        rotationEnabled = force>0;
     }
 
     void handleRotation() {
