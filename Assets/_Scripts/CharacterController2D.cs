@@ -255,7 +255,10 @@ public class CharacterController2D : MonoBehaviour
 
     void OnDestroy() {
         foreach(TargetRotation i in ragdollParts) {
-            Destroy(i.transform.root.gameObject);
+            if(i!=null) {
+                Destroy(i.transform.root.gameObject);
+            }
+            
         }
     }
 
