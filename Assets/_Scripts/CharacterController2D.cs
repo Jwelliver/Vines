@@ -55,7 +55,6 @@ public class CharacterController2D : MonoBehaviour
     {
         if(isHitByArrow) return;
         getInput();
-        
         handleJump();
         updateIsSwinging();
         handleFallingAnimation();
@@ -134,8 +133,10 @@ public class CharacterController2D : MonoBehaviour
         if (isGrounded && !rb.freezeRotation) {
             rb.rotation = 0;
             rb.freezeRotation=true;
+            // toggleRagdollParts(false);
         } else if(!isGrounded && rb.freezeRotation) {
             rb.freezeRotation=false;
+            // toggleRagdollParts(true);
         }
 
         handleRunningAnimation();
