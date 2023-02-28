@@ -25,7 +25,7 @@ public class CharacterController2D : MonoBehaviour
     private int jumpCount = 0;
 
     // private MultiAnimator animator;
-    private Animator animator;
+    private MultiAnimator animator;
     private bool isGrounded = false;
     private bool isSwinging;
     
@@ -45,7 +45,7 @@ public class CharacterController2D : MonoBehaviour
     {
         groundCheck = GetComponentInChildren<GroundCheck>();
         // rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
+        animator = GetComponent<MultiAnimator>();
         swingingController = GetComponent<SwingingController>();
         // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         // playerAudio = GetComponentInChildren<AudioSource>();
