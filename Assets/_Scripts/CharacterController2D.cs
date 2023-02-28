@@ -40,6 +40,17 @@ public class CharacterController2D : MonoBehaviour
     private bool isHitByArrow;
     private bool isFacingLeft; 
 
+    // enum RagdollAnimationBlendStrengh {
+    //     High=100,Med=50,Low=5,None=0
+    // }
+
+    // RagdollAnimationBlendStrengh ragdollAnimationBlendStrengh;
+
+    float ragdollAnimationBlendHigh = 100f;
+    float ragdollAnimationBlendMed = 20f;
+    float ragdollAnimationBlendLow = 5f;
+    float ragdollAnimationBlendNone = 0f;
+
     private void Start()
     {
         groundCheck = GetComponentInChildren<GroundCheck>();
@@ -85,7 +96,7 @@ public class CharacterController2D : MonoBehaviour
 
         playVineImpactSound();
         jumpCount = 0;
-        setTargetRotationForceInRagdollParts(3);
+        setTargetRotationForceInRagdollParts(ragdollAnimationBlendNone);
         animator.SetBool("isSwinging",true);
         animator.SetBool("isFlying",false);
         animator.SetBool("isFalling",false);
@@ -168,7 +179,7 @@ public class CharacterController2D : MonoBehaviour
 
     void handleRunningAnimation() {
         if(isGrounded && moveInput!=0) {
-            setTargetRotationForceInRagdollParts(100);
+            setTargetRotationForceInRagdollParts(ragdollAnimationBlendHigh);
             animator.SetBool("isRunning", true);
         } else {
             animator.SetBool("isRunning", false);
@@ -178,7 +189,7 @@ public class CharacterController2D : MonoBehaviour
     void handleFallingAnimation() {
         if(isSwinging) return;
         if(!isGrounded && rb.velocity.y<fallingInitSpeed) {
-            setTargetRotationForceInRagdollParts(20);
+            setTargetRotationForceInRagdollParts(ragdollAnimationBlendMed);
             animator.SetBool("isFlying", false);
             animator.SetBool("isFalling", true);
             playWhoaSound();
@@ -194,9 +205,9 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    // void toggleRagdollParts(bool newState) {
-    //     foreach(Rigidbody2D rb in ragdollParts) {
-    //         rb.bodyType = (newState) ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+    // void toggleTargetRotationForceInRagdollParts(bool newState) {
+    //     foreach(TargetRotation i in ragdollParts) {
+    //         i.rotationEnabled = newState;
     //     }
     // }
 
