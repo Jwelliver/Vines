@@ -20,12 +20,11 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] List<AudioClip> vineStretchAudioClips = new List<AudioClip>();
     [SerializeField] List<AudioClip> vineImpactAudioClips = new List<AudioClip>();
     [SerializeField] Animator controlsTextAnimator;
-    [SerializeField] List<Rigidbody2D> ragdollParts = new List<Rigidbody2D>();
+    [SerializeField] List<TargetRotation> ragdollParts = new List<TargetRotation>();
     GroundCheck groundCheck;
     private int jumpCount = 0;
 
-    // private MultiAnimator animator;
-    private MultiAnimator animator;
+    private Animator animator;
     private bool isGrounded = false;
     private bool isSwinging;
     
@@ -45,7 +44,7 @@ public class CharacterController2D : MonoBehaviour
     {
         groundCheck = GetComponentInChildren<GroundCheck>();
         // rb = GetComponent<Rigidbody2D>();
-        animator = GetComponent<MultiAnimator>();
+        animator = GetComponent<Animator>();
         swingingController = GetComponent<SwingingController>();
         // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         // playerAudio = GetComponentInChildren<AudioSource>();
@@ -66,22 +65,40 @@ public class CharacterController2D : MonoBehaviour
         else {handleNormalMovement();}
     }
 
-    void updateIsSwinging() {
-        bool swingStarted = !isSwinging && swingingController.isSwinging;
-        bool swingEnded = isSwinging && !swingingController.isSwinging;
-        if(swingStarted) {
-            playVineImpactSound();
-            jumpCount = 0;
-        } else if(swingEnded) {
-            animator.SetBool("isFlying", true);
-        }
-        isSwinging = swingingController.isSwinging;
-    }
-
     void getInput() {
         moveInput = Input.GetAxis("Horizontal");
         _jump = Input.GetKeyDown(jumpKey);
     }
+
+    void updateIsSwinging() {
+        bool swingStarted = !isSwinging && swingingController.isSwinging;
+        bool swingEnded = isSwinging && !swingingController.isSwinging;
+        if(swingStarted) {
+            onSwingStart();
+        } else if(swingEnded) {
+            onSwingEnd();
+        }
+        isSwinging = swingingController.isSwinging;
+    }
+
+    void onSwingStart() {
+
+        playVineImpactSound();
+        jumpCount = 0;
+        setTargetRotationForceInRagdollParts(3);
+        animator.SetBool("isSwinging",true);
+        animator.SetBool("isFlying",false);
+        animator.SetBool("isFalling",false);
+        if(!playerTookFirstSwing) {
+            playerTookFirstSwing=true;
+            controlsTextAnimator.SetTrigger("FadeOut");
+        }
+    }
+
+    void onSwingEnd() {
+        animator.SetBool("isFlying", true);
+    }
+
 
     void handleSpriteDirection() {
             // Flip the sprite based on the direction of movement
@@ -94,23 +111,7 @@ public class CharacterController2D : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, 1f);
             isFacingLeft = false;
         }  
-        // updateHingeLimits();
     }
-
-    // void updateHingeLimits() {
-    //     float baseAngle = (isFacingLeft) ? 180 : 0;
-    //     float range = 50;
-    //     float lowerLimit = baseAngle - range;
-    //     float upperLimit = baseAngle + range;
-    //     JointAngleLimits2D newLimits = new JointAngleLimits2D();
-    //     newLimits.min = lowerLimit;
-    //     newLimits.max = upperLimit;
-    //     foreach(HingeJoint2D h in gameObject.GetComponentsInChildren<HingeJoint2D>()) {
-    //         // h.useLimits = newState;
-    //         h.limits = newLimits;
-    //         Debug.Log(h.name + ": "+h.referenceAngle);
-    //     }
-    // }
 
     void handleNormalMovement() {
         animator.SetBool("isSwinging",false);
@@ -133,10 +134,8 @@ public class CharacterController2D : MonoBehaviour
         if (isGrounded && !rb.freezeRotation) {
             rb.rotation = 0;
             rb.freezeRotation=true;
-            // toggleRagdollParts(false);
         } else if(!isGrounded && rb.freezeRotation) {
             rb.freezeRotation=false;
-            // toggleRagdollParts(true);
         }
 
         handleRunningAnimation();
@@ -160,14 +159,6 @@ public class CharacterController2D : MonoBehaviour
     }
 
     void handleSwingingMovement() {
-        if(!playerTookFirstSwing) {
-            playerTookFirstSwing=true;
-            controlsTextAnimator.SetTrigger("FadeOut");
-        }
-        animator.SetBool("isSwinging",true);
-        animator.SetBool("isFlying",false);
-        animator.SetBool("isFalling",false);
-        
         if(moveInput!=0) {
             playVineStretchSound();
             // rb.AddForce(new Vector2(moveInput * swingingMoveSpeed, rb.velocity.y)) ;
@@ -177,6 +168,7 @@ public class CharacterController2D : MonoBehaviour
 
     void handleRunningAnimation() {
         if(isGrounded && moveInput!=0) {
+            setTargetRotationForceInRagdollParts(100);
             animator.SetBool("isRunning", true);
         } else {
             animator.SetBool("isRunning", false);
@@ -186,6 +178,7 @@ public class CharacterController2D : MonoBehaviour
     void handleFallingAnimation() {
         if(isSwinging) return;
         if(!isGrounded && rb.velocity.y<fallingInitSpeed) {
+            setTargetRotationForceInRagdollParts(20);
             animator.SetBool("isFlying", false);
             animator.SetBool("isFalling", true);
             playWhoaSound();
@@ -195,11 +188,17 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    void toggleRagdollParts(bool newState) {
-        foreach(Rigidbody2D rb in ragdollParts) {
-            rb.bodyType = (newState) ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+    void setTargetRotationForceInRagdollParts(float newForce) {
+        foreach(TargetRotation i in ragdollParts) {
+            i.setForce(newForce);
         }
     }
+
+    // void toggleRagdollParts(bool newState) {
+    //     foreach(Rigidbody2D rb in ragdollParts) {
+    //         rb.bodyType = (newState) ? RigidbodyType2D.Dynamic : RigidbodyType2D.Kinematic;
+    //     }
+    // }
 
     void playVineStretchSound() {
         // Debug.Log("VineStretchSound");
@@ -236,15 +235,28 @@ public class CharacterController2D : MonoBehaviour
 
     public void hitByArrow() {
         isHitByArrow=true;
-        onDeath();
+        isSwinging=false;
+        swingingController.handleSwingRelease();
+        swingingController.enabled=false;
         playJumpStopSound(); //temp hit by arrow sound
         animator.SetBool("isFalling", true);
     }
 
+    void OnDestroy() {
+        foreach(TargetRotation i in ragdollParts) {
+            Destroy(i.transform.root.gameObject);
+        }
+    }
+
+    void OnDisable() {
+        foreach(TargetRotation i in ragdollParts) {
+            i.transform.root.gameObject.SetActive(false);
+        }
+    }
+
+
     public void onDeath() {
-        isSwinging=false;
-        swingingController.handleSwingRelease();
-        swingingController.enabled=false;
+
     }
 }
 
