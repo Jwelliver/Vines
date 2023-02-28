@@ -56,11 +56,11 @@ MonoBehaviour:
   - {fileID: 5857417742709477190, guid: 47ffaa520ef672f41a07ab69d41d0d1b, type: 3}
   - {fileID: 1216026442891542921, guid: f0a0e38df4087bc45b3456615d81bd2a, type: 3}
   minLength: 20
-  maxLength: 40
+  maxLength: 35
   segmentOffset: -0.2
   minNormalBreakForce: 1500
   maxNormalBreakForce: 2500
-  minWeakBreakForce: 200
+  minWeakBreakForce: 250
   maxWeakBreakForce: 500
   pctChanceWeak: 0.08
   weakStartSegment: 4
