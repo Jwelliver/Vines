@@ -2624,11 +2624,18 @@ MonoBehaviour:
   levelStartOffset: -50
   foliageObj: {fileID: 2112251116059184091, guid: 06c52b816fe6c75478ed835d0736db7c, type: 3}
   foliageSprites:
-  - {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+  - sprite: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - sprite: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 0.9
+  - sprite: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 0.9
+  - sprite: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 0.9
+  - sprite: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+    probability: 0.3
+  - sprite: {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
+    probability: 0.05
   minDistanceBetweenObjs: 2
   maxDistanceBetweenObjs: 5
   minScale: 0.5
@@ -3345,12 +3352,18 @@ MonoBehaviour:
   levelStartOffset: -50
   foliageObj: {fileID: 2112251116059184091, guid: 06c52b816fe6c75478ed835d0736db7c, type: 3}
   foliageSprites:
-  - {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-  - {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
+  - sprite: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - sprite: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 0.9
+  - sprite: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 0.9
+  - sprite: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 0.9
+  - sprite: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+    probability: 0.5
+  - sprite: {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
+    probability: 0.2
   minDistanceBetweenObjs: 2
   maxDistanceBetweenObjs: 5
   minScale: 0.2

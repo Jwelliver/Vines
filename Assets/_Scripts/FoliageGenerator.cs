@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class SpriteWithProbability {
+    public Sprite sprite;
+    public float probability;
+}
+
 public class FoliageGenerator : MonoBehaviour
 {
 
@@ -12,7 +18,9 @@ public class FoliageGenerator : MonoBehaviour
     [Header("Objects")]
 
     [SerializeField] RectTransform foliageObj;
-    [SerializeField] List<Sprite> foliageSprites = new List<Sprite>();
+    // [SerializeField] Dictionary<Sprite,float> foliageSprites = new Dictionary<Sprite,float>();
+    [SerializeField] List<SpriteWithProbability> foliageSprites = new List<SpriteWithProbability>();
+    // [SerializeField] List<Sprite> foliageSprites = new List<Sprite>();
     [SerializeField] int minDistanceBetweenObjs = 3;
     [SerializeField] int maxDistanceBetweenObjs = 5;
     [SerializeField] float minScale = 3f;
@@ -30,11 +38,22 @@ public class FoliageGenerator : MonoBehaviour
         populateParalaxObjects();
     }
 
+    Sprite getRandomSprite(){
+        SpriteWithProbability testSprite = foliageSprites[Random.Range(0,foliageSprites.Count)];
+        if(Random.Range(0f,1f)<testSprite.probability) {
+            return testSprite.sprite;
+        } else {
+            return getRandomSprite();
+        }
+    }
+
     void populateParalaxObjects() {
         for(int i=levelStartOffset; i<levelLength+levelStartOffset;i+=Random.Range(minDistanceBetweenObjs,maxDistanceBetweenObjs)) { 
             Transform newObj = GameObject.Instantiate(foliageObj, new Vector2(i, transform.position.y),Quaternion.identity);
             SpriteRenderer newObjSpriteRenderer = newObj.GetComponent<SpriteRenderer>();
-            Sprite rndSprite = foliageSprites[Random.Range(0,foliageSprites.Count)];
+            // Sprite rndSprite = foliageSprites;
+            Sprite rndSprite = getRandomSprite();
+            // Sprite rndSprite = foliageSprites.Keys[Random.Range(0,foliageSprites.Count)];
             newObjSpriteRenderer.sprite = rndSprite;
             // newObjSpriteRenderer.color = color;
             newObjSpriteRenderer.sortingLayerName = sortLayerName;
