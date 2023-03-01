@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void playerFoundAmulet() {
-        Debug.Log("AmuletFound!");
+        // Debug.Log("AmuletFound!");
         playerHasAmulet=true;
         playerAmulet.enabled=true;
         audioSource.PlayOneShot(amuletPickupSound);

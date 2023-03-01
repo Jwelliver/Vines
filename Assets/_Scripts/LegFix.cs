@@ -18,13 +18,13 @@ public class LegFix : MonoBehaviour
     {
         float z = rb.rotation;
         if(z < hingeJoint2D.limits.min) {
-            Debug.Log("reset hingejoint to min - Orig: "+ z);
+            // Debug.Log("reset hingejoint to min - Orig: "+ z);
             // transform.localEulerAngles = new Vector3(transform.localEulerAngles.z, transform.localEulerAngles.y, hingeJoint2D.limits.min);
             rb.rotation = hingeJoint2D.limits.min;
         
         } else if(z > hingeJoint2D.limits.max) {
             // transform.localEulerAngles = new Vector3(transform.localEulerAngles.z, transform.localEulerAngles.y, hingeJoint2D.limits.max);
-            Debug.Log("reset hingejoint to max - Orig: "+ z);
+            // Debug.Log("reset hingejoint to max - Orig: "+ z);
             rb.rotation = hingeJoint2D.limits.max;
         }
     }

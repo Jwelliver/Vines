@@ -189,7 +189,6 @@ void createVine() {
     // }
 
     public void playVineSnapSound() {
-        Debug.Log("VINE SNAP");
         audioSource.PlayOneShot(vineSnap);
     }
 
