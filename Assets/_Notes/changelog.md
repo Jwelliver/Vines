@@ -8,3 +8,5 @@
     - fixed vine grab point
     - palms show in front of player
     - added vine snap particle effect
+    - added physical legs
+    - added multiple new jungle assets
