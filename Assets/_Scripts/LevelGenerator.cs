@@ -9,6 +9,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] int levelStartOffset = 0;
 
     [Header("Trees")]
+    [SerializeField] Transform treeContainer;
     [SerializeField] RectTransform tree;
     [SerializeField] int minDistanceBetweenTrees = 3;
     [SerializeField] int maxDistanceBetweenTrees = 5;
@@ -37,7 +38,7 @@ public class LevelGenerator : MonoBehaviour
 
     void populateTrees() {
         for(int i=levelStartOffset; i<levelLength+levelStartOffset;i+=Random.Range(minDistanceBetweenTrees,maxDistanceBetweenTrees)) { 
-            GameObject.Instantiate(tree, new Vector2(i, 0),Quaternion.identity);
+            GameObject.Instantiate(tree, new Vector2(i, 0),Quaternion.identity,treeContainer);
         }
     }
 
