@@ -255,7 +255,8 @@ MonoBehaviour:
   maxVelocity: 36
   minAngle: 60
   maxAngle: 90
-  pctChanceHitVine: 0.5
+  pctChanceMissVine: 0.5
+  pctChanceBreakHinge: 0.5
   arrowHead: {fileID: 1491060176522621677}
 --- !u!255 &1079000615448439925
 FixedJoint2D:

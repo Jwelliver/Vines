@@ -10,10 +10,11 @@ public class ArrowProjectile : MonoBehaviour
     [SerializeField] float minAngle;
     [SerializeField] float maxAngle;
 
-    [SerializeField] float pctChanceHitVine;
+    [SerializeField] float pctChanceMissVine;
+    [SerializeField] float pctChanceBreakHinge;
     [SerializeField] Collider2D arrowHead;
 
-    bool hasCollided;
+    bool hasLanded;
 
     Rigidbody2D rb;
     FixedJoint2D fixedJoint;
@@ -28,20 +29,29 @@ public class ArrowProjectile : MonoBehaviour
         transform.eulerAngles = new Vector3(0,0,Random.Range(minAngle,maxAngle));
         rb.velocity = transform.up * Random.Range(minVelocity,maxVelocity);
         hitSound = GetComponent<AudioSource>();
-        if(Random.Range(0f,1f)<pctChanceHitVine) {
-            arrowHead.includeLayers = LayerMask.NameToLayer("Swingable");
+        if(Random.Range(0f,1f)<pctChanceMissVine) {
+            arrowHead.excludeLayers = LayerMask.NameToLayer("Swingable");
         }
     }
 
     void OnCollisionEnter2D(Collision2D col) {
-        if(hasCollided) return;
-        hitSound.Play();
-        fixedJoint.connectedBody = col.rigidbody;
-        fixedJoint.enabled = true;
+        if(hasLanded) return;
+        HingeJoint2D otherHinge = col.gameObject.GetComponent<HingeJoint2D>();
+        if(otherHinge!=null && Random.Range(0f,1f)<pctChanceBreakHinge) {
+            otherHinge.enabled = false;
+            return;
+        }
+        stickToBody(col.rigidbody);
         if(col.transform.root.tag=="Player") {
             col.transform.root.GetComponent<CharacterController2D>().hitByArrow();
         }
-        hasCollided = true;
+    }
+
+    void stickToBody(Rigidbody2D otherBody) {
+        hitSound.Play();
+        fixedJoint.connectedBody = otherBody;
+        fixedJoint.enabled = true;
+        hasLanded = true;
     }
 
 
