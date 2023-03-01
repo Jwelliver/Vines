@@ -18,9 +18,7 @@ public class FoliageGenerator : MonoBehaviour
     [Header("Objects")]
 
     [SerializeField] RectTransform foliageObj;
-    // [SerializeField] Dictionary<Sprite,float> foliageSprites = new Dictionary<Sprite,float>();
     [SerializeField] List<SpriteWithProbability> foliageSprites = new List<SpriteWithProbability>();
-    // [SerializeField] List<Sprite> foliageSprites = new List<Sprite>();
     [SerializeField] int minDistanceBetweenObjs = 3;
     [SerializeField] int maxDistanceBetweenObjs = 5;
     [SerializeField] float minScale = 3f;
