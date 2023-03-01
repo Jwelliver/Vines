@@ -2,19 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/*
+Place on a paralax backround parent to control the paralax movement
+*/
+
 public class Paralaxer : MonoBehaviour
 {
-    [SerializeField] float speed = 0.5f;
+    [SerializeField] Vector3 axisSpeed = new Vector3(0.5f,0,0); //speed for each axis to move paralax field
+    [SerializeField] Transform referenceObj; //Object to for paralaxing against
 
-    [SerializeField] Transform player;
-    [SerializeField] Rigidbody2D playerMainRb;
+    Vector3 prevReferencePosition;
+
     
     void Start() {
-        // playerRb = player.GetComponent<Rigidbody2D>();
+        prevReferencePosition = referenceObj.position;
     }
 
-    void Update()
+    void LateUpdate()
     {
-        transform.position += new Vector3(-playerMainRb.velocity.x*speed*Time.deltaTime,0);
+        performParalax();
+    }
+
+    void performParalax() {
+        Vector3 refObjCurPos = referenceObj.position;
+        Vector3 refObjPosDiff = prevReferencePosition-refObjCurPos;
+        float newX = refObjPosDiff.x * axisSpeed.x;
+        float newY = refObjPosDiff.y * axisSpeed.y;
+        float newZ = refObjPosDiff.z * axisSpeed.z;
+        Vector3 newMovement = new Vector3(newX,newY,newZ) * Time.deltaTime;
+        transform.position += newMovement;
+        prevReferencePosition = refObjCurPos;
     }
 }
