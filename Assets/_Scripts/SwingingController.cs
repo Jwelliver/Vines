@@ -33,7 +33,7 @@ public class SwingingController : MonoBehaviour
     {
         if (Input.GetKeyDown(grabKey) && !isSwinging ) {
             hasAttemptedGrab=true;
-            Debug.Log("isAttemptingGrab()");
+            // Debug.Log("isAttemptingGrab()");
         } else if(Input.GetKeyUp(grabKey) && isSwinging) {
             hasReleased=true;
         }
@@ -46,7 +46,7 @@ public class SwingingController : MonoBehaviour
 
     void handleSwingGrab() {
         if(hasAttemptedGrab){
-            Debug.Log("handleSwingGrab()");
+            // Debug.Log("handleSwingGrab()");
             Collider2D[] colliders = Physics2D.OverlapCircleAll(grabCollider.transform.position, grabCollider.radius, swingableLayer);
             if (colliders.Length > 0) {
                 Collider2D nearestCollider = getNearestCollider(colliders);
@@ -68,8 +68,8 @@ public class SwingingController : MonoBehaviour
         isSwinging = false;
     }
 
-    public void handleSwingRelease() {
-        if(hasReleased) {
+    public void handleSwingRelease(bool forceRelease=false) {
+        if(hasReleased || forceRelease) {
             grabJoint.enabled = false;
             grabJoint.connectedBody = null;
             endSwing();

@@ -247,7 +247,7 @@ public class CharacterController2D : MonoBehaviour
     public void hitByArrow() {
         isHitByArrow=true;
         isSwinging=false;
-        swingingController.handleSwingRelease();
+        swingingController.handleSwingRelease(true);
         swingingController.enabled=false;
         playJumpStopSound(); //temp hit by arrow sound
         animator.SetBool("isFalling", true);

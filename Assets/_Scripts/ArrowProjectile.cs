@@ -17,6 +17,7 @@ public class ArrowProjectile : MonoBehaviour
     bool hasLanded;
 
     Rigidbody2D rb;
+    Collider2D myCollider;
     FixedJoint2D fixedJoint;
 
     AudioSource hitSound;
@@ -24,13 +25,14 @@ public class ArrowProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        myCollider = GetComponent<Collider2D>();
         rb = GetComponent<Rigidbody2D>();
         fixedJoint = GetComponent<FixedJoint2D>();
         transform.eulerAngles = new Vector3(0,0,Random.Range(minAngle,maxAngle));
         rb.velocity = transform.up * Random.Range(minVelocity,maxVelocity);
         hitSound = GetComponent<AudioSource>();
         if(Random.Range(0f,1f)<pctChanceMissVine) {
-            arrowHead.excludeLayers = LayerMask.NameToLayer("Swingable");
+            // arrowHead.excludeLayers = LayerMask.NameToLayer("Swingable");
         }
     }
 
@@ -43,7 +45,7 @@ public class ArrowProjectile : MonoBehaviour
         }
         stickToBody(col.rigidbody);
         if(col.transform.root.tag=="Player") {
-            col.transform.root.GetComponent<CharacterController2D>().hitByArrow();
+            col.transform.root.GetComponentInChildren<CharacterController2D>().hitByArrow();
         }
     }
 
@@ -51,7 +53,9 @@ public class ArrowProjectile : MonoBehaviour
         hitSound.Play();
         fixedJoint.connectedBody = otherBody;
         fixedJoint.enabled = true;
+        myCollider.enabled = false;
         hasLanded = true;
+
     }
 
 
