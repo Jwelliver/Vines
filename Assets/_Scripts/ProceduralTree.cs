@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class ProceduralTree : MonoBehaviour
 {
+    [SerializeField] float minTrunkHeight = 1f;
+    [SerializeField] float maxTrunkHeight = 3f;
     [SerializeField] float minScale = 1f;
     [SerializeField] float maxScale = 3f;
 
@@ -56,8 +58,10 @@ public class ProceduralTree : MonoBehaviour
     }
 
     void initTree() {
+        
         float rndScale = Random.Range(minScale,maxScale);
         transform.localScale = new Vector2(rndScale,rndScale);
+        trunk.localScale = new Vector3(trunk.localScale.x,Random.Range(minTrunkHeight,maxTrunkHeight));
 
         // Assign random sprites
         trunkSpriteRenderer.sprite = getRandomSprite(trunkSprites);

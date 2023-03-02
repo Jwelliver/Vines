@@ -51,8 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa23b13dff73b864596fb31ebc7140ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minTrunkHeight: 1
+  maxTrunkHeight: 1
   minScale: 1.3
-  maxScale: 2.5
+  maxScale: 2.3
   maxAngle: 3
   maxVines: 3
   pctChanceLightShaft: 0.3
