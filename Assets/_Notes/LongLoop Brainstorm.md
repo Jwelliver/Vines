@@ -62,3 +62,24 @@ to get started:
         - attack state (optional)
         - make states extensible
     - initial method of catching bugs (handheld net)
+
+== Step by step
+- Player swings net
+    - On "catch input"
+        - enable net
+        - play swing animation
+
+- Bug AI
+    - spawn randomly at vine segment
+    - idle state where bug pauses movement and rotates randomly
+    - move state
+        - "crawl vision" finds objects that bug can crawl on and provides direction/distance for bug to move along
+    - later:
+        - add additional sensors and behaviors for "threatened" state and retreat/hide
+
+- Player catches bug
+    - net needs script that when trigger overlaps with bug, bug is caught
+    - bug object disappears
+    - Later:
+        - play fading animation of bug icon with +1 ?
+        - create inventory system
