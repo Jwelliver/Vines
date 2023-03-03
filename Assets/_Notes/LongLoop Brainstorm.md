@@ -17,3 +17,48 @@
         - Flesh out ground platformer?
             - random levels with ground and vines?
                 - allow player to enter ruins (random dungeon levels?)
+
+
+=================
+
+
+Entemologist
+
+===========
+
+- player finds and catches various bugs
+
+- bugs can be sold to universities for research, or sold locally at town village(for food, some remote village reason), and/or studied
+
+- starting with hard-coded mechanics in bugs, but move to modular system so players can have a new experience learning each type of bug each time. (good for roguelike)
+
+
+
+
+
+- use "running into tribe" as risk
+-- randomly determine if player is near tribe
+-- play war drums when a tribe is "nearby"
+-- player can hide in the palms while the tribe passes.. if not, they are "sighted" and tribe begins firing arrows.
+
+- Rouglike feauture ideas:
+    - player can have skills and attributes such as net-handling, aim, stealthiness, etc. which affect how effective they are at
+        using catching devices and such.
+
+
+== random ideas ==
+- Perhaps require to bait some insect with some sort of other insect, or product thereof.
+
+- net-gun, that shoots capture net attached to string. fires, then auto retracts with any catch it may have captured.
+
+===
+to get started:
+    - bug that crawls on vines
+    - bug that flies
+    - all bugs have modular behaviors:
+        - idle state
+        - moving state
+        - threatened state
+        - attack state (optional)
+        - make states extensible
+    - initial method of catching bugs (handheld net)
