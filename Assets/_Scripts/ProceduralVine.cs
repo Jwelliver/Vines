@@ -42,6 +42,7 @@ public class ProceduralVine : MonoBehaviour
     [SerializeField] AudioClip vineSnap;
 
     private AudioSource audioSource;
+    private LineRenderer lineRenderer;
 
     void Start()
     {
@@ -50,15 +51,11 @@ public class ProceduralVine : MonoBehaviour
         createVine();
     }
 
+    void LateUpdate() {
+        // lineRenderer
+    }
 
-    /*
-        TODO: new vine weak
-            - determine if vine is weak at start
-            - if it is weak, set all segments and adornments to weak color
-            - after generating segments, pick a random segment and override breakforce to random weak value
-    */
-
-void createVine() {
+    void createVine() {
         int length = Random.Range(minLength,maxLength);
         Transform prevSegment;
         //instantiate anchor at 0,0

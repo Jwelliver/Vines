@@ -12,8 +12,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float fallingInitSpeed = -10f;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
 
-    [SerializeField]  AudioSource playerAudio;
-    [SerializeField]  AudioSource vineAudio;
+    [SerializeField] AudioSource playerAudio;
+    [SerializeField] AudioSource vineAudio;
     [SerializeField] List<AudioClip> whoas = new List<AudioClip>();
     [SerializeField] AudioClip jumpStartSound;
     [SerializeField] AudioClip jumpStopSound;
@@ -21,6 +21,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] List<AudioClip> vineImpactAudioClips = new List<AudioClip>();
     [SerializeField] Animator controlsTextAnimator;
     [SerializeField] List<TargetRotation> ragdollParts = new List<TargetRotation>();
+    [SerializeField] SwingNetAttack swingNetAttack;
     GroundCheck groundCheck;
     private int jumpCount = 0;
 
@@ -36,6 +37,7 @@ public class CharacterController2D : MonoBehaviour
 
     private float moveInput;
     private bool _jump;
+    private bool isAttacking;
 
     private bool isHitByArrow;
     private bool isFacingLeft; 
@@ -66,6 +68,7 @@ public class CharacterController2D : MonoBehaviour
         if(isHitByArrow) return;
         getInput();
         handleJump();
+        handleAttack();
         updateIsSwinging();
         handleFallingAnimation();
     }
@@ -79,6 +82,14 @@ public class CharacterController2D : MonoBehaviour
     void getInput() {
         moveInput = Input.GetAxis("Horizontal");
         _jump = Input.GetKeyDown(jumpKey);
+        isAttacking = Input.GetMouseButtonDown(0);
+    }
+
+    void handleAttack() {
+        if(isAttacking) {
+            swingNetAttack.attack();
+            isAttacking=false;
+        }
     }
 
     void updateIsSwinging() {
