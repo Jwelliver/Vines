@@ -1,0 +1,23 @@
+051923
+
+
+- Store player stats since last swing grab.
+-- max Velocity (x,y)
+-- distance travelled (x,y) (since last grab)
+-- Player rotations (amount and speed)
+
+- Use the stats to derive score functions
+
+
+An end grab bonus, especially when done with high downward velocity (i.e. a close save)
+
+- when player starts a new grab:
+-- check the max velocity 
+
+
+
+====
+
+-- Use stunt or other things like the end grab as sequence for achievements (e.g. 10 end grabs awards achievement/something similar)
+--- achievements can be used to unlock hats
+---- hats may each have specific buffs like +10% jump power, etc.
