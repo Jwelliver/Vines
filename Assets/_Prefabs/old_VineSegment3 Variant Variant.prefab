@@ -10,15 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1309866635119743686, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1309866635119743686, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.1
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1309866635119743686, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.99989617
+      value: 0.99959767
       objectReference: {fileID: 0}
     - target: {fileID: 1309866635119743686, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalRotation.x
@@ -30,11 +30,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1309866635119743686, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0144128725
+      value: 0.028365951
       objectReference: {fileID: 0}
     - target: {fileID: 1309866635119743686, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 1.652
+      value: 3.251
       objectReference: {fileID: 0}
     - target: {fileID: 2067373911824835126, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_Sprite
@@ -42,19 +42,19 @@ PrefabInstance:
       objectReference: {fileID: 1355335694, guid: aca48516809567248b63e60c19d3b5fa, type: 3}
     - target: {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.491881
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 14.402503
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.010692861
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalRotation.w
@@ -62,15 +62,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -87,6 +87,22 @@ PrefabInstance:
     - target: {fileID: 2673533663488704412, guid: 194421742ebd41745adcfa348a532c51, type: 3}
       propertyPath: m_Name
       value: VineSegment3 Variant Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139375366156700795, guid: 194421742ebd41745adcfa348a532c51, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 8.491881
+      objectReference: {fileID: 0}
+    - target: {fileID: 7139375366156700795, guid: 194421742ebd41745adcfa348a532c51, type: 3}
+      propertyPath: m_ConnectedAnchor.y
+      value: 15.090878
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321275949392694845, guid: 194421742ebd41745adcfa348a532c51, type: 3}
+      propertyPath: m_Mass
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8321275949392694845, guid: 194421742ebd41745adcfa348a532c51, type: 3}
+      propertyPath: m_UseAutoMass
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

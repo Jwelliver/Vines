@@ -66,7 +66,10 @@ public class ProceduralVine : MonoBehaviour
         for(int i=0; i<length;i++) {
             // -  instantiate vineSegment at prev segment position - segmentLength*2;
             Transform rndSegment = vineSegements[Random.Range(0,vineSegements.Count)];
-            Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0,Mathf.Abs(rndSegment.localScale.y*2)+segmentOffset);
+            // CapsuleCollider2D vineCol = rndSegment.GetComponent<CapsuleCollider2D>(); // 1/2 attempt to replace localScale.y with collider size in vine positioning.
+            // Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0,Mathf.Abs(vineCol.bounds.extents.y*2)+segmentOffset); // 2/2 attempt to replace localScale.y with collider size in vine positioning.
+            Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0,Mathf.Abs(rndSegment.localScale.y*2)+segmentOffset); //ORIG
+            
             Transform newSegment = GameObject.Instantiate(rndSegment, newPosition, Quaternion.identity);
             newSegment.SetParent(transform);
             // newSegment.GetComponent<SpriteRenderer>().sprite = vineSprites[Random.Range(0,vineSprites.Count)];

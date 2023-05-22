@@ -58,7 +58,7 @@ MonoBehaviour:
   maxAngle: 3
   maxVines: 3
   pctChanceLightShaft: 0.3
-  maxLightShafts: 4
+  maxLightShafts: 3
   distanceToDeactivate: 40
   trunk: {fileID: 5789240588416436830}
   palms: {fileID: 5789240587628268248}
@@ -186,7 +186,7 @@ MonoBehaviour:
   - {x: 6.365, y: -5.535, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 361990
+  m_InstanceId: 100470
 --- !u!1 &5789240588416436825
 GameObject:
   m_ObjectHideFlags: 0

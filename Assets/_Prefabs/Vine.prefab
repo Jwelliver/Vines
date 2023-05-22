@@ -48,17 +48,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vineAnchor: {fileID: 8533432108515378846, guid: a8fa812acc9f53c4385c530b8cd8ff6e, type: 3}
   vineSegements:
-  - {fileID: 7405587939133014832, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
-  - {fileID: 2396846652169101675, guid: 194421742ebd41745adcfa348a532c51, type: 3}
-  - {fileID: 435413627384562847, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
-  - {fileID: 3895427051522142798, guid: efb7153d246848a44a46755b55906e2e, type: 3}
+  - {fileID: 9046222370985490917, guid: d8c80b4eb055dfd479f565aacff7e494, type: 3}
+  - {fileID: 4019307264594370881, guid: bbec7d8b55f9d5740b0a34e2ee269335, type: 3}
+  - {fileID: 7314871884664573792, guid: b40f268a6717eb54baf9135640c820b7, type: 3}
+  - {fileID: 1186127703561340669, guid: c03c74f1531c0594baba15fe9f07b6cf, type: 3}
   adornments:
   - {fileID: 8037177660060243962, guid: 67173ca2a1b469a4c9dcde836595a014, type: 3}
   - {fileID: 5857417742709477190, guid: 47ffaa520ef672f41a07ab69d41d0d1b, type: 3}
   - {fileID: 1216026442891542921, guid: f0a0e38df4087bc45b3456615d81bd2a, type: 3}
-  minLength: 20
-  maxLength: 35
-  segmentOffset: -0.2
+  minLength: 5
+  maxLength: 17
+  segmentOffset: -0.6
   minNormalBreakForce: 1500
   maxNormalBreakForce: 2500
   minWeakBreakForce: 250
