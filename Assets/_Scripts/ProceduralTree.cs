@@ -81,7 +81,7 @@ public class ProceduralTree : MonoBehaviour
     void populateVines() {
         int nVines = Random.Range(1,maxVines);
         for(int i =0; i<nVines; i++) {
-            Transform newVine = GameObject.Instantiate(vine,getRandomLocationInPalms(), Quaternion.identity, palms);
+            Transform newVine = GameObject.Instantiate(vine,getRandomLocationInPalms(), Quaternion.identity); //palms (PARENT - REMOVED)
         }
     }
 
