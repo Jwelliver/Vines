@@ -22,11 +22,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2635320170542706208, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_ConnectedAnchor.x
-      value: 8.491881
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2635320170542706208, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 15.090878
+      value: 0.6883745
       objectReference: {fileID: 0}
     - target: {fileID: 2635320170542706208, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_AutoConfigureConnectedAnchor
@@ -86,7 +86,7 @@ PrefabInstance:
       objectReference: {fileID: -40577412, guid: aca48516809567248b63e60c19d3b5fa, type: 3}
     - target: {fileID: 7105815007742762439, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_Name
-      value: VineSegment2 Variant Variant
+      value: old_VineSegment2 Variant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 7405587939133014832, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_RootOrder
