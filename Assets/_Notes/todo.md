@@ -92,3 +92,8 @@ Saturday:
 	- duplicate existing anims and re-construct for orig player (may need to tweak/re-add leg positions)
 
 - To deal with legs.. consider trying two sets.. one normal for anims, and a second for physics.. just enable/disable on the ground
+
+
+# 052323
+- Dead vines only mode
+- Peaceful mode?
