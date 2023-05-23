@@ -18,11 +18,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 435413627384562847, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 435413627384562847, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 435413627384562847, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
       propertyPath: m_LocalPosition.x
@@ -65,8 +65,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3847268100339824434, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 3847268100339824434, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 3847268100339824434, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
       propertyPath: m_LocalRotation.w
@@ -91,7 +95,19 @@ PrefabInstance:
     - target: {fileID: 4321591597700089794, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1249641634, guid: aca48516809567248b63e60c19d3b5fa, type: 3}
+      objectReference: {fileID: 1311633805, guid: 35fbe3d0d0f9b0749a31be179f3a14aa, type: 3}
+    - target: {fileID: 4321591597700089794, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321591597700089794, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4321591597700089794, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4926235567973296527, guid: 0c0158170d345a34ab34fad66281b852, type: 3}
       propertyPath: m_Anchor.x
       value: 0

@@ -58,11 +58,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6173086441512218781, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 6173086441512218781, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 6173086441512218781, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -91,7 +91,19 @@ PrefabInstance:
     - target: {fileID: 6572555282287018093, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -40577412, guid: aca48516809567248b63e60c19d3b5fa, type: 3}
+      objectReference: {fileID: 1568418194, guid: 35fbe3d0d0f9b0749a31be179f3a14aa, type: 3}
+    - target: {fileID: 6572555282287018093, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572555282287018093, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6572555282287018093, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7105815007742762439, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_Name
       value: VineSegment2
@@ -102,11 +114,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7405587939133014832, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7405587939133014832, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7405587939133014832, guid: 4af59a21f32d5784bb699d7af1afda1c, type: 3}
       propertyPath: m_LocalPosition.x
