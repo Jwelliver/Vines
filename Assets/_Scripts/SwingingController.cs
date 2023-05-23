@@ -11,6 +11,7 @@ public class SwingingController : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Collider2D playerCollider;
     [SerializeField] CircleCollider2D grabCollider;
+    [SerializeField] ScoreSystem scoreSystem;
     
 
     
@@ -26,6 +27,7 @@ public class SwingingController : MonoBehaviour
     {
         // rb = GetComponent<Rigidbody2D>();
         grabJoint = GetComponentInChildren<FixedJoint2D>();
+        
     }
 
     // Update is called once per frame
@@ -61,11 +63,14 @@ public class SwingingController : MonoBehaviour
 
     void startSwing() {
         isSwinging = true;
+        scoreSystem.onSwingGrab();
+        
     }
 
     void endSwing() {
         // playerCollider.isTrigger=false;
         isSwinging = false;
+        scoreSystem.onSwingRelease();
     }
 
     public void handleSwingRelease(bool forceRelease=false) {
