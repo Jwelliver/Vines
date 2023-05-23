@@ -15,6 +15,14 @@ An end grab bonus, especially when done with high downward velocity (i.e. a clos
 -- check the max velocity 
 
 
+===
+
+Approach 1:
+
+- Set up scriptable object class that contains score vars and methods
+- for swing-related stats:
+    - Trigger stat record from SwingingController (i.e. swingStart and swingEnd)
+
 
 ====
 
