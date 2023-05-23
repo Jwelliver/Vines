@@ -97,3 +97,7 @@ Saturday:
 # 052323
 - Dead vines only mode
 - Peaceful mode?
+
+===
+Vine squash issue:
+	- think it's due to parenting to oddly scaled palms
