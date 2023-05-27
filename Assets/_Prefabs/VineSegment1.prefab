@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1139653339620064657}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 9046222370985490917}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 972656467
   m_SortingLayer: -2
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1311633805, guid: 35fbe3d0d0f9b0749a31be179f3a14aa, type: 3}
+  m_Sprite: {fileID: -1215671906, guid: bd3cbb9ea3805c548ae75d8e6cea435c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -93,8 +93,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 856876132015679519, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
+      propertyPath: m_Anchor.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 856876132015679519, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_Anchor.y
-      value: 0.67
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 856876132015679519, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_BreakAction
@@ -106,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 856876132015679519, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.67
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 856876132015679519, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_AutoConfigureConnectedAnchor
@@ -118,7 +122,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1444479966179943763, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_Size.y
-      value: 1.8
+      value: 1.9
       objectReference: {fileID: 0}
     - target: {fileID: 1444479966179943763, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_Offset.y
@@ -126,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1984689130704104025, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_Mass
-      value: 0.2
+      value: 0.175
       objectReference: {fileID: 0}
     - target: {fileID: 1984689130704104025, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_LinearDrag
@@ -146,11 +150,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5310688476912436495, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 5310688476912436495, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5310688476912436495, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_LocalPosition.x

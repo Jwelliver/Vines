@@ -51,14 +51,20 @@ MonoBehaviour:
   - {fileID: 9046222370985490917, guid: d8c80b4eb055dfd479f565aacff7e494, type: 3}
   - {fileID: 4019307264594370881, guid: bbec7d8b55f9d5740b0a34e2ee269335, type: 3}
   - {fileID: 7314871884664573792, guid: b40f268a6717eb54baf9135640c820b7, type: 3}
-  - {fileID: 1186127703561340669, guid: c03c74f1531c0594baba15fe9f07b6cf, type: 3}
   adornments:
   - {fileID: 8037177660060243962, guid: 67173ca2a1b469a4c9dcde836595a014, type: 3}
   - {fileID: 5857417742709477190, guid: 47ffaa520ef672f41a07ab69d41d0d1b, type: 3}
   - {fileID: 1216026442891542921, guid: f0a0e38df4087bc45b3456615d81bd2a, type: 3}
-  minLength: 5
-  maxLength: 17
-  segmentOffset: -0.5
+  - {fileID: 1216026442891542921, guid: 628dab7b4e91afd49a7b0a90224b2af0, type: 3}
+  - {fileID: 1216026442891542921, guid: cd8cacf4b233bc14eb16ef900900996d, type: 3}
+  - {fileID: 1216026442891542921, guid: 9943e15596396e34eaeca16f086b431c, type: 3}
+  - {fileID: 1216026442891542921, guid: 7ba0f12782e1087478bc63861fd2ac19, type: 3}
+  - {fileID: 1216026442891542921, guid: 0f4c90a7e6250f4489f1c3d7a566a655, type: 3}
+  - {fileID: 1216026442891542921, guid: e365e090f59584c42bda7e4240c9a21c, type: 3}
+  - {fileID: 1216026442891542921, guid: 5df0520732d76e445824dcf0ce4295af, type: 3}
+  minLength: 17
+  maxLength: 30
+  segmentOffset: -0.25
   minNormalBreakForce: 1500
   maxNormalBreakForce: 2500
   minWeakBreakForce: 250
@@ -68,7 +74,7 @@ MonoBehaviour:
   pctChanceCurl: 0.3
   maxCurlForce: 10
   curlSpeed: 10
-  pctChanceAdornment: 0.15
+  pctChanceAdornment: 0.7
   minAdornmentScale: 0.3
   maxAdornmentScale: 0.8
   minWeakColor: {r: 0.745283, g: 0.65247416, b: 0.5090424, a: 1}
@@ -178,7 +184,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5796282939409325735}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
