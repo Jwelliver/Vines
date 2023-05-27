@@ -12,9 +12,17 @@ public class Paralaxer : MonoBehaviour
     [SerializeField] Vector3 axisSpeed = new Vector3(0.5f,0,0); //speed for each axis to move paralax field
     [SerializeField] Transform referenceObj; //Object to for paralaxing against
 
-    Vector3 prevReferencePosition;
+    Transform myTransform;
 
-    
+    Vector3 prevReferencePosition;
+    Vector3 refObjCurPos;
+    Vector3 refObjPosDiff;
+    Vector3 newMovement;
+
+    void Awake() {
+        myTransform = transform;
+    }
+
     void Start() {
         prevReferencePosition = referenceObj.position;
     }
@@ -25,13 +33,13 @@ public class Paralaxer : MonoBehaviour
     }
 
     void performParalax() {
-        Vector3 refObjCurPos = referenceObj.position;
-        Vector3 refObjPosDiff = prevReferencePosition-refObjCurPos;
+        refObjCurPos = referenceObj.position;
+        refObjPosDiff = prevReferencePosition-refObjCurPos;
         float newX = refObjPosDiff.x * axisSpeed.x;
         float newY = refObjPosDiff.y * axisSpeed.y;
         float newZ = refObjPosDiff.z * axisSpeed.z;
-        Vector3 newMovement = new Vector3(newX,newY,newZ) * Time.deltaTime;
-        transform.position += newMovement;
+        newMovement = new Vector3(newX,newY,newZ) * Time.deltaTime;
+        myTransform.position += newMovement;
         prevReferencePosition = refObjCurPos;
     }
 }
