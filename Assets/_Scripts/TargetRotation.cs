@@ -16,6 +16,8 @@ public class TargetRotation : MonoBehaviour
     public bool positionEnabled=true;
 
     private Rigidbody2D rb;
+    float targetRotation;
+    Vector3 targetPosition;
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +39,7 @@ public class TargetRotation : MonoBehaviour
     void handleRotation() {
         if(rotationEnabled) {
             // float targetRotation = targetTransform.localEulerAngles.z;
-            float targetRotation = rotationTargetTransform.eulerAngles.z;
+            targetRotation = rotationTargetTransform.eulerAngles.z;
             rb.MoveRotation(Mathf.LerpAngle(rb.rotation, targetRotation, force*Time.deltaTime ));
         }
     }
@@ -45,7 +47,7 @@ public class TargetRotation : MonoBehaviour
     void handlePosition() {
         if(positionEnabled) {
             // float targetRotation = targetTransform.localEulerAngles.z;
-            Vector3 targetPosition = positionTargetTransform.position;
+            targetPosition = positionTargetTransform.position;
             rb.MovePosition(targetPosition);
             // rb.MoveRotation(Mathf.LerpAngle(rb.rotation, targetRotation, force*Time.deltaTime ));
         }
