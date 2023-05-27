@@ -14,13 +14,18 @@ public class SwingingController : MonoBehaviour
     [SerializeField] ScoreSystem scoreSystem;
     
 
-    
+    Transform myTransform;
     FixedJoint2D grabJoint;
     
     bool hasAttemptedGrab;
     bool hasReleased;
     public bool isSwinging;
     private float playerGravityScale; //stores player's gravity scale before setting to zero in order to reset upon swing release.
+
+
+    void Awake() {
+        myTransform = transform;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -52,7 +57,7 @@ public class SwingingController : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapCircleAll(grabCollider.transform.position, grabCollider.radius, swingableLayer);
             if (colliders.Length > 0) {
                 Collider2D nearestCollider = getNearestCollider(colliders);
-                transform.position = nearestCollider.transform.position;
+                myTransform.position = nearestCollider.transform.position;
                 grabJoint.connectedBody = nearestCollider.attachedRigidbody;
                 grabJoint.enabled = true;
                 startSwing();
