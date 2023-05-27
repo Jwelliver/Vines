@@ -43,7 +43,7 @@ public class LevelGenerator : MonoBehaviour
     }
 
     void generateWinPlatform() {
-        GameObject.Instantiate(winPlatform, new Vector2(levelLength,0), Quaternion.identity);
+        GameObject.Instantiate(winPlatform, new Vector2(levelLength,-1.5f), Quaternion.identity);
     }
 
 }
