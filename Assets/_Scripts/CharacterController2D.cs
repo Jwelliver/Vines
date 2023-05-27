@@ -23,6 +23,8 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] List<TargetRotation> ragdollParts = new List<TargetRotation>();
     [SerializeField] SwingNetAttack swingNetAttack;
     GroundCheck groundCheck;
+
+    Transform myTransform;
     private int jumpCount = 0;
 
     private Animator animator;
@@ -52,6 +54,11 @@ public class CharacterController2D : MonoBehaviour
     float ragdollAnimationBlendMed = 20f;
     float ragdollAnimationBlendLow = 5f;
     float ragdollAnimationBlendNone = 0f;
+
+    void Awake() {
+        myTransform = transform;
+    }
+
 
     private void Start()
     {
@@ -125,12 +132,12 @@ public class CharacterController2D : MonoBehaviour
     void handleSpriteDirection() {
             // Flip the sprite based on the direction of movement
         if (moveInput < 0 && !isFacingLeft) { 
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            myTransform.localScale = new Vector3(-1f, 1f, 1f);
             isFacingLeft=true;
         }
 
         else if (moveInput > 0 && isFacingLeft) {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            myTransform.localScale = new Vector3(1f, 1f, 1f);
             isFacingLeft = false;
         }  
     }
