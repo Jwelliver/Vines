@@ -25,6 +25,7 @@ public class ProceduralTree : MonoBehaviour
     [SerializeField] List<Sprite> palmSprites;
     [SerializeField] List<Sprite> trunkSprites;
 
+    Transform myTransform;
     SpriteRenderer trunkSpriteRenderer;
     SpriteRenderer palmsSpriteRenderer;
     
@@ -32,6 +33,10 @@ public class ProceduralTree : MonoBehaviour
     bool isFlipped;
 
     Transform player;
+
+    void Awake() {
+        myTransform = transform;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +54,8 @@ public class ProceduralTree : MonoBehaviour
     }
 
     void checkDistanceFromPlayer() {
-        float distance = Vector2.Distance(transform.position, player.position);
+        // float distance = Vector2.Distance(myTransform.position, player.position);
+        float distance = Mathf.Abs(myTransform.position.x - player.position.x);
         if(distance>distanceToDeactivate) {
             trunk.gameObject.SetActive(false);
         } else {
