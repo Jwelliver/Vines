@@ -10,3 +10,8 @@
     - added vine snap particle effect
     - added physical legs
     - added multiple new jungle assets
+
+   # 052823
+
+   Crashing began sometime yesterday beginning with new Vine Segments; May be related settings changed; also may be mem leak 
+
