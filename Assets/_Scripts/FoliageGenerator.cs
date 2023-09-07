@@ -27,6 +27,7 @@ public class FoliageGenerator : MonoBehaviour
     [Header("Layer")]
     [SerializeField] string sortLayerName;
     [SerializeField] int sortOrder = 0;
+    [SerializeField] Color color = Color.white;
 
 
 
@@ -53,7 +54,7 @@ public class FoliageGenerator : MonoBehaviour
             Sprite rndSprite = getRandomSprite();
             // Sprite rndSprite = foliageSprites.Keys[Random.Range(0,foliageSprites.Count)];
             newObjSpriteRenderer.sprite = rndSprite;
-            // newObjSpriteRenderer.color = color;
+            newObjSpriteRenderer.color = color;
             newObjSpriteRenderer.sortingLayerName = sortLayerName;
             newObjSpriteRenderer.sortingOrder = sortOrder;
             float rndScale = Random.Range(minScale,maxScale);

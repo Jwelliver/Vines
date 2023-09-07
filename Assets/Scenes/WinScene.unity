@@ -536,16 +536,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4771585890927472615, guid: 3a6a15bc922cf7448bdea054a6854dc2, type: 3}
       propertyPath: m_text
-      value: 'Congratulations, you have successfully completed your quest. The end
-        of this journey brings the ultimate power of new beginnings.
+      value: 'Congratulations! You made it!
 
 
-        Now,
-        the only question is, what will you do in your next life?
-
-
-        Press
-        Spacebar to end'
+        Press Spacebar to end'
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771585890927472615, guid: 3a6a15bc922cf7448bdea054a6854dc2, type: 3}
+      propertyPath: m_fontSize
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4771585890927472615, guid: 3a6a15bc922cf7448bdea054a6854dc2, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4771585890927472615, guid: 3a6a15bc922cf7448bdea054a6854dc2, type: 3}
       propertyPath: m_VerticalAlignment

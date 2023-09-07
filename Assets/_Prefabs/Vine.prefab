@@ -62,8 +62,8 @@ MonoBehaviour:
   - {fileID: 1216026442891542921, guid: 0f4c90a7e6250f4489f1c3d7a566a655, type: 3}
   - {fileID: 1216026442891542921, guid: e365e090f59584c42bda7e4240c9a21c, type: 3}
   - {fileID: 1216026442891542921, guid: 5df0520732d76e445824dcf0ce4295af, type: 3}
-  minLength: 17
-  maxLength: 30
+  minLength: 15
+  maxLength: 25
   segmentOffset: -0.25
   minNormalBreakForce: 1500
   maxNormalBreakForce: 2500
