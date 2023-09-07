@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
         amuletFoundText = GameObject.Find("AmuletFoundText").GetComponent<TMPro.TextMeshProUGUI>();
         music = GameObject.Find("Music").GetComponent<PersistentAudio>();
         audioSource = GetComponent<AudioSource>();
+        Cursor.visible = false;
     }
     public void win() {
         // Debug.Log("You Won!");
