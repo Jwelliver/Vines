@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2112251116059184091}
   - component: {fileID: 1548299657586777302}
+  - component: {fileID: 1147083033111881267}
   m_Layer: 0
   m_Name: FoliageObj
   m_TagString: Untagged
@@ -30,7 +31,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -811496249
-  m_SortingLayer: -2
+  m_SortingLayer: -4
   m_SortingOrder: -1
   m_Sprite: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -89,3 +90,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1147083033111881267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832855834244879608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2eb4cf8e02daeb4eab02085fa19b3d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
