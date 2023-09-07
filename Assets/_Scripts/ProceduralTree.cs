@@ -26,41 +26,24 @@ public class ProceduralTree : MonoBehaviour
     [SerializeField] List<Sprite> trunkSprites;
 
     Transform myTransform;
+    Transform vinesContainer;
     SpriteRenderer trunkSpriteRenderer;
     SpriteRenderer palmsSpriteRenderer;
-    
-    
-    bool isFlipped;
 
-    Transform player;
 
     void Awake() {
         myTransform = transform;
+        vinesContainer = myTransform.Find("VinesContainer");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").transform;
         trunkSpriteRenderer = trunk.GetComponent<SpriteRenderer>();
         palmsSpriteRenderer = palms.GetComponent<SpriteRenderer>();
         initTree();
         populateVines();
         populateLightShafts();
-    }
-
-    void Update() {
-        checkDistanceFromPlayer();
-    }
-
-    void checkDistanceFromPlayer() {
-        // float distance = Vector2.Distance(myTransform.position, player.position);
-        float distance = Mathf.Abs(myTransform.position.x - player.position.x);
-        if(distance>distanceToDeactivate) {
-            trunk.gameObject.SetActive(false);
-        } else {
-            trunk.gameObject.SetActive(true);
-        }
     }
 
     void initTree() {
@@ -87,7 +70,7 @@ public class ProceduralTree : MonoBehaviour
     void populateVines() {
         int nVines = Random.Range(1,maxVines);
         for(int i =0; i<nVines; i++) {
-            Transform newVine = GameObject.Instantiate(vine,getRandomLocationInPalms(), Quaternion.identity, transform); //palms (PARENT - REMOVED)
+            Transform newVine = GameObject.Instantiate(vine,getRandomLocationInPalms(), Quaternion.identity, vinesContainer); //palms (PARENT - REMOVED)
         }
     }
 
