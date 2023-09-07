@@ -1,0 +1,22 @@
+090723
+
+- Look into batching and instancing to reduce draw calls
+
+
+- New Vine Grab mechanic with up/down movement and sliding/ grip friction:
+    - Use a hinge or custom joint for player grab on a vine segment
+        ... Set friction and a slider/stretch on the joint that allows the joint to stretch
+        ... Use the stretch limit to break the joint when reached.
+        ... If the joint breaks on the bottom limit, search for another vine segment below, and reset the player's 
+        ... grab joint to the segment below, starting at the top of it's joint stretch limit;
+
+        The joint length should break right at the distance to the maximum joint length of the adjacent joint.
+
+        If done smoothly, this should allow realistic player grip sliding;
+
+        You can also use this to move player up and down the vines by applying a small vertical force
+        ... that allows the player to move along the joint limits.
+
+        (check keep for orig note)
+
+        
