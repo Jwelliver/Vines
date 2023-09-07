@@ -28,4 +28,9 @@ public class PersistentAudio : MonoBehaviour
     public void fadeOutAndStop() {
         animator.SetTrigger("FadeOut");
     }
+
+    void OnDestroy() {
+        audioSource.Stop();
+        audioSource.clip=null;
+    }
 }
