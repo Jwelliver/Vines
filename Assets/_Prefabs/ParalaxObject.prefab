@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2112251116059184091}
   - component: {fileID: 1548299657586777302}
+  - component: {fileID: -3670448068383987077}
   m_Layer: 0
   m_Name: ParalaxObject
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -811496249
-  m_SortingLayer: -2
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 1650600148, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -89,3 +90,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-3670448068383987077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832855834244879608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2eb4cf8e02daeb4eab02085fa19b3d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xDistanceOffset: 1.5
