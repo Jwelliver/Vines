@@ -16,6 +16,7 @@ public class LevelLoader : MonoBehaviour
     }
 
     public void reloadCurrentLevel() {
+        Resources.UnloadUnusedAssets();//added 090623 in attempt to address mem issue and crash
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex));
     }
 
