@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ff31dd8dbbc2a04eb037ca4961873e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xDistanceOffset: 1.5
+  xDistanceOffset: 1.3
   target: {fileID: 5789240588416436825}
 --- !u!1 &5789240587628268251
 GameObject:

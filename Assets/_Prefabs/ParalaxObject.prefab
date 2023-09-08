@@ -102,4 +102,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2eb4cf8e02daeb4eab02085fa19b3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xDistanceOffset: 1.5
+  xDistanceOffset: 1.15
