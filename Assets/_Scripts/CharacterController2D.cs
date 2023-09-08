@@ -163,6 +163,10 @@ public class CharacterController2D : MonoBehaviour
         if(moveInput!=0 && isGrounded) {
             rb.velocity = new Vector2(moveInput * normalMoveSpeed, rb.velocity.y);
         }
+
+        if(!isGrounded && !isSwinging && groundCheck.isTouchingLandZone) {
+            keepPlayerUpright();
+        }
         
         // Check if the character is on the ground
         if(groundCheck.isTouchingPlatform && !isGrounded) {
@@ -179,12 +183,11 @@ public class CharacterController2D : MonoBehaviour
     }
 
     void keepPlayerUpright() {
-        // Quaternion targetRotation = ; // upright rotation
-        // float str = Mathf.Min(standupSpeed * Time.deltaTime, 1);
-        // float targetRotationAngle = targetRotation.eulerAngles.z;
-        // float nextRotation = Mathf.Lerp(rb.rotation, targetRotationAngle, str);
-        // rb.MoveRotation(nextRotation);
-        rb.MoveRotation(Quaternion.Euler(0, 0, 0));
+        Quaternion targetRotation = Quaternion.Euler(0, 0, 0); // upright rotation
+        float str = Mathf.Min(standupSpeed * Time.deltaTime, 1);
+        float targetRotationAngle = targetRotation.eulerAngles.z;
+        float nextRotation = Mathf.Lerp(rb.rotation, targetRotationAngle, str);
+        rb.MoveRotation(nextRotation);
     }
 
     void onGroundTouched() {
