@@ -23,7 +23,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] List<TargetRotation> ragdollParts = new List<TargetRotation>();
     [SerializeField] SwingNetAttack swingNetAttack;
     [SerializeField] float standupSpeed = 5f; //the speed at which the player is kept upright when grounded
-    GroundCheck groundCheck;
+    [SerializeField] GroundCheck groundCheck;
 
     Transform myTransform;
     private int jumpCount = 0;
@@ -37,6 +37,8 @@ public class CharacterController2D : MonoBehaviour
 
     
     private bool playerTookFirstSwing;
+
+    private bool inputEnabled = true;
 
     private float moveInput;
     private bool _jump;
@@ -63,7 +65,7 @@ public class CharacterController2D : MonoBehaviour
 
     private void Start()
     {
-        groundCheck = GetComponentInChildren<GroundCheck>();
+        // groundCheck = GetComponentInChildren<GroundCheck>();
         // rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         swingingController = GetComponent<SwingingController>();
@@ -88,6 +90,10 @@ public class CharacterController2D : MonoBehaviour
     }
 
     void getInput() {
+        if(!inputEnabled) {
+            moveInput=0f; 
+            return;
+        }
         moveInput = Input.GetAxis("Horizontal");
         _jump = Input.GetKeyDown(jumpKey);
         isAttacking = Input.GetMouseButtonDown(0);
@@ -129,24 +135,31 @@ public class CharacterController2D : MonoBehaviour
         animator.SetBool("isFlying", true);
     }
 
-
     void handleSpriteDirection() {
             // Flip the sprite based on the direction of movement
         if (moveInput < 0 && !isFacingLeft) { 
-            myTransform.localScale = new Vector3(-1f, 1f, 1f);
-            isFacingLeft=true;
+            setPlayerFacingDirection("left");
         }
-
         else if (moveInput > 0 && isFacingLeft) {
-            myTransform.localScale = new Vector3(1f, 1f, 1f);
-            isFacingLeft = false;
+            setPlayerFacingDirection("right");
         }  
+    }
+
+    void setPlayerFacingDirection(string newDir="left") {
+        isFacingLeft = newDir=="left";
+        float xValue = isFacingLeft ? -1f : 1f;
+        myTransform.localScale = new Vector3(xValue, 1f, 1f);
+    }
+
+    public void flipPlayerFacingDirection() {
+        /* toggles player facing direction between left and right */
+        string newDir = isFacingLeft ? "right" : "left";
+        setPlayerFacingDirection(newDir);
     }
 
     void handleNormalMovement() {
         animator.SetBool("isSwinging",false);
         // Move the character horizontally
-
         if(moveInput!=0 && isGrounded) {
             rb.velocity = new Vector2(moveInput * normalMoveSpeed, rb.velocity.y);
         }
@@ -160,7 +173,6 @@ public class CharacterController2D : MonoBehaviour
 
         if(isGrounded) {
             keepPlayerUpright();
-            // rb.rotation=0f;
         }
 
         handleRunningAnimation();
@@ -317,6 +329,14 @@ public class CharacterController2D : MonoBehaviour
 
     public void onDeath() {
 
+    }
+
+    public void disableInput() {
+        inputEnabled = false;
+    }
+
+    public void enableInput() {
+        inputEnabled = true;
     }
 }
 
