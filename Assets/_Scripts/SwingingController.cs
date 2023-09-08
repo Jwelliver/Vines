@@ -12,10 +12,9 @@ public class SwingingController : MonoBehaviour
     [SerializeField] Collider2D playerCollider;
     [SerializeField] CircleCollider2D grabCollider;
     [SerializeField] ScoreSystem scoreSystem;
-    
+    [SerializeField] Joint2D grabJoint;
 
     Transform myTransform;
-    FixedJoint2D grabJoint;
     
     bool hasAttemptedGrab;
     bool hasReleased;
@@ -31,7 +30,7 @@ public class SwingingController : MonoBehaviour
     void Start()
     {
         // rb = GetComponent<Rigidbody2D>();
-        grabJoint = GetComponentInChildren<FixedJoint2D>();
+        // grabJoint = GetComponentInChildren<FixedJoint2D>();
         
     }
 
@@ -51,6 +50,16 @@ public class SwingingController : MonoBehaviour
         handleSwingRelease();
     }
 
+    void attachJoints(Rigidbody2D vineSegment) {
+        grabJoint.connectedBody = vineSegment;
+        grabJoint.enabled = true;
+    }
+
+    void releaseJoints() {
+        grabJoint.connectedBody=null;
+        grabJoint.enabled = false;
+    }
+
     void handleSwingGrab() {
         if(hasAttemptedGrab){
             // Debug.Log("handleSwingGrab()");
@@ -58,8 +67,7 @@ public class SwingingController : MonoBehaviour
             if (colliders.Length > 0) {
                 Collider2D nearestCollider = getNearestCollider(colliders);
                 myTransform.position = nearestCollider.transform.position;
-                grabJoint.connectedBody = nearestCollider.attachedRigidbody;
-                grabJoint.enabled = true;
+                attachJoints(nearestCollider.attachedRigidbody);
                 startSwing();
             }
         }
@@ -80,8 +88,7 @@ public class SwingingController : MonoBehaviour
 
     public void handleSwingRelease(bool forceRelease=false) {
         if(hasReleased || forceRelease) {
-            grabJoint.enabled = false;
-            grabJoint.connectedBody = null;
+            releaseJoints();
             endSwing();
         }
         hasReleased=false;
