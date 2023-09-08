@@ -7,7 +7,7 @@ public class VineSegment : MonoBehaviour
 
     [SerializeField] ParticleSystem snapParticles;
     HingeJoint2D hinge;
-    ProceduralVine vineRoot;
+    public ProceduralVine vineRoot;
     
     
     // Start is called before the first frame update

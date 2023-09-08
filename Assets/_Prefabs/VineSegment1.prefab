@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 856876132015679519, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_Anchor.y
-      value: 0.5
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 856876132015679519, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_BreakAction
@@ -110,11 +110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 856876132015679519, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_ConnectedAnchor.y
-      value: 0.5
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 856876132015679519, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_AutoConfigureConnectedAnchor
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1444479966179943763, guid: 1d9e4edd68eeb264587586c862e3688a, type: 3}
       propertyPath: m_Size.x
