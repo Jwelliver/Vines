@@ -164,6 +164,7 @@ public class CharacterController2D : MonoBehaviour
             rb.velocity = new Vector2(moveInput * normalMoveSpeed, rb.velocity.y);
         }
 
+        //if player is in platform landing zone, move upright
         if(!isGrounded && !isSwinging && groundCheck.isTouchingLandZone) {
             keepPlayerUpright();
         }
@@ -196,8 +197,6 @@ public class CharacterController2D : MonoBehaviour
         //stop flying anim
         animator.SetBool("isFlying", false);
         playJumpStopSound();
-        //set player rotation upright;
-        // rb.rotation = 0f;
         //remove angular velocity and freeze rotation
         rb.angularVelocity=0f;
         // rb.freezeRotation=true;
@@ -209,7 +208,6 @@ public class CharacterController2D : MonoBehaviour
     }
 
     void onGroundLeft() {
-        // rb.freezeRotation=false;
         isGrounded=false;
     }
 
