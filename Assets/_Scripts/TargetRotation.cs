@@ -52,4 +52,8 @@ public class TargetRotation : MonoBehaviour
             // rb.MoveRotation(Mathf.LerpAngle(rb.rotation, targetRotation, force*Time.deltaTime ));
         }
     }
+
+    public void resetAngularVelocity() {
+        rb.angularVelocity=0f;
+    }
 }

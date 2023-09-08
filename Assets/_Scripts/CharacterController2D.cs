@@ -22,6 +22,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] Animator controlsTextAnimator;
     [SerializeField] List<TargetRotation> ragdollParts = new List<TargetRotation>();
     [SerializeField] SwingNetAttack swingNetAttack;
+    [SerializeField] float standupSpeed = 5f; //the speed at which the player is kept upright when grounded
     GroundCheck groundCheck;
 
     Transform myTransform;
@@ -152,22 +153,49 @@ public class CharacterController2D : MonoBehaviour
         
         // Check if the character is on the ground
         if(groundCheck.isTouchingPlatform && !isGrounded) {
-            jumpCount = 0;
-            animator.SetBool("isFlying", false);
-            isGrounded = true;
-            playJumpStopSound();
+            onGroundTouched();
         } else if(!groundCheck.isTouchingPlatform && isGrounded) {
-            isGrounded=false;
+            onGroundLeft();
         }
 
-        if (isGrounded && !rb.freezeRotation) {
-            rb.rotation = 0;
-            rb.freezeRotation=true;
-        } else if(!isGrounded && rb.freezeRotation) {
-            rb.freezeRotation=false;
+        if(isGrounded) {
+            keepPlayerUpright();
+            // rb.rotation=0f;
         }
 
         handleRunningAnimation();
+    }
+
+    void keepPlayerUpright() {
+        // Quaternion targetRotation = ; // upright rotation
+        // float str = Mathf.Min(standupSpeed * Time.deltaTime, 1);
+        // float targetRotationAngle = targetRotation.eulerAngles.z;
+        // float nextRotation = Mathf.Lerp(rb.rotation, targetRotationAngle, str);
+        // rb.MoveRotation(nextRotation);
+        rb.MoveRotation(Quaternion.Euler(0, 0, 0));
+    }
+
+    void onGroundTouched() {
+        //reset jumps
+        jumpCount = 0;
+        //stop flying anim
+        animator.SetBool("isFlying", false);
+        playJumpStopSound();
+        //set player rotation upright;
+        // rb.rotation = 0f;
+        //remove angular velocity and freeze rotation
+        rb.angularVelocity=0f;
+        // rb.freezeRotation=true;
+        //reset angular velocity for ragdoll parts (e.g. legs)
+        foreach(TargetRotation i in ragdollParts) {
+            i.resetAngularVelocity();
+        }
+        isGrounded = true;
+    }
+
+    void onGroundLeft() {
+        // rb.freezeRotation=false;
+        isGrounded=false;
     }
 
     void handleJump() {
