@@ -78,7 +78,7 @@ public class CharacterController2D : MonoBehaviour
         if(isHitByArrow) return;
         getInput();
         handleJump();
-        handleAttack();
+        // handleAttack(); //090823 disabled for prod; bugs/net not in use
         updateIsSwinging();
         handleFallingAnimation();
     }
