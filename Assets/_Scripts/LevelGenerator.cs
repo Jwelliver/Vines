@@ -25,12 +25,6 @@ public class LevelGenerator : MonoBehaviour
         generateLevel();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void generateLevel() {
         populateTrees();
         generateWinPlatform();
