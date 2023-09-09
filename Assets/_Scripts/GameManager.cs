@@ -33,7 +33,12 @@ public class GameManager : MonoBehaviour
 
     void Start() {
         amuletFoundText = GameObject.Find("AmuletFoundText").GetComponent<TMPro.TextMeshProUGUI>();
-        music = GameObject.Find("Music").GetComponent<PersistentAudio>();
+        try{
+            music = GameObject.Find("Music").GetComponent<PersistentAudio>();
+        } catch {
+            music = null;
+        }
+        
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
         levelGen.generateLevel();
@@ -77,6 +82,7 @@ public class GameManager : MonoBehaviour
     }
 
     void playWinMusic() {
+        if(!music) {Debug.Log("Music Component Not Found."); return;}
         music.reset();
         music.playClip(winSound);
         
