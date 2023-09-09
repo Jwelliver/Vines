@@ -183,12 +183,66 @@ public class CharacterController2D : MonoBehaviour
         handleRunningAnimation();
     }
 
+    // void keepPlayerUpright() {
+    //     Quaternion targetRotation = Quaternion.Euler(0, 0, 0); // upright rotation
+    //     float str = Mathf.Min(standupSpeed * Time.deltaTime, 1);
+    //     float targetRotationAngle = targetRotation.eulerAngles.z;
+    //     float nextRotation = Mathf.Lerp(rb.rotation, targetRotationAngle, str);
+    //     rb.MoveRotation(nextRotation);
+    // }
+
+    // void keepPlayerUpright() { 
+
+    //     float currentZ = transform.eulerAngles.z;
+
+    //     // Find the nearest multiple of 360
+    //     float targetZ = Mathf.Round(currentZ / 360) * 360;
+
+    //     // Calc new rotation representation regarding to current rotations
+    //     float newZ = Mathf.MoveTowardsAngle(currentZ, targetZ, standupSpeed * Time.deltaTime);
+
+    //     // Apply the new rotation to the player
+    //     transform.eulerAngles = new Vector3(0, 0, newZ);
+    // }
+
+    // void keepPlayerUpright () {
+
+    //     float currentZ = rb.rotation.eulerAngles.z;
+    //     float targetZ = Mathf.Round(currentZ / 360) * 360;
+    //     float newZ = Mathf.MoveTowardsAngle(currentZ, targetZ, standupSpeed * Time.deltaTime);
+
+    //     rb.MoveRotation(Quaternion.Euler(new Vector3(0, 0, newZ)));
+        
+    // }
+
+    // void keepPlayerUpright() {
+    //     float currentZ = rb.rotation;
+    //     float targetZ = Mathf.Round(currentZ / 360) * 360;
+    //     float newZ = Mathf.MoveTowardsAngle(currentZ, targetZ, standupSpeed * Time.deltaTime);
+    //     rb.MoveRotation(newZ);
+    // }
+
+    // void KeepPlayerUpright() {
+    //     float standupSpeed = 360; // Set this to your desired speed
+    //     Quaternion currentRotation = rb.rotation;
+    //     Quaternion targetRotation = Quaternion.Euler(0, 0, 0);
+    //     Quaternion newRotation = Quaternion.RotateTowards(currentRotation, targetRotation, standupSpeed * Time.deltaTime);
+    //     rb.MoveRotation(newRotation);
+    // }
+
     void keepPlayerUpright() {
-        Quaternion targetRotation = Quaternion.Euler(0, 0, 0); // upright rotation
-        float str = Mathf.Min(standupSpeed * Time.deltaTime, 1);
-        float targetRotationAngle = targetRotation.eulerAngles.z;
-        float nextRotation = Mathf.Lerp(rb.rotation, targetRotationAngle, str);
-        rb.MoveRotation(nextRotation);
+        // standupSpeed = 360; // Set this speed to your needs
+        float currentZ = rb.rotation;
+        float targetZ = 0; 
+
+        // Calculate the shortest distance to the target rotation
+        float difference = Mathf.DeltaAngle(currentZ, targetZ); 
+
+        // Determine the amount to rotate by using the minimum between the desired amount and the maximum possible amount.
+        float rotationAmount = Mathf.MoveTowards(0, difference, 360 * Time.deltaTime); 
+
+        // Apply the rotation to the Rigidbody.
+        rb.MoveRotation(currentZ + rotationAmount);
     }
 
     void onGroundTouched() {
@@ -199,7 +253,6 @@ public class CharacterController2D : MonoBehaviour
         playJumpStopSound();
         //remove angular velocity and freeze rotation
         rb.angularVelocity=0f;
-        // rb.freezeRotation=true;
         //reset angular velocity for ragdoll parts (e.g. legs)
         foreach(TargetRotation i in ragdollParts) {
             i.resetAngularVelocity();
