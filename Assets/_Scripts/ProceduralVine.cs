@@ -44,7 +44,6 @@ public class ProceduralVine : MonoBehaviour
 
     void Start()
     {
-        // audioSource = GetComponent<AudioSource>();
         // vineSegment = vineSegments[Random.Range(0,vineSegments.Count)];
         createVine();
     }
