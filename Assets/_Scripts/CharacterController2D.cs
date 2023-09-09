@@ -11,19 +11,13 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] int maxJumps = 2;
     [SerializeField] float fallingInitSpeed = -10f;
     [SerializeField] KeyCode jumpKey = KeyCode.Space;
-
-    [SerializeField] AudioSource playerAudio;
-    [SerializeField] AudioSource vineAudio;
-    [SerializeField] List<AudioClip> whoas = new List<AudioClip>();
-    [SerializeField] AudioClip jumpStartSound;
-    [SerializeField] AudioClip jumpStopSound;
-    [SerializeField] List<AudioClip> vineStretchAudioClips = new List<AudioClip>();
-    [SerializeField] List<AudioClip> vineImpactAudioClips = new List<AudioClip>();
     [SerializeField] Animator controlsTextAnimator;
     [SerializeField] List<TargetRotation> ragdollParts = new List<TargetRotation>();
     [SerializeField] SwingNetAttack swingNetAttack;
     [SerializeField] float standupSpeed = 5f; //the speed at which the player is kept upright when grounded
     [SerializeField] GroundCheck groundCheck;
+    [SerializeField] SfxHandler sfx;
+    
 
     Transform myTransform;
     private int jumpCount = 0;
@@ -119,7 +113,7 @@ public class CharacterController2D : MonoBehaviour
 
     void onSwingStart() {
 
-        playVineImpactSound();
+        sfx.vineSFX.playVineImpactSound();
         jumpCount = 0;
         setTargetRotationForceInRagdollParts(ragdollAnimationBlendNone);
         animator.SetBool("isSwinging",true);
@@ -191,45 +185,6 @@ public class CharacterController2D : MonoBehaviour
     //     rb.MoveRotation(nextRotation);
     // }
 
-    // void keepPlayerUpright() { 
-
-    //     float currentZ = transform.eulerAngles.z;
-
-    //     // Find the nearest multiple of 360
-    //     float targetZ = Mathf.Round(currentZ / 360) * 360;
-
-    //     // Calc new rotation representation regarding to current rotations
-    //     float newZ = Mathf.MoveTowardsAngle(currentZ, targetZ, standupSpeed * Time.deltaTime);
-
-    //     // Apply the new rotation to the player
-    //     transform.eulerAngles = new Vector3(0, 0, newZ);
-    // }
-
-    // void keepPlayerUpright () {
-
-    //     float currentZ = rb.rotation.eulerAngles.z;
-    //     float targetZ = Mathf.Round(currentZ / 360) * 360;
-    //     float newZ = Mathf.MoveTowardsAngle(currentZ, targetZ, standupSpeed * Time.deltaTime);
-
-    //     rb.MoveRotation(Quaternion.Euler(new Vector3(0, 0, newZ)));
-        
-    // }
-
-    // void keepPlayerUpright() {
-    //     float currentZ = rb.rotation;
-    //     float targetZ = Mathf.Round(currentZ / 360) * 360;
-    //     float newZ = Mathf.MoveTowardsAngle(currentZ, targetZ, standupSpeed * Time.deltaTime);
-    //     rb.MoveRotation(newZ);
-    // }
-
-    // void KeepPlayerUpright() {
-    //     float standupSpeed = 360; // Set this to your desired speed
-    //     Quaternion currentRotation = rb.rotation;
-    //     Quaternion targetRotation = Quaternion.Euler(0, 0, 0);
-    //     Quaternion newRotation = Quaternion.RotateTowards(currentRotation, targetRotation, standupSpeed * Time.deltaTime);
-    //     rb.MoveRotation(newRotation);
-    // }
-
     void keepPlayerUpright() {
         // standupSpeed = 360; // Set this speed to your needs
         float currentZ = rb.rotation;
@@ -250,7 +205,7 @@ public class CharacterController2D : MonoBehaviour
         jumpCount = 0;
         //stop flying anim
         animator.SetBool("isFlying", false);
-        playJumpStopSound();
+        sfx.playerSFX.playJumpStopSound();
         //remove angular velocity and freeze rotation
         rb.angularVelocity=0f;
         //reset angular velocity for ragdoll parts (e.g. legs)
@@ -273,7 +228,7 @@ public class CharacterController2D : MonoBehaviour
                 // rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 jumpCount++;
-                playJumpStartSound();
+                sfx.playerSFX.playJumpStartSound();
 
                 // Play jump animation
                 animator.SetBool("isFlying", true);
@@ -283,7 +238,7 @@ public class CharacterController2D : MonoBehaviour
 
     void handleSwingingMovement() {
         if(moveInput!=0) {
-            playVineStretchSound();
+            sfx.vineSFX.playVineStretchSound();
             // rb.AddForce(new Vector2(moveInput * swingingMoveSpeed, rb.velocity.y)) ;
             rb.AddForce(new Vector2(moveInput * swingingMoveSpeed, 0)) ;
         }
@@ -304,7 +259,7 @@ public class CharacterController2D : MonoBehaviour
             setTargetRotationForceInRagdollParts(ragdollAnimationBlendMed);
             animator.SetBool("isFlying", false);
             animator.SetBool("isFalling", true);
-            playWhoaSound();
+            sfx.playerSFX.playWhoaSound();
 
         } else {
             animator.SetBool("isFalling", false);
@@ -323,45 +278,14 @@ public class CharacterController2D : MonoBehaviour
     //     }
     // }
 
-    void playVineStretchSound() {
-        // Debug.Log("VineStretchSound");
-        if(vineAudio.isPlaying) return;
-        if(Random.Range(0f,1f)>0.05f) return;
-        AudioClip rndSound = vineStretchAudioClips[Random.Range(0,vineStretchAudioClips.Count)];
-        vineAudio.PlayOneShot(rndSound);
-    }
 
-    void playVineImpactSound() {
-        // if(Random.Range(0f,1f)>0.05f) return;
-        AudioClip rndSound = vineImpactAudioClips[Random.Range(0,vineImpactAudioClips.Count)];
-        vineAudio.PlayOneShot(rndSound);
-    }
-
-
-    void playJumpStartSound() {
-        // Debug.Log("JumpStartSound");
-        playerAudio.PlayOneShot(jumpStartSound);
-    }
-
-    void playJumpStopSound() {
-        // Debug.Log("JumpStopSound");
-        playerAudio.Stop();
-        playerAudio.PlayOneShot(jumpStopSound);
-    }
-
-    void playWhoaSound() {
-        // Debug.Log("whoaSound");
-        if(playerAudio.isPlaying) return;
-        AudioClip rndWhoaSound = whoas[Random.Range(0,whoas.Count)];
-        playerAudio.PlayOneShot(rndWhoaSound);
-    }
 
     public void hitByArrow() {
         isHitByArrow=true;
         isSwinging=false;
         swingingController.handleSwingRelease(true);
         swingingController.enabled=false;
-        playJumpStopSound(); //temp hit by arrow sound
+        sfx.playerSFX.playJumpStopSound(); //temp hit by arrow sound
         animator.SetBool("isFalling", true);
     }
 

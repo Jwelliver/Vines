@@ -38,22 +38,20 @@ public class ProceduralVine : MonoBehaviour
     [SerializeField] Color minWeakColor = new Color(125,110,88);
     [SerializeField] Color maxWeakColor = new Color(125,145,88);
 
-    [Header("Audio")] //Note: vine stretch audio is currently handled in Play CharacterController script
-    [SerializeField] AudioClip vineSnap;
+    public SfxHandler sfx;
 
-    private AudioSource audioSource;
-    private LineRenderer lineRenderer;
+    // private LineRenderer lineRenderer;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();
+        // audioSource = GetComponent<AudioSource>();
         // vineSegment = vineSegments[Random.Range(0,vineSegments.Count)];
         createVine();
     }
 
-    void LateUpdate() {
-        // lineRenderer
-    }
+    // void LateUpdate() {
+    //     // lineRenderer
+    // }
 
     void createVine() {
         int length = Random.Range(minLength,maxLength);
@@ -119,6 +117,7 @@ public class ProceduralVine : MonoBehaviour
             }
         }
     }
+
 
 
 
@@ -188,8 +187,6 @@ public class ProceduralVine : MonoBehaviour
 
     // }
 
-    public void playVineSnapSound() {
-        audioSource.PlayOneShot(vineSnap);
-    }
+
 
 }

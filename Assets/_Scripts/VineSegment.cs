@@ -22,7 +22,7 @@ public class VineSegment : MonoBehaviour
     void OnJointBreak2D(Joint2D joint) {
         // transform.root.GetComponent<ProceduralVine>().playVineSnapSound();
         GameManager.Instantiate(snapParticles, transform.position, Quaternion.identity);
-        vineRoot.playVineSnapSound();
+        vineRoot.sfx.vineSFX.playVineSnapSound();
         
     }
 }
