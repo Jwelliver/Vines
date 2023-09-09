@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] LevelGenerator levelGen;
     [SerializeField] LevelLoader levelLoader;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip winMusic;
@@ -27,11 +29,14 @@ public class GameManager : MonoBehaviour
 
     public bool playerHasAmulet;
 
+    
+
     void Start() {
         amuletFoundText = GameObject.Find("AmuletFoundText").GetComponent<TMPro.TextMeshProUGUI>();
         music = GameObject.Find("Music").GetComponent<PersistentAudio>();
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
+        levelGen.generateLevel();
     }
     public void win() {
         // Debug.Log("You Won!");

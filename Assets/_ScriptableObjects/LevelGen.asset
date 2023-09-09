@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d33a43b21901174bb041cfc30f4447c, type: 3}
+  m_Name: LevelGen
+  m_EditorClassIdentifier: 
+  proceduralLevelContainerName: ProceduralLevelContainer
+  levelLength: 50
+  levelStartOffset: 0
+  tree: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
+  minDistanceBetweenTrees: 3
+  maxDistanceBetweenTrees: 5
+  winPlatform: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
