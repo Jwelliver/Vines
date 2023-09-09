@@ -19,6 +19,17 @@ public class FramesPerSecond : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(toggleKey))
+        {
+            display_Text.enabled = !display_Text.enabled;
+        }
+
+        if(display_Text.enabled) {
+            updateFPS();
+        }
+    }
+
+    void updateFPS() {
         ++frames;
         float timeNow = Time.realtimeSinceStartup;
         if (timeNow > lastInterval + updateInterval)
@@ -29,10 +40,5 @@ public class FramesPerSecond : MonoBehaviour
         }
 
         display_Text.text = "FPS: " + Mathf.Ceil(fps).ToString();
-
-        if (Input.GetKeyDown(toggleKey))
-        {
-            display_Text.enabled = !display_Text.enabled;
-        }
     }
 }
