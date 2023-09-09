@@ -1,6 +1,7 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 
 [System.Serializable]
 public class SpriteWithProbability {
@@ -8,17 +9,13 @@ public class SpriteWithProbability {
     public float probability;
 }
 
-public class FoliageGenerator : MonoBehaviour
+[CreateAssetMenu]
+public class ProceduralBackground : ScriptableObject
 {
-
-    [Header("Size")]
-    [SerializeField] int levelLength = 50;
-    [SerializeField] int levelStartOffset = 0;
-
+    [SerializeField] string parentTransformPath;
     [Header("Objects")]
-
-    [SerializeField] RectTransform foliageObj;
-    [SerializeField] List<SpriteWithProbability> foliageSprites = new List<SpriteWithProbability>();
+    [SerializeField] Transform prefab;
+    [SerializeField] List<SpriteWithProbability> sprites = new List<SpriteWithProbability>();
     [SerializeField] int minDistanceBetweenObjs = 3;
     [SerializeField] int maxDistanceBetweenObjs = 5;
     [SerializeField] float minScale = 3f;
@@ -30,40 +27,36 @@ public class FoliageGenerator : MonoBehaviour
     [SerializeField] Color color = Color.white;
 
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        populateParalaxObjects();
-    }
-
-    Sprite getRandomSprite(){
-        SpriteWithProbability testSprite = foliageSprites[Random.Range(0,foliageSprites.Count)];
-        if(Random.Range(0f,1f)<testSprite.probability) {
+    private Sprite getRandomSprite(){
+        SpriteWithProbability testSprite = sprites[UnityEngine.Random.Range(0,sprites.Count)];
+        if(UnityEngine.Random.Range(0f,1f)<testSprite.probability) {
             return testSprite.sprite;
         } else {
             return getRandomSprite();
         }
     }
 
-    void populateParalaxObjects() {
-        for(int i=levelStartOffset; i<levelLength+levelStartOffset;i+=Random.Range(minDistanceBetweenObjs,maxDistanceBetweenObjs)) { 
-            Transform newObj = GameObject.Instantiate(foliageObj, new Vector2(i, transform.position.y),Quaternion.identity);
+    public void populateObjects(int levelLength, int levelEdgeOffset) {
+        Transform parent = GameObject.Find(parentTransformPath).transform;
+        if(!parent) {
+            throw new System.Exception("Procedural Background > cannot find parent at path: "+ parentTransformPath);
+        }
+        for(int i=-Math.Abs(levelEdgeOffset); i<levelLength+Mathf.Abs(levelEdgeOffset);i+=UnityEngine.Random.Range(minDistanceBetweenObjs,maxDistanceBetweenObjs)) { 
+            Transform newObj = GameObject.Instantiate(prefab, new Vector2(i, parent.position.y),Quaternion.identity);
             SpriteRenderer newObjSpriteRenderer = newObj.GetComponent<SpriteRenderer>();
-            // Sprite rndSprite = foliageSprites;
             Sprite rndSprite = getRandomSprite();
-            // Sprite rndSprite = foliageSprites.Keys[Random.Range(0,foliageSprites.Count)];
             newObjSpriteRenderer.sprite = rndSprite;
             newObjSpriteRenderer.color = color;
             newObjSpriteRenderer.sortingLayerName = sortLayerName;
             newObjSpriteRenderer.sortingOrder = sortOrder;
-            float rndScale = Random.Range(minScale,maxScale);
+            float rndScale = UnityEngine.Random.Range(minScale,maxScale);
             newObj.localScale = new Vector2(rndScale,rndScale);
-            bool isFlipped = Random.Range(0f,1f) < 0.5f;
+            bool isFlipped = UnityEngine.Random.Range(0f,1f) < 0.5f;
             if(isFlipped) {
                 newObj.localScale = new Vector2(-newObj.localScale.x, newObj.localScale.y);
             }
-            newObj.SetParent(transform);
+            newObj.SetParent(parent);
         }
     }
+
 }

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac0218dbe9745e459b0dc8357d09446, type: 3}
+  m_Name: ParalaxLayer3
+  m_EditorClassIdentifier: 
+  parentTransformPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer2.5(far
+    foliage)
+  prefab: {fileID: 2112251116059184091, guid: 73806d7b6cf4377448a6ea0bb0f0d9be, type: 3}
+  sprites:
+  - sprite: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - sprite: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - sprite: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - sprite: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - sprite: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+    probability: 0.3
+  - sprite: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+    probability: 0.3
+  minDistanceBetweenObjs: 1
+  maxDistanceBetweenObjs: 3
+  minScale: 0.6
+  maxScale: 1
+  sortLayerName: Background
+  sortOrder: -4
+  color: {r: 0.4431373, g: 0.4431373, b: 0.4431373, a: 1}

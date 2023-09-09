@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d33a43b21901174bb041cfc30f4447c, type: 3}
+  m_Name: LevelGen
+  m_EditorClassIdentifier: 
+  proceduralLevelContainerName: Environment/ProceduralElements
+  levelLength: 75
+  levelStartOffset: -50
+  tree: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
+  minDistanceBetweenTrees: 3
+  maxDistanceBetweenTrees: 5
+  foliageLayers:
+  - {fileID: 11400000, guid: cd2ce927dafae8f4fbf1381711de8e2b, type: 2}
+  - {fileID: 11400000, guid: 6daf9605257c2eb4c90d41a153ca2f5d, type: 2}
+  - {fileID: 11400000, guid: e4697f46a2fd92840a10b2c2f9685c0b, type: 2}
+  paralaxLayers:
+  - {fileID: 11400000, guid: b0e32f5f10321584e89bf6fb1cdae83f, type: 2}
+  - {fileID: 11400000, guid: 967bc933419de7e489327ed4d28c1652, type: 2}
+  - {fileID: 11400000, guid: d059f560ac87a35419de2a30d5845a95, type: 2}
+  - {fileID: 11400000, guid: 75a88448c687b67448ea09511e6464b8, type: 2}
+  - {fileID: 11400000, guid: a3a64aaeac56aa649b20d8f5486f2250, type: 2}
+  - {fileID: 11400000, guid: a5e7b6bcda99e4449b9d9b8b817836a3, type: 2}
+  winPlatform: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}

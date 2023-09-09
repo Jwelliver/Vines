@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bac0218dbe9745e459b0dc8357d09446, type: 3}
+  m_Name: ParalaxLayer4
+  m_EditorClassIdentifier: 
+  parentTransformPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer3
+    (close bg trees)
+  prefab: {fileID: 2112251116059184091, guid: 73806d7b6cf4377448a6ea0bb0f0d9be, type: 3}
+  sprites:
+  - sprite: {fileID: -81035705, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+    probability: 1
+  - sprite: {fileID: 178499176, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+    probability: 1
+  - sprite: {fileID: -1595817921, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+    probability: 1
+  - sprite: {fileID: 130865656, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+    probability: 1
+  minDistanceBetweenObjs: 5
+  maxDistanceBetweenObjs: 10
+  minScale: 0.7
+  maxScale: 1
+  sortLayerName: Background
+  sortOrder: -3
+  color: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}

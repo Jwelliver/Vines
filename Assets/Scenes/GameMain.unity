@@ -1322,7 +1322,6 @@ GameObject:
   m_Component:
   - component: {fileID: 235696669}
   - component: {fileID: 235696668}
-  - component: {fileID: 235696667}
   m_Layer: 0
   m_Name: ParalaxLayer2 (far bg trees)
   m_TagString: Untagged
@@ -1330,36 +1329,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &235696667
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235696666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae45ee75deba4d429cac3f12bec6378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLength: 500
-  levelStartOffset: -50
-  paralaxObject: {fileID: 2112251116059184091, guid: 73806d7b6cf4377448a6ea0bb0f0d9be, type: 3}
-  paralaxObjSprites:
-  - {fileID: 1650600148, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: -1085091818, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: 762239029, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: -462870605, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: -326087233, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
-  - {fileID: -1509496801, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
-  - {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
-  color: {r: 0.16981131, g: 0.16981131, b: 0.16981131, a: 1}
-  minDistanceBetweenTrees: 3
-  maxDistanceBetweenTrees: 5
-  minScale: 1
-  maxScale: 2
-  sortLayerName: Background
-  sortOrder: -5
 --- !u!114 &235696668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2007,7 +1976,6 @@ GameObject:
   m_Component:
   - component: {fileID: 414522488}
   - component: {fileID: 414522490}
-  - component: {fileID: 414522489}
   m_Layer: 0
   m_Name: ParalaxLayer2.5(far foliage)
   m_TagString: Untagged
@@ -2030,35 +1998,6 @@ Transform:
   m_Father: {fileID: 653854711}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &414522489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414522487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae45ee75deba4d429cac3f12bec6378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLength: 500
-  levelStartOffset: -50
-  paralaxObject: {fileID: 2112251116059184091, guid: 73806d7b6cf4377448a6ea0bb0f0d9be, type: 3}
-  paralaxObjSprites:
-  - {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-  - {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
-  color: {r: 0.4433962, g: 0.4433962, b: 0.4433962, a: 1}
-  minDistanceBetweenTrees: 1
-  maxDistanceBetweenTrees: 3
-  minScale: 0.6
-  maxScale: 1
-  sortLayerName: Background
-  sortOrder: -4
 --- !u!114 &414522490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3082,7 +3021,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 620813479}
-  - component: {fileID: 620813480}
   - component: {fileID: 620813481}
   m_Layer: 0
   m_Name: FoliageBackground
@@ -3106,41 +3044,6 @@ Transform:
   m_Father: {fileID: 1143338578}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &620813480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 620813478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7790ad1dbf3851e47ae5e7f45b2409a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLength: 500
-  levelStartOffset: -50
-  foliageObj: {fileID: 2112251116059184091, guid: 06c52b816fe6c75478ed835d0736db7c, type: 3}
-  foliageSprites:
-  - sprite: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 1
-  - sprite: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 0.9
-  - sprite: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 0.9
-  - sprite: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 0.9
-  - sprite: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-    probability: 0.05
-  - sprite: {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
-    probability: 0.03
-  minDistanceBetweenObjs: 2
-  maxDistanceBetweenObjs: 5
-  minScale: 0.7
-  maxScale: 1.5
-  sortLayerName: FoliageBackground
-  sortOrder: 0
-  color: {r: 0.4745098, g: 0.4745098, b: 0.4745098, a: 1}
 --- !u!114 &620813481
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3363,7 +3266,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 645137400}
-  - component: {fileID: 645137402}
   - component: {fileID: 645137401}
   m_Layer: 0
   m_Name: FoliageBackground2
@@ -3401,41 +3303,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axisSpeed: {x: 0.8, y: 0, z: 0}
   referenceObj: {fileID: 519420032}
---- !u!114 &645137402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 645137399}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7790ad1dbf3851e47ae5e7f45b2409a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLength: 500
-  levelStartOffset: -50
-  foliageObj: {fileID: 2112251116059184091, guid: 06c52b816fe6c75478ed835d0736db7c, type: 3}
-  foliageSprites:
-  - sprite: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 1
-  - sprite: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 0.9
-  - sprite: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 0.9
-  - sprite: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 0.9
-  - sprite: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-    probability: 0.05
-  - sprite: {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
-    probability: 0.025
-  minDistanceBetweenObjs: 2
-  maxDistanceBetweenObjs: 7
-  minScale: 0.8
-  maxScale: 1.3
-  sortLayerName: FoliageBackground
-  sortOrder: 1
-  color: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
 --- !u!1 &646791390
 GameObject:
   m_ObjectHideFlags: 0
@@ -4441,7 +4308,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 938982219}
-  - component: {fileID: 938982218}
   m_Layer: 0
   m_Name: FoliageForeground
   m_TagString: Untagged
@@ -4449,41 +4315,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &938982218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938982217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7790ad1dbf3851e47ae5e7f45b2409a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLength: 500
-  levelStartOffset: -50
-  foliageObj: {fileID: 2112251116059184091, guid: 06c52b816fe6c75478ed835d0736db7c, type: 3}
-  foliageSprites:
-  - sprite: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 1
-  - sprite: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 0.9
-  - sprite: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 0.9
-  - sprite: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-    probability: 0.9
-  - sprite: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-    probability: 0.5
-  - sprite: {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
-    probability: 0.2
-  minDistanceBetweenObjs: 2
-  maxDistanceBetweenObjs: 5
-  minScale: 0.2
-  maxScale: 0.8
-  sortLayerName: FoliageForeground
-  sortOrder: 0
-  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &938982219
 Transform:
   m_ObjectHideFlags: 0
@@ -6244,7 +6075,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1275502238}
   - component: {fileID: 1275502237}
-  - component: {fileID: 1275502236}
   m_Layer: 0
   m_Name: ParalaxLayer4(foliage)
   m_TagString: Untagged
@@ -6252,35 +6082,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1275502236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275502235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae45ee75deba4d429cac3f12bec6378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLength: 500
-  levelStartOffset: -50
-  paralaxObject: {fileID: 2112251116059184091, guid: 73806d7b6cf4377448a6ea0bb0f0d9be, type: 3}
-  paralaxObjSprites:
-  - {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-  - {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-  - {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
-  color: {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 1}
-  minDistanceBetweenTrees: 10
-  maxDistanceBetweenTrees: 20
-  minScale: 0.8
-  maxScale: 2
-  sortLayerName: Background
-  sortOrder: -2
 --- !u!114 &1275502237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9608,7 +9409,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1953076674}
   - component: {fileID: 1953076676}
-  - component: {fileID: 1953076675}
   m_Layer: 0
   m_Name: ParalaxLayer3.5 (close bg vines) (1)
   m_TagString: Untagged
@@ -9631,33 +9431,6 @@ Transform:
   m_Father: {fileID: 653854711}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1953076675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953076673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae45ee75deba4d429cac3f12bec6378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLength: 500
-  levelStartOffset: -50
-  paralaxObject: {fileID: 2112251116059184091, guid: 73806d7b6cf4377448a6ea0bb0f0d9be, type: 3}
-  paralaxObjSprites:
-  - {fileID: -81035705, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
-  - {fileID: 178499176, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
-  - {fileID: -1595817921, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
-  - {fileID: 130865656, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
-  color: {r: 0.5943396, g: 0.5943396, b: 0.5943396, a: 1}
-  minDistanceBetweenTrees: 5
-  maxDistanceBetweenTrees: 10
-  minScale: 0.7
-  maxScale: 1
-  sortLayerName: Background
-  sortOrder: -3
 --- !u!114 &1953076676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9682,7 +9455,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1976067161}
   - component: {fileID: 1976067162}
-  - component: {fileID: 1976067163}
   m_Layer: 0
   m_Name: ParalaxLayer1 (farthest bg trees)
   m_TagString: Untagged
@@ -9719,36 +9491,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   axisSpeed: {x: 0.5, y: 0, z: 0}
   referenceObj: {fileID: 519420032}
---- !u!114 &1976067163
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976067160}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae45ee75deba4d429cac3f12bec6378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLength: 500
-  levelStartOffset: -50
-  paralaxObject: {fileID: 2112251116059184091, guid: 73806d7b6cf4377448a6ea0bb0f0d9be, type: 3}
-  paralaxObjSprites:
-  - {fileID: 1650600148, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: -1085091818, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: 762239029, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: -462870605, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: -326087233, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
-  - {fileID: -1509496801, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
-  - {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
-  color: {r: 0, g: 0, b: 0, a: 1}
-  minDistanceBetweenTrees: 1
-  maxDistanceBetweenTrees: 4
-  minScale: 0.5
-  maxScale: 0.8
-  sortLayerName: Background
-  sortOrder: -6
 --- !u!1 &2009674675
 GameObject:
   m_ObjectHideFlags: 0
@@ -10058,7 +9800,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2093539856}
   - component: {fileID: 2093539855}
-  - component: {fileID: 2093539854}
   m_Layer: 0
   m_Name: ParalaxLayer3 (close bg trees)
   m_TagString: Untagged
@@ -10066,31 +9807,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2093539854
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093539853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eae45ee75deba4d429cac3f12bec6378, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelLength: 500
-  levelStartOffset: -50
-  paralaxObject: {fileID: 2112251116059184091, guid: 73806d7b6cf4377448a6ea0bb0f0d9be, type: 3}
-  paralaxObjSprites:
-  - {fileID: 770723486, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
-  - {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
-  color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
-  minDistanceBetweenTrees: 3
-  maxDistanceBetweenTrees: 10
-  minScale: 1
-  maxScale: 1.4
-  sortLayerName: Background
-  sortOrder: -3
 --- !u!114 &2093539855
 MonoBehaviour:
   m_ObjectHideFlags: 0
