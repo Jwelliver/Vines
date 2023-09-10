@@ -47,9 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vineAnchor: {fileID: 8533432108515378846, guid: a8fa812acc9f53c4385c530b8cd8ff6e, type: 3}
   vineSegements:
-  - {fileID: 9046222370985490917, guid: d8c80b4eb055dfd479f565aacff7e494, type: 3}
-  - {fileID: 4019307264594370881, guid: bbec7d8b55f9d5740b0a34e2ee269335, type: 3}
-  - {fileID: 7314871884664573792, guid: b40f268a6717eb54baf9135640c820b7, type: 3}
+  - {fileID: 1134416609208806065, guid: df900fdfc87a1b144b7ea7d5a7543cda, type: 3}
   adornments:
   - {fileID: 8037177660060243962, guid: 67173ca2a1b469a4c9dcde836595a014, type: 3}
   - {fileID: 5857417742709477190, guid: 47ffaa520ef672f41a07ab69d41d0d1b, type: 3}
