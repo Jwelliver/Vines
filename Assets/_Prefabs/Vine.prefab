@@ -63,7 +63,7 @@ MonoBehaviour:
   - {fileID: 1216026442891542921, guid: 5df0520732d76e445824dcf0ce4295af, type: 3}
   minLength: 15
   maxLength: 25
-  segmentOffset: -0.25
+  segmentOffset: -0.3
   minNormalBreakForce: 1500
   maxNormalBreakForce: 2500
   minWeakBreakForce: 250
@@ -78,7 +78,7 @@ MonoBehaviour:
   maxAdornmentScale: 0.8
   minWeakColor: {r: 0.745283, g: 0.65247416, b: 0.5090424, a: 1}
   maxWeakColor: {r: 0.764151, g: 0.50165635, b: 0, a: 1}
-  vineSnap: {fileID: 8300000, guid: bbd6a7fae3d8f874ca18d0b53e84ef15, type: 3}
+  sfx: {fileID: 0}
 --- !u!82 &3659729163260319104
 AudioSource:
   m_ObjectHideFlags: 0
