@@ -6,7 +6,7 @@ public class ProceduralVine : MonoBehaviour
 {
     [Header("Prefabs")]
     [SerializeField] Transform vineAnchor;
-    
+
     [SerializeField] List<Transform> vineSegements; //list of possible vine segments
     [SerializeField] List<Transform> adornments;
     // private Transform vineSegment;
@@ -19,7 +19,7 @@ public class ProceduralVine : MonoBehaviour
     [Header("Break Forces")]
     [SerializeField] float minNormalBreakForce = 1000f;
     [SerializeField] float maxNormalBreakForce = 5000f;
-    
+
     [SerializeField] float minWeakBreakForce = 200f;
     [SerializeField] float maxWeakBreakForce = 500f;
 
@@ -35,8 +35,8 @@ public class ProceduralVine : MonoBehaviour
     [SerializeField] float maxAdornmentScale = 1f;
 
     [Header("Colors")]
-    [SerializeField] Color minWeakColor = new Color(125,110,88);
-    [SerializeField] Color maxWeakColor = new Color(125,145,88);
+    [SerializeField] Color minWeakColor = new Color(125, 110, 88);
+    [SerializeField] Color maxWeakColor = new Color(125, 145, 88);
 
     public SfxHandler sfx;
 
@@ -44,6 +44,15 @@ public class ProceduralVine : MonoBehaviour
 
     void Start()
     {
+        try
+        {
+            sfx = GameObject.Find("SFX").GetComponent<SfxHandler>();
+        }
+        catch
+        {
+
+        }
+
         // vineSegment = vineSegments[Random.Range(0,vineSegments.Count)];
         createVine();
     }
@@ -52,21 +61,23 @@ public class ProceduralVine : MonoBehaviour
     //     // lineRenderer
     // }
 
-    void createVine() {
-        int length = Random.Range(minLength,maxLength);
+    void createVine()
+    {
+        int length = Random.Range(minLength, maxLength);
         Transform prevSegment;
         //instantiate anchor at 0,0
-        prevSegment = GameObject.Instantiate(vineAnchor,transform.position,transform.rotation);
+        prevSegment = GameObject.Instantiate(vineAnchor, transform.position, transform.rotation);
         prevSegment.SetParent(transform);
-        bool isWeak = Random.Range(0f,1f)<pctChanceWeak;
+        bool isWeak = Random.Range(0f, 1f) < pctChanceWeak;
         //for i in length:
-        for(int i=0; i<length;i++) {
+        for (int i = 0; i < length; i++)
+        {
             // -  instantiate vineSegment at prev segment position - segmentLength*2;
-            Transform rndSegment = vineSegements[Random.Range(0,vineSegements.Count)];
+            Transform rndSegment = vineSegements[Random.Range(0, vineSegements.Count)];
             // CapsuleCollider2D vineCol = rndSegment.GetComponent<CapsuleCollider2D>(); // 1/2 attempt to replace localScale.y with collider size in vine positioning.
             // Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0,Mathf.Abs(vineCol.bounds.extents.y*2)+segmentOffset); // 2/2 attempt to replace localScale.y with collider size in vine positioning.
-            Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0,Mathf.Abs(rndSegment.localScale.y*2)+segmentOffset); //ORIG
-            
+            Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0, Mathf.Abs(rndSegment.localScale.y * 2) + segmentOffset); //ORIG
+
             Transform newSegment = GameObject.Instantiate(rndSegment, newPosition, Quaternion.identity);
             newSegment.SetParent(transform);
             // newSegment.GetComponent<SpriteRenderer>().sprite = vineSprites[Random.Range(0,vineSprites.Count)];
@@ -74,30 +85,32 @@ public class ProceduralVine : MonoBehaviour
             HingeJoint2D newHinge = newSegment.GetComponent<HingeJoint2D>();
             newHinge.connectedBody = prevSegment.GetComponent<Rigidbody2D>();
             //  - set curl
-            bool hasCurl = Random.Range(0f,1f) < pctChanceCurl;
-            if(hasCurl) {
+            bool hasCurl = Random.Range(0f, 1f) < pctChanceCurl;
+            if (hasCurl)
+            {
                 JointMotor2D motor = new JointMotor2D();
-                float motorForce = Random.Range(0,maxCurlForce);
-                float motorSpeed =Random.Range(-curlSpeed,curlSpeed);
+                float motorForce = Random.Range(0, maxCurlForce);
+                float motorSpeed = Random.Range(-curlSpeed, curlSpeed);
                 motor.motorSpeed = motorSpeed;
                 motor.maxMotorTorque = motorForce;
                 newHinge.motor = motor;
                 newHinge.useMotor = true;
             }
 
-            if(isWeak)
+            if (isWeak)
                 newSegment.GetComponentInChildren<SpriteRenderer>().color = maxWeakColor;//Color.Lerp(minWeakColor, maxWeakColor, howWeak);
-   
-            newHinge.breakForce = Random.Range(minNormalBreakForce,maxNormalBreakForce);
 
-            bool hasAdornment = Random.Range(0f,1f)<pctChanceAdornment;
-            if(hasAdornment) {
-                Transform rndAdornment = adornments[Random.Range(0,adornments.Count)];
+            newHinge.breakForce = Random.Range(minNormalBreakForce, maxNormalBreakForce);
+
+            bool hasAdornment = Random.Range(0f, 1f) < pctChanceAdornment;
+            if (hasAdornment)
+            {
+                Transform rndAdornment = adornments[Random.Range(0, adornments.Count)];
                 Transform newAdornment = GameObject.Instantiate(rndAdornment, newSegment.position, Quaternion.identity);
-                float rndScale = Random.Range(minAdornmentScale,maxAdornmentScale);
-                newAdornment.localScale = new Vector2(rndScale,rndScale);
+                float rndScale = Random.Range(minAdornmentScale, maxAdornmentScale);
+                newAdornment.localScale = new Vector2(rndScale, rndScale);
                 newAdornment.SetParent(newSegment);
-                if(isWeak)
+                if (isWeak)
                     newAdornment.GetComponentInChildren<SpriteRenderer>().color = maxWeakColor;
             }
 
@@ -105,13 +118,15 @@ public class ProceduralVine : MonoBehaviour
             prevSegment = newSegment;
         }
 
-        if(isWeak) {
+        if (isWeak)
+        {
             //pick one segment at random and reset breakforce to random weak breakforce
-            int numWeakSegments = (int)length/4;
-            for(int i=0;i<numWeakSegments;i++) {
+            int numWeakSegments = (int)length / 4;
+            for (int i = 0; i < numWeakSegments; i++)
+            {
                 HingeJoint2D[] allSegments = gameObject.GetComponentsInChildren<HingeJoint2D>();
-                HingeJoint2D rndSegment = allSegments[Random.Range(0,allSegments.Length)];
-                float rndWeakBreakForce = Random.Range(minWeakBreakForce,maxWeakBreakForce);
+                HingeJoint2D rndSegment = allSegments[Random.Range(0, allSegments.Length)];
+                float rndWeakBreakForce = Random.Range(minWeakBreakForce, maxWeakBreakForce);
                 rndSegment.breakForce = rndWeakBreakForce;
             }
         }
@@ -150,7 +165,7 @@ public class ProceduralVine : MonoBehaviour
     //             newHinge.motor = motor;
     //             newHinge.useMotor = true;
     //         }
-   
+
     //         if(i>weakStartSegment) {
     //             //  - set hinge breakforce
     //             bool isWeak = Random.Range(0f,1f)<pctChanceWeak;
