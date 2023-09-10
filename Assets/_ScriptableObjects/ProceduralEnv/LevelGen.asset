@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: LevelGen
   m_EditorClassIdentifier: 
   proceduralLevelContainerName: Environment/ProceduralElements
-  levelLength: 75
-  levelStartOffset: -50
+  levelLengthMin: 100
+  levelLengthMax: 700
+  levelEdgeOffset: 25
   tree: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
   minDistanceBetweenTrees: 3
   maxDistanceBetweenTrees: 5
