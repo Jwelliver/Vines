@@ -11,8 +11,17 @@ public class FramesPerSecond : MonoBehaviour
     public TMPro.TextMeshProUGUI display_Text;
     public KeyCode toggleKey = KeyCode.F1;
 
+    //debug test
+    // Transform player;
+    GameManager gameManager;
+
+    // int totalBackgroundObjects;
+
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        // player = GameObject.Find("Player").transform;
+        // totalBackgroundObjects = gameManager.levelGen.getTotalBackgroundObjects();
         lastInterval = Time.realtimeSinceStartup;
         frames = 0;
     }
@@ -24,12 +33,14 @@ public class FramesPerSecond : MonoBehaviour
             display_Text.enabled = !display_Text.enabled;
         }
 
-        if(display_Text.enabled) {
+        if (display_Text.enabled)
+        {
             updateFPS();
         }
     }
 
-    void updateFPS() {
+    void updateFPS()
+    {
         ++frames;
         float timeNow = Time.realtimeSinceStartup;
         if (timeNow > lastInterval + updateInterval)
@@ -39,6 +50,9 @@ public class FramesPerSecond : MonoBehaviour
             lastInterval = timeNow;
         }
 
-        display_Text.text = "FPS: " + Mathf.Ceil(fps).ToString();
+        string newtext = "FPS: " + Mathf.Ceil(fps).ToString();
+        // newtext += "Player X: " + player.position.x;
+        // newtext += " Total GB Obj: " + totalBackgroundObjects;
+        display_Text.text = newtext;
     }
 }
