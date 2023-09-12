@@ -22,7 +22,7 @@
 //         data = new Dictionary<string, string>();
 //         LoadData();
 //     }
-    
+
 //     void OnDisable()
 //     {
 //         SaveData();
@@ -58,7 +58,7 @@
 //     public string GetValue(string key)
 //     {
 //         if (!data.ContainsKey(key)) return null;
-        
+
 //         return data[key];
 //     }
 
@@ -124,7 +124,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/DataStore")]
 public class DataStore : ScriptableObject
 {
     [System.Serializable]
@@ -150,7 +150,7 @@ public class DataStore : ScriptableObject
     public string GetValue(string key)
     {
         if (!data.ContainsKey(key)) return null;
-        
+
         return data[key];
     }
 
