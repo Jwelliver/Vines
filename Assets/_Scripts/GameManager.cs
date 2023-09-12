@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] LevelGenerator levelGen;
+    public LevelGenerator levelGen;
     [SerializeField] LevelLoader levelLoader;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip winMusic;
@@ -19,45 +19,53 @@ public class GameManager : MonoBehaviour
     [SerializeField] ArrowGenerator arrowGenerator;
     [SerializeField] SpriteRenderer playerAmulet;
 
-  
+
 
     AudioSource audioSource;
-    
+
 
     PersistentAudio music;
 
 
     public bool playerHasAmulet;
 
-    
 
-    void Start() {
+
+    void Start()
+    {
+        Application.targetFrameRate = 60;
         amuletFoundText = GameObject.Find("AmuletFoundText").GetComponent<TMPro.TextMeshProUGUI>();
-        try{
+        try
+        {
             music = GameObject.Find("Music").GetComponent<PersistentAudio>();
-        } catch {
+        }
+        catch
+        {
             music = null;
         }
-        
+
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
         levelGen.generateLevel();
     }
-    public void win() {
+    public void win()
+    {
         // Debug.Log("You Won!");
         playWinMusic();
         levelLoader.loadNextLevel();
     }
 
-    public void playerFoundAmulet() {
+    public void playerFoundAmulet()
+    {
         // Debug.Log("AmuletFound!");
-        playerHasAmulet=true;
-        playerAmulet.enabled=true;
+        playerHasAmulet = true;
+        playerAmulet.enabled = true;
         audioSource.PlayOneShot(amuletPickupSound);
         StartCoroutine(showAmuletFoundText());
     }
 
-    IEnumerator showAmuletFoundText() {
+    IEnumerator showAmuletFoundText()
+    {
         // Debug.Log("AmuletFound!");
         amuletFoundTextAnimator.SetTrigger("FadeIn");
         yield return new WaitForSeconds(3f);
@@ -75,17 +83,20 @@ public class GameManager : MonoBehaviour
         arrowGenerator.enabled = true;
     }
 
-    void Update() {
-        if(Input.GetKeyDown(KeyCode.R)) {
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
             levelLoader.reloadCurrentLevel();
         }
     }
 
-    void playWinMusic() {
-        if(!music) {Debug.Log("Music Component Not Found."); return;}
+    void playWinMusic()
+    {
+        if (!music) { Debug.Log("Music Component Not Found."); return; }
         music.reset();
         music.playClip(winSound);
-        
+
         // audioSource.PlayOneShot(winSound);
         // music.volume = 1;
         // music.Play();

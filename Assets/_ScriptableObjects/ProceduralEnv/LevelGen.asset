@@ -13,21 +13,276 @@ MonoBehaviour:
   m_Name: LevelGen
   m_EditorClassIdentifier: 
   proceduralLevelContainerName: Environment/ProceduralElements
-  levelLengthMin: 100
-  levelLengthMax: 700
-  levelEdgeOffset: 25
-  tree: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
-  minDistanceBetweenTrees: 3
-  maxDistanceBetweenTrees: 5
-  foliageLayers:
-  - {fileID: 11400000, guid: cd2ce927dafae8f4fbf1381711de8e2b, type: 2}
-  - {fileID: 11400000, guid: 6daf9605257c2eb4c90d41a153ca2f5d, type: 2}
-  - {fileID: 11400000, guid: e4697f46a2fd92840a10b2c2f9685c0b, type: 2}
-  paralaxLayers:
-  - {fileID: 11400000, guid: b0e32f5f10321584e89bf6fb1cdae83f, type: 2}
-  - {fileID: 11400000, guid: 967bc933419de7e489327ed4d28c1652, type: 2}
-  - {fileID: 11400000, guid: d059f560ac87a35419de2a30d5845a95, type: 2}
-  - {fileID: 11400000, guid: 75a88448c687b67448ea09511e6464b8, type: 2}
-  - {fileID: 11400000, guid: a3a64aaeac56aa649b20d8f5486f2250, type: 2}
-  - {fileID: 11400000, guid: a5e7b6bcda99e4449b9d9b8b817836a3, type: 2}
-  winPlatform: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
+  levelSettings: {fileID: 11400000, guid: 0e2ae0436583b4d4a9727f49e454f82c, type: 2}
+  backgroundLayers:
+  - id: BgLayer1
+    enabled: 1
+    proceduralObject:
+      id: BgLayer1_ProcObjs
+      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer1 (farthest
+        bg trees)
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.5
+      maxScale: 0.8
+      weightedSprites:
+        items:
+        - item: {fileID: 1650600148, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: -1085091818, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: 762239029, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: -462870605, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: -326087233, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+          probability: 1
+        - item: {fileID: -1509496801, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+          probability: 1
+        - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -6
+      color: {r: 0, g: 0, b: 0, a: 1}
+      enableRandomSpriteFlip: 1
+    minSpacing: 1
+    maxSpacing: 4
+    yOffset: 0
+  - id: BgLayer2
+    enabled: 1
+    proceduralObject:
+      id: BgLayer2_ProcObjs
+      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer2 (far
+        bg trees)
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 1
+      maxScale: 2
+      weightedSprites:
+        items:
+        - item: {fileID: 1650600148, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: -1085091818, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: 762239029, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: -462870605, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: -326087233, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+          probability: 1
+        - item: {fileID: -1509496801, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+          probability: 1
+        - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -5
+      color: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
+      enableRandomSpriteFlip: 1
+    minSpacing: 3
+    maxSpacing: 5
+    yOffset: 0
+  - id: BgLayer3
+    enabled: 1
+    proceduralObject:
+      id: BgLayer3_ProcObjs
+      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer2.5(far
+        foliage)
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.06
+      maxScale: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1085091818, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: 762239029, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: -462870605, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+          probability: 1
+        - item: {fileID: -326087233, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+          probability: 1
+        - item: {fileID: -1509496801, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+          probability: 1
+        - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -4
+      color: {r: 0.4431373, g: 0.4431373, b: 0.4431373, a: 1}
+      enableRandomSpriteFlip: 1
+    minSpacing: 1
+    maxSpacing: 3
+    yOffset: 0
+  - id: BgLayer4
+    enabled: 1
+    proceduralObject:
+      id: BgLayer4_ProcObjs
+      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer3 (close
+        bg trees)
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.7
+      maxScale: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -81035705, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+          probability: 1
+        - item: {fileID: 178499176, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+          probability: 1
+        - item: {fileID: -1595817921, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+          probability: 1
+        - item: {fileID: 130865656, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -3
+      color: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
+      enableRandomSpriteFlip: 1
+    minSpacing: 5
+    maxSpacing: 10
+    yOffset: 7
+  - id: BgLayer5
+    enabled: 1
+    proceduralObject:
+      id: BgLayer5_ProcObjs
+      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer3.5 (close
+        bg vines) (1)
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 1
+      maxScale: 1.4
+      weightedSprites:
+        items:
+        - item: {fileID: 770723486, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+        - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -3
+      color: {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
+      enableRandomSpriteFlip: 1
+    minSpacing: 3
+    maxSpacing: 10
+    yOffset: 0
+  - id: BgLayer6
+    enabled: 1
+    proceduralObject:
+      id: BgLayer6_ProcObjs
+      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer4(foliage)
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.8
+      maxScale: 2
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 1
+        - item: {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -2
+      color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
+      enableRandomSpriteFlip: 1
+    minSpacing: 10
+    maxSpacing: 20
+    yOffset: 0
+  - id: FoliageBgLayer7
+    enabled: 1
+    proceduralObject:
+      id: FoliageBgLayer7_ProcObjs
+      parentPath: Environment/ProceduralElements/Foliage/FoliageBackground2
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.7
+      maxScale: 1.5
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 0.05
+        - item: {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 0.03
+      sortLayerName: FoliageBackground
+      sortOrder: 0
+      color: {r: 0.47450984, g: 0.47450984, b: 0.47450984, a: 1}
+      enableRandomSpriteFlip: 1
+    minSpacing: 2
+    maxSpacing: 5
+    yOffset: -0.2
+  - id: FoliageBgLayer8
+    enabled: 1
+    proceduralObject:
+      id: FoliageBgLayer8_ProcObjs
+      parentPath: Environment/ProceduralElements/Foliage/FoliageBackground
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.8
+      maxScale: 1.3
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 0.05
+        - item: {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 0.025
+      sortLayerName: FoliageBackground
+      sortOrder: 1
+      color: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
+      enableRandomSpriteFlip: 1
+    minSpacing: 2
+    maxSpacing: 7
+    yOffset: -0.3
+  - id: FoliageBgLayer9
+    enabled: 1
+    proceduralObject:
+      id: FoliageBgLayer9_ProcObjs
+      parentPath: Environment/ProceduralElements/Foliage/FoliageForeground
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.2
+      maxScale: 0.8
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 21300000, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 0.05
+        - item: {fileID: 21300000, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 0.2
+      sortLayerName: FoliageForeground
+      sortOrder: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+      enableRandomSpriteFlip: 1
+    minSpacing: 2
+    maxSpacing: 5
+    yOffset: -0.25
+  treePrefab: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
+  winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}

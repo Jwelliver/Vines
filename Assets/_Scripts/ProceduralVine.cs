@@ -24,7 +24,6 @@ public class ProceduralVine : MonoBehaviour
     [SerializeField] float maxWeakBreakForce = 500f;
 
     [SerializeField] float pctChanceWeak = 0.03f;
-    [SerializeField] int weakStartSegment = 4; // weak segments will only appear after this number of segments has been created.
 
     [Header("Appearance")]
     [SerializeField] float pctChanceCurl = 0.3f;

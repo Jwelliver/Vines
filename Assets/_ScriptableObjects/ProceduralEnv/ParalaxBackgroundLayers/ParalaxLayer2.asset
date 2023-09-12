@@ -37,3 +37,4 @@ MonoBehaviour:
   sortLayerName: Background
   sortOrder: -5
   color: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
+  nObjects: 0

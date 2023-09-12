@@ -4,12 +4,13 @@ using UnityEngine;
 
 
 [System.Serializable]
-public class SpriteWithProbability {
+public class SpriteWithProbability
+{
     public Sprite sprite;
     public float probability;
 }
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Procedural Background")]
 public class ProceduralBackground : ScriptableObject
 {
     [SerializeField] string parentTransformPath;
@@ -26,37 +27,56 @@ public class ProceduralBackground : ScriptableObject
     [SerializeField] int sortOrder = 0;
     [SerializeField] Color color = Color.white;
 
+    public int nObjects = 0;
 
-    private Sprite getRandomSprite(){
-        SpriteWithProbability testSprite = sprites[UnityEngine.Random.Range(0,sprites.Count)];
-        if(UnityEngine.Random.Range(0f,1f)<testSprite.probability) {
+
+    private Sprite getRandomSprite()
+    {
+        SpriteWithProbability testSprite = sprites[UnityEngine.Random.Range(0, sprites.Count)];
+        if (UnityEngine.Random.Range(0f, 1f) < testSprite.probability)
+        {
             return testSprite.sprite;
-        } else {
+        }
+        else
+        {
             return getRandomSprite();
         }
     }
 
-    public void populateObjects(int levelLength, int levelEdgeOffset) {
-        Transform parent = GameObject.Find(parentTransformPath).transform;
-        if(!parent) {
-            throw new System.Exception("Procedural Background > cannot find parent at path: "+ parentTransformPath);
+
+
+    public void populateObjects(int levelLength, int levelEdgeOffset)
+    {
+        Transform parent;
+        try
+        {
+            parent = GameObject.Find(parentTransformPath).transform;
         }
-        for(int i=-Math.Abs(levelEdgeOffset); i<levelLength+Mathf.Abs(levelEdgeOffset);i+=UnityEngine.Random.Range(minDistanceBetweenObjs,maxDistanceBetweenObjs)) { 
-            Transform newObj = GameObject.Instantiate(prefab, new Vector2(i, parent.position.y),Quaternion.identity);
+        catch (Exception e)
+        {
+            Debug.LogError("Error finding parent: " + e);
+            return;
+        }
+
+        for (int i = -Math.Abs(levelEdgeOffset); i < levelLength + Mathf.Abs(levelEdgeOffset); i += UnityEngine.Random.Range(minDistanceBetweenObjs, maxDistanceBetweenObjs))
+        {
+            Transform newObj = GameObject.Instantiate(prefab, new Vector2(i, parent.position.y), Quaternion.identity);
             SpriteRenderer newObjSpriteRenderer = newObj.GetComponent<SpriteRenderer>();
             Sprite rndSprite = getRandomSprite();
             newObjSpriteRenderer.sprite = rndSprite;
             newObjSpriteRenderer.color = color;
             newObjSpriteRenderer.sortingLayerName = sortLayerName;
             newObjSpriteRenderer.sortingOrder = sortOrder;
-            float rndScale = UnityEngine.Random.Range(minScale,maxScale);
-            newObj.localScale = new Vector2(rndScale,rndScale);
-            bool isFlipped = UnityEngine.Random.Range(0f,1f) < 0.5f;
-            if(isFlipped) {
+            float rndScale = UnityEngine.Random.Range(minScale, maxScale);
+            newObj.localScale = new Vector2(rndScale, rndScale);
+            bool isFlipped = UnityEngine.Random.Range(0f, 1f) < 0.5f;
+            if (isFlipped)
+            {
                 newObj.localScale = new Vector2(-newObj.localScale.x, newObj.localScale.y);
             }
             newObj.SetParent(parent);
+            nObjects++;
         }
     }
-
 }
+

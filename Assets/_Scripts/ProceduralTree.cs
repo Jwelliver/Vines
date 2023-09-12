@@ -16,8 +16,6 @@ public class ProceduralTree : MonoBehaviour
     [SerializeField] float pctChanceLightShaft = 0.5f;
     [SerializeField] int maxLightShafts = 3;
 
-    [SerializeField] float distanceToDeactivate = 20f;
-
     [SerializeField] RectTransform trunk;
     [SerializeField] RectTransform palms;
     [SerializeField] Transform vine;
@@ -31,7 +29,8 @@ public class ProceduralTree : MonoBehaviour
     SpriteRenderer palmsSpriteRenderer;
 
 
-    void Awake() {
+    void Awake()
+    {
         myTransform = transform;
         vinesContainer = myTransform.Find("VinesContainer");
     }
@@ -46,39 +45,47 @@ public class ProceduralTree : MonoBehaviour
         populateLightShafts();
     }
 
-    void initTree() {
-        
-        float rndScale = Random.Range(minScale,maxScale);
-        transform.localScale = new Vector2(rndScale,rndScale);
-        trunk.localScale = new Vector3(trunk.localScale.x,Random.Range(minTrunkHeight,maxTrunkHeight));
+    void initTree()
+    {
+
+        float rndScale = Random.Range(minScale, maxScale);
+        transform.localScale = new Vector2(rndScale, rndScale);
+        trunk.localScale = new Vector3(trunk.localScale.x, Random.Range(minTrunkHeight, maxTrunkHeight));
 
         // Assign random sprites
         trunkSpriteRenderer.sprite = getRandomSprite(trunkSprites);
         palmsSpriteRenderer.sprite = getRandomSprite(palmSprites);
 
-        transform.eulerAngles = Vector3.forward * Random.Range(0,maxAngle);
+        transform.eulerAngles = Vector3.forward * Random.Range(0, maxAngle);
     }
 
-    Sprite getRandomSprite(List<Sprite> options) {
-        return options[Random.Range(0,options.Count)];
+    Sprite getRandomSprite(List<Sprite> options)
+    {
+        return options[Random.Range(0, options.Count)];
     }
 
-    Vector2 getRandomLocationInPalms() {
-        return (Vector2)palms.position + new Vector2(Random.Range(-palms.rect.width/2,palms.rect.width/2),-palms.rect.height/4);
+    Vector2 getRandomLocationInPalms()
+    {
+        return (Vector2)palms.position + new Vector2(Random.Range(-palms.rect.width / 2, palms.rect.width / 2), -palms.rect.height / 4);
     }
 
-    void populateVines() {
-        int nVines = Random.Range(1,maxVines);
-        for(int i =0; i<nVines; i++) {
-            Transform newVine = GameObject.Instantiate(vine,getRandomLocationInPalms(), Quaternion.identity, vinesContainer); //palms (PARENT - REMOVED)
+    void populateVines()
+    {
+        int nVines = Random.Range(1, maxVines);
+        for (int i = 0; i < nVines; i++)
+        {
+            Transform newVine = GameObject.Instantiate(vine, getRandomLocationInPalms(), Quaternion.identity, vinesContainer); //palms (PARENT - REMOVED)
         }
     }
 
-    void populateLightShafts() {
-        for(int i=0;i<maxLightShafts;i++) {
-            if(Random.Range(0f,1f)<pctChanceLightShaft) {
-                Vector2 newShaftPosition = (Vector2)transform.position + new Vector2(Random.Range(-palms.rect.width/2,palms.rect.width/2),trunk.rect.height*1.5f);
-                Transform newLightShaft = GameObject.Instantiate(lightShaft,newShaftPosition,Quaternion.identity, palms);
+    void populateLightShafts()
+    {
+        for (int i = 0; i < maxLightShafts; i++)
+        {
+            if (Random.Range(0f, 1f) < pctChanceLightShaft)
+            {
+                Vector2 newShaftPosition = (Vector2)transform.position + new Vector2(Random.Range(-palms.rect.width / 2, palms.rect.width / 2), trunk.rect.height * 1.5f);
+                Transform newLightShaft = GameObject.Instantiate(lightShaft, newShaftPosition, Quaternion.identity, palms);
             }
 
         }
