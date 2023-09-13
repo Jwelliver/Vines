@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -75,6 +76,7 @@ public class SwingingController : MonoBehaviour
 
     void attachJoints(Rigidbody2D vineSegment)
     {
+        if (vineSegment == null) { return; }
         grabJoint.connectedBody = vineSegment;
         grabJoint.enabled = true;
     }
@@ -179,14 +181,23 @@ public class SwingingController : MonoBehaviour
 
     IEnumerator Climb(string direction = "down")
     {
-
-        Rigidbody2D nextVineSegment = GetNextVineSegment(direction);
-
-        if (nextVineSegment == null)
+        Rigidbody2D nextVineSegment;
+        try
         {
-            endClimb();
-            yield return new WaitForEndOfFrame();
+            nextVineSegment = GetNextVineSegment(direction);
+
+            if (nextVineSegment == null)
+            {
+                endClimb();
+                yield break;
+            }
         }
+        catch (Exception e)
+        {
+            // Debug.LogError("Error: " + e);
+            yield break;
+        }
+
         // Debug.Log("Climb > nextVineSegment" + nextVineSegment);
         Vector2 targetPosition = nextVineSegment.position;
 

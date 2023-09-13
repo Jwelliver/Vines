@@ -50,7 +50,7 @@ TextureImporter:
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spriteGenerateFallbackPhysicsShape: 1
+  spriteGenerateFallbackPhysicsShape: 0
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -73,7 +73,7 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 50
+    compressionQuality: 100
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
@@ -318,7 +318,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Vines_0: -1813967872
+      Vines_2: -40577412
       Vines_5: 425985444
       Vines_3: 1355335694
       Vines_6: -1794753387
@@ -326,7 +326,7 @@ TextureImporter:
       Vines_1: 103812378
       Vines_4: 1249641634
       Vines_7: 1467614670
-      Vines_2: -40577412
+      Vines_0: -1813967872
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

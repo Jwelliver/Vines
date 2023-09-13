@@ -84,10 +84,27 @@ public class ProceduralTree : MonoBehaviour
         {
             if (Random.Range(0f, 1f) < pctChanceLightShaft)
             {
-                Vector2 newShaftPosition = (Vector2)transform.position + new Vector2(Random.Range(-palms.rect.width / 2, palms.rect.width / 2), trunk.rect.height * 1.5f);
-                Transform newLightShaft = GameObject.Instantiate(lightShaft, newShaftPosition, Quaternion.identity, palms);
-            }
+                Vector2 newShaftPosition = new Vector2(Random.Range(-palms.sizeDelta.x / 2, palms.sizeDelta.x / 2),
+                                                    Random.Range(-palms.sizeDelta.y / 2, palms.sizeDelta.y / 2));
 
+                Transform newLightShaft = Instantiate(lightShaft);
+                // newLightShaft.parent = palms;
+                newLightShaft.position = (Vector2)palms.position + newShaftPosition;
+                newLightShaft.gameObject.SendMessage("setParent");
+            }
         }
     }
+
+    // void populateLightShafts()
+    // {
+    //     for (int i = 0; i < maxLightShafts; i++)
+    //     {
+    //         if (Random.Range(0f, 1f) < pctChanceLightShaft)
+    //         {
+    //             Vector2 newShaftPosition = (Vector2)transform.position + new Vector2(Random.Range(-palms.rect.width / 2, palms.rect.width / 2), trunk.rect.height * 1.5f);
+    //             Transform newLightShaft = GameObject.Instantiate(lightShaft, newShaftPosition, Quaternion.identity, palms);
+    //         }
+
+    //     }
+    // }
 }

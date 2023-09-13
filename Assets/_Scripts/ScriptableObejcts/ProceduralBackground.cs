@@ -43,6 +43,10 @@ public class ProceduralBackground : ScriptableObject
         }
     }
 
+    public void staticBatchLayer(Transform parent)
+    {
+        StaticBatchingUtility.Combine(parent.gameObject);
+    }
 
 
     public void populateObjects(int levelLength, int levelEdgeOffset)
@@ -77,6 +81,7 @@ public class ProceduralBackground : ScriptableObject
             newObj.SetParent(parent);
             nObjects++;
         }
+        // staticBatchLayer(parent);
     }
 }
 
