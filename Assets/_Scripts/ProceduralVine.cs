@@ -74,11 +74,11 @@ public class ProceduralVine : MonoBehaviour
             // -  instantiate vineSegment at prev segment position - segmentLength*2;
             Transform rndSegment = RNG.RandomChoice(vineSegements);//vineSegements[RNG.RandomRange(0, vineSegements.Count)];
             // Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0, Mathf.Abs(rndSegment.localScale.y * 2) + segmentOffset); //ORIG
-            float colliderSizeY = rndSegment.GetComponent<Collider2D>().bounds.size.y;
-            float connectedAnchorPosY = rndSegment.GetComponent<HingeJoint2D>().connectedAnchor.y;
-            Vector2 newPosition = (Vector2)prevSegment.position + new Vector2(0, -colliderSizeY + connectedAnchorPosY);
+            float colliderSizeY = rndSegment.GetComponent<CapsuleCollider2D>().size.y;
+            // float connectedAnchorPosY = rndSegment.GetComponent<HingeJoint2D>().connectedAnchor.y;
+            float positionYOffset = -colliderSizeY;
+            Vector2 newPosition = (Vector2)prevSegment.position + new Vector2(0, positionYOffset);
             Transform newSegment = GameObject.Instantiate(rndSegment, newPosition, Quaternion.identity, transform);
-            // newSegment.SetParent(transform);
             //  - set hinge connected rb to previous segment; 
             HingeJoint2D newHinge = newSegment.GetComponent<HingeJoint2D>();
             newHinge.connectedBody = prevSegment.GetComponent<Rigidbody2D>();
@@ -103,7 +103,7 @@ public class ProceduralVine : MonoBehaviour
             bool hasAdornment = RNG.SampleProbability(pctChanceAdornment);
             if (hasAdornment)
             {
-                Transform rndAdornment = adornments[Random.Range(0, adornments.Count)];
+                Transform rndAdornment = RNG.RandomChoice(adornments);
                 Transform newAdornment = GameObject.Instantiate(rndAdornment, newSegment.position, Quaternion.identity);
                 float rndScale = Random.Range(minAdornmentScale, maxAdornmentScale);
                 newAdornment.localScale = new Vector2(rndScale, rndScale);
