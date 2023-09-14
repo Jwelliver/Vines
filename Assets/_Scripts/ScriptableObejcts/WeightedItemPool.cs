@@ -41,7 +41,7 @@ public class ProbabilityWeightedItemPool<T> : ItemPool<ProbabilityWeightedItem<T
     public T getRandomItem()
     {
         ProbabilityWeightedItem<T> rndItem = RNG.RandomChoice(items);
-        if (RNG.sampleProbability(rndItem.probability)) { return rndItem.item; }
+        if (RNG.SampleProbability(rndItem.probability)) { return rndItem.item; }
         else { return getRandomItem(); }
     }
 }
