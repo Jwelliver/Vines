@@ -71,9 +71,9 @@ public class ProceduralBackground : ScriptableObject
             newObjSpriteRenderer.color = color;
             newObjSpriteRenderer.sortingLayerName = sortLayerName;
             newObjSpriteRenderer.sortingOrder = sortOrder;
-            float rndScale = UnityEngine.Random.Range(minScale, maxScale);
+            float rndScale = RNG.RandomRange(minScale, maxScale);
             newObj.localScale = new Vector2(rndScale, rndScale);
-            bool isFlipped = UnityEngine.Random.Range(0f, 1f) < 0.5f;
+            bool isFlipped = RNG.RandomBool();
             if (isFlipped)
             {
                 newObj.localScale = new Vector2(-newObj.localScale.x, newObj.localScale.y);
