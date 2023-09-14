@@ -106,7 +106,7 @@ MonoBehaviour:
   - {fileID: -534360753, guid: 71729f9d2cc945f428a5e983d1ee7870, type: 3}
   - {fileID: -414934104, guid: 01d3d1953fe2ac34c80e82a208e8a649, type: 3}
   trunkSprites:
-  - {fileID: 854301037, guid: f5bb0e44e2c7336439a8893b5b0fdf93, type: 3}
+  - {fileID: -363360082, guid: 183629812909a1041b19a55e7191c253, type: 3}
   - {fileID: -1295716066, guid: 665112540f093154fa0b1dac37d108bf, type: 3}
 --- !u!114 &1411569793094642987
 MonoBehaviour:

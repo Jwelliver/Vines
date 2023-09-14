@@ -122,12 +122,12 @@ TextureImporter:
       name: LightShaft2_0
       rect:
         serializedVersion: 2
-        x: 2450
-        y: 650
-        width: 500
-        height: 500
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
+        x: 0
+        y: 56
+        width: 301
+        height: 456
+      alignment: 4
+      pivot: {x: 0, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

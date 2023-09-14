@@ -122,10 +122,10 @@ TextureImporter:
       name: Amulet_0
       rect:
         serializedVersion: 2
-        x: 1784
-        y: 236
-        width: 493
-        height: 1102
+        x: 1
+        y: 0
+        width: 492
+        height: 1024
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

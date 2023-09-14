@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 1024
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 30
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -119,34 +119,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bg trees1_0
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 271
-        width: 962
-        height: 1342
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b98aa2a681645744790b7c928c583c79
-      internalID: 1650600148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: bg trees1_1
       rect:
         serializedVersion: 2
-        x: 910
-        y: 753
-        width: 852
-        height: 1382
+        x: 978
+        y: 1254
+        width: 12
+        height: 15
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,12 +143,12 @@ TextureImporter:
       name: bg trees1_2
       rect:
         serializedVersion: 2
-        x: 1762
-        y: 269
-        width: 960
+        x: 1074
+        y: 586
+        width: 964
         height: 1344
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+      alignment: 9
+      pivot: {x: 0.55507296, y: 0.018810317}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -185,12 +164,12 @@ TextureImporter:
       name: bg trees1_3
       rect:
         serializedVersion: 2
-        x: 2763
-        y: 858
-        width: 1026
-        height: 1279
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 2080
+        y: 710
+        width: 1030
+        height: 1280
+      alignment: 9
+      pivot: {x: 0.5343627, y: 0.021725941}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -198,6 +177,27 @@ TextureImporter:
       bones: []
       spriteID: f9a0af5a5708897409fb257e5906c589
       internalID: -462870605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bg trees1_0
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 614
+        width: 852
+        height: 1384
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5333d886db108964286d00f3faaa6217
+      internalID: 1650600148
       vertices: []
       indices: 
       edges: []

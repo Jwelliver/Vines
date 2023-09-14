@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8dacd7cfe910fb54e9dd6cbfe212fc2d
+guid: 47bee55cf0a64cd4eb0aa15e410cb638
 SpriteAtlasImporter:
   externalObjects: {}
   textureSettings:
@@ -20,8 +20,8 @@ SpriteAtlasImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
-    compressionQuality: 100
-    crunchedCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
@@ -32,11 +32,11 @@ SpriteAtlasImporter:
     blockOffset: 1
     allowAlphaSplitting: 0
     enableRotation: 1
-    enableTightPacking: 0
+    enableTightPacking: 1
     enableAlphaDilation: 0
   secondaryTextureSettings: {}
   variantMultiplier: 1
-  bindAsDefault: 0
+  bindAsDefault: 1
   userData: 
   assetBundleName: 
   assetBundleVariant: 
