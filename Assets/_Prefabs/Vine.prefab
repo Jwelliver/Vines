@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5796282939409325735}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11109589, y: 3.804, z: 0.010692861}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vineAnchor: {fileID: 8533432108515378846, guid: a8fa812acc9f53c4385c530b8cd8ff6e, type: 3}
   vineSegements:
-  - {fileID: 1134416609208806065, guid: df900fdfc87a1b144b7ea7d5a7543cda, type: 3}
+  - {fileID: 3456149593492605008, guid: e250ff1051ac8204e87d1c926e787831, type: 3}
   adornments:
   - {fileID: 8037177660060243962, guid: 67173ca2a1b469a4c9dcde836595a014, type: 3}
   - {fileID: 5857417742709477190, guid: 47ffaa520ef672f41a07ab69d41d0d1b, type: 3}
@@ -61,13 +61,12 @@ MonoBehaviour:
   - {fileID: 1216026442891542921, guid: 5df0520732d76e445824dcf0ce4295af, type: 3}
   minLength: 15
   maxLength: 25
-  segmentOffset: -0.3
+  segmentOffset: -0.6
   minNormalBreakForce: 1500
   maxNormalBreakForce: 2500
   minWeakBreakForce: 250
   maxWeakBreakForce: 500
   pctChanceWeak: 0.08
-  weakStartSegment: 4
   pctChanceCurl: 0.3
   maxCurlForce: 10
   curlSpeed: 10
