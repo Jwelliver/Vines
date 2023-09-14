@@ -60,12 +60,14 @@ public class PersistentAudio : MonoBehaviour
             if (audioSource.volume < 0)
             {
                 audioSource.volume = 0;
+                isFading = false;
+                return;
             }
 
             // Decrease fade out time
             fadeTime -= Time.deltaTime;
 
-            if (fadeTime < 0)
+            if (fadeTime <= 0)
             {
                 fadeTime = 0;
                 isFading = false;
