@@ -52,15 +52,27 @@ public static class RNG
         return items[SysRandomInstance.Next(0, items.Count)];
     }
 
-    public static bool sampleProbability(float probability = 0.5f)
+    public static T RandomChoice<T>(T[] items, bool exceptionOnEmptyOrNull = false)
+    {
+        /*returns a random item from the list.*/
+        if (items == null || items.Length == 0)
+        {
+            if (exceptionOnEmptyOrNull) { throw new ArgumentException("Cannot choose a random item from an empty list."); }
+            else { return default; }
+        }
+        if (items.Length == 1) { return items[0]; }
+        return items[SysRandomInstance.Next(0, items.Length)];
+    }
+
+    public static bool SampleProbability(float probability = 0.5f)
     {
         /*returns true if random(0f,1f) < probability*/
         return RandomRange(0f, 1f) < probability;
     }
 
-    public static bool coinFlip()
+    public static bool RandomBool()
     {
         /*returns true 50% of the time*/
-        return sampleProbability(0.5f);
+        return SampleProbability(0.5f);
     }
 }
