@@ -62,29 +62,28 @@ public class ProceduralVine : MonoBehaviour
 
     void createVine()
     {
-        int length = Random.Range(minLength, maxLength);
         Transform prevSegment;
-        //instantiate anchor at 0,0
-        prevSegment = GameObject.Instantiate(vineAnchor, transform.position, transform.rotation);
-        prevSegment.SetParent(transform);
-        bool isWeak = Random.Range(0f, 1f) < pctChanceWeak;
+        //instantiate anchor
+        prevSegment = GameObject.Instantiate(vineAnchor, transform.position, transform.rotation, transform);
+
+        bool isWeak = RNG.sampleProbability(pctChanceWeak);
+        int length = RNG.RandomRange(minLength, maxLength);
         //for i in length:
         for (int i = 0; i < length; i++)
         {
             // -  instantiate vineSegment at prev segment position - segmentLength*2;
-            Transform rndSegment = vineSegements[Random.Range(0, vineSegements.Count)];
-            // CapsuleCollider2D vineCol = rndSegment.GetComponent<CapsuleCollider2D>(); // 1/2 attempt to replace localScale.y with collider size in vine positioning.
-            // Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0,Mathf.Abs(vineCol.bounds.extents.y*2)+segmentOffset); // 2/2 attempt to replace localScale.y with collider size in vine positioning.
-            Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0, Mathf.Abs(rndSegment.localScale.y * 2) + segmentOffset); //ORIG
-
-            Transform newSegment = GameObject.Instantiate(rndSegment, newPosition, Quaternion.identity);
-            newSegment.SetParent(transform);
-            // newSegment.GetComponent<SpriteRenderer>().sprite = vineSprites[Random.Range(0,vineSprites.Count)];
+            Transform rndSegment = RNG.RandomChoice(vineSegements);//vineSegements[RNG.RandomRange(0, vineSegements.Count)];
+            // Vector2 newPosition = (Vector2)prevSegment.position - new Vector2(0, Mathf.Abs(rndSegment.localScale.y * 2) + segmentOffset); //ORIG
+            float colliderSizeY = rndSegment.GetComponent<Collider2D>().bounds.size.y;
+            float connectedAnchorPosY = rndSegment.GetComponent<HingeJoint2D>().connectedAnchor.y;
+            Vector2 newPosition = (Vector2)prevSegment.position + new Vector2(0, -colliderSizeY + connectedAnchorPosY);
+            Transform newSegment = GameObject.Instantiate(rndSegment, newPosition, Quaternion.identity, transform);
+            // newSegment.SetParent(transform);
             //  - set hinge connected rb to previous segment; 
             HingeJoint2D newHinge = newSegment.GetComponent<HingeJoint2D>();
             newHinge.connectedBody = prevSegment.GetComponent<Rigidbody2D>();
             //  - set curl
-            bool hasCurl = Random.Range(0f, 1f) < pctChanceCurl;
+            bool hasCurl = RNG.RandomRange(0f, 1f) < pctChanceCurl;
             if (hasCurl)
             {
                 JointMotor2D motor = new JointMotor2D();

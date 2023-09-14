@@ -29,7 +29,16 @@ public class ProceduralLightShaft : MonoBehaviour
     void Start()
     {
         // animator = GetComponent<Animator>();
-        lightshaftContainer = GameObject.Find("Environment/ProceduralElements/Lightshafts").transform;
+        try
+        {
+            lightshaftContainer = GameObject.Find("Environment/ProceduralElements/Lightshafts").transform;
+        }
+        catch
+        {
+            lightshaftContainer = null;
+        }
+
+
         initShaft();
     }
 

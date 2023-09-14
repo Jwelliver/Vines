@@ -16,6 +16,7 @@ public class VineSegment : MonoBehaviour
     void Start()
     {
         // snapParticles = GetComponentInChildren<ParticleSystem>();
+        spriteRenderer = GetComponent<SpriteRenderer>(); // * temp left out for trying new vineSegment 091223
         vineRoot = transform.GetComponentInParent<ProceduralVine>();
         hinge = GetComponent<HingeJoint2D>();
         assignRandomSprite();

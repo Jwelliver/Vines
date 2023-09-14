@@ -66,7 +66,8 @@ public class ProceduralTree : MonoBehaviour
 
     Vector2 getRandomLocationInPalms()
     {
-        return (Vector2)palms.position + new Vector2(Random.Range(-palms.rect.width / 2, palms.rect.width / 2), -palms.rect.height / 4);
+        return (Vector2)palms.position + new Vector2(RNG.RandomRange(-palms.sizeDelta.x / 2, palms.sizeDelta.x / 2),
+                                                    RNG.RandomRange(-palms.sizeDelta.y / 2, palms.sizeDelta.y / 2));
     }
 
     void populateVines()
@@ -74,7 +75,7 @@ public class ProceduralTree : MonoBehaviour
         int nVines = Random.Range(1, maxVines);
         for (int i = 0; i < nVines; i++)
         {
-            Transform newVine = GameObject.Instantiate(vine, getRandomLocationInPalms(), Quaternion.identity, vinesContainer); //palms (PARENT - REMOVED)
+            GameObject.Instantiate(vine, getRandomLocationInPalms(), Quaternion.identity, vinesContainer); //palms (PARENT - REMOVED)
         }
     }
 
@@ -84,13 +85,13 @@ public class ProceduralTree : MonoBehaviour
         {
             if (Random.Range(0f, 1f) < pctChanceLightShaft)
             {
-                Vector2 newShaftPosition = new Vector2(Random.Range(-palms.sizeDelta.x / 2, palms.sizeDelta.x / 2),
-                                                    Random.Range(-palms.sizeDelta.y / 2, palms.sizeDelta.y / 2));
+                Vector2 newShaftPosition = getRandomLocationInPalms();
 
                 Transform newLightShaft = Instantiate(lightShaft);
-                // newLightShaft.parent = palms;
-                newLightShaft.position = (Vector2)palms.position + newShaftPosition;
-                newLightShaft.gameObject.SendMessage("setParent");
+                newLightShaft.position = newShaftPosition;
+
+                // Debug.Log("FinalLightShaftPosition: " + newLightShaft.position + " | rndPalmPos: " + newShaftPosition + " | palmsPositions: " + palms.position);
+                // newLightShaft.gameObject.SendMessage("setParent");
             }
         }
     }

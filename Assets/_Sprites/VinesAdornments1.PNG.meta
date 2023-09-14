@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -124,10 +124,10 @@ TextureImporter:
         serializedVersion: 2
         x: 1705
         y: 1400
-        width: 195
-        height: 187
+        width: 200
+        height: 200
       alignment: 9
-      pivot: {x: 0.6240416, y: 0.5970107}
+      pivot: {x: 0.60389405, y: 0.55335754}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -143,12 +143,12 @@ TextureImporter:
       name: Vines_1
       rect:
         serializedVersion: 2
-        x: 2227
+        x: 2175
         y: 1282
-        width: 305
-        height: 423
+        width: 425
+        height: 425
       alignment: 9
-      pivot: {x: 0.5462611, y: 0.76208496}
+      pivot: {x: 0.51568186, y: 0.77125835}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -161,76 +161,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Vines_2
-      rect:
-        serializedVersion: 2
-        x: 1545
-        y: 1060
-        width: 46
-        height: 175
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7e3c844f9bc427f49a1d84bbb6cfc6d0
-      internalID: -40577412
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vines_3
-      rect:
-        serializedVersion: 2
-        x: 1856
-        y: 871
-        width: 41
-        height: 175
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 536181d79f88f354d8e543a8fe7863d9
-      internalID: 1355335694
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vines_4
-      rect:
-        serializedVersion: 2
-        x: 2169
-        y: 875
-        width: 43
-        height: 162
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 68ab39967726bb54898b44f4b7e75bb8
-      internalID: 1249641634
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Vines_5
       rect:
         serializedVersion: 2
         x: 2352
         y: 781
-        width: 238
-        height: 249
+        width: 256
+        height: 256
       alignment: 9
       pivot: {x: 0.5253445, y: 0.3788729}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -240,48 +177,6 @@ TextureImporter:
       bones: []
       spriteID: 0d19b93e650c5654dadd7ba436e986c3
       internalID: 425985444
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vines_6
-      rect:
-        serializedVersion: 2
-        x: 1886
-        y: 811
-        width: 8
-        height: 27
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 231012100f050e84ea5cd09b97f1d87d
-      internalID: -1794753387
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Vines_7
-      rect:
-        serializedVersion: 2
-        x: 1850
-        y: 492
-        width: 43
-        height: 134
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 734cc30a219942e499041f6b22684f12
-      internalID: 1467614670
       vertices: []
       indices: 
       edges: []

@@ -48,6 +48,7 @@ public static class RNG
             if (exceptionOnEmptyOrNull) { throw new ArgumentException("Cannot choose a random item from an empty list."); }
             else { return default; }
         }
+        if (items.Count == 1) { return items[0]; }
         return items[SysRandomInstance.Next(0, items.Count)];
     }
 
