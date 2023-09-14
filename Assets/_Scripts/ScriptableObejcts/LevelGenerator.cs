@@ -57,7 +57,7 @@ public class ProceduralObject
         }
     }
 
-    private void applyRandomScale(Transform obj)
+    public virtual void applyRandomScale(Transform obj)
     {
         if (!enableRandomScale) return;
         float rndScale = RNG.RandomRange(minScale, maxScale);
@@ -67,7 +67,7 @@ public class ProceduralObject
 
     private void applyRandomFlip(Transform obj)
     {
-        if (enableRandomFlip && RNG.coinFlip())
+        if (enableRandomFlip && RNG.RandomBool())
             obj.localScale = new Vector2(-obj.localScale.x, obj.localScale.y);
         return;
     }
@@ -118,6 +118,20 @@ class ProceduralSpriteObject : ProceduralObject
             Debug.LogError("Error > cannot find sprite renderer on obj: " + obj.name + "\n Exception: " + e);
             return null;
         }
+    }
+
+    public override void applyRandomScale(Transform obj)
+    {
+        SpriteRenderer spriteRenderer = getSpriteRenderer(obj);
+        if (spriteRenderer == null || spriteRenderer.drawMode == SpriteDrawMode.Simple)
+        {
+            base.applyRandomScale(obj);
+            return;
+        }
+        float newScalar = RNG.RandomRange(minScale, maxScale);
+        Vector2 newScale = new Vector2(newScalar, newScalar);
+        spriteRenderer.size *= newScale; //TODO: verify this uniformly scales as expected
+        return;
     }
 
     public override void objectSetup(Transform obj)
@@ -287,7 +301,7 @@ public class LevelGenerator : ScriptableObject
                 Section newSection = section.getCopy();
                 newSection.startPos = new Vector2(section.startPos.x, section.startPos.y + i.yOffset);
                 layerGenerator.populateLayerSection(i, newSection);
-                Debug.Log("addBackgroundLayerSection() > section.startPos.y: " + section.startPos.y + " | yOffset: " + i.yOffset);
+                // Debug.Log("addBackgroundLayerSection() > section.startPos.y: " + section.startPos.y + " | yOffset: " + i.yOffset);
                 continue;
             }
             layerGenerator.populateLayerSection(i, section);
