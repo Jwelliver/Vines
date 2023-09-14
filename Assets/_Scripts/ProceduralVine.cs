@@ -66,7 +66,7 @@ public class ProceduralVine : MonoBehaviour
         //instantiate anchor
         prevSegment = GameObject.Instantiate(vineAnchor, transform.position, transform.rotation, transform);
 
-        bool isWeak = RNG.sampleProbability(pctChanceWeak);
+        bool isWeak = RNG.SampleProbability(pctChanceWeak);
         int length = RNG.RandomRange(minLength, maxLength);
         //for i in length:
         for (int i = 0; i < length; i++)
@@ -98,9 +98,9 @@ public class ProceduralVine : MonoBehaviour
             if (isWeak)
                 newSegment.GetComponentInChildren<SpriteRenderer>().color = maxWeakColor;//Color.Lerp(minWeakColor, maxWeakColor, howWeak);
 
-            newHinge.breakForce = Random.Range(minNormalBreakForce, maxNormalBreakForce);
+            newHinge.breakForce = RNG.RandomRange(minNormalBreakForce, maxNormalBreakForce);
 
-            bool hasAdornment = Random.Range(0f, 1f) < pctChanceAdornment;
+            bool hasAdornment = RNG.SampleProbability(pctChanceAdornment);
             if (hasAdornment)
             {
                 Transform rndAdornment = adornments[Random.Range(0, adornments.Count)];
@@ -123,8 +123,8 @@ public class ProceduralVine : MonoBehaviour
             for (int i = 0; i < numWeakSegments; i++)
             {
                 HingeJoint2D[] allSegments = gameObject.GetComponentsInChildren<HingeJoint2D>();
-                HingeJoint2D rndSegment = allSegments[Random.Range(0, allSegments.Length)];
-                float rndWeakBreakForce = Random.Range(minWeakBreakForce, maxWeakBreakForce);
+                HingeJoint2D rndSegment = RNG.RandomChoice(allSegments);
+                float rndWeakBreakForce = RNG.RandomRange(minWeakBreakForce, maxWeakBreakForce);
                 rndSegment.breakForce = rndWeakBreakForce;
             }
         }
