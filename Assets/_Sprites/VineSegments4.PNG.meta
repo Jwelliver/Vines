@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -122,12 +122,12 @@ TextureImporter:
       name: VineSegments4_0
       rect:
         serializedVersion: 2
-        x: 1739
-        y: 1432
-        width: 60
-        height: 236
+        x: 1
+        y: 23
+        width: 55
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -143,12 +143,12 @@ TextureImporter:
       name: VineSegments4_1
       rect:
         serializedVersion: 2
-        x: 2592
-        y: 1448
-        width: 60
-        height: 235
+        x: 95
+        y: 21
+        width: 56
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -164,12 +164,12 @@ TextureImporter:
       name: VineSegments4_2
       rect:
         serializedVersion: 2
-        x: 2047
-        y: 890
-        width: 60
-        height: 236
+        x: 196
+        y: 18
+        width: 56
+        height: 233
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
