@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/AppSettings")]
 public class AppSettings : ScriptableObject
@@ -13,7 +14,13 @@ public class AppSettings : ScriptableObject
     [SerializeField] int targetFrameRate_webGl = -1;
     [SerializeField] int vSyncCount_webGl = 0;
 
-    void OnEnable()
+
+    void OnValidate()
+    {
+        UpdateSettings();
+    }
+
+    void UpdateSettings()
     {
         int targetFrameRate;
         int vSyncCount;
