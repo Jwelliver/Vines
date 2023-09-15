@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.brunomikoski.spriteauditor": "0.3.3",
     "com.singularitygroup.hotreload": "git+https://gitlab.hotreload.net/root/hot-reload-releases.git#1.8.0",
     "com.unity.cinemachine": "2.9.5",
     "com.unity.collab-proxy": "1.17.7",

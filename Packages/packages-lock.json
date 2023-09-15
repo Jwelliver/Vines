@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.brunomikoski.spriteauditor": {
+      "version": "0.3.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.singularitygroup.hotreload": {
       "version": "git+https://gitlab.hotreload.net/root/hot-reload-releases.git#1.8.0",
       "depth": 0,
