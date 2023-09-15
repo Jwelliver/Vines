@@ -7,28 +7,31 @@ public class VineSFX : MonoBehaviour
 
     [Header("AudioSources")]
     [SerializeField] AudioSource vineAudio;
-    
+
     [Header("Clips")]
     [SerializeField] AudioClip vineSnap;
     [SerializeField] List<AudioClip> vineStretchAudioClips = new List<AudioClip>();
     [SerializeField] List<AudioClip> vineImpactAudioClips = new List<AudioClip>();
 
 
-    public void playVineStretchSound() {
+    public void playVineStretchSound()
+    {
         // Debug.Log("VineStretchSound");
-        if(vineAudio.isPlaying) return;
-        if(Random.Range(0f,1f)>0.05f) return;
-        AudioClip rndSound = vineStretchAudioClips[Random.Range(0,vineStretchAudioClips.Count)];
+        if (vineAudio.isPlaying) return;
+        if (RNG.RandomBool()) return;
+        AudioClip rndSound = RNG.RandomChoice(vineStretchAudioClips);
         vineAudio.PlayOneShot(rndSound);
     }
 
-    public void playVineImpactSound() {
+    public void playVineImpactSound()
+    {
         // if(Random.Range(0f,1f)>0.05f) return;
-        AudioClip rndSound = vineImpactAudioClips[Random.Range(0,vineImpactAudioClips.Count)];
+        AudioClip rndSound = RNG.RandomChoice(vineImpactAudioClips);
         vineAudio.PlayOneShot(rndSound);
     }
 
-    public void playVineSnapSound() {
+    public void playVineSnapSound()
+    {
         vineAudio.Stop();
         vineAudio.PlayOneShot(vineSnap);
     }

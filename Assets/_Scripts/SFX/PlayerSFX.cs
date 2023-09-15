@@ -14,25 +14,29 @@ public class PlayerSFX : MonoBehaviour
     [SerializeField] List<AudioClip> whoas = new List<AudioClip>();
 
 
-    public void playJumpStartSound() {
+    public void playJumpStartSound()
+    {
         // Debug.Log("JumpStartSound");
         playerAudio.PlayOneShot(jumpStart);
     }
 
-    public void playJumpStopSound() {
+    public void playJumpStopSound()
+    {
         // Debug.Log("JumpStopSound");
         playerAudio.Stop();
         playerAudio.PlayOneShot(jumpStop);
     }
 
-    public void playWhoaSound() {
+    public void playWhoaSound()
+    {
         // Debug.Log("whoaSound");
-        if(playerAudio.isPlaying) return;
-        AudioClip rndWhoaSound = whoas[Random.Range(0,whoas.Count)];
+        if (playerAudio.isPlaying) return;
+        AudioClip rndWhoaSound = RNG.RandomChoice(whoas);
         playerAudio.PlayOneShot(rndWhoaSound);
     }
 
-    public void playPlayerDamageSfx() {
+    public void playPlayerDamageSfx()
+    {
         playerAudio.Stop();
         playerAudio.PlayOneShot(playerDamage);
     }

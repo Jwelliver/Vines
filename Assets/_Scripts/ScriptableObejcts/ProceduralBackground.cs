@@ -32,8 +32,8 @@ public class ProceduralBackground : ScriptableObject
 
     private Sprite getRandomSprite()
     {
-        SpriteWithProbability testSprite = sprites[UnityEngine.Random.Range(0, sprites.Count)];
-        if (UnityEngine.Random.Range(0f, 1f) < testSprite.probability)
+        SpriteWithProbability testSprite = RNG.RandomChoice(sprites);
+        if (RNG.SampleProbability(testSprite.probability))
         {
             return testSprite.sprite;
         }
@@ -62,7 +62,7 @@ public class ProceduralBackground : ScriptableObject
             return;
         }
 
-        for (int i = -Math.Abs(levelEdgeOffset); i < levelLength + Mathf.Abs(levelEdgeOffset); i += UnityEngine.Random.Range(minDistanceBetweenObjs, maxDistanceBetweenObjs))
+        for (int i = -Math.Abs(levelEdgeOffset); i < levelLength + Mathf.Abs(levelEdgeOffset); i += RNG.RandomRange(minDistanceBetweenObjs, maxDistanceBetweenObjs))
         {
             Transform newObj = GameObject.Instantiate(prefab, new Vector2(i, parent.position.y), Quaternion.identity);
             SpriteRenderer newObjSpriteRenderer = newObj.GetComponent<SpriteRenderer>();

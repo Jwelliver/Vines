@@ -25,7 +25,7 @@ public class VineSegment : MonoBehaviour
 
     void assignRandomSprite()
     {
-        Sprite rndSprite = vineSegmentSprites[Random.Range(0, vineSegmentSprites.Count)];
+        Sprite rndSprite = RNG.RandomChoice(vineSegmentSprites);
         spriteRenderer.sprite = rndSprite;
     }
 

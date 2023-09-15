@@ -48,20 +48,20 @@ public class ProceduralTree : MonoBehaviour
     void initTree()
     {
 
-        float rndScale = Random.Range(minScale, maxScale);
+        float rndScale = RNG.RandomRange(minScale, maxScale);
         transform.localScale = new Vector2(rndScale, rndScale);
-        trunk.localScale = new Vector3(trunk.localScale.x, Random.Range(minTrunkHeight, maxTrunkHeight));
+        trunk.localScale = new Vector3(trunk.localScale.x, RNG.RandomRange(minTrunkHeight, maxTrunkHeight));
 
         // Assign random sprites
         trunkSpriteRenderer.sprite = getRandomSprite(trunkSprites);
         palmsSpriteRenderer.sprite = getRandomSprite(palmSprites);
 
-        transform.eulerAngles = Vector3.forward * Random.Range(0, maxAngle);
+        transform.eulerAngles = Vector3.forward * RNG.RandomRange(0, maxAngle);
     }
 
     Sprite getRandomSprite(List<Sprite> options)
     {
-        return options[Random.Range(0, options.Count)];
+        return options[RNG.RandomRange(0, options.Count)];
     }
 
     Vector2 getRandomLocationInPalms()
@@ -73,7 +73,7 @@ public class ProceduralTree : MonoBehaviour
 
     void populateVines()
     {
-        int nVines = Random.Range(1, maxVines);
+        int nVines = RNG.RandomRange(1, maxVines);
         for (int i = 0; i < nVines; i++)
         {
             GameObject.Instantiate(vine, getRandomLocationInPalms(), Quaternion.identity, vinesContainer); //palms (PARENT - REMOVED)
@@ -84,7 +84,7 @@ public class ProceduralTree : MonoBehaviour
     {
         for (int i = 0; i < maxLightShafts; i++)
         {
-            if (Random.Range(0f, 1f) < pctChanceLightShaft)
+            if (RNG.SampleProbability(pctChanceLightShaft))
             {
                 Vector2 newShaftPosition = getRandomLocationInPalms();
 

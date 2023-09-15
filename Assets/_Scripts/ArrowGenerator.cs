@@ -12,23 +12,27 @@ public class ArrowGenerator : MonoBehaviour
 
     AudioSource arrowShotAudioSource;
 
-    void Start() {
+    void Start()
+    {
         StartCoroutine(wait());
         arrowShotAudioSource = GetComponent<AudioSource>();
     }
 
-    void fireArrow() {
-        GameObject.Instantiate(arrowProjectile,transform.position, Quaternion.identity);
+    void fireArrow()
+    {
+        GameObject.Instantiate(arrowProjectile, transform.position, Quaternion.identity);
         arrowShotAudioSource.Play();
     }
 
-    IEnumerator wait() {
-        yield return new WaitForSeconds(Random.Range(minTimeBetweenShots, maxTimeBetweenShots));
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(RNG.RandomRange(minTimeBetweenShots, maxTimeBetweenShots));
         fireArrow();
         StartCoroutine(wait());
     }
 
-    void OnDestroy() {
+    void OnDestroy()
+    {
         StopAllCoroutines();
     }
 }

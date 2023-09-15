@@ -16,8 +16,8 @@ class ProbWeightItemList<T>
     public T getRandom()
     {
         if (items.Count == 0) { return default; }//should return nullable value of T
-        ProbWeightedItem<T> item = items[UnityEngine.Random.Range(0, items.Count)];
-        if (UnityEngine.Random.Range(0f, 1f) < item.probability)
+        ProbWeightedItem<T> item = RNG.RandomChoice(items);
+        if (RNG.SampleProbability(item.probability))
         {
             return item.item;
         }
@@ -185,7 +185,7 @@ class ProceduralLayerGenerator
         float startOffset = section.startOffset;
 
         List<Vector2> positions = new List<Vector2>();
-        for (float x = startX + startOffset; x < endX + endOffset; x += UnityEngine.Random.Range(minSpacing, maxSpacing))
+        for (float x = startX + startOffset; x < endX + endOffset; x += RNG.RandomRange(minSpacing, maxSpacing))
         {
             positions.Add(new Vector2(x, y));
         }

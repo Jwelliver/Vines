@@ -87,8 +87,8 @@ public class ProceduralVine : MonoBehaviour
             if (hasCurl)
             {
                 JointMotor2D motor = new JointMotor2D();
-                float motorForce = Random.Range(0, maxCurlForce);
-                float motorSpeed = Random.Range(-curlSpeed, curlSpeed);
+                float motorForce = RNG.RandomRange(0, maxCurlForce);
+                float motorSpeed = RNG.RandomRange(-curlSpeed, curlSpeed);
                 motor.motorSpeed = motorSpeed;
                 motor.maxMotorTorque = motorForce;
                 newHinge.motor = motor;
@@ -105,7 +105,7 @@ public class ProceduralVine : MonoBehaviour
             {
                 Transform rndAdornment = RNG.RandomChoice(adornments);
                 Transform newAdornment = GameObject.Instantiate(rndAdornment, newSegment.position, Quaternion.identity);
-                float rndScale = Random.Range(minAdornmentScale, maxAdornmentScale);
+                float rndScale = RNG.RandomRange(minAdornmentScale, maxAdornmentScale);
                 newAdornment.localScale = new Vector2(rndScale, rndScale);
                 newAdornment.SetParent(newSegment);
                 if (isWeak)
