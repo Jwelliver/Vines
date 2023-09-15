@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bab6fa0fb3fb8a646a80021ebec0496e, type: 3}
+  m_Name: AppSettings
+  m_EditorClassIdentifier: 
+  targetFrameRate_desktop: 60
+  vSyncCount_desktop: 0
+  targetFrameRate_webGl: -1
+  vSyncCount_webGl: 0
