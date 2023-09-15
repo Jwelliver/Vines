@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &420089404
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,6 +267,10 @@ PrefabInstance:
     - target: {fileID: 4308951091715838976, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       propertyPath: m_Name
       value: BackgroundSpriteObject
+      objectReference: {fileID: 0}
+    - target: {fileID: 4308951091715838976, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
