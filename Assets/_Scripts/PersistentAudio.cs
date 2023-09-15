@@ -21,10 +21,10 @@ public class PersistentAudio : MonoBehaviour
 
     void Update()
     {
-        if (isFading)
-        {
-            continueFade();
-        }
+        // if (isFading)
+        // {
+        //     continueFade();
+        // }
     }
 
     public void play()
@@ -40,49 +40,49 @@ public class PersistentAudio : MonoBehaviour
     public void reset()
     {
         audioSource.Stop();
-        // animator.SetTrigger("Reset");
+        animator.SetTrigger("Reset");
     }
 
     public void fadeOutAndStop(float time)
     {
-        fadeTime = time;
-        isFading = true;
-        // animator.SetTrigger("FadeOut");
+        // fadeTime = time;
+        // isFading = true;
+        animator.SetTrigger("FadeOut");
     }
 
-    void continueFade()
-    {
-        if (audioSource != null && audioSource.isPlaying && audioSource.volume > 0 && fadeTime > 0)
-        {
-            // Decrease volume
-            audioSource.volume -= Time.deltaTime / fadeTime;
+    // void continueFade()
+    // {
+    //     if (audioSource != null && audioSource.isPlaying && audioSource.volume > 0 && fadeTime > 0)
+    //     {
+    //         // Decrease volume
+    //         audioSource.volume -= Time.deltaTime / fadeTime;
 
-            if (audioSource.volume < 0)
-            {
-                audioSource.volume = 0;
-                isFading = false;
-                return;
-            }
+    //         if (audioSource.volume < 0)
+    //         {
+    //             audioSource.volume = 0;
+    //             isFading = false;
+    //             return;
+    //         }
 
-            // Decrease fade out time
-            fadeTime -= Time.deltaTime;
+    //         // Decrease fade out time
+    //         fadeTime -= Time.deltaTime;
 
-            if (fadeTime <= 0)
-            {
-                fadeTime = 0;
-                isFading = false;
-                if (onFadeComplete != null)
-                {
-                    onFadeComplete.Invoke();
-                }
+    //         if (fadeTime <= 0)
+    //         {
+    //             fadeTime = 0;
+    //             isFading = false;
+    //             if (onFadeComplete != null)
+    //             {
+    //                 onFadeComplete.Invoke();
+    //             }
 
-            }
-        }
-        else
-        {
-            isFading = false;
-        }
-    }
+    //         }
+    //     }
+    //     else
+    //     {
+    //         isFading = false;
+    //     }
+    // }
 
 
     void OnDestroy()
