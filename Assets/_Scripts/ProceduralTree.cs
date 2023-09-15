@@ -65,9 +65,10 @@ public class ProceduralTree : MonoBehaviour
     }
 
     Vector2 getRandomLocationInPalms()
-    {
-        return (Vector2)palms.position + new Vector2(RNG.RandomRange(-palms.sizeDelta.x / 2, palms.sizeDelta.x / 2),
-                                                    RNG.RandomRange(-palms.sizeDelta.y / 2, palms.sizeDelta.y / 2));
+    {   //returns position in lower half of palms
+        float offsetX = RNG.RandomRange(-palms.sizeDelta.x / 2, palms.sizeDelta.x / 2);
+        float offsetY = RNG.RandomRange(-palms.sizeDelta.y / 2, palms.sizeDelta.y / 2);
+        return (Vector2)palms.position + new Vector2(offsetX, offsetY);
     }
 
     void populateVines()
