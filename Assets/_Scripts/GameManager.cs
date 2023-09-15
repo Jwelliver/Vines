@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // Application.targetFrameRate = 60;
         amuletFoundText = GameObject.Find("AmuletFoundText").GetComponent<TMPro.TextMeshProUGUI>();
         try
         {
