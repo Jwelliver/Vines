@@ -202,7 +202,6 @@ class ProceduralLayerGenerator
         if (!proceduralLayer.enabled) { return; }
         List<Vector2> positions = getPositions(section, proceduralLayer.minSpacing, proceduralLayer.maxSpacing);
         proceduralLayer.proceduralObject.createMany(positions);
-
     }
 }
 
@@ -217,18 +216,6 @@ public class ProceduralLayer<T> where T : ProceduralObject
     public float maxSpacing;
     public float yOffset;
 }
-
-
-/*
-TODO 0910123
-
-    - setup level settings and tree layer
-    - replace foliage and paralax obj with single backgroundObj prefab
-    - setup sprite groups 
-    - implement background Layers
-
-*/
-
 
 
 [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Level Generator")]
