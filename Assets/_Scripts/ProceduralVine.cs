@@ -83,7 +83,7 @@ public class ProceduralVine : MonoBehaviour
             HingeJoint2D newHinge = newSegment.GetComponent<HingeJoint2D>();
             newHinge.connectedBody = prevSegment.GetComponent<Rigidbody2D>();
             //  - set curl
-            bool hasCurl = RNG.RandomRange(0f, 1f) < pctChanceCurl;
+            bool hasCurl = RNG.SampleProbability(pctChanceCurl);
             if (hasCurl)
             {
                 JointMotor2D motor = new JointMotor2D();
