@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: bg_trees
+  m_Name: far_bg_trees_spritePool
   m_EditorClassIdentifier: Assembly-CSharp::SpritePool
-  description: 
+  description: far_bg_trees_sprite_pool
   items:
-  - {fileID: 1650600148, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: -1085091818, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
-  - {fileID: 762239029, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
   - {fileID: -462870605, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+  - {fileID: -326087233, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
+  - {fileID: 1650600148, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+  - {fileID: 762239029, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
   - {fileID: -326087233, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
   - {fileID: -1509496801, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
   - {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
