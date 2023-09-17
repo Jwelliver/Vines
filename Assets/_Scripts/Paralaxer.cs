@@ -40,8 +40,8 @@ public class Paralaxer : MonoBehaviour
         refObjCurPos = referenceObj.position;
         refObjPosDiff = prevReferencePosition - refObjCurPos;
         float newX = refObjPosDiff.x * axisSpeed.x;
-        float newY = refObjPosDiff.y * axisSpeed.y;
-        float newZ = refObjPosDiff.z * axisSpeed.z;
+        float newY = axisSpeed.y == 0 ? 0 : refObjPosDiff.y * axisSpeed.y;
+        float newZ = axisSpeed.z == 0 ? 0 : refObjPosDiff.z * axisSpeed.z;
         newMovement = new Vector3(newX, newY, newZ) * Time.deltaTime;
         myTransform.position += newMovement;
         prevReferencePosition = refObjCurPos;
