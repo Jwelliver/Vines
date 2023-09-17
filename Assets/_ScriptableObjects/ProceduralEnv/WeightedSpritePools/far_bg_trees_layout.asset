@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProceduralSpriteObjectLayout
   prefab: {fileID: 0}
   layoutParams:
-    enableRandomScale: 0
+    enableRandomScale: 1
     minScale: 0
     maxScale: 0
     minSpacing: 0
     maxSpacing: 0
-    enableRandomFlip: 0
-  sprites: {fileID: 0}
-  sortLayerName: 
+    enableRandomFlip: 1
+  sprites: {fileID: 11400000, guid: bec4426efd376d04c9abc3b4c47dc045, type: 2}
+  sortLayerName: Background
   sortOrder: 0
   color: {r: 255, g: 255, b: 255, a: 1}
