@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: MainTreesLayout
   m_EditorClassIdentifier: Assembly-CSharp::ProceduralObjectLayout
-  prefab: {fileID: 0}
+  prefab: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
   layoutParams:
-    enableRandomScale: 0
-    minScale: 0
-    maxScale: 0
-    minSpacing: 0
-    maxSpacing: 0
-    enableRandomFlip: 0
+    enableRandomScale: 1
+    minScale: 1
+    maxScale: 3
+    minSpacing: 4
+    maxSpacing: 10
+    enableRandomFlip: 1
