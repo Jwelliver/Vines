@@ -284,5 +284,35 @@ MonoBehaviour:
     minSpacing: 2
     maxSpacing: 10
     yOffset: 0
+  - id: FoliageBgLayer10
+    enabled: 1
+    proceduralObject:
+      id: FoliageBgLayer10_ProcObjs
+      parentPath: Environment/ProceduralElements/Foliage/FoliageForegroundClose
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 1.5
+      maxScale: 2
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 0
+        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 0
+      sortLayerName: CameraForeground
+      sortOrder: 0
+      color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+    minSpacing: 10
+    maxSpacing: 20
+    yOffset: -15
   treePrefab: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
