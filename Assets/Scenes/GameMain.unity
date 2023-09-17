@@ -1426,7 +1426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca894f1006161d9458ff242f1fe8bb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisSpeed: {x: 1, y: 0, z: 0}
+  axisSpeed: {x: 1, y: 1, z: 0}
   referenceObj: {fileID: 519420032}
 --- !u!4 &235696669
 Transform:
@@ -2294,7 +2294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca894f1006161d9458ff242f1fe8bb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisSpeed: {x: 0.5, y: 0, z: 0}
+  axisSpeed: {x: 0.5, y: 0.5, z: 0}
   referenceObj: {fileID: 519420032}
 --- !u!1 &452658103
 GameObject:
@@ -3424,7 +3424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca894f1006161d9458ff242f1fe8bb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisSpeed: {x: 0.5, y: 0, z: 0}
+  axisSpeed: {x: 0.8, y: 0.8, z: 0}
   referenceObj: {fileID: 519420032}
 --- !u!1 &643775706
 GameObject:
@@ -3669,7 +3669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca894f1006161d9458ff242f1fe8bb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisSpeed: {x: 0.8, y: 0, z: 0}
+  axisSpeed: {x: 1, y: 1, z: 0}
   referenceObj: {fileID: 519420032}
 --- !u!1 &646791390
 GameObject:
@@ -6558,7 +6558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca894f1006161d9458ff242f1fe8bb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisSpeed: {x: 1.5, y: 0, z: 0}
+  axisSpeed: {x: 1.5, y: 1.5, z: 0}
   referenceObj: {fileID: 519420032}
 --- !u!4 &1275502238
 Transform:
@@ -9974,7 +9974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca894f1006161d9458ff242f1fe8bb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisSpeed: {x: 1.25, y: 0, z: 0}
+  axisSpeed: {x: 1.25, y: 1.25, z: 0}
   referenceObj: {fileID: 519420032}
 --- !u!1 &1953952571
 GameObject:
@@ -10135,7 +10135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca894f1006161d9458ff242f1fe8bb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisSpeed: {x: 0.5, y: 0, z: 0}
+  axisSpeed: {x: 0.5, y: 0.5, z: 0}
   referenceObj: {fileID: 519420032}
 --- !u!1 &2009674675
 GameObject:
@@ -10465,7 +10465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca894f1006161d9458ff242f1fe8bb50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axisSpeed: {x: 1.25, y: 0, z: 0}
+  axisSpeed: {x: 1.25, y: 1.25, z: 0}
   referenceObj: {fileID: 519420032}
 --- !u!4 &2093539856
 Transform:
