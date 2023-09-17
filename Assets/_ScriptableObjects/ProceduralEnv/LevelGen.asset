@@ -23,8 +23,8 @@ MonoBehaviour:
         bg trees)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 1.5
-      maxScale: 2.5
+      minScale: 0.5
+      maxScale: 0.8
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -56,8 +56,8 @@ MonoBehaviour:
         bg trees)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 1.5
-      maxScale: 2.5
+      minScale: 1
+      maxScale: 2
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -89,7 +89,7 @@ MonoBehaviour:
         foliage)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 1
+      minScale: 0.6
       maxScale: 1
       enableRandomFlip: 1
       weightedSprites:
@@ -122,8 +122,8 @@ MonoBehaviour:
         bg trees)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 0.3
-      maxScale: 0.6
+      minScale: 0.7
+      maxScale: 1
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -149,8 +149,8 @@ MonoBehaviour:
         bg vines) (1)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 0.5
-      maxScale: 2
+      minScale: 1
+      maxScale: 1.4
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -171,8 +171,8 @@ MonoBehaviour:
       parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer4(foliage)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 0.4
-      maxScale: 1
+      minScale: 0.8
+      maxScale: 2
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -201,8 +201,8 @@ MonoBehaviour:
       parentPath: Environment/ProceduralElements/Foliage/FoliageBackground2
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 0.4
-      maxScale: 1.2
+      minScale: 0.7
+      maxScale: 1.5
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -223,7 +223,7 @@ MonoBehaviour:
       color: {r: 0.47450984, g: 0.47450984, b: 0.47450984, a: 1}
     minSpacing: 2
     maxSpacing: 5
-    yOffset: -0.2
+    yOffset: 0
   - id: FoliageBgLayer8
     enabled: 1
     proceduralObject:
@@ -231,8 +231,8 @@ MonoBehaviour:
       parentPath: Environment/ProceduralElements/Foliage/FoliageBackground
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 0.4
-      maxScale: 0.8
+      minScale: 0.8
+      maxScale: 1.3
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -253,7 +253,7 @@ MonoBehaviour:
       color: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
     minSpacing: 2
     maxSpacing: 7
-    yOffset: -0.3
+    yOffset: 0
   - id: FoliageBgLayer9
     enabled: 1
     proceduralObject:
@@ -262,7 +262,7 @@ MonoBehaviour:
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 0.2
-      maxScale: 0.6
+      maxScale: 0.8
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -283,6 +283,6 @@ MonoBehaviour:
       color: {r: 1, g: 1, b: 1, a: 1}
     minSpacing: 2
     maxSpacing: 10
-    yOffset: -0.25
+    yOffset: 0
   treePrefab: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
