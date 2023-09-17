@@ -62,3 +62,6 @@ TagManager:
   - name: InFrontOfPlayer
     uniqueID: 799328815
     locked: 0
+  - name: CameraForeground
+    uniqueID: 4045638167
+    locked: 0
