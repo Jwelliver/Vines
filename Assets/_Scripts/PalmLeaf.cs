@@ -27,7 +27,6 @@ public class AngleRangeCheck
     int hi2;
     public AngleRangeCheck(int centerAngle, int nDegrees)
     {
-        Debug.Log(centerAngle);
         if (centerAngle != 180 && centerAngle != 0)
         {
             throw new Exception("This class isn't working with degrees other than 0 or 180");
@@ -92,6 +91,8 @@ public class PalmLeaf : MonoBehaviour
     //need palm sprites
 
     [SerializeField] int nRotations = 10;
+    [SerializeField] int bottomSpacingDegrees = 60;
+    [SerializeField] int topSpacingDegrees = 60;
     [SerializeField] float minScale;
     [SerializeField] float maxScale;
     [SerializeField] Transform palmLeafPrefab;
@@ -100,11 +101,11 @@ public class PalmLeaf : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        CreatePalmLeaves();
+        // CreatePalmLeaves();
     }
 
 
-    void CreatePalmLeaves()
+    public void CreatePalmLeaves()
     {
         // 150-210, 30-0, 330-359 don't use
         //
@@ -112,26 +113,30 @@ public class PalmLeaf : MonoBehaviour
 
         // int bottomSpacingDegrees = 60;
         // int topSpacingDegrees = 60;
-        // AngleRangeCheck topExcludeRange = new AngleRangeCheck(0, topSpacingDegrees);
-        // AngleRangeCheck bottomExcludeRange = new AngleRangeCheck(180, bottomSpacingDegrees);
+        AngleRangeCheck topExcludeRange = new AngleRangeCheck(0, topSpacingDegrees);
+        AngleRangeCheck bottomExcludeRange = new AngleRangeCheck(180, bottomSpacingDegrees);
 
         int rotationsCompleted = 0;
         int rotationIncrement = 32;
-        for (int angle = 0; rotationsCompleted < nRotations; angle += rotationIncrement)
+        int maxLoops = 200;//safety check
+        int nLoops = 0;
+        for (int angle = 0; rotationsCompleted < nRotations; angle += RNG.RandomRange(15, 30))
         {
+            nLoops++;
+            if(nLoops>maxLoops)  break;
             // if angle is greater than 360, reset the angle to zero and increment rotationsCompleted;
             if (angle >= 360)
             {
                 angle = 0;
                 rotationsCompleted++;
                 continue;
-            }
+            } 
 
             // Except for a small pct chance, skip over the following ranges (prevents palms from being too much on top or bottom)
-            if ((angle >= 150 && angle <= 210) || (angle >= 0 && angle <= 30) || (angle >= 330 && angle <= 359))
-            // if (topExcludeRange.IsInRange(angle) || bottomExcludeRange.IsInRange(angle))
+            // if ((angle >= 150 && angle <= 210) || (angle >= 0 && angle <= 30) || (angle >= 330 && angle <= 359))
+            if (topExcludeRange.IsInRange(angle) || bottomExcludeRange.IsInRange(angle))
             {
-                if (!RNG.SampleProbability(0.05f)) { continue; }
+                if (!RNG.SampleProbability(0.02f)) { continue; }
             }
             // get a random palmLeaf
             PalmLeafSpriteDef palmLeafSpriteDef = RNG.RandomChoice(sprites);
@@ -156,8 +161,6 @@ public class PalmLeaf : MonoBehaviour
             //set Palms as parent;
             newPalmLeaf.SetParent(transform);
 
-            // set rotationIncrement to random 
-            rotationIncrement = RNG.RandomRange(20, 50);
         }
     }
 

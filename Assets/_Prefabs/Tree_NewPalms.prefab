@@ -60,7 +60,7 @@ MonoBehaviour:
   maxAngle: 5
   maxVines: 4
   pctChanceLightShaft: 0.5
-  maxLightShafts: 5
+  maxLightShafts: 4
   trunk: {fileID: 1279583813030937974}
   palms: {fileID: 1279583813684561392}
   vine: {fileID: 5796282939409325729, guid: 3df7d8c869540184aab89dc46f29b159, type: 3}
@@ -221,11 +221,11 @@ RectTransform:
   m_Father: {fileID: 1279583813030937974}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00000023841858, y: 6.05}
-  m_SizeDelta: {x: 10, y: 8}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 0, y: 9.48}
+  m_SizeDelta: {x: 8.1797, y: 5.0212}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1279583813684561399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,6 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nRotations: 2
+  bottomSpacingDegrees: 180
+  topSpacingDegrees: 60
   minScale: 0.15
   maxScale: 0.25
   palmLeafPrefab: {fileID: 1567988417637855178, guid: 973ec3d04bdead4489cd81f7cc76d295, type: 3}

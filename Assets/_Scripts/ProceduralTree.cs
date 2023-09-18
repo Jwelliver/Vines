@@ -41,6 +41,7 @@ public class ProceduralTree : MonoBehaviour
         trunkSpriteRenderer = trunk.GetComponent<SpriteRenderer>();
         palmsSpriteRenderer = palms.GetComponent<SpriteRenderer>();
         initTree();
+        initPalms();
         populateVines();
         populateLightShafts();
     }
@@ -59,17 +60,32 @@ public class ProceduralTree : MonoBehaviour
         transform.eulerAngles = Vector3.forward * RNG.RandomRange(0, maxAngle);
     }
 
+    void initPalms() {
+        palms.GetComponent<PalmLeaf>().CreatePalmLeaves();
+    }
+
     Sprite getRandomSprite(List<Sprite> options)
     {
         return options[RNG.RandomRange(0, options.Count)];
     }
 
     Vector2 getRandomLocationInPalms()
-    {   //returns position in lower half of palms
+    {   //returns position in palms rect
         float offsetX = RNG.RandomRange(-palms.sizeDelta.x / 2, palms.sizeDelta.x / 2);
         float offsetY = RNG.RandomRange(-palms.sizeDelta.y / 2, palms.sizeDelta.y / 2);
         return (Vector2)palms.position + new Vector2(offsetX, offsetY);
     }
+
+
+    // Vector2 getRandomLocationInPalmLeaves() //Not in use 091823
+    // { 
+    //     Debug.Log("PalmLeaves childCount: "+palms.childCount);
+    //     RectTransform rndLeaf = (RectTransform)palms.GetChild(RNG.RandomRange(0,palms.childCount));
+    //     Debug.Log("RndLeaf: "+ rndLeaf);
+    //     float offsetX = RNG.RandomRange(-rndLeaf.sizeDelta.x / 2, rndLeaf.sizeDelta.x / 2);
+    //     float offsetY = RNG.RandomRange(-rndLeaf.sizeDelta.y / 2, rndLeaf.sizeDelta.y / 2);
+    //     return (Vector2)rndLeaf.position + new Vector2(offsetX, offsetY);
+    // }
 
     void populateVines()
     {
