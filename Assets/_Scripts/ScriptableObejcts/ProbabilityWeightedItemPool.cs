@@ -45,6 +45,3 @@ public class ProbabilityWeightedItemPool<T> : ItemPool<ProbabilityWeightedItem<T
         else { return getRandomItem(); }
     }
 }
-
-[CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/ItemPools/ProbabilityWeightedItemPool/Sprites")]
-public class ProbabilityWeightedSpritePool : ProbabilityWeightedItemPool<Sprite> { }
