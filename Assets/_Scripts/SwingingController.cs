@@ -212,13 +212,13 @@ public class SwingingController : MonoBehaviour
 
 
     }
-
+ 
     private Rigidbody2D GetNextVineSegment(string direction)
     {
         int checkRadiusOffsetY = direction == "up" ? 1 : -1;
         Vector3 checkRadiusOffset = new Vector3(0, checkRadiusOffsetY);
         Vector2 checkRadiusStartPosition = grabJoint.connectedBody.transform.position + checkRadiusOffset;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(checkRadiusStartPosition, 0.5f, swingableLayer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(checkRadiusStartPosition, 1f, swingableLayer);
         Collider2D closestSegment = null;
         float closestDistance = direction == "up" ? float.MaxValue : float.MinValue;
 
