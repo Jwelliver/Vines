@@ -314,5 +314,5 @@ MonoBehaviour:
     minSpacing: 10
     maxSpacing: 20
     yOffset: -15
-  treePrefab: {fileID: 1279583812578869330, guid: eb1e09ab45ee0284bbad5e9099f60fe6, type: 3}
+  treePrefab: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
