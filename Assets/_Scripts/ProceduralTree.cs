@@ -41,7 +41,7 @@ public class ProceduralTree : MonoBehaviour
         trunkSpriteRenderer = trunk.GetComponent<SpriteRenderer>();
         palmsSpriteRenderer = palms.GetComponent<SpriteRenderer>();
         initTree();
-        initPalms();
+        // initPalms();
         populateVines();
         populateLightShafts();
     }
@@ -54,20 +54,20 @@ public class ProceduralTree : MonoBehaviour
         trunk.localScale = new Vector3(trunk.localScale.x, RNG.RandomRange(minTrunkHeight, maxTrunkHeight));
 
         // Assign random sprites
-        trunkSpriteRenderer.sprite = getRandomSprite(trunkSprites);
-        //palmsSpriteRenderer.sprite = getRandomSprite(palmSprites); //091723 removed for new Palms
+        trunkSpriteRenderer.sprite = RNG.RandomChoice(trunkSprites);//getRandomSprite(trunkSprites);
+        palmsSpriteRenderer.sprite = RNG.RandomChoice(palmSprites); ////091723 removed for new Palms
 
         transform.eulerAngles = Vector3.forward * RNG.RandomRange(0, maxAngle);
     }
 
-    void initPalms() {
+    void initPalms() { //091823 for use with individual palmLeaf tree only
         palms.GetComponent<PalmLeaf>().CreatePalmLeaves();
     }
-
-    Sprite getRandomSprite(List<Sprite> options)
-    {
-        return options[RNG.RandomRange(0, options.Count)];
-    }
+ 
+    // Sprite getRandomSprite(List<Sprite> options)
+    // {
+    //     return options[RNG.RandomRange(0, options.Count)];
+    // }
 
     Vector2 getRandomLocationInPalms()
     {   //returns position in palms rect
