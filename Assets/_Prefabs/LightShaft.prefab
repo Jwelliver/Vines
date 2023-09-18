@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c62ab1571bf7ded44a4b9b7c591f3a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heightVariation: 2
+  heightVariation: 5
   groundLevel: 0
   minWidth: 1
   maxWidth: 3
