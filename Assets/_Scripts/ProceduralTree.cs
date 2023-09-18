@@ -54,7 +54,7 @@ public class ProceduralTree : MonoBehaviour
 
         // Assign random sprites
         trunkSpriteRenderer.sprite = getRandomSprite(trunkSprites);
-        palmsSpriteRenderer.sprite = getRandomSprite(palmSprites);
+        //palmsSpriteRenderer.sprite = getRandomSprite(palmSprites); //091723 removed for new Palms
 
         transform.eulerAngles = Vector3.forward * RNG.RandomRange(0, maxAngle);
     }
