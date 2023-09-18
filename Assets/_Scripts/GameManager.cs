@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public LevelGenerator levelGen;
+    public LevelGeneratorNew levelGenNew; //091723 test replace existing levelGen process;
     [SerializeField] LevelLoader levelLoader;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip winMusic;
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
         levelGen.generateLevel();
+        // levelGenNew.generateLevel();
     }
     public void win()
     {

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10a1b896787be9c4eb0285e10ba09b0a, type: 3}
+  m_Name: Foliage_ReducedBrights
+  m_EditorClassIdentifier: 
+  description: 
+  items:
+  - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+    probability: 1
+  - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+    probability: 1
+  - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+    probability: 1
+  inputPool: {fileID: 0}
