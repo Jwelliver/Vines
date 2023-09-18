@@ -104,7 +104,8 @@ public class ProceduralVine : MonoBehaviour
             if (hasAdornment)
             {
                 Transform rndAdornment = RNG.RandomChoice(adornments);
-                Transform newAdornment = GameObject.Instantiate(rndAdornment, newSegment.position, Quaternion.identity);
+                float randomRotation = RNG.RandomRange(0,359);
+                Transform newAdornment = GameObject.Instantiate(rndAdornment, newSegment.position, Quaternion.Euler(0,0,randomRotation));
                 float rndScale = RNG.RandomRange(minAdornmentScale, maxAdornmentScale);
                 newAdornment.localScale = new Vector2(rndScale, rndScale);
                 newAdornment.SetParent(newSegment);
