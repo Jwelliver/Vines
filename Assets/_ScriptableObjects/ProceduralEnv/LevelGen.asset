@@ -278,8 +278,8 @@ MonoBehaviour:
           probability: 0.05
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 0.2
-      sortLayerName: FoliageForeground
-      sortOrder: 0
+      sortLayerName: Trees
+      sortOrder: 1
       color: {r: 1, g: 1, b: 1, a: 1}
     minSpacing: 2
     maxSpacing: 10

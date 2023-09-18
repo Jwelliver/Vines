@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cff28132012285469885ba21b0fd634, type: 3}
   m_Name: bgLayout_far_trees2
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
   layoutParams:
-    enableRandomScale: 0
-    minScale: 0
-    maxScale: 0
-    minSpacing: 0
-    maxSpacing: 0
-    enableRandomFlip: 0
-  sprites: {fileID: 0}
-  sortLayerName: 
-  sortOrder: 0
+    enableRandomScale: 1
+    minScale: 1
+    maxScale: 2
+    minSpacing: 3
+    maxSpacing: 5
+    enableRandomFlip: 1
+  sprites: {fileID: 11400000, guid: ec6d03fb1159bf84fa497ab11eaeac77, type: 2}
+  sortLayerName: Background
+  sortOrder: 1
   color: {r: 255, g: 255, b: 255, a: 1}

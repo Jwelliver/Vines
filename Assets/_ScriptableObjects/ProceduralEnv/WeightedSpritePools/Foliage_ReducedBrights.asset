@@ -23,7 +23,7 @@ MonoBehaviour:
   - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
     probability: 1
   - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-    probability: 1
+    probability: 0.2
   - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-    probability: 1
+    probability: 0.2
   inputPool: {fileID: 0}

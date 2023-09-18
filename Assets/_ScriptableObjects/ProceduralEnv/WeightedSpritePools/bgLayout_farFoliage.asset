@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cff28132012285469885ba21b0fd634, type: 3}
   m_Name: bgLayout_farFoliage
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
   layoutParams:
-    enableRandomScale: 0
-    minScale: 0
-    maxScale: 0
-    minSpacing: 0
-    maxSpacing: 0
-    enableRandomFlip: 0
-  sprites: {fileID: 0}
-  sortLayerName: 
-  sortOrder: 0
+    enableRandomScale: 1
+    minScale: 0.6
+    maxScale: 1
+    minSpacing: 1
+    maxSpacing: 3
+    enableRandomFlip: 1
+  sprites: {fileID: 11400000, guid: 9c953e4bf2ab9c74fa3e831f1e24467f, type: 2}
+  sortLayerName: Background
+  sortOrder: 2
   color: {r: 255, g: 255, b: 255, a: 1}

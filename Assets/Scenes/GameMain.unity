@@ -10685,6 +10685,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 1fd0b50dbde391d42ad9cca58d4eca0b, type: 2}
     - target: {fileID: 1950958168201327300, guid: de90778f5cb3b6346993daff522934c2, type: 3}
+      propertyPath: levelGenNew
+      value: 
+      objectReference: {fileID: 11400000, guid: 31ddfc1a27b421949a0b90ea5417bd42, type: 2}
+    - target: {fileID: 1950958168201327300, guid: de90778f5cb3b6346993daff522934c2, type: 3}
       propertyPath: levelLoader
       value: 
       objectReference: {fileID: 909643049}

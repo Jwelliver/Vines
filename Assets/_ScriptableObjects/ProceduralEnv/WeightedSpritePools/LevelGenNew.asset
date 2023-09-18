@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: LevelGenNew
   m_EditorClassIdentifier: 
   proceduralLevelContainerName: ProceduralLevelContainer
-  levelSettings: {fileID: 0}
-  mainTreeLayout: {fileID: 0}
-  backgroundLayoutGroup: {fileID: 0}
-  winPlatformPrefab: {fileID: 0}
+  levelSettings: {fileID: 11400000, guid: 0e2ae0436583b4d4a9727f49e454f82c, type: 2}
+  mainTreeLayout: {fileID: 11400000, guid: 9fe5d55286a27cb43b1b65e3d59ffa90, type: 2}
+  backgroundLayoutGroup: {fileID: 11400000, guid: ff1dd2a67e3355e4a92b3ec1ae338d6d, type: 2}
+  winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}

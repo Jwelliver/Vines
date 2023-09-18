@@ -19,3 +19,10 @@ MonoBehaviour:
   globalEndOffset: 25
   treesMinSpacing: 2
   treesMaxSpacing: 8
+  treeLayoutParams:
+    enableRandomScale: 0
+    minScale: 0
+    maxScale: 0
+    minSpacing: 0
+    maxSpacing: 0
+    enableRandomFlip: 0
