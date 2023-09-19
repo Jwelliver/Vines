@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     TMPro.TextMeshProUGUI amuletFoundText;
     [SerializeField] ArrowGenerator arrowGenerator;
     [SerializeField] SpriteRenderer playerAmulet;
+    public Transform playerRef;
+    public Camera cameraRef;
 
 
 
