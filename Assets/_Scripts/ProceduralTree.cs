@@ -60,14 +60,10 @@ public class ProceduralTree : MonoBehaviour
         transform.eulerAngles = Vector3.forward * RNG.RandomRange(0, maxAngle);
     }
 
-    void initPalms() { //091823 for use with individual palmLeaf tree only
+    void initPalms()
+    { //091823 for use with individual palmLeaf tree only
         palms.GetComponent<PalmLeaf>().CreatePalmLeaves();
     }
- 
-    // Sprite getRandomSprite(List<Sprite> options)
-    // {
-    //     return options[RNG.RandomRange(0, options.Count)];
-    // }
 
     Vector2 getRandomLocationInPalms()
     {   //returns position in palms rect
