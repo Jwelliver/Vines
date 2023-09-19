@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heightVariation: 5
-  groundLevel: 0
+  groundLevel: -3
   minWidth: 1
   maxWidth: 3
   minAngle: 20
