@@ -15,8 +15,8 @@ MonoBehaviour:
   startPos: {x: 0, y: 0}
   minLength: 300
   maxLength: 800
-  globalStartOffset: -25
-  globalEndOffset: 25
+  globalStartOffset: -100
+  globalEndOffset: 100
   treesMinSpacing: 2
   treesMaxSpacing: 8
   treeLayoutParams:
