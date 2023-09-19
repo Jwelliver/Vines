@@ -16,7 +16,7 @@ public struct ProceduralLayoutParams
 
 public static class LayoutPositionGenerator
 {
-    public static List<Vector2> GeneratePositions(Section section, float minSpacing = 1, float maxSpacing = 3)
+    public static List<Vector2> GeneratePositions(Section section, float minSpacing = 1, float maxSpacing = 3, float yOffset = 0)
     {
         if (minSpacing == 0 && maxSpacing == 0)
         {
@@ -25,7 +25,7 @@ public static class LayoutPositionGenerator
         }
         float startX = section.startPos.x;
         float endX = startX + section.length;
-        float y = section.startPos.y;
+        float y = section.startPos.y + yOffset;
         float endOffset = section.endOffset;
         float startOffset = section.startOffset;
 
