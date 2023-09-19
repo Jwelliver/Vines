@@ -22,6 +22,9 @@ public class Paralaxer : MonoBehaviour
 
     void Start()
     {
+        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        cam = gameManager.cameraRef;
+        referenceObj = gameManager.playerRef;
         // prevReferencePosition = referenceObj.position;
         startPos = transform.position;
         float zDistanceFromReferenceObj = transform.position.z - referenceObj.position.z;

@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: LevelGen
   m_EditorClassIdentifier: 
   proceduralLevelContainerName: Environment/ProceduralElements
+  treeParentName: TreeContainer
+  backgroundParentName: SpriteLayers
   levelSettings: {fileID: 11400000, guid: 0e2ae0436583b4d4a9727f49e454f82c, type: 2}
   backgroundLayers:
   - id: BgLayer1
     enabled: 1
     proceduralObject:
-      id: BgLayer1_ProcObjs
-      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer1 (farthest
-        bg trees)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 0.5
@@ -48,12 +47,11 @@ MonoBehaviour:
     minSpacing: 1
     maxSpacing: 4
     yOffset: 0
+    enableParallax: 1
+    zDistance: 20
   - id: BgLayer2
     enabled: 1
     proceduralObject:
-      id: BgLayer2_ProcObjs
-      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer2 (far
-        bg trees)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 1
@@ -81,12 +79,11 @@ MonoBehaviour:
     minSpacing: 3
     maxSpacing: 5
     yOffset: 0
+    enableParallax: 1
+    zDistance: 15
   - id: BgLayer3
     enabled: 1
     proceduralObject:
-      id: BgLayer3_ProcObjs
-      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer2.5(far
-        foliage)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 0.6
@@ -114,12 +111,11 @@ MonoBehaviour:
     minSpacing: 1
     maxSpacing: 3
     yOffset: 0
+    enableParallax: 1
+    zDistance: 10
   - id: BgLayer4
     enabled: 1
     proceduralObject:
-      id: BgLayer4_ProcObjs
-      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer3 (close
-        bg trees)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 0.7
@@ -141,12 +137,11 @@ MonoBehaviour:
     minSpacing: 5
     maxSpacing: 10
     yOffset: 7
+    enableParallax: 1
+    zDistance: 5
   - id: BgLayer5
     enabled: 1
     proceduralObject:
-      id: BgLayer5_ProcObjs
-      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer3.5 (close
-        bg vines) (1)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 1
@@ -164,11 +159,11 @@ MonoBehaviour:
     minSpacing: 3
     maxSpacing: 10
     yOffset: 0
+    enableParallax: 1
+    zDistance: 4
   - id: BgLayer6
     enabled: 1
     proceduralObject:
-      id: BgLayer6_ProcObjs
-      parentPath: Environment/ProceduralElements/Paralax Layers/ParalaxLayer4(foliage)
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 0.8
@@ -194,11 +189,11 @@ MonoBehaviour:
     minSpacing: 10
     maxSpacing: 20
     yOffset: 0
+    enableParallax: 1
+    zDistance: 3
   - id: FoliageBgLayer7
     enabled: 1
     proceduralObject:
-      id: FoliageBgLayer7_ProcObjs
-      parentPath: Environment/ProceduralElements/Foliage/FoliageBackground2
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 0.7
@@ -224,11 +219,11 @@ MonoBehaviour:
     minSpacing: 2
     maxSpacing: 5
     yOffset: 0
+    enableParallax: 1
+    zDistance: 2
   - id: FoliageBgLayer8
     enabled: 1
     proceduralObject:
-      id: FoliageBgLayer8_ProcObjs
-      parentPath: Environment/ProceduralElements/Foliage/FoliageBackground
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 0.8
@@ -254,11 +249,11 @@ MonoBehaviour:
     minSpacing: 2
     maxSpacing: 7
     yOffset: 0
+    enableParallax: 0
+    zDistance: 0
   - id: FoliageBgLayer9
     enabled: 1
     proceduralObject:
-      id: FoliageBgLayer9_ProcObjs
-      parentPath: Environment/ProceduralElements/Foliage/FoliageForeground
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 0.2
@@ -284,11 +279,11 @@ MonoBehaviour:
     minSpacing: 2
     maxSpacing: 10
     yOffset: 0
+    enableParallax: 0
+    zDistance: 0
   - id: FoliageBgLayer10
     enabled: 1
     proceduralObject:
-      id: FoliageBgLayer10_ProcObjs
-      parentPath: Environment/ProceduralElements/Foliage/FoliageForegroundClose
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
       minScale: 1.5
@@ -314,5 +309,8 @@ MonoBehaviour:
     minSpacing: 10
     maxSpacing: 20
     yOffset: -15
+    enableParallax: 0
+    zDistance: 0
   treePrefab: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
+  blankParent: {fileID: 2094452519030092049, guid: e5d8140a28e33414380f47bc2939aae0, type: 3}

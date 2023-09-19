@@ -32,30 +32,29 @@ class ProbWeightItemList<T>
 [Serializable]
 public class ProceduralObject
 {
-    public string id;
-    public string parentPath;
+    // public string id;
+    // public string parentPath;
     public Transform prefab;
     public bool enableRandomScale = true;
     public float minScale;
     public float maxScale;
     public bool enableRandomFlip = true;
 
-    private Transform getParent()
-    {
-        Transform parent;
-        try
-        {
-            parent = GameObject.Find(parentPath).transform;
-            return parent;
+    // private Transform getParent()
+    // {
+    //     Transform parent;
+    //     try
+    //     {
+    //         parent = GameObject.Find(parentPath).transform;
+    //         return parent;
 
-        }
-        catch (Exception e)
-        {
-            Debug.LogError("Error > Parent not found: parentPath: " + parentPath + "\n Exception: " + e);
-            return null;
-
-        }
-    }
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         Debug.LogError("Error > Parent not found: parentPath: " + parentPath + "\n Exception: " + e);
+    //         return null;
+    //     }
+    // }
 
     public virtual void applyRandomScale(Transform obj)
     {
@@ -72,9 +71,9 @@ public class ProceduralObject
         return;
     }
 
-    public void createSingle(Vector2 position, Transform parentRef)
+    public void createSingle(Vector2 position, Transform parent)
     {
-        Transform parent = parentRef ?? getParent();
+        // Transform parent = parentRef ?? getParent();
         if (parent == null) return;
         Transform newObj = GameObject.Instantiate(prefab, position, Quaternion.identity, parent);
         applyRandomScale(newObj);
@@ -82,9 +81,9 @@ public class ProceduralObject
         objectSetup(newObj);
     }
 
-    public void createMany(List<Vector2> positions)//, Transform? parent
+    public void createMany(List<Vector2> positions, Transform parent)//, Transform? parent
     {
-        Transform parent = getParent();
+        // Transform parent = getParent();
         if (parent == null) return;
         foreach (Vector2 pos in positions)
         {
@@ -192,7 +191,7 @@ class ProceduralLayerGenerator
         return positions;
     }
 
-    public void populateLayerSection<T>(ProceduralLayer<T> proceduralLayer, Section section) where T : ProceduralObject
+    public void populateLayerSection<T>(ProceduralLayer<T> proceduralLayer, Section section, Transform parent) where T : ProceduralObject
     {
         if (proceduralLayer == null || proceduralLayer.proceduralObject == null || section == null)
         {
@@ -201,7 +200,7 @@ class ProceduralLayerGenerator
         }
         if (!proceduralLayer.enabled) { return; }
         List<Vector2> positions = getPositions(section, proceduralLayer.minSpacing, proceduralLayer.maxSpacing);
-        proceduralLayer.proceduralObject.createMany(positions);
+        proceduralLayer.proceduralObject.createMany(positions, parent);
     }
 }
 
@@ -215,6 +214,8 @@ public class ProceduralLayer<T> where T : ProceduralObject
     public float minSpacing;
     public float maxSpacing;
     public float yOffset;
+    public bool enableParallax;
+    public float zDistance;
 }
 
 
@@ -223,6 +224,8 @@ public class LevelGenerator : ScriptableObject
 {
     [Header("Level")]
     [SerializeField] string proceduralLevelContainerName = "ProceduralLevelContainer";
+    [SerializeField] string treeParentName = "TreeContainer";
+    [SerializeField] string backgroundParentName = "SpriteLayers";
     [SerializeField] LevelSettings levelSettings;
 
     [Header("Background Layers")]
@@ -233,6 +236,7 @@ public class LevelGenerator : ScriptableObject
     [SerializeField] Transform treePrefab;
 
     [SerializeField] Transform winPlatformPrefab;
+    [SerializeField] Transform blankParent;
 
     Section levelSection;
 
@@ -261,11 +265,12 @@ public class LevelGenerator : ScriptableObject
 
     void addTreeLayerSection(Section section, float minSpacing, float maxSpacing)
     {
-        string treeLayerParentPath = proceduralLevelContainerName + "/" + "TreeContainer";
+        string treeLayerParentPath = proceduralLevelContainerName + "/" + treeParentName;
+        Transform treeLayerParent = GameObject.Find(treeLayerParentPath).transform;
         ProceduralObject tree = new ProceduralObject
         {
-            id = "Tree",
-            parentPath = treeLayerParentPath,
+            // id = "Tree",
+            // parentPath = treeLayerParentPath,
             prefab = treePrefab,
             enableRandomScale = false,
         };
@@ -276,24 +281,53 @@ public class LevelGenerator : ScriptableObject
             minSpacing = minSpacing,
             maxSpacing = maxSpacing,
         };
-        layerGenerator.populateLayerSection(layer, section);
+        layerGenerator.populateLayerSection(layer, section, treeLayerParent);
     }
+
+    // void addBackgroundLayerSection(Section section)
+    // {
+    //     foreach (ProceduralLayer<ProceduralSpriteObject> i in backgroundLayers)
+    //     {
+    //         if (i.yOffset != 0)
+    //         {
+    //             Section newSection = section.getCopy();
+    //             newSection.startPos = new Vector2(section.startPos.x, section.startPos.y + i.yOffset);
+    //             layerGenerator.populateLayerSection(i, newSection);
+    //             // Debug.Log("addBackgroundLayerSection() > section.startPos.y: " + section.startPos.y + " | yOffset: " + i.yOffset);
+    //             continue;
+    //         }
+    //         layerGenerator.populateLayerSection(i, section);
+    //     }
+    // }
 
     void addBackgroundLayerSection(Section section)
     {
-        foreach (ProceduralLayer<ProceduralSpriteObject> i in backgroundLayers)
+        Transform layerParentContainer = GameObject.Find(proceduralLevelContainerName + "/" + backgroundParentName).transform;
+
+        for (int i = 0; i < backgroundLayers.Count; i++)
         {
-            if (i.yOffset != 0)
+            ProceduralLayer<ProceduralSpriteObject> layer = backgroundLayers[i];
+            if (!layer.enabled) { continue; }
+            Transform layerParent = GameObject.Instantiate(blankParent, layerParentContainer);
+            layerParent.name = layer.id;
+            if (layer.enableParallax)
+            {
+                layerParent.gameObject.AddComponent<Paralaxer>();
+                layerParent.position = new Vector3(layerParent.position.x, layerParent.position.y, layer.zDistance);
+            }
+
+            if (layer.yOffset != 0)
             {
                 Section newSection = section.getCopy();
-                newSection.startPos = new Vector2(section.startPos.x, section.startPos.y + i.yOffset);
-                layerGenerator.populateLayerSection(i, newSection);
+                newSection.startPos = new Vector2(section.startPos.x, section.startPos.y + layer.yOffset);
+                layerGenerator.populateLayerSection(layer, newSection, layerParent);
                 // Debug.Log("addBackgroundLayerSection() > section.startPos.y: " + section.startPos.y + " | yOffset: " + i.yOffset);
                 continue;
             }
-            layerGenerator.populateLayerSection(i, section);
+            layerGenerator.populateLayerSection(layer, section, layerParent);
         }
     }
+
 
     void addWinPlatform(Vector2 pos)
     {
