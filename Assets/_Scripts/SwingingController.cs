@@ -159,15 +159,17 @@ public class SwingingController : MonoBehaviour
 
         if (!isClimbing && Input.GetKeyDown(climbUpKey))
         {
+            isClimbing = true;
             StartCoroutine(Climb("up"));
         }
 
         if (!isClimbing && Input.GetKeyDown(climbDownKey))
         {
+            isClimbing = true;
             StartCoroutine(Climb("down"));
         }
 
-        if (Input.GetKeyUp(climbUpKey) || Input.GetKeyUp(climbDownKey))
+        if (isClimbing && (Input.GetKeyUp(climbUpKey) || Input.GetKeyUp(climbDownKey)))
         {
             endClimb();
         }
@@ -177,6 +179,12 @@ public class SwingingController : MonoBehaviour
     {
         isClimbing = false;
         StopAllCoroutines();
+    }
+
+    bool shouldContinueClimb(string direction)
+    {
+        KeyCode keyToCheck = direction == "up" ? climbUpKey : climbDownKey;
+        return isClimbing && Input.GetKey(keyToCheck);
     }
 
     IEnumerator Climb(string direction = "down")
@@ -198,6 +206,7 @@ public class SwingingController : MonoBehaviour
             yield break;
         }
 
+        if (!isClimbing) { yield break; }
         // Debug.Log("Climb > nextVineSegment" + nextVineSegment);
         Vector2 targetPosition = nextVineSegment.position;
 
@@ -207,18 +216,16 @@ public class SwingingController : MonoBehaviour
         // rb.MovePosition(nextVineSegment.position);
         attachJoints(nextVineSegment);
         yield return new WaitForSeconds(climbSecondsBetweenMove);
-        StartCoroutine(Climb(direction));
+        if (shouldContinueClimb(direction)) StartCoroutine(Climb(direction));
         // }  
-
-
     }
- 
+
     private Rigidbody2D GetNextVineSegment(string direction)
     {
         int checkRadiusOffsetY = direction == "up" ? 1 : -1;
-        Vector3 checkRadiusOffset = new Vector3(0, checkRadiusOffsetY);
+        Vector3 checkRadiusOffset = new Vector3(0, checkRadiusOffsetY, 0);
         Vector2 checkRadiusStartPosition = grabJoint.connectedBody.transform.position + checkRadiusOffset;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(checkRadiusStartPosition, 1f, swingableLayer);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(checkRadiusStartPosition, 0.5f, swingableLayer);
         Collider2D closestSegment = null;
         float closestDistance = direction == "up" ? float.MaxValue : float.MinValue;
 
