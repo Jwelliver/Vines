@@ -17,7 +17,7 @@ MonoBehaviour:
   maxLength: 800
   globalStartOffset: -100
   globalEndOffset: 100
-  treesMinSpacing: 2
+  treesMinSpacing: 4
   treesMaxSpacing: 8
   treeLayoutParams:
     enableRandomScale: 0
