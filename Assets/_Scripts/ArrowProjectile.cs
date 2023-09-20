@@ -9,10 +9,7 @@ public class ArrowProjectile : MonoBehaviour
 
     [SerializeField] float minAngle;
     [SerializeField] float maxAngle;
-
-    [SerializeField] float pctChanceMissVine;
     [SerializeField] float pctChanceBreakHinge;
-    // [SerializeField] Collider2D arrowHead;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Collider2D myCollider;
@@ -26,10 +23,6 @@ public class ArrowProjectile : MonoBehaviour
     {
         transform.eulerAngles = new Vector3(0, 0, RNG.RandomRange(minAngle, maxAngle));
         rb.velocity = transform.up * RNG.RandomRange(minVelocity, maxVelocity);
-        if (RNG.SampleProbability(pctChanceMissVine))
-        {
-            myCollider.excludeLayers = LayerMask.NameToLayer("Swingable");
-        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
