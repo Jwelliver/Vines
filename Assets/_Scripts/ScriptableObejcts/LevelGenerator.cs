@@ -216,6 +216,7 @@ public class ProceduralLayer<T> where T : ProceduralObject
     public float maxSpacing;
     public float yOffset;
     public bool enableParallax;
+    public bool useAutoZDistance;
     public float zDistance;
 }
 
@@ -230,6 +231,7 @@ public class LevelGenerator : ScriptableObject
     [SerializeField] LevelSettings levelSettings;
 
     [Header("Background Layers")]
+    [SerializeField] float zDistanceInterval = 5f;//any layer that doesn't have a set zDistance will have Abs(sortOrder) * zDistanceInterval applied
     [SerializeField] List<ProceduralLayer<ProceduralSpriteObject>> backgroundLayers = new List<ProceduralLayer<ProceduralSpriteObject>>();
 
     [Header("Prefabs")]
@@ -318,13 +320,16 @@ public class LevelGenerator : ScriptableObject
             else sortLayerOrdering[sortLayerName]--;
             layer.proceduralObject.sortOrder = sortLayerOrdering[sortLayerName];
 
+            // auto set zDistance if it's set to -1 (i.e. auto)
+            float zDistance = layer.useAutoZDistance ? i * zDistanceInterval : layer.zDistance;
+
             //
             Transform layerParent = GameObject.Instantiate(blankParent, layerParentContainer);
             layerParent.name = layer.id;
             if (layer.enableParallax)
             {
                 layerParent.gameObject.AddComponent<Paralaxer>();
-                layerParent.position = new Vector3(layerParent.position.x, layerParent.position.y, layer.zDistance);
+                layerParent.position = new Vector3(layerParent.position.x, layerParent.position.y, zDistance);
             }
 
             if (layer.yOffset != 0)
