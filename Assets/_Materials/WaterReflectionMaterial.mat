@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: 4423265a3aaf8f2488b5d4e09dda0a05, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _RenderTexture:
@@ -67,7 +67,7 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _RefractionStrength: 1
-    - _WaterSpeed: -8.683768e-18
+    - _WaterSpeed: 0.001
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
