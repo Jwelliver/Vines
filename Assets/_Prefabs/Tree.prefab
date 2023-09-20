@@ -96,7 +96,7 @@ MonoBehaviour:
   maxScale: 1.25
   maxAngle: 5
   maxVines: 4
-  pctChanceLightShaft: 0.4
+  pctChanceLightShaft: 0.3
   maxLightShafts: 3
   trunk: {fileID: 5789240588416436830}
   palms: {fileID: 5789240587628268248}
@@ -105,6 +105,7 @@ MonoBehaviour:
   palmSprites:
   - {fileID: -534360753, guid: 71729f9d2cc945f428a5e983d1ee7870, type: 3}
   - {fileID: -414934104, guid: 01d3d1953fe2ac34c80e82a208e8a649, type: 3}
+  - {fileID: 21300000, guid: d1f429d1427aae544b1a4aa874545e96, type: 3}
   trunkSprites:
   - {fileID: -363360082, guid: 183629812909a1041b19a55e7191c253, type: 3}
   - {fileID: -1295716066, guid: 665112540f093154fa0b1dac37d108bf, type: 3}
