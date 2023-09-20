@@ -263,7 +263,7 @@ public class LevelGenerator : ScriptableObject
         initLevelSection();
         addBackgroundLayerSection(levelSection);
         addTreeLayerSection(levelSection, levelSettings.treesMinSpacing, levelSettings.treesMaxSpacing);
-        addWinPlatform(new Vector2(levelSection.length, levelSettings.startPos.y - 1.5f));
+        addWinPlatform(new Vector2(levelSection.length, levelSettings.startPos.y));
     }
 
     void addTreeLayerSection(Section section, float minSpacing, float maxSpacing)
