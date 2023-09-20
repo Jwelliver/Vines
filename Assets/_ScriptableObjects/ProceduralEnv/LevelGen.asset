@@ -16,6 +16,7 @@ MonoBehaviour:
   treeParentName: TreeContainer
   backgroundParentName: SpriteLayers
   levelSettings: {fileID: 11400000, guid: 0e2ae0436583b4d4a9727f49e454f82c, type: 2}
+  zDistanceInterval: 1
   backgroundLayers:
   - id: FoliageCameraForeground
     enabled: 1
@@ -42,6 +43,7 @@ MonoBehaviour:
     maxSpacing: 20
     yOffset: -15
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: -5
   - id: foliage front of trees
     enabled: 1
@@ -71,7 +73,8 @@ MonoBehaviour:
     minSpacing: 2
     maxSpacing: 10
     yOffset: 0
-    enableParallax: 0
+    enableParallax: 1
+    useAutoZDistance: 1
     zDistance: 0
   - id: bg foliage2
     enabled: 1
@@ -102,6 +105,7 @@ MonoBehaviour:
     maxSpacing: 8
     yOffset: 0
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 2
   - id: bg foliage 3
     enabled: 1
@@ -131,7 +135,8 @@ MonoBehaviour:
     minSpacing: 2
     maxSpacing: 7
     yOffset: 0
-    enableParallax: 0
+    enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 0
   - id: bg foliage ground filler
     enabled: 1
@@ -157,7 +162,8 @@ MonoBehaviour:
     minSpacing: 1
     maxSpacing: 3
     yOffset: 0
-    enableParallax: 0
+    enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 0
   - id: bg_foliage
     enabled: 1
@@ -188,6 +194,7 @@ MonoBehaviour:
     maxSpacing: 20
     yOffset: 0
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 3
   - id: bg_foliage
     enabled: 1
@@ -218,6 +225,7 @@ MonoBehaviour:
     maxSpacing: 20
     yOffset: 0
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 3
   - id: bg_reg_trees1
     enabled: 1
@@ -240,6 +248,7 @@ MonoBehaviour:
     maxSpacing: 20
     yOffset: 0
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 5
   - id: bg_reg_trees2 tall
     enabled: 1
@@ -262,6 +271,7 @@ MonoBehaviour:
     maxSpacing: 15
     yOffset: 0
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 6
   - id: bg_vines
     enabled: 0
@@ -288,6 +298,7 @@ MonoBehaviour:
     maxSpacing: 10
     yOffset: 7
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 5
   - id: Far_bg_trees_3
     enabled: 1
@@ -320,6 +331,7 @@ MonoBehaviour:
     maxSpacing: 10
     yOffset: 0
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 10
   - id: Far_bg_trees2
     enabled: 1
@@ -352,6 +364,7 @@ MonoBehaviour:
     maxSpacing: 12
     yOffset: 0
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 15
   - id: Far_bg_trees1
     enabled: 1
@@ -384,6 +397,7 @@ MonoBehaviour:
     maxSpacing: 15
     yOffset: 0
     enableParallax: 1
+    useAutoZDistance: 0
     zDistance: 20
   treePrefab: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
