@@ -12,28 +12,23 @@ public class ArrowProjectile : MonoBehaviour
 
     [SerializeField] float pctChanceMissVine;
     [SerializeField] float pctChanceBreakHinge;
-    [SerializeField] Collider2D arrowHead;
+    // [SerializeField] Collider2D arrowHead;
+
+    [SerializeField] Rigidbody2D rb;
+    [SerializeField] Collider2D myCollider;
+    [SerializeField] FixedJoint2D fixedJoint;
+    public ArrowSFX sfx; //assigned by ArrowGenerator on instantiation
 
     bool hasLanded;
-
-    Rigidbody2D rb;
-    Collider2D myCollider;
-    FixedJoint2D fixedJoint;
-
-    AudioSource hitSound;
 
     // Start is called before the first frame update
     void Start()
     {
-        myCollider = GetComponent<Collider2D>();
-        rb = GetComponent<Rigidbody2D>();
-        fixedJoint = GetComponent<FixedJoint2D>();
         transform.eulerAngles = new Vector3(0, 0, RNG.RandomRange(minAngle, maxAngle));
         rb.velocity = transform.up * RNG.RandomRange(minVelocity, maxVelocity);
-        hitSound = GetComponent<AudioSource>();
         if (RNG.SampleProbability(pctChanceMissVine))
         {
-            // arrowHead.excludeLayers = LayerMask.NameToLayer("Swingable");
+            myCollider.excludeLayers = LayerMask.NameToLayer("Swingable");
         }
     }
 
@@ -55,12 +50,11 @@ public class ArrowProjectile : MonoBehaviour
 
     void stickToBody(Rigidbody2D otherBody)
     {
-        hitSound.Play();
+        sfx.PlayArrowHitSound();
         fixedJoint.connectedBody = otherBody;
         fixedJoint.enabled = true;
         myCollider.enabled = false;
         hasLanded = true;
-
     }
 
 
