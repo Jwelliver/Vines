@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -304,10 +305,20 @@ public class LevelGenerator : ScriptableObject
     {
         Transform layerParentContainer = GameObject.Find(proceduralLevelContainerName + "/" + backgroundParentName).transform;
 
+        Dictionary<string, int> sortLayerOrdering = new Dictionary<string, int>();
+
         for (int i = 0; i < backgroundLayers.Count; i++)
         {
             ProceduralLayer<ProceduralSpriteObject> layer = backgroundLayers[i];
             if (!layer.enabled) { continue; }
+
+            //handle sortLayer and auto sortOrder
+            string sortLayerName = layer.proceduralObject.sortLayerName;
+            if (!sortLayerOrdering.ContainsKey(sortLayerName)) { sortLayerOrdering.Add(sortLayerName, 0); }
+            else sortLayerOrdering[sortLayerName]--;
+            layer.proceduralObject.sortOrder = sortLayerOrdering[sortLayerName];
+
+            //
             Transform layerParent = GameObject.Instantiate(blankParent, layerParentContainer);
             layerParent.name = layer.id;
             if (layer.enableParallax)
