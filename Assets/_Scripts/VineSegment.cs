@@ -13,7 +13,7 @@ public class VineSegment : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // snapParticles = GetComponentInChildren<ParticleSystem>();
         spriteRenderer = GetComponent<SpriteRenderer>(); // * temp left out for trying new vineSegment 091223

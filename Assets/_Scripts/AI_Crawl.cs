@@ -11,10 +11,7 @@ public class AI_Crawl : MonoBehaviour
     // Rigidbody2D rb;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        // rb = GetComponent<Rigidbody2D>();
-    }
+
 
     // Update is called once per frame
     void Update()
@@ -22,19 +19,22 @@ public class AI_Crawl : MonoBehaviour
         tryMove();
     }
 
-    void tryMove() {
+    void tryMove()
+    {
         Collider2D col = checkVision();
-        if(col!=null) {
+        if (col != null)
+        {
             // Debug.Log("Moving");
             // Vector2 newPosition = rb.position + (Vector2)transform.up*speed*Time.deltaTime;
             // rb.MovePosition(newPosition);
-            transform.position += transform.up*speed*Time.deltaTime;
+            transform.position += transform.up * speed * Time.deltaTime;
         }
     }
 
-    Collider2D checkVision() {
+    Collider2D checkVision()
+    {
         // Debug.DrawRay(transform.position,transform.up*sightRange);
         // return Physics.Raycast(transform.position,transform.up,sightRange, layer);
-        return Physics2D.OverlapBox(transform.position,new Vector2(sightRange,sightRange), 0,layer);
+        return Physics2D.OverlapBox(transform.position, new Vector2(sightRange, sightRange), 0, layer);
     }
 }

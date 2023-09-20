@@ -17,7 +17,7 @@ public class FramesPerSecond : MonoBehaviour
 
     // int totalBackgroundObjects;
 
-    void Start()
+    void Awake()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         // player = GameObject.Find("Player").transform;

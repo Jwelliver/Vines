@@ -6,9 +6,10 @@ public class LegFix : MonoBehaviour
 {
     HingeJoint2D hingeJoint2D;
     Rigidbody2D rb;
-    
 
-    void Start() {
+
+    void Awake()
+    {
         hingeJoint2D = GetComponent<HingeJoint2D>();
         rb = GetComponent<Rigidbody2D>();
     }
@@ -17,12 +18,15 @@ public class LegFix : MonoBehaviour
     void FixedUpdate()
     {
         float z = rb.rotation;
-        if(z < hingeJoint2D.limits.min) {
+        if (z < hingeJoint2D.limits.min)
+        {
             // Debug.Log("reset hingejoint to min - Orig: "+ z);
             // transform.localEulerAngles = new Vector3(transform.localEulerAngles.z, transform.localEulerAngles.y, hingeJoint2D.limits.min);
             rb.rotation = hingeJoint2D.limits.min;
-        
-        } else if(z > hingeJoint2D.limits.max) {
+
+        }
+        else if (z > hingeJoint2D.limits.max)
+        {
             // transform.localEulerAngles = new Vector3(transform.localEulerAngles.z, transform.localEulerAngles.y, hingeJoint2D.limits.max);
             // Debug.Log("reset hingejoint to max - Orig: "+ z);
             rb.rotation = hingeJoint2D.limits.max;

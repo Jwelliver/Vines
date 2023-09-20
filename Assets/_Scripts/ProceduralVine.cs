@@ -41,7 +41,7 @@ public class ProceduralVine : MonoBehaviour
 
     // private LineRenderer lineRenderer;
 
-    void Start()
+    void Awake()
     {
         try
         {
@@ -53,6 +53,10 @@ public class ProceduralVine : MonoBehaviour
         }
 
         // vineSegment = vineSegments[Random.Range(0,vineSegments.Count)];
+    }
+
+    void Start()
+    {
         createVine();
     }
 
@@ -104,8 +108,8 @@ public class ProceduralVine : MonoBehaviour
             if (hasAdornment)
             {
                 Transform rndAdornment = RNG.RandomChoice(adornments);
-                float randomRotation = RNG.RandomRange(0,359);
-                Transform newAdornment = GameObject.Instantiate(rndAdornment, newSegment.position, Quaternion.Euler(0,0,randomRotation));
+                float randomRotation = RNG.RandomRange(0, 359);
+                Transform newAdornment = GameObject.Instantiate(rndAdornment, newSegment.position, Quaternion.Euler(0, 0, randomRotation));
                 float rndScale = RNG.RandomRange(minAdornmentScale, maxAdornmentScale);
                 newAdornment.localScale = new Vector2(rndScale, rndScale);
                 newAdornment.SetParent(newSegment);

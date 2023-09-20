@@ -10,7 +10,7 @@ public class IntroTextNextLevel : MonoBehaviour
 
     bool transitionStarted;
 
-    void Start()
+    void Awake()
     {
         // musicFadeOut = GameObject.Find("Music").GetComponent<Animator>();
         music = GameObject.Find("Music").GetComponent<PersistentAudio>();

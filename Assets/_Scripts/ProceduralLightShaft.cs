@@ -26,7 +26,7 @@ public class ProceduralLightShaft : MonoBehaviour
     // Animator animator;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // animator = GetComponent<Animator>();
         try
@@ -38,7 +38,10 @@ public class ProceduralLightShaft : MonoBehaviour
             lightshaftContainer = null;
         }
 
+    }
 
+    void Start()
+    {
         initShaft();
     }
 

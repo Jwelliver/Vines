@@ -12,7 +12,7 @@ public class PersistentAudio : MonoBehaviour
     private float fadeTime;
     private bool isFading;
 
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();

@@ -20,7 +20,7 @@ public class Paralaxer : MonoBehaviour
 
     Vector2 travel => (Vector2)cam.transform.position - startPos;
 
-    void Start()
+    void Awake()
     {
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cam = gameManager.cameraRef;

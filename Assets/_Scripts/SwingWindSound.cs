@@ -17,10 +17,9 @@ public class SwingWindSound : MonoBehaviour
     AudioSource audioSource;
     bool isSwinging;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         audioSource = GetComponent<AudioSource>();
-
     }
 
     // Update is called once per frame
@@ -28,36 +27,43 @@ public class SwingWindSound : MonoBehaviour
     {
         // handleAudioStartStop();
         // if(isSwinging) {
-            handleAudioVolume();
-            handleAudioPitch();
+        handleAudioVolume();
+        handleAudioPitch();
         // }
     }
 
-    void handleAudioPitch() {
+    void handleAudioPitch()
+    {
         float velocity = playerRb.velocity.magnitude;
-        float pctOfMaxVelocity = velocity/velocityAtMaxPitch;
-        float newPitch = ((maxPitch-minPitch)*pctOfMaxVelocity)+minPitch;
+        float pctOfMaxVelocity = velocity / velocityAtMaxPitch;
+        float newPitch = ((maxPitch - minPitch) * pctOfMaxVelocity) + minPitch;
         audioSource.pitch = newPitch;
     }
 
-    void handleAudioVolume() {
+    void handleAudioVolume()
+    {
         float playerVelocity = playerRb.velocity.magnitude;
-        if(playerVelocity<minVelocityVolume) {
+        if (playerVelocity < minVelocityVolume)
+        {
             audioSource.volume = 0;
             return;
         };
-        float pctOfMaxVelocity = playerVelocity/velocityAtMaxVolume;
-        float newVolume = ((maxVolume)*pctOfMaxVelocity);
+        float pctOfMaxVelocity = playerVelocity / velocityAtMaxVolume;
+        float newVolume = ((maxVolume) * pctOfMaxVelocity);
         audioSource.volume = newVolume;
     }
 
-    void handleAudioStartStop() {
-        if(!isSwinging && swingingController.isSwinging) {
+    void handleAudioStartStop()
+    {
+        if (!isSwinging && swingingController.isSwinging)
+        {
             audioSource.Play();
-            isSwinging=true;
-        } else if(isSwinging && !swingingController.isSwinging) {
+            isSwinging = true;
+        }
+        else if (isSwinging && !swingingController.isSwinging)
+        {
             audioSource.Stop();
-            isSwinging=false;
+            isSwinging = false;
         }
     }
 }

@@ -33,13 +33,14 @@ public class ProceduralTree : MonoBehaviour
     {
         myTransform = transform;
         vinesContainer = myTransform.Find("VinesContainer");
+        trunkSpriteRenderer = trunk.GetComponent<SpriteRenderer>();
+        palmsSpriteRenderer = palms.GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        trunkSpriteRenderer = trunk.GetComponent<SpriteRenderer>();
-        palmsSpriteRenderer = palms.GetComponent<SpriteRenderer>();
+
         initTree();
         // initPalms();
         populateVines();

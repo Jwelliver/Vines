@@ -7,12 +7,15 @@ public class WinTrigger : MonoBehaviour
 
     GameManager gameManager;
 
-    void Start() {
+    void Awake()
+    {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag=="Player" && gameManager.playerHasAmulet) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player" && gameManager.playerHasAmulet)
+        {
             gameManager.win();
         }
     }

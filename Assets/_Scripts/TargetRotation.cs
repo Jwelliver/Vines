@@ -12,15 +12,15 @@ public class TargetRotation : MonoBehaviour
     [SerializeField] Transform positionTargetTransform;
     [SerializeField] float force;
 
-    public bool rotationEnabled=true;
-    public bool positionEnabled=true;
+    public bool rotationEnabled = true;
+    public bool positionEnabled = true;
 
     private Rigidbody2D rb;
     float targetRotation;
     Vector3 targetPosition;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -31,21 +31,26 @@ public class TargetRotation : MonoBehaviour
         handleRotation();
     }
 
-    public void setForce(float newForce) {
+    public void setForce(float newForce)
+    {
         force = newForce;
-        rotationEnabled = force>0;
+        rotationEnabled = force > 0;
     }
 
-    void handleRotation() {
-        if(rotationEnabled) {
+    void handleRotation()
+    {
+        if (rotationEnabled)
+        {
             // float targetRotation = targetTransform.localEulerAngles.z;
             targetRotation = rotationTargetTransform.eulerAngles.z;
-            rb.MoveRotation(Mathf.LerpAngle(rb.rotation, targetRotation, force*Time.deltaTime ));
+            rb.MoveRotation(Mathf.LerpAngle(rb.rotation, targetRotation, force * Time.deltaTime));
         }
     }
 
-    void handlePosition() {
-        if(positionEnabled) {
+    void handlePosition()
+    {
+        if (positionEnabled)
+        {
             // float targetRotation = targetTransform.localEulerAngles.z;
             targetPosition = positionTargetTransform.position;
             rb.MovePosition(targetPosition);
@@ -53,7 +58,8 @@ public class TargetRotation : MonoBehaviour
         }
     }
 
-    public void resetAngularVelocity() {
-        rb.angularVelocity=0f;
+    public void resetAngularVelocity()
+    {
+        rb.angularVelocity = 0f;
     }
 }

@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class Amulet : MonoBehaviour
 {
-    
+
     GameManager gameManager;
     Animator animator;
     Collider2D myCollider;
 
-    void Start() {
+    void Awake()
+    {
         myCollider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
-    void OnTriggerEnter2D(Collider2D col) {
-        if(col.tag=="Player") {
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player")
+        {
             myCollider.enabled = false;
             gameManager.playerFoundAmulet();
             animator.SetTrigger("OnFound");
