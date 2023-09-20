@@ -17,17 +17,289 @@ MonoBehaviour:
   backgroundParentName: SpriteLayers
   levelSettings: {fileID: 11400000, guid: 0e2ae0436583b4d4a9727f49e454f82c, type: 2}
   backgroundLayers:
-  - id: BgLayer1
+  - id: FoliageCameraForeground
     enabled: 1
     proceduralObject:
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 0.5
+      minScale: 1.5
+      maxScale: 2
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+      sortLayerName: CameraForeground
+      sortOrder: 0
+      color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
+    minSpacing: 10
+    maxSpacing: 20
+    yOffset: -15
+    enableParallax: 1
+    zDistance: -5
+  - id: foliage front of trees
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.2
       maxScale: 0.8
       enableRandomFlip: 1
       weightedSprites:
         items:
-        - item: {fileID: 1650600148, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 0.05
+        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 0.2
+      sortLayerName: Trees
+      sortOrder: 0
+      color: {r: 1, g: 1, b: 1, a: 1}
+    minSpacing: 2
+    maxSpacing: 10
+    yOffset: 0
+    enableParallax: 0
+    zDistance: 0
+  - id: bg foliage2
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.7
+      maxScale: 1.5
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 0.05
+        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 0.03
+      sortLayerName: FoliageBackground
+      sortOrder: 0
+      color: {r: 0.47450984, g: 0.47450984, b: 0.47450984, a: 1}
+    minSpacing: 5
+    maxSpacing: 8
+    yOffset: 0
+    enableParallax: 1
+    zDistance: 2
+  - id: bg foliage 3
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.8
+      maxScale: 1.3
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 0.05
+        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 0.025
+      sortLayerName: FoliageBackground
+      sortOrder: -1
+      color: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
+    minSpacing: 2
+    maxSpacing: 7
+    yOffset: 0
+    enableParallax: 0
+    zDistance: 0
+  - id: bg foliage ground filler
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.2
+      maxScale: 0.5
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+      sortLayerName: FoliageBackground
+      sortOrder: -2
+      color: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
+    minSpacing: 1
+    maxSpacing: 3
+    yOffset: 0
+    enableParallax: 0
+    zDistance: 0
+  - id: bg_foliage
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.8
+      maxScale: 2
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 1
+        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: 0
+      color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
+    minSpacing: 10
+    maxSpacing: 20
+    yOffset: 0
+    enableParallax: 1
+    zDistance: 3
+  - id: bg_foliage
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.8
+      maxScale: 2
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 1
+        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -1
+      color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
+    minSpacing: 10
+    maxSpacing: 20
+    yOffset: 0
+    enableParallax: 1
+    zDistance: 3
+  - id: bg_reg_trees1
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 1
+      maxScale: 2
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: 770723486, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+        - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -2
+      color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+    minSpacing: 10
+    maxSpacing: 20
+    yOffset: 0
+    enableParallax: 1
+    zDistance: 5
+  - id: bg_reg_trees2 tall
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 1.2
+      maxScale: 2.2
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: 770723486, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+        - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -3
+      color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
+    minSpacing: 5
+    maxSpacing: 15
+    yOffset: 0
+    enableParallax: 1
+    zDistance: 6
+  - id: bg_vines
+    enabled: 0
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.7
+      maxScale: 1
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -81035705, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+          probability: 1
+        - item: {fileID: 178499176, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+          probability: 1
+        - item: {fileID: -1595817921, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+          probability: 1
+        - item: {fileID: 130865656, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -2
+      color: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
+    minSpacing: 5
+    maxSpacing: 10
+    yOffset: 7
+    enableParallax: 1
+    zDistance: 5
+  - id: Far_bg_trees_3
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 2
+      maxScale: 3
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
           probability: 1
         - item: {fileID: -1085091818, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
           probability: 1
@@ -42,14 +314,14 @@ MonoBehaviour:
         - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -6
-      color: {r: 0, g: 0, b: 0, a: 1}
-    minSpacing: 1
-    maxSpacing: 4
+      sortOrder: -4
+      color: {r: 0.4431373, g: 0.4431373, b: 0.4431373, a: 1}
+    minSpacing: 5
+    maxSpacing: 10
     yOffset: 0
     enableParallax: 1
-    zDistance: 20
-  - id: BgLayer2
+    zDistance: 10
+  - id: Far_bg_trees2
     enabled: 1
     proceduralObject:
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
@@ -76,22 +348,22 @@ MonoBehaviour:
       sortLayerName: Background
       sortOrder: -5
       color: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
-    minSpacing: 3
-    maxSpacing: 5
+    minSpacing: 8
+    maxSpacing: 12
     yOffset: 0
     enableParallax: 1
     zDistance: 15
-  - id: BgLayer3
+  - id: Far_bg_trees1
     enabled: 1
     proceduralObject:
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 0.6
-      maxScale: 1
+      minScale: 2
+      maxScale: 3
       enableRandomFlip: 1
       weightedSprites:
         items:
-        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+        - item: {fileID: 1650600148, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
           probability: 1
         - item: {fileID: -1085091818, guid: 832ba097d10a4f740a91998fbe882d47, type: 3}
           probability: 1
@@ -106,211 +378,13 @@ MonoBehaviour:
         - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -4
-      color: {r: 0.4431373, g: 0.4431373, b: 0.4431373, a: 1}
-    minSpacing: 1
-    maxSpacing: 3
-    yOffset: 0
-    enableParallax: 1
-    zDistance: 10
-  - id: BgLayer4
-    enabled: 1
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 0.7
-      maxScale: 1
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: -81035705, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
-          probability: 1
-        - item: {fileID: 178499176, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
-          probability: 1
-        - item: {fileID: -1595817921, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
-          probability: 1
-        - item: {fileID: 130865656, guid: 27d39940ba985f645b2c8281efbd5f50, type: 3}
-          probability: 1
-      sortLayerName: Background
-      sortOrder: -3
-      color: {r: 0.59607846, g: 0.59607846, b: 0.59607846, a: 1}
+      sortOrder: -6
+      color: {r: 0, g: 0, b: 0, a: 1}
     minSpacing: 5
-    maxSpacing: 10
-    yOffset: 7
-    enableParallax: 1
-    zDistance: 5
-  - id: BgLayer5
-    enabled: 1
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 1
-      maxScale: 1.4
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: 770723486, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
-          probability: 1
-        - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
-          probability: 1
-      sortLayerName: Background
-      sortOrder: -3
-      color: {r: 0.6784314, g: 0.6784314, b: 0.6784314, a: 1}
-    minSpacing: 3
-    maxSpacing: 10
+    maxSpacing: 15
     yOffset: 0
     enableParallax: 1
-    zDistance: 4
-  - id: BgLayer6
-    enabled: 1
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 0.8
-      maxScale: 2
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-          probability: 1
-        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-          probability: 1
-      sortLayerName: Background
-      sortOrder: -2
-      color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
-    minSpacing: 10
-    maxSpacing: 20
-    yOffset: 0
-    enableParallax: 1
-    zDistance: 3
-  - id: FoliageBgLayer7
-    enabled: 1
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 0.7
-      maxScale: 1.5
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-          probability: 0.05
-        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-          probability: 0.03
-      sortLayerName: FoliageBackground
-      sortOrder: 0
-      color: {r: 0.47450984, g: 0.47450984, b: 0.47450984, a: 1}
-    minSpacing: 2
-    maxSpacing: 5
-    yOffset: 0
-    enableParallax: 1
-    zDistance: 2
-  - id: FoliageBgLayer8
-    enabled: 1
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 0.8
-      maxScale: 1.3
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-          probability: 0.05
-        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-          probability: 0.025
-      sortLayerName: FoliageBackground
-      sortOrder: 1
-      color: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
-    minSpacing: 2
-    maxSpacing: 7
-    yOffset: 0
-    enableParallax: 0
-    zDistance: 0
-  - id: FoliageBgLayer9
-    enabled: 1
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 0.2
-      maxScale: 0.8
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-          probability: 0.05
-        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-          probability: 0.2
-      sortLayerName: Trees
-      sortOrder: 1
-      color: {r: 1, g: 1, b: 1, a: 1}
-    minSpacing: 2
-    maxSpacing: 10
-    yOffset: 0
-    enableParallax: 0
-    zDistance: 0
-  - id: FoliageBgLayer10
-    enabled: 1
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 1.5
-      maxScale: 2
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0
-        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 0.9
-        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-          probability: 0
-        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-          probability: 0
-      sortLayerName: CameraForeground
-      sortOrder: 0
-      color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
-    minSpacing: 10
-    maxSpacing: 20
-    yOffset: -15
-    enableParallax: 0
-    zDistance: 0
+    zDistance: 20
   treePrefab: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
   blankParent: {fileID: 2094452519030092049, guid: e5d8140a28e33414380f47bc2939aae0, type: 3}
