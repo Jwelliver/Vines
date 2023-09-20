@@ -45,24 +45,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vineAnchor: {fileID: 8533432108515378846, guid: a8fa812acc9f53c4385c530b8cd8ff6e, type: 3}
-  vineSegements:
+  vineSegments:
   - {fileID: 3456149593492605008, guid: e250ff1051ac8204e87d1c926e787831, type: 3}
   adornments:
   - {fileID: 5600827222275690981, guid: f5d38904e00b8434e88b3d096b34e322, type: 3}
-  minLength: 15
-  maxLength: 25
-  segmentOffset: 0
-  minNormalBreakForce: 1500
-  maxNormalBreakForce: 2500
-  minWeakBreakForce: 250
-  maxWeakBreakForce: 500
-  pctChanceWeak: 0.08
-  pctChanceCurl: 0.3
-  maxCurlForce: 10
-  curlSpeed: 10
-  pctChanceAdornment: 0.7
-  minAdornmentScale: 0.3
-  maxAdornmentScale: 0.8
-  minWeakColor: {r: 0.745283, g: 0.65247416, b: 0.5090424, a: 1}
-  maxWeakColor: {r: 0.764151, g: 0.50165635, b: 0, a: 1}
+  vineSettings:
+    length:
+      min: 15
+      max: 25
+    normalBreakForce:
+      min: 1500
+      max: 2500
+    weakBreakForce:
+      min: 250
+      max: 500
+    pctChanceWeak: 0.08
+    pctChanceCurl: 0.3
+    maxCurlForce: 10
+    curlSpeed: 10
+    pctChanceAdornment: 0.7
+    adornmentScale:
+      min: 0.3
+      max: 0.8
+    normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
+    weakSegmentColor: {r: 0.764151, g: 0.50165635, b: 0, a: 1}
   sfx: {fileID: 0}
