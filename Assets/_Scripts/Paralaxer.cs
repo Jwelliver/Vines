@@ -20,7 +20,7 @@ public class Paralaxer : MonoBehaviour
 
     Vector2 travel => (Vector2)cam.transform.position - startPos;
 
-    void Awake()
+    void Start()
     {
         GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         cam = gameManager.cameraRef;
@@ -30,7 +30,7 @@ public class Paralaxer : MonoBehaviour
         float zDistanceFromReferenceObj = transform.position.z - referenceObj.position.z;
         clippingPlane = cam.transform.position.z + (zDistanceFromReferenceObj > 0 ? cam.farClipPlane : cam.nearClipPlane);
         parallaxFactor = MathF.Abs(zDistanceFromReferenceObj) / clippingPlane;
-        // Debug.Log("Paralaxer: " + name);
+        Debug.Log("Paralaxer: " + name + "pFactor" + parallaxFactor);
     }
 
     void Update()
