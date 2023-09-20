@@ -55,16 +55,16 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 576
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
