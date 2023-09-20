@@ -10,7 +10,7 @@ public class RndSprite : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         // If SpriteRenderer not provided, try to auto assign from this gameObject.
         if (spriteRenderer == null)
@@ -25,7 +25,11 @@ public class RndSprite : MonoBehaviour
         else
         {
             spriteRenderer.sprite = spritePool.getRandomItem();
-            spriteRenderer.color = colorPool.getRandomItem();
+            if (colorPool != null)
+            {
+                spriteRenderer.color = colorPool.getRandomItem();
+            }
+
         }
 
     }
