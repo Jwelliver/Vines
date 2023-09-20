@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5796282939409325729}
   - component: {fileID: 5796282939409325734}
-  - component: {fileID: 3659729163260319104}
   m_Layer: 3
   m_Name: Vine
   m_TagString: Untagged
@@ -49,16 +48,7 @@ MonoBehaviour:
   vineSegements:
   - {fileID: 3456149593492605008, guid: e250ff1051ac8204e87d1c926e787831, type: 3}
   adornments:
-  - {fileID: 8037177660060243962, guid: 67173ca2a1b469a4c9dcde836595a014, type: 3}
-  - {fileID: 5857417742709477190, guid: 47ffaa520ef672f41a07ab69d41d0d1b, type: 3}
-  - {fileID: 1216026442891542921, guid: f0a0e38df4087bc45b3456615d81bd2a, type: 3}
-  - {fileID: 1216026442891542921, guid: 628dab7b4e91afd49a7b0a90224b2af0, type: 3}
-  - {fileID: 1216026442891542921, guid: cd8cacf4b233bc14eb16ef900900996d, type: 3}
-  - {fileID: 1216026442891542921, guid: 9943e15596396e34eaeca16f086b431c, type: 3}
-  - {fileID: 1216026442891542921, guid: 7ba0f12782e1087478bc63861fd2ac19, type: 3}
-  - {fileID: 1216026442891542921, guid: 0f4c90a7e6250f4489f1c3d7a566a655, type: 3}
-  - {fileID: 1216026442891542921, guid: e365e090f59584c42bda7e4240c9a21c, type: 3}
-  - {fileID: 1216026442891542921, guid: 5df0520732d76e445824dcf0ce4295af, type: 3}
+  - {fileID: 5600827222275690981, guid: f5d38904e00b8434e88b3d096b34e322, type: 3}
   minLength: 15
   maxLength: 25
   segmentOffset: 0
@@ -76,99 +66,3 @@ MonoBehaviour:
   minWeakColor: {r: 0.745283, g: 0.65247416, b: 0.5090424, a: 1}
   maxWeakColor: {r: 0.764151, g: 0.50165635, b: 0, a: 1}
   sfx: {fileID: 0}
---- !u!82 &3659729163260319104
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5796282939409325735}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 0.541
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0.234
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
