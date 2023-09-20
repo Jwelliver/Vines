@@ -104,7 +104,7 @@ class ProceduralSpriteObject : ProceduralObject
     public ProbWeightItemList<Sprite> weightedSprites;
     public string sortLayerName = null;
     public int sortOrder;
-    public Color color = new Color(255f, 255f, 255f);
+    public Color color = new Color(1f, 1f, 1f);
 
     SpriteRenderer getSpriteRenderer(Transform obj)
     {
