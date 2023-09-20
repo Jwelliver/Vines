@@ -260,6 +260,7 @@ public class LevelGenerator : ScriptableObject
 
     public void generateLevel()
     {
+        RNG.SetSeed(1);//TODO: remove this for prod;
         initLevelSection();
         addBackgroundLayerSection(levelSection);
         addTreeLayerSection(levelSection, levelSettings.treesMinSpacing, levelSettings.treesMaxSpacing);
@@ -285,6 +286,7 @@ public class LevelGenerator : ScriptableObject
             maxSpacing = maxSpacing,
         };
         layerGenerator.populateLayerSection(layer, section, treeLayerParent);
+        // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
     }
 
     // void addBackgroundLayerSection(Section section)
@@ -341,6 +343,7 @@ public class LevelGenerator : ScriptableObject
                 continue;
             }
             layerGenerator.populateLayerSection(layer, section, layerParent);
+            // StaticBatchingUtility.Combine(layerParent.gameObject);
         }
     }
 
