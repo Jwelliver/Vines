@@ -258,6 +258,12 @@ public class LevelGenerator : ScriptableObject
         };
     }
 
+    void BatchLightShafts()
+    {
+        Transform lightShaftContainer = GameObject.Find(proceduralLevelContainerName + "/Lightshafts").transform;
+        StaticBatchingUtility.Combine(lightShaftContainer.gameObject);
+    }
+
     public void generateLevel()
     {
         RNG.SetSeed(1);//TODO: remove this for prod;
@@ -265,6 +271,7 @@ public class LevelGenerator : ScriptableObject
         addBackgroundLayerSection(levelSection);
         addTreeLayerSection(levelSection, levelSettings.treesMinSpacing, levelSettings.treesMaxSpacing);
         addWinPlatform(new Vector2(levelSection.length, levelSettings.startPos.y));
+        BatchLightShafts();
     }
 
     void addTreeLayerSection(Section section, float minSpacing, float maxSpacing)
@@ -288,22 +295,6 @@ public class LevelGenerator : ScriptableObject
         layerGenerator.populateLayerSection(layer, section, treeLayerParent);
         // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
     }
-
-    // void addBackgroundLayerSection(Section section)
-    // {
-    //     foreach (ProceduralLayer<ProceduralSpriteObject> i in backgroundLayers)
-    //     {
-    //         if (i.yOffset != 0)
-    //         {
-    //             Section newSection = section.getCopy();
-    //             newSection.startPos = new Vector2(section.startPos.x, section.startPos.y + i.yOffset);
-    //             layerGenerator.populateLayerSection(i, newSection);
-    //             // Debug.Log("addBackgroundLayerSection() > section.startPos.y: " + section.startPos.y + " | yOffset: " + i.yOffset);
-    //             continue;
-    //         }
-    //         layerGenerator.populateLayerSection(i, section);
-    //     }
-    // }
 
     void addBackgroundLayerSection(Section section)
     {
