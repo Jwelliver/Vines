@@ -162,9 +162,6 @@ public class ProceduralLightShaft : MonoBehaviour
         // Debug.Log("Position: " + objectOriginPosition + " | rotation: " + transformRotation + " | targetY: " + targetY + "| distance: " + distance);
         return Mathf.Abs(distance);
     }
-
-
-
 }
 
 
