@@ -45,17 +45,6 @@ public class ProceduralLightShaft : MonoBehaviour
         initShaft();
     }
 
-    void Update()
-    {   // ======for testing:
-        // if (Input.GetKeyDown(KeyCode.Space))
-        // {
-        //     initShaft();
-        // }
-        // if (Input.GetKeyDown(KeyCode.R))
-        // {
-        //     reset();
-        // }
-    }
 
     public void setParent()
     {
