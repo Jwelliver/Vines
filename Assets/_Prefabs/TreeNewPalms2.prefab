@@ -130,7 +130,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8428600142129587429}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3ff31dd8dbbc2a04eb037ca4961873e4, type: 3}
   m_Name: 
@@ -237,7 +237,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8428600143236325752}
   m_Layer: 0
-  m_Name: Palms
+  m_Name: PalmPrefabAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,5 +261,5 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0.56, y: 6}
-  m_SizeDelta: {x: 12, y: 12}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
