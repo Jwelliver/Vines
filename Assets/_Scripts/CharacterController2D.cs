@@ -212,6 +212,7 @@ public class CharacterController2D : MonoBehaviour
 
     void keepPlayerUpright()
     {
+        if (isHitByArrow) return;
         // standupSpeed = 360; // Set this speed to your needs
         float currentZ = rb.rotation;
         float targetZ = 0;
