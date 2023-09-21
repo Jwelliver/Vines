@@ -40,6 +40,16 @@ public static class RNG
         return (float)(SysRandomInstance.NextDouble() * (hi - lo) + lo);
     }
 
+    public static float RandomRange(MinMax<float> range)
+    {
+        return RandomRange(range.min, range.max);
+    }
+
+    public static int RandomRange(MinMax<int> range)
+    {
+        return RandomRange(range.min, range.max);
+    }
+
     public static T RandomChoice<T>(List<T> items, bool exceptionOnEmptyOrNull = false)
     {
         /*returns a random item from the list.*/
@@ -74,6 +84,20 @@ public static class RNG
     {
         /*returns true 50% of the time*/
         return SampleProbability(0.5f);
+    }
+
+    public static int SampleOccurrences(int nTests, float probability)
+    {
+        /*returns the number of times SampleProbability() returned true over nTests*/
+        int nOccurrences = 0;
+        for (int i = 0; i < nTests; i++)
+        {
+            if (SampleProbability(probability))
+            {
+                nOccurrences++;
+            }
+        }
+        return nOccurrences;
     }
 
 
