@@ -6,6 +6,7 @@ public static class VineGenerator
         ? implement vine width
         ? use width to influence avg strength
         ? use health to influence avg strength and color (weakColor + (normalcolor-weakcolor)*strength as pct of max strength)
+        ? set weight of segment based on width
     */
 
     public static void GenerateVine(ProceduralVineSettings vineSettings, Vector2 position, Transform parent, List<Transform> vineSegmentPrefabs, List<Transform> adornmentPrefabs)
@@ -14,6 +15,7 @@ public static class VineGenerator
         //instantiate anchor
         prevSegment = GameObject.Instantiate(vineSegmentPrefabs[0], position, Quaternion.identity, parent);
         prevSegment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        prevSegment.GetComponent<HingeJoint2D>().enabled = false;
 
         bool isWeak = RNG.SampleProbability(vineSettings.pctChanceWeak);
         int vineLength = RNG.RandomRange(vineSettings.length.min, vineSettings.length.max);
