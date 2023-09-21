@@ -52,7 +52,7 @@ public class ProceduralLightShaft : MonoBehaviour
         {
             return;
         }
-        transform.parent = lightshaftContainer;
+        transform.SetParent(lightshaftContainer);
     }
 
     void reset()
@@ -88,26 +88,27 @@ public class ProceduralLightShaft : MonoBehaviour
 
         Light2D light = transform.GetComponent<Light2D>();
         light.intensity = RNG.RandomRange(minIntensity, maxIntensity);
+        setParent();
     }
 
-    private Vector2 GetDimensionInPX(GameObject obj)
-    {
-        SpriteRenderer spriteRenderer;
-        try
-        {
-            spriteRenderer = obj.GetComponent<SpriteRenderer>();
-        }
-        catch
-        {
-            return obj.transform.localScale;
-        }
-        Vector2 tmpDimension;
+    // private Vector2 GetDimensionInPX(GameObject obj)
+    // {
+    //     SpriteRenderer spriteRenderer;
+    //     try
+    //     {
+    //         spriteRenderer = obj.GetComponent<SpriteRenderer>();
+    //     }
+    //     catch
+    //     {
+    //         return obj.transform.localScale;
+    //     }
+    //     Vector2 tmpDimension;
 
-        tmpDimension.x = obj.transform.localScale.x / spriteRenderer.sprite.bounds.size.x;  // this is gonna be our width
-        tmpDimension.y = obj.transform.localScale.y / spriteRenderer.sprite.bounds.size.y;  // this is gonna be our height
-        Debug.Log("Obj size: " + tmpDimension);
-        return tmpDimension;
-    }
+    //     tmpDimension.x = obj.transform.localScale.x / spriteRenderer.sprite.bounds.size.x;  // this is gonna be our width
+    //     tmpDimension.y = obj.transform.localScale.y / spriteRenderer.sprite.bounds.size.y;  // this is gonna be our height
+    //     Debug.Log("Obj size: " + tmpDimension);
+    //     return tmpDimension;
+    // }
 
     // IEnumerator checkForSizeChange()
     // {
