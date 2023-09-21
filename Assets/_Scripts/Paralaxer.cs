@@ -30,7 +30,6 @@ public class Paralaxer : MonoBehaviour
         float zDistanceFromReferenceObj = transform.position.z - referenceObj.position.z;
         clippingPlane = cam.transform.position.z + (zDistanceFromReferenceObj > 0 ? cam.farClipPlane : cam.nearClipPlane);
         parallaxFactor = MathF.Abs(zDistanceFromReferenceObj) / clippingPlane;
-        Debug.Log("Paralaxer: " + name + "pFactor" + parallaxFactor);
     }
 
     void Update()
