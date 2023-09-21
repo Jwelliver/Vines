@@ -75,4 +75,49 @@ public static class RNG
         /*returns true 50% of the time*/
         return SampleProbability(0.5f);
     }
+
+
+    public static int GetRandomNormalDistribution(float mean, float stdDev) //TODO: TEST
+    {
+        // Use System.Random to generate two uniform random variables
+        System.Random rand = SysRandomInstance;
+        double u1 = 1.0 - rand.NextDouble(); //uniform(0,1] random doubles
+        double u2 = 1.0 - rand.NextDouble();
+
+        // Use Box-Muller method to generate two independent standard normally distributed random variables.
+        double randStdNormal = System.Math.Sqrt(-2.0 * System.Math.Log(u1)) *
+                            System.Math.Sin(2.0 * System.Math.PI * u2);
+
+        // Scale and shift to get desired mean and stdDev 
+        double randNormal = mean + stdDev * randStdNormal;
+
+        //Return the normally distributed random number rounded to the nearest integer value
+        return (int)System.Math.Round(randNormal);
+    }
+
+    public static int GetRandomNormalDistribution(int min, int max)//TODO: TEST
+    {
+        double mean = (max + min) / 2;
+        double stdDev = (max - min) / 6; // Approximate 99.7% of data between min & max 
+
+        // Use System.Random to generate two uniform random variables
+        System.Random rand = SysRandomInstance;
+        double u1 = 1.0 - rand.NextDouble(); //uniform(0,1] random doubles
+        double u2 = 1.0 - rand.NextDouble();
+
+        // Use Box-Muller method to generate two independent standard normally distributed random variables
+        double randStdNormal = System.Math.Sqrt(-2.0 * System.Math.Log(u1)) *
+                            System.Math.Sin(2.0 * System.Math.PI * u2);
+
+        // Scale and shift to get desired mean and stdDev 
+        double randNormal = mean + stdDev * randStdNormal;
+
+        // Ensure the result is within the range
+        randNormal = System.Math.Max(min, System.Math.Min(max, randNormal));
+
+        //Return the normally distributed random number rounded to the nearest integer value
+        return (int)System.Math.Round(randNormal);
+    }
+
+
 }
