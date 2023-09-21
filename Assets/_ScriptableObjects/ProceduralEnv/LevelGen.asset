@@ -490,6 +490,6 @@ MonoBehaviour:
     enableParallax: 1
     useAutoZDistance: 0
     zDistance: 20
-  treePrefab: {fileID: 5789240586586541946, guid: c66ffecfad64a7d4381aef624e0d235f, type: 3}
+  treePrefab: {fileID: 8428600142129587418, guid: f80f469dce6593a4aa6cd1d1b006aa40, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
   blankParent: {fileID: 2094452519030092049, guid: e5d8140a28e33414380f47bc2939aae0, type: 3}
