@@ -10,10 +10,12 @@ public class ArrowProjectile : MonoBehaviour
     [SerializeField] float minAngle;
     [SerializeField] float maxAngle;
     [SerializeField] float pctChanceBreakHinge;
+    [SerializeField] float penetrationDistance;
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] Collider2D myCollider;
     [SerializeField] FixedJoint2D fixedJoint;
+    [SerializeField] Transform spriteObj;
     public ArrowSFX sfx; //assigned by ArrowGenerator on instantiation
 
     bool hasLanded;
@@ -35,6 +37,7 @@ public class ArrowProjectile : MonoBehaviour
             return;
         }
         stickToBody(col.rigidbody);
+        // Penetrate(col.rigidbody);
         if (col.transform.root.tag == "Player")
         {
             col.transform.root.GetComponentInChildren<CharacterController2D>().hitByArrow();
@@ -45,10 +48,47 @@ public class ArrowProjectile : MonoBehaviour
     {
         sfx.PlayArrowHitSound();
         fixedJoint.connectedBody = otherBody;
-        fixedJoint.enabled = true;
         myCollider.enabled = false;
+        fixedJoint.enabled = true;
         hasLanded = true;
     }
+
+    // void Penetrate(Rigidbody2D otherBody)
+    // {
+    //     sfx.PlayArrowHitSound();
+    //     // Calculate the target point of penetration based on desired penetration distance
+    //     Vector3 penetrationTarget = spriteObj.transform.position + (Vector3)rb.velocity.normalized * penetrationDistance;
+    //     rb.simulated = false;
+    //     myCollider.enabled = false;
+    //     // Slowdown duration based on the initial velocity and desired penetration distance. 
+    //     float slowdownDuration = penetrationDistance / rb.velocity.magnitude;
+
+    //     // Start the penetration Coroutine
+    //     StartCoroutine(PenetrateOverTime(penetrationTarget, slowdownDuration, otherBody));
+    // }
+
+    // // Coroutine to handle the penetration over time
+    // IEnumerator PenetrateOverTime(Vector3 target, float duration, Rigidbody2D otherBody)
+    // {
+    //     // Calculate initial position and time  
+    //     Vector3 initialPosition = spriteObj.transform.position;
+    //     float time = 0;
+
+    //     // While the arrow graphic has not reached the target point
+    //     while (time < duration)
+    //     {
+    //         // Increment the time by the fraction of the frame time (slows down as it approaches 1)
+    //         time += Time.deltaTime;
+    //         // Update the position of the arrow graphic
+    //         spriteObj.transform.position = Vector3.Lerp(initialPosition, target, time / duration);
+    //         // Wait until next frame
+    //         yield return null;
+    //     }
+
+    //     // Ensure arrow graphic position is set to the target point when done
+    //     spriteObj.transform.position = target;
+    //     fixedJoint.connectedBody = otherBody;
+    // }
 
 
 
