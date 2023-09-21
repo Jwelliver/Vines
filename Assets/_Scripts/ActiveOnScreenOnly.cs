@@ -6,6 +6,14 @@ public class ActiveOnScreenOnly : MonoBehaviour
     [SerializeField] float xDistanceOffset = 1.5f;
     [SerializeField] GameObject target;
 
+    void Awake()
+    {
+        if (target == null)
+        {
+            target = gameObject;
+        }
+    }
+
 
     void Update()
     {
