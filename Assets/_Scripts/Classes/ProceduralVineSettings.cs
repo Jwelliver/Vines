@@ -8,6 +8,7 @@ public class ProceduralVineSettings
 {
     [Header("Length")]
     public MinMax<int> length = new MinMax<int>(15, 25);
+    public float segmentLength = 0.7f;
 
     [Header("Break Forces")]
     public MinMax<float> normalBreakForce = new MinMax<float>(1500f, 2500f);
