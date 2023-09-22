@@ -81,7 +81,7 @@ public class TreeFactory : ScriptableObject
         };
     }
 
-    public void GenerateTree(Vector2 position, Transform parent, TreeFactoryConfig factoryConfigOverride = null)
+    public Transform GenerateTree(Vector2 position, Transform parent, TreeFactoryConfig factoryConfigOverride = null)
     {
         // Instantiate new tree prefab
         Transform newTree = GameObject.Instantiate(treePrefab, position, Quaternion.identity, parent);
@@ -97,6 +97,8 @@ public class TreeFactory : ScriptableObject
         // Destroy Assembly Objects
         newTreeAssembly = null;
         newTreeConfig = null;
+        // Return New Tree
+        return newTree;
     }
 
     private void InitTree(NewTreeAssembly newTreeAssembly)
