@@ -9,7 +9,7 @@ public class FramesPerSecond : MonoBehaviour
     private int frames = 0;
     private float fps;
     public TMPro.TextMeshProUGUI display_Text;
-    public KeyCode toggleKey = KeyCode.F1;
+    public KeyCode toggleKey = KeyCode.Tilde;
 
     //debug test
     // Transform player;
