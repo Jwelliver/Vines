@@ -17,10 +17,15 @@ public class LightShaftFactoryConfig
 
 public class LightShaftFactory : ScriptableObject
 {
-
     [SerializeField] Transform lightShaftPrefab;
     [SerializeField] LightShaftFactoryConfig defaultFactoryConfig = new LightShaftFactoryConfig();
     [SerializeField] string lightShaftContainerPath;
+
+    public void SetDefaultFactoryConfig(LightShaftFactoryConfig newDefaultFactoryConfig)
+    {
+        defaultFactoryConfig = null;
+        defaultFactoryConfig = newDefaultFactoryConfig;
+    }
 
     public void GenerateLightShaft(Vector2 position)
     {
@@ -37,7 +42,6 @@ public class LightShaftFactory : ScriptableObject
         //size shaft
         float width = RNG.RandomRange(defaultFactoryConfig.width);
 
-        //TODO: why are we using the transform's euler rotation here before actually applying the rotation (below) ?
         float distanceToGround = FindDistanceToGround(newLightShaft.position, newLightShaft.eulerAngles.z, defaultFactoryConfig.groundLevel);
         if (distanceToGround == -1)
         {
