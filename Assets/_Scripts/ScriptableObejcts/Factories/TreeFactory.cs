@@ -9,7 +9,8 @@ public class TreeFactoryConfig
     [Header("Size")]
     public MinMax<float> treeScale = new MinMax<float>(1f, 1.25f);
     public MinMax<float> trunkHeight = new MinMax<float>(1.5f, 2.5f);
-    public float maxAngle = 5f;
+    public float maxTreeRotation = 5f;
+    public float maxPalmRotation = 5f;
 
     [Header("Vines")]
     public int maxVines = 4;
@@ -24,7 +25,8 @@ public class TreeConfig
     // Contains config for single tree (instance of randomly chosen settings from TreeFactoryConfig)
     public float treeScale;
     public float trunkHeight;
-    public float angle;
+    public float treeAngleOffset;
+    public float palmAngleOffset;
     public int nVines;
     public int nLightShafts;
     public Transform rndPalmPrefab;
@@ -74,7 +76,8 @@ public class TreeFactory : ScriptableObject
         {
             treeScale = RNG.RandomRange(factoryConfig.treeScale),
             trunkHeight = RNG.RandomRange(factoryConfig.trunkHeight),
-            angle = RNG.RandomRange(-factoryConfig.maxAngle, factoryConfig.maxAngle),
+            treeAngleOffset = RNG.RandomRange(-factoryConfig.maxTreeRotation, factoryConfig.maxTreeRotation),
+            palmAngleOffset = RNG.RandomRange(-factoryConfig.maxPalmRotation, factoryConfig.maxPalmRotation),
             nLightShafts = RNG.SampleOccurrences(factoryConfig.maxLightShafts, factoryConfig.pctChangeLightShaft),
             nVines = RNG.RandomRange(1, factoryConfig.maxVines),
             rndPalmPrefab = RNG.RandomChoice(palmPrefabs),
@@ -118,7 +121,7 @@ public class TreeFactory : ScriptableObject
         trunkSpriteRenderer.sprite = newTreeAssembly.treeConfig.rndTrunkSprite;
 
         // Apply random rotation
-        newTreeAssembly.newTree.eulerAngles = Vector3.forward * newTreeAssembly.treeConfig.angle; //TODO: verify this is working; otherwise use Quaternion.Euler()
+        newTreeAssembly.newTree.eulerAngles = Vector3.forward * newTreeAssembly.treeConfig.treeAngleOffset; //TODO: verify this is working; otherwise use Quaternion.Euler()
     }
 
     private void InitPalms(NewTreeAssembly newTreeAssembly)
@@ -130,6 +133,9 @@ public class TreeFactory : ScriptableObject
 
         // Instantiate newPalm at newTree's palmPrefabAnchor position
         Transform newPalm = Instantiate(rndPalmPrefab, position, Quaternion.identity, newTree);
+
+        // Apply random rotation
+        newPalm.eulerAngles = Vector3.forward * newTreeAssembly.treeConfig.palmAngleOffset;
 
         // Get Palm AnchorContainer (children of which represent where vines and lightshafts can be placed)
         Transform palmAnchorContainer = newPalm.Find("Anchors");

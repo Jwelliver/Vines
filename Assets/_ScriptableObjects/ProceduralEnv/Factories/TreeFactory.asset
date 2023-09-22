@@ -19,7 +19,8 @@ MonoBehaviour:
     trunkHeight:
       min: 1.5
       max: 2.5
-    maxAngle: 5
+    maxTreeRotation: 5
+    maxPalmRotation: 5
     maxVines: 4
     pctChangeLightShaft: 0.3
     maxLightShafts: 2
@@ -31,6 +32,7 @@ MonoBehaviour:
   - {fileID: 6165184426630625531, guid: 88f1d65a154a6ee4aae74b59e02a3ade, type: 3}
   - {fileID: 2052431411895931276, guid: fe12a1fc1deee9841a529c959aadf98d, type: 3}
   - {fileID: 6936129061349259939, guid: 98105ed6b4fb73c40b0d1675df09d0b1, type: 3}
+  - {fileID: 1533440076823647700, guid: 2f30883bd44c70547b9915184d135114, type: 3}
   trunkSprites:
   - {fileID: -363360082, guid: 183629812909a1041b19a55e7191c253, type: 3}
   - {fileID: -1295716066, guid: 665112540f093154fa0b1dac37d108bf, type: 3}
