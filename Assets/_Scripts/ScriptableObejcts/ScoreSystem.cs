@@ -26,10 +26,10 @@ public class ScoreSystem : MonoBehaviour
 
 
     //Swing Stats
-    Vector2 startPosition = new Vector2(0,0);
+    Vector2 startPosition = new Vector2(0, 0);
     float maxVelocity = 0;
     float distance = 0;
-    float maxHeight = 0 ;
+    float maxHeight = 0;
 
 
     // Start is called before the first frame update
@@ -41,28 +41,32 @@ public class ScoreSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isRecordingSwingStats) {
+        if (isRecordingSwingStats)
+        {
             updateSwingStats();
         }
     }
 
 
-    void updateSwingStats() {
+    void updateSwingStats()
+    {
         maxVelocity = (playerRb.velocity.magnitude > maxVelocity) ? playerRb.velocity.magnitude : maxVelocity;
         distance = ((playerRb.position.x - startPosition.x) > distance) ? (playerRb.position.x - startPosition.x) : distance;
         maxHeight = (playerRb.position.y > maxHeight) ? playerRb.position.y : maxHeight;
     }
 
-    void resetSwingStats() {
+    void resetSwingStats()
+    {
         maxVelocity = 0;
         distance = 0;
         maxHeight = 0;
     }
 
-    void logStats() {
-        string statsText = "Max Velocity: "+ maxVelocity;
-        statsText += "\n" +"Distance: "+ distance;
-        statsText += "\n" +"Max Height: "+ maxHeight;
+    void logStats()
+    {
+        string statsText = "Max Velocity: " + maxVelocity;
+        statsText += "\n" + "Distance: " + distance;
+        statsText += "\n" + "Max Height: " + maxHeight;
 
         // Debug.Log("Max Velocity: "+ maxVelocity);
         // Debug.Log("Distance: "+ distance);
@@ -71,13 +75,15 @@ public class ScoreSystem : MonoBehaviour
     }
 
 
-    public void onSwingGrab() {
+    public void onSwingGrab()
+    {
         // Debug.Log("Score.onSwingGrab(): " + playerRb.position.x);
         isRecordingSwingStats = false;
         logStats();
     }
 
-    public void onSwingRelease() {
+    public void onSwingRelease()
+    {
         // Debug.Log("Score.onSwingRelease(): " + playerRb.position.x);
         startPosition = playerRb.position;
         isRecordingSwingStats = true;
