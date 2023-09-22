@@ -49,6 +49,12 @@ public class VineFactoryConfig
 
 // }
 
+/*
+    ? implement vine width
+    ? use width to influence avg strength
+    ? use health to influence avg strength and color (weakColor + (normalcolor-weakcolor)*strength as pct of max strength)
+    ? set weight of segment based on width
+*/
 
 
 public class VineFactory : ScriptableObject
@@ -57,11 +63,16 @@ public class VineFactory : ScriptableObject
     [SerializeField] VineFactoryConfig defaultFactoryConfig = new VineFactoryConfig();
     [SerializeField] Transform vineRootPrefab;
     [SerializeField] List<Transform> vineSegmentPrefabs;
-    [SerializeField] List<Transform> adornmentPrefabs;
+    // [SerializeField] List<Transform> adornmentPrefabs;
+    [SerializeField] VineAdornmentFactory vineAdornmentFactory;
 
-    // [SerializeField] VineAdornmentFactory vineAdornmentFactory; //TODO: implement adornmentFactory with colors
+    public void SetDefaultFactoryConfig(VineFactoryConfig newDefaultFactoryConfig)
+    {
+        defaultFactoryConfig = null;
+        defaultFactoryConfig = newDefaultFactoryConfig;
+    }
 
-    public void GenerateVine(Vector2 position, Transform containerParent, VineFactoryConfig factoryConfigOverride = null)
+    public Transform GenerateVine(Vector2 position, Transform containerParent, VineFactoryConfig factoryConfigOverride = null)
     {
         VineFactoryConfig factoryConfig = factoryConfigOverride ?? defaultFactoryConfig;
 
@@ -118,15 +129,11 @@ public class VineFactory : ScriptableObject
 
             newHinge.breakForce = RNG.RandomRange(factoryConfig.normalBreakForce.min, factoryConfig.normalBreakForce.max);
 
+            // Add Adornment at Random
             bool hasAdornment = RNG.SampleProbability(factoryConfig.pctChanceAdornment);
             if (hasAdornment)
             {
-                Transform rndAdornment = RNG.RandomChoice(adornmentPrefabs);
-                float randomRotation = RNG.RandomRange(0, 359);
-                Transform newAdornment = GameObject.Instantiate(rndAdornment, newSegment.position, Quaternion.Euler(0, 0, randomRotation));
-                float rndScale = RNG.RandomRange(factoryConfig.adornmentScale.min, factoryConfig.adornmentScale.max);
-                newAdornment.localScale = new Vector2(rndScale, rndScale);
-                newAdornment.SetParent(newSegment);
+                Transform newAdornment = vineAdornmentFactory.GenerateVineAdornment(newSegment.position, newSegment, factoryConfig.adornmentScale);
                 if (isWeak)
                     newAdornment.GetComponentInChildren<SpriteRenderer>().color = factoryConfig.weakSegmentColor;
             }
@@ -147,5 +154,7 @@ public class VineFactory : ScriptableObject
                 rndSegment.breakForce = rndWeakBreakForce;
             }
         }
+
+        return vineRoot;
     }
 }
