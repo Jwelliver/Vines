@@ -227,7 +227,7 @@ public class LevelGenerator : ScriptableObject
 
     [Header("Prefabs")]
     [SerializeField] Transform winPlatformPrefab;
-    [SerializeField] Transform blankParentPrefab;
+    [SerializeField] Transform blankParentPrefab; //Used to create empty parent container for individual spriteLayers
 
     Section levelSection;
 
@@ -290,38 +290,6 @@ public class LevelGenerator : ScriptableObject
         return proceduralElementsPath + "/" + containerName;
     }
 
-    // * pre-factory
-    // public void generateLevel()
-    // {
-    //     // RNG.SetSeed(1);//TODO: remove this for prod;
-    //     initLevelSection();
-    //     addBackgroundLayerSection(levelSection);
-    //     addTreeLayerSection(levelSection, levelSettings.treesMinSpacing, levelSettings.treesMaxSpacing);
-    //     addWinPlatform(new Vector2(levelSection.length, levelSettings.startPos.y));
-    //     BatchLightShafts();
-    // }
-
-    // * pre-factory
-    // void addTreeLayerSection(Section section, float minSpacing, float maxSpacing)
-    // {
-    //     string treeLayerParentPath = proceduralLevelContainerName + "/" + treeParentName;
-    //     Transform treeLayerParent = GameObject.Find(treeLayerParentPath).transform;
-    //     ProceduralObject tree = new ProceduralObject
-    //     {
-    //         prefab = treePrefab,
-    //         enableRandomScale = false,
-    //     };
-    //     ProceduralLayer<ProceduralObject> layer = new ProceduralLayer<ProceduralObject>
-    //     {
-    //         id = "TreeLayer",
-    //         proceduralObject = tree,
-    //         minSpacing = minSpacing,
-    //         maxSpacing = maxSpacing,
-    //     };
-    //     layerGenerator.populateLayerSection(layer, section, treeLayerParent);
-    //     // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
-    // }
-
     void AddBackgroundLayerSection(Section section)
     {
         Transform layerParentContainer = GameObject.Find(GetElementContainerPath(backgroundParentName)).transform;
@@ -365,7 +333,7 @@ public class LevelGenerator : ScriptableObject
     }
 
 
-    void AddWinPlatform(Vector2 pos)
+    private void AddWinPlatform(Vector2 pos)
     {
         GameObject.Instantiate(winPlatformPrefab, pos, Quaternion.identity);
     }
@@ -377,7 +345,7 @@ public class LevelGenerator : ScriptableObject
     }
 
 
-    public List<Vector2> GeneratePositions(Section section, MinMax<float> spacing, float yOffset = 0)
+    private List<Vector2> GeneratePositions(Section section, MinMax<float> spacing, float yOffset = 0)
     {
         if (spacing.min == 0 && spacing.max == 0)
         {
@@ -398,97 +366,3 @@ public class LevelGenerator : ScriptableObject
         return positions;
     }
 }
-
-
-
-//============== ORIG 091023
-// [CreateAssetMenu]
-// public class LevelGenerator : ScriptableObject
-// {
-//     [Header("Level")]
-//     [SerializeField] string proceduralLevelContainerName = "ProceduralLevelContainer";
-//     [SerializeField] int levelLengthMin = 50;
-//     [SerializeField] int levelLengthMax = 50;
-//     [SerializeField] int levelEdgeOffset = 0;
-
-//     [Header("Trees")]
-//     // [SerializeField] Transform treeContainer;
-//     [SerializeField] RectTransform tree;
-//     [SerializeField] int minDistanceBetweenTrees = 3;
-//     [SerializeField] int maxDistanceBetweenTrees = 5;
-
-//     [Header("Background Layers")]
-//     [SerializeField] List<ProceduralBackground> foliageLayers = new List<ProceduralBackground>();
-//     [SerializeField] List<ProceduralBackground> paralaxLayers = new List<ProceduralBackground>();
-
-//     [Header("Prefabs")]
-
-//     [SerializeField] Transform backgroundObject;
-
-//     [SerializeField] Transform winPlatform;
-
-//     int levelLength;
-
-
-//     // void createProceduralParent() {
-//     //     GameObject parent = new GameObject("Procedural_SO");
-//     // }
-
-//     //int levelLength, int levelStartOffset, int minTreeDistance, int maxTreeDistance
-//     public void generateLevel()
-//     {
-//         levelLength = getRandomLevelLength();
-//         populateBackground();
-//         populateTrees();
-//         generateWinPlatform();
-//     }
-
-//     int getRandomLevelLength()
-//     {
-//         return UnityEngine.Random.Range(levelLengthMin, levelLengthMax);
-//     }
-//     void populateTrees()
-//     {
-//         string treeContainerPath = proceduralLevelContainerName + "/" + "TreeContainer";
-//         Transform treeContainer = GameObject.Find(treeContainerPath).transform;
-//         for (int i = -Math.Abs(levelEdgeOffset); i < levelLength + Math.Abs(levelEdgeOffset); i += UnityEngine.Random.Range(minDistanceBetweenTrees, maxDistanceBetweenTrees))
-//         {
-//             GameObject.Instantiate(tree, new Vector2(i, 0), Quaternion.identity, treeContainer);
-//         }
-//     }
-
-//     public int getTotalBackgroundObjects()
-//     {
-//         int totalObjects = 0;
-//         foreach (ProceduralBackground i in foliageLayers)
-//         {
-//             totalObjects += i.nObjects;
-//         }
-//         foreach (ProceduralBackground i in paralaxLayers)
-//         {
-//             totalObjects += i.nObjects;
-//         }
-//         return totalObjects;
-//     }
-
-//     void populateBackground()
-//     {
-
-//         foreach (ProceduralBackground i in foliageLayers)
-//         {
-//             i.populateObjects(levelLength, levelEdgeOffset);
-//         }
-//         foreach (ProceduralBackground i in paralaxLayers)
-//         {
-//             i.populateObjects(levelLength, levelEdgeOffset);
-//         }
-
-//     }
-
-//     void generateWinPlatform()
-//     {
-//         GameObject.Instantiate(winPlatform, new Vector2(levelLength, -1.5f), Quaternion.identity);
-//     }
-
-
-// }
