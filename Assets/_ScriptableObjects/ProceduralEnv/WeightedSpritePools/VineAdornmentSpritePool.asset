@@ -15,9 +15,9 @@ MonoBehaviour:
   description: 
   items:
   - item: {fileID: -206003499, guid: d2aeaf22af153854c940c2b29ad55c56, type: 3}
-    probability: 0
+    probability: 1
   - item: {fileID: 730854174, guid: d2aeaf22af153854c940c2b29ad55c56, type: 3}
-    probability: 0
+    probability: 1
   - item: {fileID: -697584425, guid: d2aeaf22af153854c940c2b29ad55c56, type: 3}
     probability: 1
   - item: {fileID: -241124847, guid: d2aeaf22af153854c940c2b29ad55c56, type: 3}
