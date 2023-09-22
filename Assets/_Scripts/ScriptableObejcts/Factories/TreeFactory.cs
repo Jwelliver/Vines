@@ -47,6 +47,7 @@ public class NewTreeAssembly
         treeConfig = _treeConfig;
         trunk = (RectTransform)newTree.Find("Trunk");
         palmPrefabAnchor = (RectTransform)trunk.Find("PalmPrefabAnchor");
+        vinesContainer = (RectTransform)newTree.Find("VinesContainer");
     }
 }
 

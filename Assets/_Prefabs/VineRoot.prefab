@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5796282939409325729}
-  - component: {fileID: 5796282939409325734}
+  - component: {fileID: 7231680182425418481}
   m_Layer: 3
-  m_Name: Vine
+  m_Name: VineRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,41 +32,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5796282939409325734
+--- !u!114 &7231680182425418481
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5796282939409325735}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2addcc301150b2439eef7de51d443aa, type: 3}
+  m_Script: {fileID: 11500000, guid: fb4977ac6c1bc184a92170bca1cb330f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vineSegments:
-  - {fileID: 3456149593492605008, guid: e250ff1051ac8204e87d1c926e787831, type: 3}
-  adornments:
-  - {fileID: 5600827222275690981, guid: f5d38904e00b8434e88b3d096b34e322, type: 3}
-  vineSettings:
-    length:
-      min: 15
-      max: 25
-    segmentLength: 0.7
-    normalBreakForce:
-      min: 1500
-      max: 2500
-    weakBreakForce:
-      min: 250
-      max: 500
-    pctChanceWeak: 0.08
-    pctChanceCurl: 0.3
-    maxCurlForce: 10
-    curlSpeed: 10
-    pctChanceAdornment: 0.7
-    adornmentScale:
-      min: 0.3
-      max: 0.8
-    normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
-    weakSegmentColor: {r: 0.764151, g: 0.50165635, b: 0, a: 1}
-  sfx: {fileID: 0}
+  snapParticles: {fileID: 1320025458011433992, guid: 3fac02e5af5ec5443a54a21261016135, type: 3}

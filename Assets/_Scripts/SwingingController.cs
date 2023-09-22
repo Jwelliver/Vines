@@ -229,13 +229,13 @@ public class SwingingController : MonoBehaviour
         Collider2D closestSegment = null;
         float closestDistance = direction == "up" ? float.MaxValue : float.MinValue;
 
-        GameObject currentVineRoot = grabJoint.connectedBody.transform.GetComponent<VineSegment>().vineRoot.gameObject;
+        GameObject currentVineRoot = grabJoint.connectedBody.transform.GetComponent<VineSegment>().GetVineRoot().gameObject;
         // Debug.Log("currentVineRoot: "+currentVineRoot.name);
 
         foreach (Collider2D collider in colliders)
         {
             // skip over vine segments that do not belong to the same vine;
-            GameObject vineRoot = collider.transform.GetComponent<VineSegment>().vineRoot.gameObject;
+            GameObject vineRoot = collider.transform.GetComponent<VineSegment>().GetVineRoot().gameObject;
             if (!GameObject.ReferenceEquals(currentVineRoot, vineRoot))
             {
                 continue;

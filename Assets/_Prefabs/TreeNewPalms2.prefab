@@ -45,7 +45,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8428600142129587418}
-  - component: {fileID: 8428600142129587419}
   - component: {fileID: 3979215831457384075}
   - component: {fileID: 6276382532064396898}
   m_Layer: 0
@@ -77,38 +76,6 @@ RectTransform:
   m_AnchoredPosition: {x: -4.738659, y: -3.9680412}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &8428600142129587419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8428600142129587429}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa23b13dff73b864596fb31ebc7140ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minTrunkHeight: 1.5
-  maxTrunkHeight: 2.5
-  minScale: 1
-  maxScale: 1.5
-  maxAngle: 5
-  maxVines: 4
-  pctChanceLightShaft: 0.3
-  maxLightShafts: 2
-  trunk: {fileID: 8428600142581916158}
-  palmContainer: {fileID: 8428600143236325752}
-  vine: {fileID: 5796282939409325729, guid: 3df7d8c869540184aab89dc46f29b159, type: 3}
-  lightShaft: {fileID: 8119098281156781924, guid: 037b46403c4a63043bce854bf732d868, type: 3}
-  palmPrefabs:
-  - {fileID: 4541776258987659219, guid: 1e22d83e4b65c264384eb6f771468776, type: 3}
-  - {fileID: 6165184426630625531, guid: 88f1d65a154a6ee4aae74b59e02a3ade, type: 3}
-  - {fileID: 2052431411895931276, guid: fe12a1fc1deee9841a529c959aadf98d, type: 3}
-  - {fileID: 6936129061349259939, guid: 98105ed6b4fb73c40b0d1675df09d0b1, type: 3}
-  trunkSprites:
-  - {fileID: -363360082, guid: 183629812909a1041b19a55e7191c253, type: 3}
-  - {fileID: -1295716066, guid: 665112540f093154fa0b1dac37d108bf, type: 3}
 --- !u!114 &3979215831457384075
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5600827222275690981}
   - component: {fileID: 1546156631193087795}
-  - component: {fileID: 5600827222275690778}
   m_Layer: 0
   m_Name: VineAdornment
   m_TagString: Untagged
@@ -85,18 +84,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5600827222275690778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8487002063768158214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 787a56b7e052114459c59c7e9bd8296c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spritePool: {fileID: 11400000, guid: a6fb1a263b5735946bc511bfa4694b54, type: 2}
-  colorPool: {fileID: 11400000, guid: 0efdb38c47fbeff4da7dade45b963c52, type: 2}
-  spriteRenderer: {fileID: 1546156631193087795}

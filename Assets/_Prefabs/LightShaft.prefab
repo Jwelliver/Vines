@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8119098281156781924}
-  - component: {fileID: 8119098281156781923}
   - component: {fileID: 85429642501829398}
   m_Layer: 0
   m_Name: LightShaft
@@ -33,26 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8119098281156781923
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8119098281156781925}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c62ab1571bf7ded44a4b9b7c591f3a43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heightVariation: 5
-  groundLevel: -3
-  minWidth: 1
-  maxWidth: 3
-  minAngle: 20
-  maxAngle: 30
-  minIntensity: 1
-  maxIntensity: 3
 --- !u!114 &85429642501829398
 MonoBehaviour:
   m_ObjectHideFlags: 0
