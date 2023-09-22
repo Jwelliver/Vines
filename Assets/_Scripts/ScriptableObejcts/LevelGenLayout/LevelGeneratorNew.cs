@@ -26,7 +26,7 @@ public class LevelGeneratorNew : ScriptableObject
         levelSection = new Section
         {
             startPos = levelSettings.startPos,
-            length = RNG.RandomRange(levelSettings.minLength, levelSettings.maxLength),
+            length = RNG.RandomRange(levelSettings.levelLength),
             startOffset = levelSettings.globalStartOffset,
             endOffset = levelSettings.globalEndOffset
         };
@@ -36,7 +36,7 @@ public class LevelGeneratorNew : ScriptableObject
     {
         initLevelSection();
         addBackgroundLayerSection(levelSection);
-        addTreeLayerSection(levelSection, levelSettings.treeLayoutParams);
+        // addTreeLayerSection(levelSection, );
         addWinPlatform(new Vector2(levelSection.length, levelSettings.startPos.y - 1.5f));
     }
 

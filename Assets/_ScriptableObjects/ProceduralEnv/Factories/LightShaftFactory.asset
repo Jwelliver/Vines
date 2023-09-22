@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3933992b243742647b75a59d25e40d57, type: 3}
+  m_Name: LightShaftFactory
+  m_EditorClassIdentifier: 
+  lightShaftPrefab: {fileID: 8119098281156781924, guid: 037b46403c4a63043bce854bf732d868, type: 3}
+  defaultFactoryConfig:
+    heightVariation: 5
+    groundLevel: -3
+    width:
+      min: 1
+      max: 3
+    angle:
+      min: 20
+      max: 30
+    intensity:
+      min: 1
+      max: 3
+  lightShaftContainerPath: 

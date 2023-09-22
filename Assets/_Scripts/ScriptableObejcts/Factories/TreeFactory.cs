@@ -50,7 +50,7 @@ public class NewTreeAssembly
     }
 }
 
-
+[CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Factories/TreeFactory")]
 public class TreeFactory : ScriptableObject
 {
     [SerializeField] TreeFactoryConfig defaultFactoryConfig = new TreeFactoryConfig();

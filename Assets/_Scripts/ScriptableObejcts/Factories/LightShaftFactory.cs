@@ -14,12 +14,25 @@ public class LightShaftFactoryConfig
     public MinMax<float> intensity = new MinMax<float>(1f, 3f);
 }
 
-
+[CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Factories/LightShaftFactory")]
 public class LightShaftFactory : ScriptableObject
 {
     [SerializeField] Transform lightShaftPrefab;
     [SerializeField] LightShaftFactoryConfig defaultFactoryConfig = new LightShaftFactoryConfig();
-    [SerializeField] string lightShaftContainerPath;
+    public string lightShaftContainerPath;
+    Transform lightShaftContainerParent;
+
+
+    void OnDisable()
+    {
+        lightShaftContainerParent = null;
+    }
+
+    public void SetLightShaftContainerParent(Transform lightShaftContainer)
+    {
+        lightShaftContainerParent = lightShaftContainer;
+    }
+
 
     public void SetDefaultFactoryConfig(LightShaftFactoryConfig newDefaultFactoryConfig)
     {
@@ -27,7 +40,7 @@ public class LightShaftFactory : ScriptableObject
         defaultFactoryConfig = newDefaultFactoryConfig;
     }
 
-    public void GenerateLightShaft(Vector2 position)
+    public Transform GenerateLightShaft(Vector2 position)
     {
 
         Transform newLightShaft = GameObject.Instantiate(lightShaftPrefab, position, Quaternion.identity);
@@ -47,7 +60,7 @@ public class LightShaftFactory : ScriptableObject
         {
             Debug.LogError("Error initializing lightShaft: Ground not Found. Angle Searched: " + rotation);
             newLightShaft.gameObject.SetActive(false);
-            return;
+            return null;
         }
 
         distanceToGround += RNG.RandomRange(-defaultFactoryConfig.heightVariation, defaultFactoryConfig.heightVariation);
@@ -63,13 +76,13 @@ public class LightShaftFactory : ScriptableObject
         light.intensity = RNG.RandomRange(defaultFactoryConfig.intensity);
 
         // Set Parent
-        Transform lightShaftContainer = GameObject.Find(lightShaftContainerPath).transform;
-        newLightShaft.SetParent(lightShaftContainer);
+        newLightShaft.SetParent(GetLightShaftContainerParent());
 
+        return newLightShaft;
     }
 
     //TODO: this should be in a static util class
-    public float FindDistanceToGround(Vector2 objectOriginPosition, float transformRotation, float targetY)
+    private float FindDistanceToGround(Vector2 objectOriginPosition, float transformRotation, float targetY)
     {
         // Convert angle to radians
         float theta = transformRotation * Mathf.Deg2Rad;
@@ -100,5 +113,19 @@ public class LightShaftFactory : ScriptableObject
         }
         // Debug.Log("Position: " + objectOriginPosition + " | rotation: " + transformRotation + " | targetY: " + targetY + "| distance: " + distance);
         return Mathf.Abs(distance);
+    }
+
+    private Transform GetLightShaftContainerParent()
+    {
+        if (lightShaftContainerParent == null)
+        {
+            if (lightShaftContainerPath.Length == 0)
+            {
+                Debug.LogError("Error: LightShaftFactory > Parent not provided and container path is empty.");
+                return null;
+            }
+            lightShaftContainerParent = GameObject.Find(lightShaftContainerPath).transform;
+        }
+        return lightShaftContainerParent;
     }
 }

@@ -8,7 +8,7 @@ public class RndSprite : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Awake()
+    void Awake_TempDisabled() //! temp disabled for testing vine adornment factory;
     {
         // If SpriteRenderer not provided, try to auto assign from this gameObject.
         if (spriteRenderer == null)

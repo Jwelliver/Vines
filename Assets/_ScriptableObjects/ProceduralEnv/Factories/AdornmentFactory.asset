@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f4d45c19be49ed4685ed159a0fb017c, type: 3}
+  m_Name: AdornmentFactory
+  m_EditorClassIdentifier: 
+  vineAdornmentPrefabs:
+  - {fileID: 5600827222275690981, guid: f5d38904e00b8434e88b3d096b34e322, type: 3}
+  sprites: {fileID: 11400000, guid: a6fb1a263b5735946bc511bfa4694b54, type: 2}
+  colors: {fileID: 11400000, guid: 0efdb38c47fbeff4da7dade45b963c52, type: 2}

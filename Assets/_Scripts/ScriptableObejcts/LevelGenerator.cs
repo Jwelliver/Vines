@@ -33,29 +33,11 @@ class ProbWeightItemList<T>
 [Serializable]
 public class ProceduralObject
 {
-    // public string id;
-    // public string parentPath;
     public Transform prefab;
     public bool enableRandomScale = true;
     public float minScale;
     public float maxScale;
     public bool enableRandomFlip = true;
-
-    // private Transform getParent()
-    // {
-    //     Transform parent;
-    //     try
-    //     {
-    //         parent = GameObject.Find(parentPath).transform;
-    //         return parent;
-
-    //     }
-    //     catch (Exception e)
-    //     {
-    //         Debug.LogError("Error > Parent not found: parentPath: " + parentPath + "\n Exception: " + e);
-    //         return null;
-    //     }
-    // }
 
     public virtual void applyRandomScale(Transform obj)
     {
@@ -82,7 +64,7 @@ public class ProceduralObject
         objectSetup(newObj);
     }
 
-    public void createMany(List<Vector2> positions, Transform parent)//, Transform? parent
+    public void createMany(List<Vector2> positions, Transform parent)
     {
         // Transform parent = getParent();
         if (parent == null) return;
@@ -104,7 +86,7 @@ class ProceduralSpriteObject : ProceduralObject
     public ProbWeightItemList<Sprite> weightedSprites;
     public string sortLayerName = null;
     public int sortOrder;
-    public Color color = new Color(1f, 1f, 1f);
+    public Color color = new Color(1f, 1f, 1f, 1f);
 
     SpriteRenderer getSpriteRenderer(Transform obj)
     {
@@ -225,80 +207,124 @@ public class ProceduralLayer<T> where T : ProceduralObject
 public class LevelGenerator : ScriptableObject
 {
     [Header("Level")]
-    [SerializeField] string proceduralLevelContainerName = "ProceduralLevelContainer";
+    [SerializeField] LevelSettings levelSettings;
+
+    [Header("Container Paths")]
+    [SerializeField] string proceduralElementsPath = "Environment/ProceduralElements";
     [SerializeField] string treeParentName = "TreeContainer";
     [SerializeField] string backgroundParentName = "SpriteLayers";
-    [SerializeField] LevelSettings levelSettings;
+    [SerializeField] string lightShaftContainerName = "LightShafts";
+
+
+    [Header("Factories")]
+    [SerializeField] TreeFactory treeFactory;
+    [SerializeField] VineFactory vineFactory;
+    [SerializeField] LightShaftFactory lightShaftFactory;
 
     [Header("Background Layers")]
     [SerializeField] float zDistanceInterval = 5f;//any layer that doesn't have a set zDistance will have Abs(sortOrder) * zDistanceInterval applied
     [SerializeField] List<ProceduralLayer<ProceduralSpriteObject>> backgroundLayers = new List<ProceduralLayer<ProceduralSpriteObject>>();
 
     [Header("Prefabs")]
-
-    [SerializeField] Transform treePrefab;
-
     [SerializeField] Transform winPlatformPrefab;
-    [SerializeField] Transform blankParent;
+    [SerializeField] Transform blankParentPrefab;
 
     Section levelSection;
 
     ProceduralLayerGenerator layerGenerator = new ProceduralLayerGenerator();
 
-
-
-    private void initLevelSection()
+    private void InitLevelSection()
     {
         levelSection = new Section
         {
             startPos = levelSettings.startPos,
-            length = RNG.RandomRange(levelSettings.minLength, levelSettings.maxLength),
+            length = RNG.RandomRange(levelSettings.levelLength),
             startOffset = levelSettings.globalStartOffset,
             endOffset = levelSettings.globalEndOffset
         };
     }
 
-    void BatchLightShafts()
+    private void InitFactories()
     {
-        Transform lightShaftContainer = GameObject.Find(proceduralLevelContainerName + "/Lightshafts").transform;
-        StaticBatchingUtility.Combine(lightShaftContainer.gameObject);
+        treeFactory.SetDefaultFactoryConfig(levelSettings.treeSettings);
+        vineFactory.SetDefaultFactoryConfig(levelSettings.vineSettings);
+        lightShaftFactory.SetLightShaftContainerParent(GameObject.Find(GetElementContainerPath(lightShaftContainerName)).transform);
     }
 
-    public void generateLevel()
+    private void DeInitFactories()
     {
-        RNG.SetSeed(1);//TODO: remove this for prod;
-        initLevelSection();
-        addBackgroundLayerSection(levelSection);
-        addTreeLayerSection(levelSection, levelSettings.treesMinSpacing, levelSettings.treesMaxSpacing);
-        addWinPlatform(new Vector2(levelSection.length, levelSettings.startPos.y));
+        // Do any factory cleanup here
+        lightShaftFactory.SetLightShaftContainerParent(null);
+    }
+
+    private void InitRNG()
+    {
+        if (levelSettings.rngSeed != -1) { RNG.SetSeed(levelSettings.rngSeed); }
+    }
+
+    public void GenerateLevel()
+    {
+        InitRNG();
+        InitFactories();
+        InitLevelSection();
+        AddBackgroundLayerSection(levelSection);
+        AddTreeLayerSection(levelSection);
+        AddWinPlatform(new Vector2(levelSection.length, levelSettings.startPos.y));
         BatchLightShafts();
+        DeInitFactories();
     }
 
-    void addTreeLayerSection(Section section, float minSpacing, float maxSpacing)
+    void AddTreeLayerSection(Section section)
     {
-        string treeLayerParentPath = proceduralLevelContainerName + "/" + treeParentName;
-        Transform treeLayerParent = GameObject.Find(treeLayerParentPath).transform;
-        ProceduralObject tree = new ProceduralObject
+        Transform treeLayerParent = GameObject.Find(GetElementContainerPath(treeParentName)).transform;
+        List<Vector2> positions = GeneratePositions(section, levelSettings.treeSpacing);
+        foreach (Vector2 position in positions)
         {
-            // id = "Tree",
-            // parentPath = treeLayerParentPath,
-            prefab = treePrefab,
-            enableRandomScale = false,
-        };
-        ProceduralLayer<ProceduralObject> layer = new ProceduralLayer<ProceduralObject>
-        {
-            id = "TreeLayer",
-            proceduralObject = tree,
-            minSpacing = minSpacing,
-            maxSpacing = maxSpacing,
-        };
-        layerGenerator.populateLayerSection(layer, section, treeLayerParent);
+            treeFactory.GenerateTree(position, treeLayerParent, null);
+        }
         // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
     }
 
-    void addBackgroundLayerSection(Section section)
+    string GetElementContainerPath(string containerName)
     {
-        Transform layerParentContainer = GameObject.Find(proceduralLevelContainerName + "/" + backgroundParentName).transform;
+        return proceduralElementsPath + "/" + containerName;
+    }
+
+    // * pre-factory
+    // public void generateLevel()
+    // {
+    //     // RNG.SetSeed(1);//TODO: remove this for prod;
+    //     initLevelSection();
+    //     addBackgroundLayerSection(levelSection);
+    //     addTreeLayerSection(levelSection, levelSettings.treesMinSpacing, levelSettings.treesMaxSpacing);
+    //     addWinPlatform(new Vector2(levelSection.length, levelSettings.startPos.y));
+    //     BatchLightShafts();
+    // }
+
+    // * pre-factory
+    // void addTreeLayerSection(Section section, float minSpacing, float maxSpacing)
+    // {
+    //     string treeLayerParentPath = proceduralLevelContainerName + "/" + treeParentName;
+    //     Transform treeLayerParent = GameObject.Find(treeLayerParentPath).transform;
+    //     ProceduralObject tree = new ProceduralObject
+    //     {
+    //         prefab = treePrefab,
+    //         enableRandomScale = false,
+    //     };
+    //     ProceduralLayer<ProceduralObject> layer = new ProceduralLayer<ProceduralObject>
+    //     {
+    //         id = "TreeLayer",
+    //         proceduralObject = tree,
+    //         minSpacing = minSpacing,
+    //         maxSpacing = maxSpacing,
+    //     };
+    //     layerGenerator.populateLayerSection(layer, section, treeLayerParent);
+    //     // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
+    // }
+
+    void AddBackgroundLayerSection(Section section)
+    {
+        Transform layerParentContainer = GameObject.Find(GetElementContainerPath(backgroundParentName)).transform;
 
         Dictionary<string, int> sortLayerOrdering = new Dictionary<string, int>();
 
@@ -313,11 +339,11 @@ public class LevelGenerator : ScriptableObject
             else sortLayerOrdering[sortLayerName]--;
             layer.proceduralObject.sortOrder = sortLayerOrdering[sortLayerName];
 
-            // auto set zDistance if it's set to -1 (i.e. auto)
+            // Use Auto zDistance if enabled, otherwise use the layer's set zDistance
             float zDistance = layer.useAutoZDistance ? i * zDistanceInterval : layer.zDistance;
 
             //
-            Transform layerParent = GameObject.Instantiate(blankParent, layerParentContainer);
+            Transform layerParent = GameObject.Instantiate(blankParentPrefab, layerParentContainer);
             layerParent.name = layer.id;
             if (layer.enableParallax)
             {
@@ -339,13 +365,38 @@ public class LevelGenerator : ScriptableObject
     }
 
 
-    void addWinPlatform(Vector2 pos)
+    void AddWinPlatform(Vector2 pos)
     {
         GameObject.Instantiate(winPlatformPrefab, pos, Quaternion.identity);
     }
 
+    private void BatchLightShafts()
+    {
+        Transform lightShaftContainer = GameObject.Find(GetElementContainerPath(lightShaftContainerName)).transform;
+        StaticBatchingUtility.Combine(lightShaftContainer.gameObject);
+    }
 
 
+    public List<Vector2> GeneratePositions(Section section, MinMax<float> spacing, float yOffset = 0)
+    {
+        if (spacing.min == 0 && spacing.max == 0)
+        {
+            Debug.LogError("Error: Incorrect Spacing values. \nminSpacing: " + spacing.min + " | maxSpacing: " + spacing.max);
+            return null;
+        }
+        float startX = section.startPos.x;
+        float endX = startX + section.length;
+        float y = section.startPos.y + yOffset;
+        float endOffset = section.endOffset;
+        float startOffset = section.startOffset;
+
+        List<Vector2> positions = new List<Vector2>();
+        for (float x = startX + startOffset; x < endX + endOffset; x += RNG.RandomRange(spacing))
+        {
+            positions.Add(new Vector2(x, y));
+        }
+        return positions;
+    }
 }
 
 

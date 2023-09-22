@@ -36,7 +36,6 @@ public class VineFactoryConfig
     [Header("Segment Colors")]
     public Color normalSegmentColor = new Color(1, 1, 1, 1);
     public Color weakSegmentColor = new Color(0.764151f, 0.50165635f, 0f, 1);
-
 }
 
 // public class VineConfig
@@ -56,14 +55,24 @@ public class VineFactoryConfig
     ? set weight of segment based on width
 */
 
+/*
+TODO:
+    - Add Segment sprites list; choose random sprite here;
+    - Try to set the snap particle reference in the vine root; then on break, the vine root can instantiate the particles at the position of the broken joint
+    - Refactor VineSegment script; Might not want to remove completely as it still may be useful for other functionality
+        ... but def want to remove references to sprites;
 
+    - On VineRoot; Refactor "ProceduralVine" Script
+        ... maybe just set it to a new VineRoot script
+*/
+
+[CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Factories/VineFactory")]
 public class VineFactory : ScriptableObject
 {
 
     [SerializeField] VineFactoryConfig defaultFactoryConfig = new VineFactoryConfig();
     [SerializeField] Transform vineRootPrefab;
     [SerializeField] List<Transform> vineSegmentPrefabs;
-    // [SerializeField] List<Transform> adornmentPrefabs;
     [SerializeField] VineAdornmentFactory vineAdornmentFactory;
 
     public void SetDefaultFactoryConfig(VineFactoryConfig newDefaultFactoryConfig)

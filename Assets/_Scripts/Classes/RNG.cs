@@ -17,17 +17,12 @@ public static class RNG
         }
     }
 
-    public static void SetSeed(int? manualSeed = null)
+    public static int SetSeed(int? manualSeed = null)
     {
-        if (manualSeed.HasValue)
-        {
-            _seed = manualSeed.Value;
-        }
-        else
-        {
-            _seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
-        }
+        if (manualSeed.HasValue) { _seed = manualSeed.Value; }
+        else { _seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue); }
         _randomInstance = null;
+        return _seed;
     }
 
     public static int RandomRange(int lo, int hi)

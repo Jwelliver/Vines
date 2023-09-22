@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
-        levelGen.generateLevel();
+        levelGen.GenerateLevel();
         // levelGenNew.generateLevel();
     }
     public void win()

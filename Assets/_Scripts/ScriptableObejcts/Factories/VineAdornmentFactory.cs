@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Factories/VineAdornmentFactory")]
 public class VineAdornmentFactory : ScriptableObject
 {
     [SerializeField] List<Transform> vineAdornmentPrefabs = new List<Transform>();

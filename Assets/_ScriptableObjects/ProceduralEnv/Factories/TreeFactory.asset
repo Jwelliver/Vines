@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446022325fb159d4080ba6ed23019472, type: 3}
+  m_Name: TreeFactory
+  m_EditorClassIdentifier: 
+  defaultFactoryConfig:
+    treeScale:
+      min: 1
+      max: 1.25
+    trunkHeight:
+      min: 1.5
+      max: 2.5
+    maxAngle: 5
+    maxVines: 4
+    pctChangeLightShaft: 0.3
+    maxLightShafts: 2
+  treePrefab: {fileID: 8428600142129587418, guid: f80f469dce6593a4aa6cd1d1b006aa40, type: 3}
+  vineFactory: {fileID: 11400000, guid: df32491e6ba27db4ea1d127078f3d561, type: 2}
+  lightShaftFactory: {fileID: 11400000, guid: 6692fbecb148a7444a8ecde546acc676, type: 2}
+  palmPrefabs:
+  - {fileID: 4541776258987659219, guid: 1e22d83e4b65c264384eb6f771468776, type: 3}
+  - {fileID: 6165184426630625531, guid: 88f1d65a154a6ee4aae74b59e02a3ade, type: 3}
+  - {fileID: 2052431411895931276, guid: fe12a1fc1deee9841a529c959aadf98d, type: 3}
+  - {fileID: 6936129061349259939, guid: 98105ed6b4fb73c40b0d1675df09d0b1, type: 3}
+  trunkSprites:
+  - {fileID: -363360082, guid: 183629812909a1041b19a55e7191c253, type: 3}
+  - {fileID: -1295716066, guid: 665112540f093154fa0b1dac37d108bf, type: 3}

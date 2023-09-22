@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d33a43b21901174bb041cfc30f4447c, type: 3}
   m_Name: LevelGen
   m_EditorClassIdentifier: 
-  proceduralLevelContainerName: Environment/ProceduralElements
+  levelSettings: {fileID: 11400000, guid: 0e2ae0436583b4d4a9727f49e454f82c, type: 2}
+  proceduralElementsPath: Environment/ProceduralElements
   treeParentName: TreeContainer
   backgroundParentName: SpriteLayers
-  levelSettings: {fileID: 11400000, guid: 0e2ae0436583b4d4a9727f49e454f82c, type: 2}
+  lightShaftContainerName: LightShafts
+  treeFactory: {fileID: 11400000, guid: 53c7487dc524065478240f549d8d2ce9, type: 2}
+  vineFactory: {fileID: 11400000, guid: df32491e6ba27db4ea1d127078f3d561, type: 2}
+  lightShaftFactory: {fileID: 11400000, guid: 6692fbecb148a7444a8ecde546acc676, type: 2}
   zDistanceInterval: 1
   backgroundLayers:
   - id: FoliageCameraForeground
@@ -490,6 +494,5 @@ MonoBehaviour:
     enableParallax: 1
     useAutoZDistance: 0
     zDistance: 20
-  treePrefab: {fileID: 8428600142129587418, guid: f80f469dce6593a4aa6cd1d1b006aa40, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
-  blankParent: {fileID: 2094452519030092049, guid: e5d8140a28e33414380f47bc2939aae0, type: 3}
+  blankParentPrefab: {fileID: 2094452519030092049, guid: e5d8140a28e33414380f47bc2939aae0, type: 3}
