@@ -88,6 +88,10 @@ public class GameManager : MonoBehaviour
         {
             levelLoader.reloadCurrentLevel();
         }
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        {
+
+        }
     }
 
     void playWinMusic()
@@ -100,4 +104,6 @@ public class GameManager : MonoBehaviour
         // music.volume = 1;
         // music.Play();
     }
+
+
 }

@@ -10,6 +10,21 @@ public class LevelLoader : MonoBehaviour
     [SerializeField] bool allowNextLevelKey;
     [SerializeField] KeyCode nextLevelKeyCode = KeyCode.Space;
 
+    public void LoadStartMenu()
+    {
+        // remove persistant audio
+        GameObject[] audioPlayers = GameObject.FindGameObjectsWithTag("PersistantAudio");
+        Debug.Log("Number of audio players: " + audioPlayers.Length);
+        foreach (GameObject audio in audioPlayers)
+        {
+            Destroy(audio);
+        }
+        Resources.UnloadUnusedAssets();//added 090623 in attempt to address mem issue and crash
+        // SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+        Cursor.visible = true;
+        SceneManager.LoadScene(0);
+    }
+
     public void loadNextLevel()
     {
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
@@ -35,6 +50,7 @@ public class LevelLoader : MonoBehaviour
             loadNextLevel();
         }
     }
+
 
     // void OnEnable()
     // {

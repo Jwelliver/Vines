@@ -7,6 +7,7 @@ TagManager:
   - physicsOverride
   - platform
   - PlatformLandZone
+  - PersistantAudio
   layers:
   - Default
   - TransparentFX

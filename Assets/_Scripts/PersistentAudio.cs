@@ -19,14 +19,6 @@ public class PersistentAudio : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Update()
-    {
-        // if (isFading)
-        // {
-        //     continueFade();
-        // }
-    }
-
     public void play()
     {
         audioSource.Play();
