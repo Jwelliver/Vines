@@ -16,53 +16,63 @@ public class WaterDeath : MonoBehaviour
     [SerializeField] Transform deathHat;
     [SerializeField] Transform deathHatBuoyancyObj;
     [SerializeField] ParticleSystem waterSplashParticles;
+    bool hasDied;
     // [SerializeField] Cinemachine.CinemachineVirtualCamera cam;
 
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if(other.tag=="Player") {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player" && !hasDied)
+        {
             handleWaterSplash();
             StartCoroutine(onDeath());
         }
     }
 
-    IEnumerator onDeath() {
+    IEnumerator onDeath()
+    {
 
-            // stop player motion
-            disablePlayer();
+        // set hasDied flag; (prevents accidental multiple calls if multiple colliders hit trigger)
+        hasDied = true;
+        // stop player motion
+        disablePlayer();
 
-            yield return new WaitForSeconds(0.5f);
-            //spawn deathHat
-            spawnDeathHat();
+        yield return new WaitForSeconds(0.5f);
+        //spawn deathHat
+        spawnDeathHat();
 
-            yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1f);
 
-            // play deathText animation
-            deathTextAnimator.SetTrigger("StartDeathText");
-            // play deadMusic
-            audioSource.PlayOneShot(deadMusic);
-            
+        // play deathText animation
+        deathTextAnimator.SetTrigger("StartDeathText");
+        // play deadMusic
+        audioSource.PlayOneShot(deadMusic);
+
 
     }
 
-    void spawnDeathHat() {
+    void spawnDeathHat()
+    {
         Vector2 spawnPos = (Vector2)deathHatBuoyancyObj.position - new Vector2(0, 3);
         GameObject.Instantiate(deathHat, spawnPos, Quaternion.identity);
     }
 
-    void handleWaterSplash() {
+    void handleWaterSplash()
+    {
         //play splash anim
         waterSplashParticles.Play();
         // play splash sound
         audioSource.PlayOneShot(waterSplash);
     }
 
-    void disablePlayer() {
-        foreach(AudioSource a in playerBody.transform.root.GetComponents<AudioSource>()) {
+    void disablePlayer()
+    {
+        foreach (AudioSource a in playerBody.transform.root.GetComponents<AudioSource>())
+        {
             a.Stop();
         }
         // Rigidbody2D playerRb = other.transform.root.gameObject.GetComponent<Rigidbody2D>();
-        playerRb.velocity=Vector2.zero;
+        playerRb.velocity = Vector2.zero;
         playerRb.gravityScale = 0;
         playerRb.bodyType = RigidbodyType2D.Static;
         // disable player sprite
