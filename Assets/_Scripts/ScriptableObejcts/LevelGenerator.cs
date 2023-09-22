@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [Serializable]
 public class ProbWeightedItem<T>
@@ -136,8 +137,11 @@ public class Section
 {
     public Vector2 startPos;
     public int length;
+    //TODO: 092223: If BackgroundBuffer approach works; we probably don't need the offsets here.
     public float startOffset = 0;
     public float endOffset = 0;
+
+    public Vector2 endPos => new Vector2(startPos.x + length, startPos.y);
 
     public Section getCopy()
     {
@@ -203,11 +207,19 @@ public class ProceduralLayer<T> where T : ProceduralObject
 }
 
 
+public enum SectionFillType
+{
+    ALL,
+    TREES_ONLY,
+    BG_ONLY
+}
+
+
 [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Level Generator")]
 public class LevelGenerator : ScriptableObject
 {
     [Header("Level")]
-    [SerializeField] LevelSettings levelSettings;
+    public LevelSettings levelSettings;
 
     [Header("Container Paths")]
     [SerializeField] string proceduralElementsPath = "Environment/ProceduralElements";
@@ -229,13 +241,15 @@ public class LevelGenerator : ScriptableObject
     [SerializeField] Transform winPlatformPrefab;
     [SerializeField] Transform blankParentPrefab; //Used to create empty parent container for individual spriteLayers
 
-    Section levelSection;
+    // Section levelSection;
+
+    public Section currentSection;
 
     ProceduralLayerGenerator layerGenerator = new ProceduralLayerGenerator();
 
-    private void InitLevelSection()
-    {
-        levelSection = new Section
+    private void InitCurrentSection()
+    {   // Run once on level start;
+        currentSection = new Section
         {
             startPos = levelSettings.startPos,
             length = RNG.RandomRange(levelSettings.levelLength),
@@ -262,16 +276,77 @@ public class LevelGenerator : ScriptableObject
         if (levelSettings.rngSeed != -1) { RNG.SetSeed(levelSettings.rngSeed); }
     }
 
-    public void GenerateLevel()
+    private Section AddSectionOffset(Section section, int offsetLength, SectionFillType fillType)
     {
-        InitRNG();
+        // Adds a Section Offset to the given section; Negative offsetLength will prepend the new section before the given section, Positive will append the section to the given section, starting at section.endpos.
+        Section offsetSection = section.getCopy();
+        if (offsetLength < 0) { offsetSection.startPos += new Vector2(offsetLength, 0); }
+        else { offsetSection.startPos = section.endPos; }
+        offsetSection.length = Math.Abs(offsetLength);
+        GenerateSection(offsetSection, fillType);
+        return offsetSection;
+    }
+
+    public void InitLevel()
+    {
+        InitRNG(); // This Must be First;
         InitFactories();
-        InitLevelSection();
-        AddBackgroundLayerSection(levelSection);
-        AddTreeLayerSection(levelSection);
-        AddWinPlatform(new Vector2(levelSection.length, levelSettings.startPos.y));
-        BatchLightShafts();
+        if (levelSettings.levelType == LevelType.NORMAL)
+        {
+            InitNormalMode();
+        }
+        else if (levelSettings.levelType == LevelType.ENDLESS)
+        {
+            InitEndlessMode();
+        }
+    }
+
+    void InitNormalMode()
+    {
+        // Set up current section
+        InitCurrentSection();
+        // Prepend start BG section
+        AddSectionOffset(currentSection, -100, SectionFillType.ALL); //todo change to BG_ONLY and init a small section of trees before
+        // Generate Main Section
+        GenerateSection(currentSection, SectionFillType.ALL);
+        // Add Win Platform
+        AddWinPlatform(currentSection.endPos);
+        // Append end BG section
+        AddSectionOffset(currentSection, 100, SectionFillType.BG_ONLY);
         DeInitFactories();
+    }
+
+    void InitEndlessMode()
+    {
+        // Set up current section
+        InitCurrentSection();
+        // Prepend start BG section
+        AddSectionOffset(currentSection, -100, SectionFillType.ALL);
+        // Generate First Section
+        GenerateSection(currentSection, SectionFillType.ALL);
+    }
+
+    public void ExtendCurrentSection()
+    {   // Used for Endless mode
+        int extensionLength = 5;
+        //Create a SectionOffset and set currentSection to the new section that is returned
+        currentSection = AddSectionOffset(currentSection, extensionLength, SectionFillType.ALL);
+    }
+
+    void GenerateSection(Section section, SectionFillType fillType)
+    {
+        // InitFactories();
+        AddBackgroundLayerSection(section);
+        AddTreeLayerSection(section);
+        // AddWinPlatform(new Vector2(currentSection.length, levelSettings.startPos.y));
+        if (fillType == SectionFillType.ALL || fillType == SectionFillType.BG_ONLY)
+        {
+            AddBackgroundLayerSection(section);
+        }
+        if (fillType == SectionFillType.ALL || fillType == SectionFillType.TREES_ONLY)
+        {
+            AddTreeLayerSection(section);
+        }
     }
 
     void AddTreeLayerSection(Section section)
@@ -283,6 +358,7 @@ public class LevelGenerator : ScriptableObject
             treeFactory.GenerateTree(position, treeLayerParent, null);
         }
         // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
+        BatchLightShafts();
     }
 
     string GetElementContainerPath(string containerName)

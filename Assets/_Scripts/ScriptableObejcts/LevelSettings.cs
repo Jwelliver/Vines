@@ -1,11 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-
 
 [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Level Settings")]
 public class LevelSettings : ScriptableObject
 {
+
+    [Header("GameMode")]
+    public LevelType levelType = LevelType.ENDLESS;
+
     [Header("RNG Seed")]
     public int rngSeed = -1;
 
@@ -27,4 +29,11 @@ public class LevelSettings : ScriptableObject
     // public int startOffset;
     // public int endOffset;
 
+}
+
+[Serializable]
+public enum LevelType
+{
+    NORMAL,
+    ENDLESS
 }

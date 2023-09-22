@@ -44,7 +44,18 @@ public class GameManager : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
-        levelGen.GenerateLevel();
+        levelGen.InitLevel();
+    }
+
+    void HandleNewSectionGeneration()
+    {
+        // *TODO TEMP code to test endless mode; todo: move
+        float endX = levelGen.currentSection.startPos.x + levelGen.currentSection.length;
+        if (Mathf.Abs(playerRef.position.x - endX) < 30f)
+        {
+            levelGen.ExtendCurrentSection();
+            Debug.Log("Appending NewSection");
+        }
     }
 
     public void win()
@@ -88,10 +99,12 @@ public class GameManager : MonoBehaviour
         {
             levelLoader.reloadCurrentLevel();
         }
-        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
+        //TODO: Move this out of here; Come up with a better way of handling the endless generatino
+        if (levelGen.levelSettings.levelType == LevelType.ENDLESS)
         {
-
+            HandleNewSectionGeneration();
         }
+
     }
 
     void playWinMusic()

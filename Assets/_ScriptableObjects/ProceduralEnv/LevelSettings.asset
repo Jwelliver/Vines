@@ -12,17 +12,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf54e341033d324389f3f31cd83b188, type: 3}
   m_Name: LevelSettings
   m_EditorClassIdentifier: 
+  levelType: 1
+  rngSeed: -1
   startPos: {x: 0, y: 0}
-  minLength: 300
-  maxLength: 800
-  globalStartOffset: -100
-  globalEndOffset: 100
-  treesMinSpacing: 4
-  treesMaxSpacing: 8
-  treeLayoutParams:
-    enableRandomScale: 0
-    minScale: 0
-    maxScale: 0
-    minSpacing: 0
-    maxSpacing: 0
-    enableRandomFlip: 0
+  levelLength:
+    min: 50
+    max: 50
+  globalStartOffset: 0
+  globalEndOffset: 0
+  treeSpacing:
+    min: 5
+    max: 10
+  treeSettings:
+    treeScale:
+      min: 1
+      max: 1.25
+    trunkHeight:
+      min: 1.5
+      max: 2.5
+    maxTreeRotation: 5
+    maxPalmRotation: 5
+    maxVines: 4
+    pctChangeLightShaft: 0.3
+    maxLightShafts: 2
+  vineSettings:
+    length:
+      min: 15
+      max: 25
+    segmentLength: 0.7
+    normalBreakForce:
+      min: 1500
+      max: 2500
+    weakBreakForce:
+      min: 250
+      max: 500
+    pctChanceWeak: 0.08
+    pctChanceCurl: 0.3
+    maxCurlForce: 10
+    curlSpeed: 10
+    pctChanceAdornment: 0.7
+    adornmentScale:
+      min: 0.3
+      max: 0.8
+    normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
+    weakSegmentColor: {r: 0.764151, g: 0.50165635, b: 0, a: 1}
