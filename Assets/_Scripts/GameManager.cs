@@ -1,9 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+
+//TODO: Refactor (092123);
+/*
+    - Extract audio clips and sources;
+    - Extract amuletFoundText and Animator (build into own module, rename for generic use)
+    - 
+
+*/
 public class GameManager : MonoBehaviour
 {
     public LevelGenerator levelGen;
@@ -20,18 +26,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] SpriteRenderer playerAmulet;
     public Transform playerRef;
     public Camera cameraRef;
-
-
-
     AudioSource audioSource;
-
-
     PersistentAudio music;
-
-
     public bool playerHasAmulet;
-
-
 
     void Start()
     {
@@ -48,8 +45,8 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
         levelGen.GenerateLevel();
-        // levelGenNew.generateLevel();
     }
+
     public void win()
     {
         // Debug.Log("You Won!");
