@@ -11,4 +11,9 @@ public class MinMax<T>
         min = _min;
         max = _max;
     }
+
+    public MinMax<T> Copy()
+    {
+        return new MinMax<T>(min, max);
+    }
 }
