@@ -85,7 +85,7 @@ public class TreeFactory : ScriptableObject
         };
     }
 
-    public Transform GenerateTree(Vector2 position, Transform parent, TreeFactoryConfig factoryConfigOverride = null)
+    public Transform GenerateTree(Vector2 position, Transform parent, TreeFactoryConfig factoryConfigOverride = null, VineFactoryConfig vineFactoryConfigOverride = null)
     {
         // Instantiate new tree prefab
         Transform newTree = GameObject.Instantiate(treePrefab, position, Quaternion.identity, parent);
@@ -96,7 +96,7 @@ public class TreeFactory : ScriptableObject
         // Assemble New Tree
         InitTree(newTreeAssembly);
         InitPalms(newTreeAssembly);
-        PopulateVines(newTreeAssembly);
+        PopulateVines(newTreeAssembly, vineFactoryConfigOverride);
         PopulateLightShafts(newTreeAssembly);
         // Destroy Assembly Objects
         newTreeAssembly = null;
@@ -155,13 +155,13 @@ public class TreeFactory : ScriptableObject
     }
 
 
-    private void PopulateVines(NewTreeAssembly newTreeAssembly)
+    private void PopulateVines(NewTreeAssembly newTreeAssembly, VineFactoryConfig vineFactoryConfigOverride = null)
     {
         Transform vinesContainer = newTreeAssembly.vinesContainer;
         for (int i = 0; i < newTreeAssembly.treeConfig.nVines; i++)
         {
             Vector2 rndPosition = RNG.RandomChoice(newTreeAssembly.palmAnchorPositions);
-            vineFactory.GenerateVine(rndPosition, vinesContainer);
+            vineFactory.GenerateVine(rndPosition, vinesContainer, vineFactoryConfigOverride);
         }
     }
 
