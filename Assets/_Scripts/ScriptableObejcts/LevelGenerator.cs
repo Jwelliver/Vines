@@ -254,7 +254,7 @@ public class LevelGenerator : ScriptableObject
 
     // Section levelSection;
 
-    public Section currentSection;
+    Section currentSection;
 
     ProceduralLayerGenerator layerGenerator = new ProceduralLayerGenerator();
 
@@ -303,6 +303,11 @@ public class LevelGenerator : ScriptableObject
         return offsetSection;
     }
 
+    public Section GetCurrentSection()
+    {
+        return currentSection;
+    }
+
     public void InitLevel()
     {
         InitRNG(); // This Must be First;
@@ -321,13 +326,13 @@ public class LevelGenerator : ScriptableObject
     {
         // Set up current section
         InitCurrentSection();
+        // Add Win Platform (must do this before placing trees to ensure VineOverrideZones are found)
+        AddWinPlatform(currentSection.endPos);
         // Prepend start BG section and Small Tree section
         AddSectionOffset(currentSection, -100, SectionFillType.BG_ONLY);
         AddSectionOffset(currentSection, -30, SectionFillType.TREES_ONLY);
         // Generate Main Section
         GenerateSection(currentSection, SectionFillType.ALL);
-        // Add Win Platform
-        AddWinPlatform(currentSection.endPos);
         // Append end BG section
         AddSectionOffset(currentSection, 100, SectionFillType.BG_ONLY);
         BatchLightShafts();
