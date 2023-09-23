@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bab6fa0fb3fb8a646a80021ebec0496e, type: 3}
   m_Name: AppSettings
   m_EditorClassIdentifier: 
-  targetFrameRate_desktop: 60
-  vSyncCount_desktop: 0
+  targetFrameRate_desktop: -1
+  vSyncCount_desktop: 2
   targetFrameRate_webGl: -1
   vSyncCount_webGl: 0
