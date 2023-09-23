@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 9200207485160716269}
   - component: {fileID: 9200207485160716268}
   - component: {fileID: 9200207485160716271}
+  - component: {fileID: 5988441624044211608}
   m_Layer: 8
   m_Name: Platform
   m_TagString: platform
@@ -240,3 +241,40 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7, y: 4}
   m_EdgeRadius: 0
+--- !u!114 &5988441624044211608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9200207485160716270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 743781b30ca6e6d4085c1487ff40bf69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  zoneWidth: 20
+  zoneHeight: Infinity
+  vineFactoryConfigOverride:
+    length:
+      min: 15
+      max: 25
+    segmentLength: 0.7
+    normalBreakForce:
+      min: 1500
+      max: 2500
+    weakBreakForce:
+      min: 250
+      max: 500
+    pctChanceWeak: 0
+    pctChanceCurl: 0.3
+    maxCurlForce: 10
+    curlSpeed: 10
+    pctChanceAdornment: 0.7
+    adornmentScale:
+      min: 0.3
+      max: 0.8
+    normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
+    weakSegmentColor: {r: 0.764151, g: 0.50165635, b: 0, a: 1}
+  vineZoneMode: 0
+  overrideAction: 1
