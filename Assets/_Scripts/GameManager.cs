@@ -50,7 +50,8 @@ public class GameManager : MonoBehaviour
     void HandleNewSectionGeneration()
     {
         // *TODO TEMP code to test endless mode; todo: move
-        float endX = levelGen.currentSection.startPos.x + levelGen.currentSection.length;
+        Section currentSection = levelGen.GetCurrentSection();
+        float endX = currentSection.startPos.x + currentSection.length;
         if (Mathf.Abs(playerRef.position.x - endX) < 30f)
         {
             levelGen.ExtendCurrentSection();
