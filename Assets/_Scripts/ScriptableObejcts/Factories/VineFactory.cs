@@ -36,6 +36,26 @@ public class VineFactoryConfig
     [Header("Segment Colors")]
     public Color normalSegmentColor = new Color(1, 1, 1, 1);
     public Color weakSegmentColor = new Color(0.764151f, 0.50165635f, 0f, 1);
+
+
+    public VineFactoryConfig Copy()
+    {
+        return new VineFactoryConfig
+        {
+            length = length.Copy(),
+            segmentLength = segmentLength,
+            normalBreakForce = normalBreakForce.Copy(),
+            weakBreakForce = weakBreakForce.Copy(),
+            pctChanceWeak = pctChanceWeak,
+            pctChanceCurl = pctChanceCurl,
+            maxCurlForce = maxCurlForce,
+            curlSpeed = curlSpeed,
+            pctChanceAdornment = pctChanceAdornment,
+            adornmentScale = adornmentScale,
+            normalSegmentColor = normalSegmentColor,
+            weakSegmentColor = weakSegmentColor
+        };
+    }
 }
 
 // public class VineConfig
