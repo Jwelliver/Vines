@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [Serializable]
 public class ProbWeightedItem<T>
@@ -199,6 +197,24 @@ public class ProceduralLayer<T> where T : ProceduralObject
     public float zDistance;
 }
 
+[Serializable]
+public class EnvironmentLayer
+{
+    [Header("Layer Properties")]
+    public string id;
+    public bool enabled = true;
+    [Header("Placement")]
+    public MinMax<float> spacing;
+    public float yOffset;
+    [Header("Parallax")]
+    public bool enableParallax;
+    public bool useAutoZDistance;
+    public float zDistance;
+    [Header("Object Properties")]
+    public Transform prefab;
+    [SerializeReference] public EnvironmentObjectFactoryConfig factoryConfig;
+}
+
 
 public enum SectionFillType
 {
@@ -220,7 +236,6 @@ public class LevelGenerator : ScriptableObject
     [SerializeField] string backgroundParentName = "SpriteLayers";
     [SerializeField] string lightShaftContainerName = "LightShafts";
 
-
     [Header("Factories")]
     [SerializeField] TreeFactory treeFactory;
     [SerializeField] VineFactory vineFactory;
@@ -229,6 +244,8 @@ public class LevelGenerator : ScriptableObject
     [Header("Background Layers")]
     [SerializeField] float zDistanceInterval = 5f;//any layer that doesn't have a set zDistance will have Abs(sortOrder) * zDistanceInterval applied
     [SerializeField] List<ProceduralLayer<ProceduralSpriteObject>> backgroundLayers = new List<ProceduralLayer<ProceduralSpriteObject>>();
+    // [SerializeField] List<EnvironmentLayer> environmentLayers = new List<EnvironmentLayer>();
+
 
     [Header("Prefabs")]
     [SerializeField] Transform winPlatformPrefab;
@@ -405,7 +422,6 @@ public class LevelGenerator : ScriptableObject
         }
     }
 
-
     private void AddWinPlatform(Vector2 pos)
     {
         GameObject.Instantiate(winPlatformPrefab, pos, Quaternion.identity);
@@ -416,7 +432,6 @@ public class LevelGenerator : ScriptableObject
         Transform lightShaftContainer = GameObject.Find(GetElementContainerPath(lightShaftContainerName)).transform;
         StaticBatchingUtility.Combine(lightShaftContainer.gameObject);
     }
-
 
     private List<Vector2> GeneratePositions(Section section, MinMax<float> spacing, float yOffset = 0)
     {
