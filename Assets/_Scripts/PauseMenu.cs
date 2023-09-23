@@ -6,7 +6,10 @@ public class PauseMenu : MonoBehaviour
 {
     [SerializeField] LevelLoader levelLoader;
     [SerializeField] GameObject pauseMenuUI;
+    // [SerializeField] GameManager gameManager;
     public static bool isPaused;
+    // * did not work:
+    // bool isPlayerSwinging; //temp method to ensure player's isSwinging state is set after unpause, preventing immediate falling
 
     bool CheckPauseInput()
     {
@@ -30,6 +33,8 @@ public class PauseMenu : MonoBehaviour
 
     public void PauseGame()
     {
+        // isPlayerSwinging = gameManager.playerRef.GetComponent<SwingingController>().isSwinging;
+        // Debug.Log("Paused: isSwinging: " + isPlayerSwinging);
         Cursor.visible = true;
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
@@ -41,6 +46,8 @@ public class PauseMenu : MonoBehaviour
         Cursor.visible = false;
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
+        // gameManager.playerRef.GetComponent<SwingingController>().isSwinging = isPlayerSwinging;
+        // Debug.Log("UnPaused: isSwinging: " + isPlayerSwinging);
         isPaused = false;
     }
 
