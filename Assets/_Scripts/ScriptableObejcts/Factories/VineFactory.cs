@@ -101,9 +101,26 @@ public class VineFactory : ScriptableObject
         defaultFactoryConfig = newDefaultFactoryConfig;
     }
 
+    VineFactoryConfig CheckIfInVineOverrideZone(Vector2 position, VineFactoryConfig currentConfig)
+    {
+        VineOverrideZone[] vineOverrideZones = GameObject.FindObjectsOfType<VineOverrideZone>();
+        foreach (VineOverrideZone zone in vineOverrideZones)
+        {
+            VineFactoryConfig configOverride = zone.QueryBounds(position, currentConfig);
+            if (configOverride != null)
+            {
+                return configOverride;
+            }
+        }
+        return null;
+    }
+
     public Transform GenerateVine(Vector2 position, Transform containerParent, VineFactoryConfig factoryConfigOverride = null)
     {
+        // Setup FactoryConfig; First use provided override or defaultConfig; Then Check for a Zone override which has priority.
         VineFactoryConfig factoryConfig = factoryConfigOverride ?? defaultFactoryConfig;
+        VineFactoryConfig zoneOverride = CheckIfInVineOverrideZone(position, factoryConfig);
+        factoryConfig = zoneOverride ?? factoryConfig;
 
         // Instantiate VineRoot
         Transform vineRoot = GameObject.Instantiate(vineRootPrefab, position, Quaternion.identity, containerParent);
