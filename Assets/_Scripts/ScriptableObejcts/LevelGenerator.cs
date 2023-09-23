@@ -137,20 +137,15 @@ public class Section
 {
     public Vector2 startPos;
     public int length;
-    //TODO: 092223: If BackgroundBuffer approach works; we probably don't need the offsets here.
-    public float startOffset = 0;
-    public float endOffset = 0;
 
     public Vector2 endPos => new Vector2(startPos.x + length, startPos.y);
 
-    public Section getCopy()
+    public Section Copy()
     {
         return new Section
         {
             startPos = startPos,
-            length = length,
-            startOffset = startOffset,
-            endOffset = endOffset
+            length = length
         };
     }
 }
@@ -167,11 +162,9 @@ class ProceduralLayerGenerator
         float startX = section.startPos.x;
         float endX = startX + section.length;
         float y = section.startPos.y;
-        float endOffset = section.endOffset;
-        float startOffset = section.startOffset;
 
         List<Vector2> positions = new List<Vector2>();
-        for (float x = startX + startOffset; x < endX + endOffset; x += RNG.RandomRange(minSpacing, maxSpacing))
+        for (float x = startX; x < endX; x += RNG.RandomRange(minSpacing, maxSpacing))
         {
             positions.Add(new Vector2(x, y));
         }
@@ -240,6 +233,7 @@ public class LevelGenerator : ScriptableObject
     [Header("Prefabs")]
     [SerializeField] Transform winPlatformPrefab;
     [SerializeField] Transform blankParentPrefab; //Used to create empty parent container for individual spriteLayers
+    [SerializeField] Transform debugSectionMarkerPrefab;
 
     // Section levelSection;
 
@@ -252,9 +246,7 @@ public class LevelGenerator : ScriptableObject
         currentSection = new Section
         {
             startPos = levelSettings.startPos,
-            length = RNG.RandomRange(levelSettings.levelLength),
-            startOffset = levelSettings.globalStartOffset,
-            endOffset = levelSettings.globalEndOffset
+            length = RNG.RandomRange(levelSettings.levelLength)
         };
     }
 
@@ -271,6 +263,11 @@ public class LevelGenerator : ScriptableObject
         lightShaftFactory.SetLightShaftContainerParent(null);
     }
 
+    void OnDisable()
+    {
+        DeInitFactories();
+    }
+
     private void InitRNG()
     {
         if (levelSettings.rngSeed != -1) { RNG.SetSeed(levelSettings.rngSeed); }
@@ -279,11 +276,13 @@ public class LevelGenerator : ScriptableObject
     private Section AddSectionOffset(Section section, int offsetLength, SectionFillType fillType)
     {
         // Adds a Section Offset to the given section; Negative offsetLength will prepend the new section before the given section, Positive will append the section to the given section, starting at section.endpos.
-        Section offsetSection = section.getCopy();
+        Section offsetSection = section.Copy();
         if (offsetLength < 0) { offsetSection.startPos += new Vector2(offsetLength, 0); }
         else { offsetSection.startPos = section.endPos; }
         offsetSection.length = Math.Abs(offsetLength);
         GenerateSection(offsetSection, fillType);
+        Debug.Log("Section: " + section.startPos + " | " + section.length);
+        Debug.Log("Section Offset: " + offsetSection.startPos + " | " + offsetSection.length);
         return offsetSection;
     }
 
@@ -305,14 +304,16 @@ public class LevelGenerator : ScriptableObject
     {
         // Set up current section
         InitCurrentSection();
-        // Prepend start BG section
-        AddSectionOffset(currentSection, -100, SectionFillType.ALL); //todo change to BG_ONLY and init a small section of trees before
+        // Prepend start BG section and Small Tree section
+        AddSectionOffset(currentSection, -100, SectionFillType.BG_ONLY);
+        AddSectionOffset(currentSection, -30, SectionFillType.TREES_ONLY);
         // Generate Main Section
         GenerateSection(currentSection, SectionFillType.ALL);
         // Add Win Platform
         AddWinPlatform(currentSection.endPos);
         // Append end BG section
         AddSectionOffset(currentSection, 100, SectionFillType.BG_ONLY);
+        BatchLightShafts();
         DeInitFactories();
     }
 
@@ -328,17 +329,15 @@ public class LevelGenerator : ScriptableObject
 
     public void ExtendCurrentSection()
     {   // Used for Endless mode
-        int extensionLength = 5;
+        int extensionLength = 25; // * Don't go too low (i.e. below max treeSpacing), otherwise it affects treeSpacing
         //Create a SectionOffset and set currentSection to the new section that is returned
         currentSection = AddSectionOffset(currentSection, extensionLength, SectionFillType.ALL);
+        // ! DEBUGING MARKER
+        // GameObject.Instantiate(debugSectionMarkerPrefab, currentSection.startPos, Quaternion.identity);
     }
 
     void GenerateSection(Section section, SectionFillType fillType)
     {
-        // InitFactories();
-        AddBackgroundLayerSection(section);
-        AddTreeLayerSection(section);
-        // AddWinPlatform(new Vector2(currentSection.length, levelSettings.startPos.y));
         if (fillType == SectionFillType.ALL || fillType == SectionFillType.BG_ONLY)
         {
             AddBackgroundLayerSection(section);
@@ -358,7 +357,6 @@ public class LevelGenerator : ScriptableObject
             treeFactory.GenerateTree(position, treeLayerParent, null);
         }
         // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
-        BatchLightShafts();
     }
 
     string GetElementContainerPath(string containerName)
@@ -387,7 +385,7 @@ public class LevelGenerator : ScriptableObject
             float zDistance = layer.useAutoZDistance ? i * zDistanceInterval : layer.zDistance;
 
             //
-            Transform layerParent = GameObject.Instantiate(blankParentPrefab, layerParentContainer);
+            Transform layerParent = layerParentContainer.Find(layer.id) ?? GameObject.Instantiate(blankParentPrefab, layerParentContainer);
             layerParent.name = layer.id;
             if (layer.enableParallax)
             {
@@ -397,10 +395,9 @@ public class LevelGenerator : ScriptableObject
 
             if (layer.yOffset != 0)
             {
-                Section newSection = section.getCopy();
+                Section newSection = section.Copy();
                 newSection.startPos = new Vector2(section.startPos.x, section.startPos.y + layer.yOffset);
                 layerGenerator.populateLayerSection(layer, newSection, layerParent);
-                // Debug.Log("addBackgroundLayerSection() > section.startPos.y: " + section.startPos.y + " | yOffset: " + i.yOffset);
                 continue;
             }
             layerGenerator.populateLayerSection(layer, section, layerParent);
@@ -431,11 +428,9 @@ public class LevelGenerator : ScriptableObject
         float startX = section.startPos.x;
         float endX = startX + section.length;
         float y = section.startPos.y + yOffset;
-        float endOffset = section.endOffset;
-        float startOffset = section.startOffset;
 
         List<Vector2> positions = new List<Vector2>();
-        for (float x = startX + startOffset; x < endX + endOffset; x += RNG.RandomRange(spacing))
+        for (float x = startX; x < endX; x += RNG.RandomRange(spacing))
         {
             positions.Add(new Vector2(x, y));
         }
