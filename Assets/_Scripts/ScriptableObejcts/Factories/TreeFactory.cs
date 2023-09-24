@@ -27,6 +27,7 @@ public class TreeConfig
     public float trunkHeight;
     public float treeAngleOffset;
     public float palmAngleOffset;
+    public int palmSortOrder;
     public int nVines;
     public int nLightShafts;
     public Transform rndPalmPrefab;
@@ -63,6 +64,8 @@ public class TreeFactory : ScriptableObject
     [SerializeField] List<Transform> palmPrefabs;
     [SerializeField] List<Sprite> trunkSprites;
 
+    private List<int> palmSortOrderPool = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+
     public void SetDefaultFactoryConfig(TreeFactoryConfig newConfig)
     {
         defaultFactoryConfig = null;
@@ -78,6 +81,7 @@ public class TreeFactory : ScriptableObject
             trunkHeight = RNG.RandomRange(factoryConfig.trunkHeight),
             treeAngleOffset = RNG.RandomRange(-factoryConfig.maxTreeRotation, factoryConfig.maxTreeRotation),
             palmAngleOffset = RNG.RandomRange(-factoryConfig.maxPalmRotation, factoryConfig.maxPalmRotation),
+            palmSortOrder = GetPalmSortOrder(),
             nLightShafts = RNG.SampleOccurrences(factoryConfig.maxLightShafts, factoryConfig.pctChangeLightShaft),
             nVines = RNG.RandomRange(1, factoryConfig.maxVines),
             rndPalmPrefab = RNG.RandomChoice(palmPrefabs),
@@ -124,15 +128,35 @@ public class TreeFactory : ScriptableObject
         newTreeAssembly.newTree.eulerAngles = Vector3.forward * newTreeAssembly.treeConfig.treeAngleOffset; //TODO: verify this is working; otherwise use Quaternion.Euler()
     }
 
+
+    private int GetPalmSortOrder()
+    {
+        // Get Random Choice from PalmSortOrderPool
+        int sortOrder = RNG.RandomChoice(palmSortOrderPool);
+        // Remove the choice we just got;
+        palmSortOrderPool.Remove(sortOrder);
+        // If the pool is used up, remove the pool entirely.
+        if (palmSortOrderPool.Count == 0)
+        {
+            palmSortOrderPool = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+        }
+        return sortOrder;
+    }
+
     private void InitPalms(NewTreeAssembly newTreeAssembly)
     {
         // Setup Instantiation params for new palm
         Transform rndPalmPrefab = newTreeAssembly.treeConfig.rndPalmPrefab;
-        Vector2 position = newTreeAssembly.palmPrefabAnchor.position;
+
+        // Apply position 
+        Vector3 position = newTreeAssembly.palmPrefabAnchor.position;
         Transform newTree = newTreeAssembly.newTree;
 
         // Instantiate newPalm at newTree's palmPrefabAnchor position
         Transform newPalm = Instantiate(rndPalmPrefab, position, Quaternion.identity, newTree);
+
+        // Apply Random SortOrder to prevent overlap flickering
+        newPalm.GetComponent<SpriteRenderer>().sortingOrder = newTreeAssembly.treeConfig.palmSortOrder;
 
         // Apply random rotation
         newPalm.eulerAngles = Vector3.forward * newTreeAssembly.treeConfig.palmAngleOffset;
