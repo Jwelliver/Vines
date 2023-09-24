@@ -135,8 +135,9 @@ public class Section
 {
     public Vector2 startPos;
     public int length;
-
     public Vector2 endPos => new Vector2(startPos.x + length, startPos.y);
+
+    // public List<Transform> objects;
 
     public Section Copy()
     {
@@ -252,8 +253,6 @@ public class LevelGenerator : ScriptableObject
     [SerializeField] Transform blankParentPrefab; //Used to create empty parent container for individual spriteLayers
     [SerializeField] Transform debugSectionMarkerPrefab;
 
-    // Section levelSection;
-
     Section currentSection;
 
     ProceduralLayerGenerator layerGenerator = new ProceduralLayerGenerator();
@@ -298,8 +297,8 @@ public class LevelGenerator : ScriptableObject
         else { offsetSection.startPos = section.endPos; }
         offsetSection.length = Math.Abs(offsetLength);
         GenerateSection(offsetSection, fillType);
-        Debug.Log("Section: " + section.startPos + " | " + section.length);
-        Debug.Log("Section Offset: " + offsetSection.startPos + " | " + offsetSection.length);
+        // Debug.Log("Section: " + section.startPos + " | " + section.length);
+        // Debug.Log("Section Offset: " + offsetSection.startPos + " | " + offsetSection.length);
         return offsetSection;
     }
 
