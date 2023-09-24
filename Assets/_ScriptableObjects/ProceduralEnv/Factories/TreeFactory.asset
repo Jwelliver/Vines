@@ -28,10 +28,7 @@ MonoBehaviour:
   vineFactory: {fileID: 11400000, guid: df32491e6ba27db4ea1d127078f3d561, type: 2}
   lightShaftFactory: {fileID: 11400000, guid: 6692fbecb148a7444a8ecde546acc676, type: 2}
   palmPrefabs:
-  - {fileID: 4541776258987659219, guid: 1e22d83e4b65c264384eb6f771468776, type: 3}
-  - {fileID: 6165184426630625531, guid: 88f1d65a154a6ee4aae74b59e02a3ade, type: 3}
   - {fileID: 2052431411895931276, guid: fe12a1fc1deee9841a529c959aadf98d, type: 3}
-  - {fileID: 6936129061349259939, guid: 98105ed6b4fb73c40b0d1675df09d0b1, type: 3}
   - {fileID: 1533440076823647700, guid: 2f30883bd44c70547b9915184d135114, type: 3}
   trunkSprites:
   - {fileID: -363360082, guid: 183629812909a1041b19a55e7191c253, type: 3}
