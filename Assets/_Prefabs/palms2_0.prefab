@@ -940,7 +940,7 @@ Transform:
   m_Children:
   - {fileID: 1779993214071105493}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1139025138844600908
 SpriteRenderer:
@@ -980,7 +980,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 799328815
+  m_SortingLayerID: -1156903295
   m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: -534360753, guid: 71729f9d2cc945f428a5e983d1ee7870, type: 3}
