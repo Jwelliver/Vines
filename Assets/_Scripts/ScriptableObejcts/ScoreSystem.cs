@@ -26,11 +26,11 @@ public class ScoreSystem : MonoBehaviour
 
 
     //Swing Stats
-    Vector2 startPosition = new Vector2(0, 0);
-    float maxVelocity = 0;
-    float distance = 0;
-    float maxHeight = 0;
-
+    Vector2 startPosition = new Vector2(0, 0); // Player start position
+    Vector2 swingReleasePosition = new Vector2(0, 0);
+    float bestJumpVelocity = 0;
+    float bestJumpDistance = 0;
+    float bestJumpHeight = 0;
     float totalDistance = 0;
 
 
@@ -45,52 +45,48 @@ public class ScoreSystem : MonoBehaviour
     {
         if (isRecordingSwingStats)
         {
-            // Debug.Log("IsRecordingStats");
-            updateSwingStats();
+            UpdateSwingStats();
         }
     }
 
 
-    void updateSwingStats()
+    void UpdateSwingStats()
     {
-        maxVelocity = (playerRb.velocity.magnitude > maxVelocity) ? playerRb.velocity.magnitude : maxVelocity;
-        distance = ((playerRb.position.x - startPosition.x) > distance) ? (playerRb.position.x - startPosition.x) : distance;
-        maxHeight = (playerRb.position.y > maxHeight) ? playerRb.position.y : maxHeight;
-        totalDistance = (playerRb.position.x > totalDistance) ? (playerRb.position.x - startPosition.x) : totalDistance;
+        float jumpDistance = Vector2.Distance(swingReleasePosition, playerRb.position);
+        float currentTotalDistance = Mathf.Abs(playerRb.position.x - startPosition.x);
+        bestJumpDistance = jumpDistance > bestJumpDistance ? jumpDistance : bestJumpDistance;
+        bestJumpVelocity = (playerRb.velocity.magnitude > bestJumpVelocity) ? playerRb.velocity.magnitude : bestJumpVelocity;
+        bestJumpHeight = (playerRb.position.y > bestJumpHeight) ? playerRb.position.y : bestJumpHeight;
+        totalDistance = (currentTotalDistance > totalDistance) ? currentTotalDistance : totalDistance;
     }
 
     void resetSwingStats()
     {
-        maxVelocity = 0;
-        distance = 0;
-        maxHeight = 0;
+        bestJumpVelocity = 0;
+        bestJumpDistance = 0;
+        bestJumpHeight = 0;
     }
 
-    void logStats()
+    void UpdateText()
     {
-        string statsText = "Highest Velocity: " + maxVelocity;
-        statsText += "\n" + "Best Jump Distance: " + distance;
-        statsText += "\n" + "Best Jump Height: " + maxHeight;
+        string statsText = "Best Jump Velocity: " + bestJumpVelocity;
+        statsText += "\n" + "Best Jump Distance: " + bestJumpDistance;
+        statsText += "\n" + "Best Jump Height: " + bestJumpHeight;
         statsText += "\n" + "Total Distance: " + totalDistance;
-
-        // Debug.Log("Max Velocity: "+ maxVelocity);
-        // Debug.Log("Distance: "+ distance);
-        // Debug.Log("Max Height: "+ maxHeight);
         statsFadeTextObj.FadeTo(statsText);
     }
 
 
     public void onSwingGrab()
     {
-        // Debug.Log("Score.onSwingGrab(): " + playerRb.position.x);
         isRecordingSwingStats = false;
-        logStats();
+        UpdateText();
     }
 
     public void onSwingRelease()
     {
         // Debug.Log("Score.onSwingRelease(): " + playerRb.position.x);
-        startPosition = playerRb.position;
+        swingReleasePosition = playerRb.position;
         isRecordingSwingStats = true;
     }
 }
