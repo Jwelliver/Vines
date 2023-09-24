@@ -31,6 +31,8 @@ public class ScoreSystem : MonoBehaviour
     float distance = 0;
     float maxHeight = 0;
 
+    float totalDistance = 0;
+
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +45,7 @@ public class ScoreSystem : MonoBehaviour
     {
         if (isRecordingSwingStats)
         {
+            // Debug.Log("IsRecordingStats");
             updateSwingStats();
         }
     }
@@ -53,6 +56,7 @@ public class ScoreSystem : MonoBehaviour
         maxVelocity = (playerRb.velocity.magnitude > maxVelocity) ? playerRb.velocity.magnitude : maxVelocity;
         distance = ((playerRb.position.x - startPosition.x) > distance) ? (playerRb.position.x - startPosition.x) : distance;
         maxHeight = (playerRb.position.y > maxHeight) ? playerRb.position.y : maxHeight;
+        totalDistance = (playerRb.position.x > totalDistance) ? (playerRb.position.x - startPosition.x) : totalDistance;
     }
 
     void resetSwingStats()
@@ -64,9 +68,10 @@ public class ScoreSystem : MonoBehaviour
 
     void logStats()
     {
-        string statsText = "Max Velocity: " + maxVelocity;
-        statsText += "\n" + "Distance: " + distance;
-        statsText += "\n" + "Max Height: " + maxHeight;
+        string statsText = "Highest Velocity: " + maxVelocity;
+        statsText += "\n" + "Best Jump Distance: " + distance;
+        statsText += "\n" + "Best Jump Height: " + maxHeight;
+        statsText += "\n" + "Total Distance: " + totalDistance;
 
         // Debug.Log("Max Velocity: "+ maxVelocity);
         // Debug.Log("Distance: "+ distance);
