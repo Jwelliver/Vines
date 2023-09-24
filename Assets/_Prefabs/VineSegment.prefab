@@ -135,13 +135,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dff0a73cb9d7a4647ae65d6347b1cfae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 9014536808153259384}
-  vineSegmentSprites:
-  - {fileID: -1215671906, guid: bd3cbb9ea3805c548ae75d8e6cea435c, type: 3}
-  - {fileID: -2017376548, guid: bd3cbb9ea3805c548ae75d8e6cea435c, type: 3}
-  - {fileID: -217930714, guid: bd3cbb9ea3805c548ae75d8e6cea435c, type: 3}
-  snapParticles: {fileID: 1320025458011433992, guid: 3fac02e5af5ec5443a54a21261016135, type: 3}
-  vineRoot: {fileID: 0}
 --- !u!212 &9014536808153259384
 SpriteRenderer:
   m_ObjectHideFlags: 0
