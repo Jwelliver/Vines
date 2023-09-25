@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: AppSettings
   m_EditorClassIdentifier: 
   targetFrameRate_desktop: 60
-  vSyncCount_desktop: 1
+  vSyncCount_desktop: 2
   targetFrameRate_webGl: -1
   vSyncCount_webGl: 0
