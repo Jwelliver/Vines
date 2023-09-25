@@ -45,9 +45,6 @@ TagManager:
   - name: Background
     uniqueID: 3483471047
     locked: 0
-  - name: FoliageBackground
-    uniqueID: 3367252683
-    locked: 0
   - name: Trees
     uniqueID: 972656467
     locked: 0

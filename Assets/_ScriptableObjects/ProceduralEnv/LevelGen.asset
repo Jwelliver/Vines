@@ -139,7 +139,7 @@ MonoBehaviour:
           probability: 0.05
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 0.03
-      sortLayerName: FoliageBackground
+      sortLayerName: Background
       sortOrder: 0
       color: {r: 0.47450984, g: 0.47450984, b: 0.47450984, a: 1}
     minSpacing: 8
@@ -172,7 +172,7 @@ MonoBehaviour:
           probability: 0.05
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 0.025
-      sortLayerName: FoliageBackground
+      sortLayerName: Background
       sortOrder: -1
       color: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
     minSpacing: 3
@@ -201,7 +201,7 @@ MonoBehaviour:
           probability: 0.9
         - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
           probability: 0.9
-      sortLayerName: FoliageBackground
+      sortLayerName: Background
       sortOrder: -2
       color: {r: 0.6901961, g: 0.6901961, b: 0.6901961, a: 1}
     minSpacing: 1
@@ -235,7 +235,7 @@ MonoBehaviour:
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: 0
+      sortOrder: -3
       color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
     minSpacing: 10
     maxSpacing: 20
@@ -268,7 +268,7 @@ MonoBehaviour:
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -1
+      sortOrder: -4
       color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
     minSpacing: 10
     maxSpacing: 20
@@ -293,7 +293,7 @@ MonoBehaviour:
         - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -2
+      sortOrder: -5
       color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
     minSpacing: 10
     maxSpacing: 20
@@ -318,7 +318,7 @@ MonoBehaviour:
         - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -3
+      sortOrder: -6
       color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
     minSpacing: 5
     maxSpacing: 15
@@ -351,7 +351,7 @@ MonoBehaviour:
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -4
+      sortOrder: -7
       color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
     minSpacing: 10
     maxSpacing: 20
@@ -413,7 +413,7 @@ MonoBehaviour:
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -5
+      sortOrder: -8
       color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     minSpacing: 2
     maxSpacing: 4
@@ -446,7 +446,7 @@ MonoBehaviour:
         - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -6
+      sortOrder: -9
       color: {r: 0.4431373, g: 0.4431373, b: 0.4431373, a: 1}
     minSpacing: 5
     maxSpacing: 10
@@ -481,7 +481,7 @@ MonoBehaviour:
         - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -7
+      sortOrder: -10
       color: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
     minSpacing: 4
     maxSpacing: 8
@@ -516,7 +516,7 @@ MonoBehaviour:
         - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -8
+      sortOrder: -11
       color: {r: 0, g: 0, b: 0, a: 1}
     minSpacing: 5
     maxSpacing: 15
