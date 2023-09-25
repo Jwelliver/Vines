@@ -526,6 +526,7 @@ MonoBehaviour:
     autoSortOrderStart: 0
     useAutoZDistance: 0
     zDistance: 20
+  startPlatformPrefab: {fileID: 5920794777373195843, guid: 6e6ed922812815141bf9681ac432dab4, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
   blankParentPrefab: {fileID: 2094452519030092049, guid: e5d8140a28e33414380f47bc2939aae0, type: 3}
   debugSectionMarkerPrefab: {fileID: 1201747370708244055, guid: 70608d8a972530f488f98c80de73eacd, type: 3}

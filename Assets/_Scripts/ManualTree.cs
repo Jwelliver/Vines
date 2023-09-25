@@ -8,11 +8,13 @@ public class ManualTree : MonoBehaviour
     [SerializeField] TreeFactoryConfig treeFactoryConfig;
     [SerializeField] VineFactoryConfig vineFactoryConfig;
     [SerializeField] LevelGenerator levelGenerator;
+    bool isInitialized; // this is set to false until called externally; 
 
-    // Start is called before the first frame update
-    void Start()
+    public void AttemptInit()
     {
+        if (isInitialized) { return; }
         Vector2 pos = new Vector2(transform.position.x, levelGenerator.GetCurrentSection().startPos.y);
         treeFactory.GenerateTree(pos, transform, treeFactoryConfig, vineFactoryConfig);
+        isInitialized = true;
     }
 }

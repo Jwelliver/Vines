@@ -268,6 +268,7 @@ public class LevelGenerator : ScriptableObject
 
 
     [Header("Prefabs")]
+    [SerializeField] Transform startPlatformPrefab;
     [SerializeField] Transform winPlatformPrefab;
     [SerializeField] Transform blankParentPrefab; //Used to create empty parent container for individual spriteLayers
     [SerializeField] Transform debugSectionMarkerPrefab;
@@ -344,6 +345,8 @@ public class LevelGenerator : ScriptableObject
     {
         // Set up current section
         InitCurrentSection();
+        // // Add StartPlatform
+        // AddStartPlatform(currentSection.startPos);
         // Add Win Platform (must do this before placing trees to ensure VineOverrideZones are found)
         AddWinPlatform(currentSection.endPos);
         // Prepend start BG section and Small Tree section
@@ -361,6 +364,8 @@ public class LevelGenerator : ScriptableObject
     {
         // Set up current section
         InitCurrentSection();
+        // // Add StartPlatform
+        // AddStartPlatform(currentSection.startPos);
         // Prepend start BG section
         AddSectionOffset(currentSection, -100, SectionFillType.ALL);
         // Generate First Section
@@ -396,6 +401,7 @@ public class LevelGenerator : ScriptableObject
         {
             treeFactory.GenerateTree(position, treeLayerParent, null);
         }
+        InitManualTrees();
         // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
     }
 
@@ -448,9 +454,23 @@ public class LevelGenerator : ScriptableObject
         }
     }
 
+    private void AddStartPlatform(Vector2 pos)
+    {
+        GameObject.Instantiate(startPlatformPrefab, pos, Quaternion.identity);
+    }
+
     private void AddWinPlatform(Vector2 pos)
     {
         GameObject.Instantiate(winPlatformPrefab, pos, Quaternion.identity);
+    }
+
+    private void InitManualTrees()
+    { // Attempt to initialize manual trees in game; Note: Initing here instead of ManualTree.OnStart() to maintain consistent RNG order.
+        ManualTree[] manualTrees = GameObject.FindObjectsOfType<ManualTree>();
+        foreach (ManualTree tree in manualTrees)
+        {
+            tree.AttemptInit();
+        }
     }
 
     private void BatchLightShafts()

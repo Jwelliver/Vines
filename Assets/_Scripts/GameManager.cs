@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     PersistentAudio music;
     public bool playerHasAmulet;
 
-    void Start()
+    void Awake()
     {
         amuletFoundText = GameObject.Find("AmuletFoundText").GetComponent<TMPro.TextMeshProUGUI>();
         try

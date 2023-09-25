@@ -351,6 +351,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ManualTree
       objectReference: {fileID: 0}
+    - target: {fileID: 4495405264316364042, guid: 9a22f50923c06f347a10f786b635b3ab, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5762033188177666443, guid: 9a22f50923c06f347a10f786b635b3ab, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -393,6 +397,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5762033188177666443, guid: 9a22f50923c06f347a10f786b635b3ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631212553534350592, guid: 9a22f50923c06f347a10f786b635b3ab, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6631212553534350592, guid: 9a22f50923c06f347a10f786b635b3ab, type: 3}
