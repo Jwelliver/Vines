@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1950958168201327301}
   - component: {fileID: 1950958168201327300}
   - component: {fileID: 1950958168201327299}
+  - component: {fileID: 873210742}
+  - component: {fileID: 873210746}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -29,9 +31,10 @@ Transform:
   m_LocalPosition: {x: 7.4897246, y: 2.0947049, z: -0.4739874}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6338922782393473524}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1950958168201327300
 MonoBehaviour:
@@ -45,16 +48,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 986556d6b50049c4aaf53d89b672d82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelGen: {fileID: 0}
+  levelGen: {fileID: 11400000, guid: 1fd0b50dbde391d42ad9cca58d4eca0b, type: 2}
   levelLoader: {fileID: 0}
   winSound: {fileID: 8300000, guid: 6e7a66363ff7c414c93d9fab463f6ceb, type: 3}
   winMusic: {fileID: 0}
-  amuletPickupSound: {fileID: 0}
-  amuletFoundTribalDrums: {fileID: 0}
-  tribeChaseMusic: {fileID: 0}
+  amuletPickupSound: {fileID: 8300000, guid: 7284128c479755e4b9f1173dd8aa61e9, type: 3}
+  amuletFoundTribalDrums: {fileID: 8300000, guid: 5a2f84b0b465d474cb638a215fe7e63f, type: 3}
+  tribeChaseMusic: {fileID: 8300000, guid: dc3af48652f696049a5e06337e5e844b, type: 3}
   amuletFoundTextAnimator: {fileID: 0}
   arrowGenerator: {fileID: 0}
   playerAmulet: {fileID: 0}
+  playerRef: {fileID: 0}
+  cameraRef: {fileID: 0}
   playerHasAmulet: 0
 --- !u!82 &1950958168201327299
 AudioSource:
@@ -68,7 +73,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -152,3 +157,74 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &873210742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950958168201327303}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 872919624bb53a640b921921fd482b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &873210746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950958168201327303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f79e8f4cc2cc04997b29f1478694a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelLoader: {fileID: 0}
+  pauseMenuUI: {fileID: 0}
+--- !u!1 &4721030922599421018
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6338922782393473524}
+  - component: {fileID: 2131132907556984698}
+  m_Layer: 0
+  m_Name: PlayerStats
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6338922782393473524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4721030922599421018}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1950958168201327301}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2131132907556984698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4721030922599421018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3376fbe12218048971078f7a0c7035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsFadeTextObj: {fileID: 0}
