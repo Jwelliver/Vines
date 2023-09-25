@@ -13,6 +13,9 @@ public class FadeText : MonoBehaviour
     [Tooltip("Speed the reveal travels along the text, in characters per second")]
     public float travelSpeed = 8f;
 
+    public bool enabledAtStart = true;
+    public bool disableOnFadeout = false;
+
     // Cached reference to our Text object.
     TMPro.TMP_Text _text;
 
@@ -26,39 +29,47 @@ public class FadeText : MonoBehaviour
         'C', 'D', 'E', 'F'};
 
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         _text = GetComponent<TMPro.TMP_Text>();
 
-        // If you don't want the text to fade right away, skip this line.
-        FadeTo(_text.text);
-        _text.text="";
+        _text.enabled = enabledAtStart;
+        if (enabledAtStart)
+        {
+            FadeTo(_text.text);
+            _text.text = "";
+        }
     }
 
     public void FadeTo(string text)
     {
-         // Abort a fade in progress, if any.
-         StopFade();
+        _text.enabled = true;
+        // Abort a fade in progress, if any.
+        StopFade();
 
-         // Start fading, and keep track of the coroutine so we can interrupt if needed.
-         _fade = StartCoroutine(fadeText(text));
+        // Start fading, and keep track of the coroutine so we can interrupt if needed.
+        _fade = StartCoroutine(fadeText(text));
     }
 
-    public void StopFade() { 
-         if(_fade != null)
-               StopCoroutine(_fade);
+    public void StopFade()
+    {
+        if (_fade != null)
+            StopCoroutine(_fade);
     }
 
     // Currently this expects a string of plain text,
     // and will not correctly handle rich text tags etc.
-    IEnumerator fadeText(string text) {
+    IEnumerator fadeText(string text)
+    {
 
         int length = text.Length;
 
         // Build a character buffer of our desired text,
         // with a rich text "color" tag around every character.
-        var builder = new System.Text.StringBuilder(length * 26);    
-        Color32 color = _text.color;            
-        for(int i = 0; i < length; i++) {
+        var builder = new System.Text.StringBuilder(length * 26);
+        Color32 color = _text.color;
+        for (int i = 0; i < length; i++)
+        {
             builder.Append("<color=#");
             builder.Append(NIBBLE_TO_HEX[color.r >> 4]);
             builder.Append(NIBBLE_TO_HEX[color.r & 0xF]);
@@ -73,8 +84,9 @@ public class FadeText : MonoBehaviour
 
         // Each frame, update the alpha values along the fading frontier.
         float fadingProgress = 0f;
-        int opaqueChars = -1;    
-        while(opaqueChars < length - 1) { 
+        int opaqueChars = -1;
+        while (opaqueChars < length - 1)
+        {
             yield return null;
 
             fadingProgress += Time.deltaTime;
@@ -85,8 +97,9 @@ public class FadeText : MonoBehaviour
 
             int newOpaque = opaqueChars;
 
-            for(int i = lastChar; i > opaqueChars; i--) {
-                byte fade = (byte)(255f * Mathf.Clamp01((leadingEdge - i)/(travelSpeed * fadeDuration)));
+            for (int i = lastChar; i > opaqueChars; i--)
+            {
+                byte fade = (byte)(255f * Mathf.Clamp01((leadingEdge - i) / (travelSpeed * fadeDuration)));
                 builder[i * 26 + 14] = NIBBLE_TO_HEX[fade >> 4];
                 builder[i * 26 + 15] = NIBBLE_TO_HEX[fade & 0xF];
 
@@ -107,5 +120,6 @@ public class FadeText : MonoBehaviour
         // Mark the fade transition as finished.
         // This can also fire an event/message if you want to signal UI.
         _fade = null;
+        if (disableOnFadeout) _text.enabled = false;
     }
 }
