@@ -51,9 +51,6 @@ TagManager:
   - name: Trees
     uniqueID: 972656467
     locked: 0
-  - name: FoliageForeground
-    uniqueID: 2194521147
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
