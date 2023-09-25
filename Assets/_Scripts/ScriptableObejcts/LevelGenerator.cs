@@ -225,6 +225,23 @@ public enum SectionFillType
 }
 
 
+/*
+    todo 
+    Reusable sections //? I'm really tired atm just trying to get this down; may sound like gibberish, hopefully you fill out the rest later. gl
+        - Create a section that retains all objects in SectionElement
+            - For env layers, save env id and envobj blueprint/config; whatever info is needed to pull from it and also reconstruct it if needed
+                - each SectionEl can have id or index in the list for identification and matching between sections
+
+        - When creating a new section, pull elements from the old section at random (from the same layerId) and place them in the new section instead of instantiating a new obj
+            - update the element's positions list associated with the new section index, so whenever that section is being reconstructed from reusables, this object will be in the same location with the same properties
+
+            - Add the section to a list of sections in the level gen, and we can track where the player is in each section, then keep adding on new sections with recycled obects
+
+
+*/
+
+
+
 [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Level Generator")]
 public class LevelGenerator : ScriptableObject
 {
