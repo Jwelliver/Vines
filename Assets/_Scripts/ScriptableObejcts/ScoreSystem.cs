@@ -39,7 +39,7 @@ public class ScoreSystem : MonoBehaviour
         // allTimeStats = simpleSave.GetAllTimeStats();
         sessionStats = new PlayerStats();
         // Init/Load AllTimeStats
-        simpleSave.LoadAllTimeStats();
+        // simpleSave.LoadAllTimeStats();
         Debug.Log("Loading: " + simpleSave.RecordStats.ToString());
     }
 

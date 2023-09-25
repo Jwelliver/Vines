@@ -49,10 +49,9 @@ public class SimpleSave : ScriptableObject
 {
     public PlayerStats RecordStats;
 
-    public PlayerStats LoadAllTimeStats()
+    void OnEnable()
     {
-
-        RecordStats = RecordStats ?? new PlayerStats
+        RecordStats = new PlayerStats
         {
             nDeaths = PlayerPrefs.GetInt("nDeaths"),
             bestJumpDistance = PlayerPrefs.GetFloat("bestJumpDistance"),
@@ -61,8 +60,13 @@ public class SimpleSave : ScriptableObject
             bestLevelDistance = PlayerPrefs.GetFloat("bestLevelDistance"),
             // saveOnChange = true
         };
-        return RecordStats;
     }
+
+    void OnDisable()
+    {
+        RecordStats.Save();
+    }
+
 
     public void IncrementDeathCount()
     {
