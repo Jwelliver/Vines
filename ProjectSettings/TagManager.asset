@@ -45,18 +45,9 @@ TagManager:
   - name: Background
     uniqueID: 3483471047
     locked: 0
-  - name: Trees
-    uniqueID: 972656467
-    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 2224149701
-    locked: 0
-  - name: Palms
-    uniqueID: 3138064001
-    locked: 0
-  - name: CameraForeground
+  - name: Foreground
     uniqueID: 4045638167
     locked: 0

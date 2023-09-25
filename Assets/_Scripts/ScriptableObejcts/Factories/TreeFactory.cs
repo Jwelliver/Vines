@@ -64,7 +64,7 @@ public class TreeFactory : ScriptableObject
     [SerializeField] List<Transform> palmPrefabs;
     [SerializeField] List<Sprite> trunkSprites;
 
-    private List<int> palmSortOrderPool = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+    private List<int> palmSortOrderPool = new List<int> { 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
 
     public void SetDefaultFactoryConfig(TreeFactoryConfig newConfig)
     {
@@ -138,7 +138,7 @@ public class TreeFactory : ScriptableObject
         // If the pool is used up, remove the pool entirely.
         if (palmSortOrderPool.Count == 0)
         {
-            palmSortOrderPool = new List<int> { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+            palmSortOrderPool = new List<int> { 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
         }
         return sortOrder;
     }

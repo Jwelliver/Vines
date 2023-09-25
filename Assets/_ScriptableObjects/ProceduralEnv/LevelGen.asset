@@ -40,7 +40,7 @@ MonoBehaviour:
           probability: 0
         - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
           probability: 0.9
-      sortLayerName: CameraForeground
+      sortLayerName: Foreground
       sortOrder: 0
       color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
     minSpacing: 10
@@ -73,15 +73,15 @@ MonoBehaviour:
           probability: 0.05
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 0.2
-      sortLayerName: Trees
-      sortOrder: 5
+      sortLayerName: Default
+      sortOrder: -10
       color: {r: 1, g: 1, b: 1, a: 1}
     minSpacing: 2
     maxSpacing: 10
     yOffset: 0
-    enableParallax: 1
+    enableParallax: 0
     useAutoSortOrder: 1
-    autoSortOrderStart: 5
+    autoSortOrderStart: -10
     useAutoZDistance: 1
     zDistance: 0
   - id: foliage front of trees2
@@ -106,13 +106,13 @@ MonoBehaviour:
           probability: 0.2
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 0.2
-      sortLayerName: Trees
-      sortOrder: 4
+      sortLayerName: Default
+      sortOrder: -11
       color: {r: 1, g: 1, b: 1, a: 1}
     minSpacing: 1
     maxSpacing: 3
     yOffset: 0
-    enableParallax: 1
+    enableParallax: 0
     useAutoSortOrder: 1
     autoSortOrderStart: 0
     useAutoZDistance: 1
