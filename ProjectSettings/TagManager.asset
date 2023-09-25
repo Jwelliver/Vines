@@ -60,9 +60,6 @@ TagManager:
   - name: Palms
     uniqueID: 3138064001
     locked: 0
-  - name: InFrontOfPlayer
-    uniqueID: 799328815
-    locked: 0
   - name: CameraForeground
     uniqueID: 4045638167
     locked: 0
