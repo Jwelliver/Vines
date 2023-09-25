@@ -12,7 +12,6 @@ public class SwingingController : MonoBehaviour
     [SerializeField] KeyCode climbDownKey = KeyCode.S;
     [SerializeField] LayerMask swingableLayer;
     [SerializeField] Rigidbody2D rb;
-    [SerializeField] Collider2D playerCollider;
     [SerializeField] CircleCollider2D grabCollider;
     [SerializeField] ScoreSystem scoreSystem;
     [SerializeField] Joint2D grabJoint;
@@ -25,27 +24,13 @@ public class SwingingController : MonoBehaviour
 
     bool hasAttemptedGrab;
     bool hasReleased;
-
-    // bool isClimbingUp;
-    // bool isClimbingDown;
-
     public bool isSwinging;
-    private float playerGravityScale; //stores player's gravity scale before setting to zero in order to reset upon swing release.
-
 
 
     void Awake()
     {
         myTransform = transform;
     }
-
-    // Start is called before the first frame update
-    // void Start()
-    // {
-    //     // rb = GetComponent<Rigidbody2D>();
-    //     // grabJoint = GetComponentInChildren<FixedJoint2D>();
-
-    // }
 
     // Update is called once per frame
     void Update()
