@@ -60,11 +60,12 @@ public class SimpleSave : ScriptableObject
             bestLevelDistance = PlayerPrefs.GetFloat("bestLevelDistance"),
             // saveOnChange = true
         };
+        Debug.Log("SimpleSave.OnEnable() RecordStats: \n" + RecordStats.ToString());
     }
 
     void OnDisable()
     {
-        RecordStats.Save();
+        // RecordStats.Save();
     }
 
 
