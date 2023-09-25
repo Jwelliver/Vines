@@ -23,7 +23,7 @@ MonoBehaviour:
     maxPalmRotation: 5
     maxVines: 4
     pctChangeLightShaft: 0.3
-    maxLightShafts: 2
+    maxLightShafts: 3
   treePrefab: {fileID: 8428600142129587418, guid: f80f469dce6593a4aa6cd1d1b006aa40, type: 3}
   vineFactory: {fileID: 11400000, guid: df32491e6ba27db4ea1d127078f3d561, type: 2}
   lightShaftFactory: {fileID: 11400000, guid: 6692fbecb148a7444a8ecde546acc676, type: 2}
