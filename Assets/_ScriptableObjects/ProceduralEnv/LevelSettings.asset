@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf54e341033d324389f3f31cd83b188, type: 3}
   m_Name: LevelSettings
   m_EditorClassIdentifier: 
-  levelType: 1
+  levelType: 0
   rngSeed: -1
   startPos: {x: 0, y: 0}
   levelLength:
-    min: 50
-    max: 50
+    min: 350
+    max: 600
   globalStartOffset: 0
   globalEndOffset: 0
   treeSpacing:
