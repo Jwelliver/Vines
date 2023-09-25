@@ -194,6 +194,8 @@ public class ProceduralLayer<T> where T : ProceduralObject
     public float maxSpacing;
     public float yOffset;
     public bool enableParallax;
+    public bool useAutoSortOrder = true;
+    public int autoSortOrderStart = 0;
     public bool useAutoZDistance;
     public float zDistance;
 }
@@ -415,9 +417,12 @@ public class LevelGenerator : ScriptableObject
 
             //handle sortLayer and auto sortOrder
             string sortLayerName = layer.proceduralObject.sortLayerName;
-            if (!sortLayerOrdering.ContainsKey(sortLayerName)) { sortLayerOrdering.Add(sortLayerName, 0); }
-            else sortLayerOrdering[sortLayerName]--;
-            layer.proceduralObject.sortOrder = sortLayerOrdering[sortLayerName];
+            if (layer.useAutoSortOrder)
+            {
+                if (!sortLayerOrdering.ContainsKey(sortLayerName)) { sortLayerOrdering.Add(sortLayerName, layer.autoSortOrderStart); }
+                else sortLayerOrdering[sortLayerName]--;
+                layer.proceduralObject.sortOrder = sortLayerOrdering[sortLayerName];
+            }
 
             // Use Auto zDistance if enabled, otherwise use the layer's set zDistance
             float zDistance = layer.useAutoZDistance ? i * zDistanceInterval : layer.zDistance;
