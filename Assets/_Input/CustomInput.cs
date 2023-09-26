@@ -71,6 +71,15 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""23f3c36b-1c6d-4ccd-804d-44119463f341"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -249,6 +258,28 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                     ""action"": ""ClimbDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46f95bc9-f3e2-44a9-b469-7b8d886aba5c"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7617525e-1132-461b-8768-8b4964d4e914"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mobile"",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -290,6 +321,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
         m_Player_ClimbUp = m_Player.FindAction("ClimbUp", throwIfNotFound: true);
         m_Player_ClimbDown = m_Player.FindAction("ClimbDown", throwIfNotFound: true);
+        m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -354,6 +386,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Grab;
     private readonly InputAction m_Player_ClimbUp;
     private readonly InputAction m_Player_ClimbDown;
+    private readonly InputAction m_Player_Restart;
     public struct PlayerActions
     {
         private @CustomInput m_Wrapper;
@@ -363,6 +396,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         public InputAction @Grab => m_Wrapper.m_Player_Grab;
         public InputAction @ClimbUp => m_Wrapper.m_Player_ClimbUp;
         public InputAction @ClimbDown => m_Wrapper.m_Player_ClimbDown;
+        public InputAction @Restart => m_Wrapper.m_Player_Restart;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -387,6 +421,9 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                 @ClimbDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbDown;
                 @ClimbDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbDown;
                 @ClimbDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbDown;
+                @Restart.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRestart;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -406,6 +443,9 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                 @ClimbDown.started += instance.OnClimbDown;
                 @ClimbDown.performed += instance.OnClimbDown;
                 @ClimbDown.canceled += instance.OnClimbDown;
+                @Restart.started += instance.OnRestart;
+                @Restart.performed += instance.OnRestart;
+                @Restart.canceled += instance.OnRestart;
             }
         }
     }
@@ -435,5 +475,6 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         void OnGrab(InputAction.CallbackContext context);
         void OnClimbUp(InputAction.CallbackContext context);
         void OnClimbDown(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
 }
