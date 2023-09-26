@@ -128,6 +128,8 @@ public class VineFactory : ScriptableObject
         // Instantiate VineRoot
         Transform vineRoot = GameObject.Instantiate(vineRootPrefab, position, Quaternion.identity, containerParent);
 
+
+
         //instantiate anchor
         Transform prevSegment;
         prevSegment = GameObject.Instantiate(vineSegmentPrefabs[0], position, Quaternion.identity, vineRoot);
@@ -139,6 +141,13 @@ public class VineFactory : ScriptableObject
         float segLength = factoryConfig.segmentLength;
 
         Color vineColor = isWeak ? factoryConfig.weakSegmentColor : factoryConfig.normalSegmentColor;
+
+        // Get LineRenderer and setup
+        LineRenderer vineLineRenderer = vineRoot.GetComponent<LineRenderer>();
+        vineLineRenderer.startWidth = factoryConfig.segmentWidth;
+        vineLineRenderer.endWidth = factoryConfig.segmentWidth;
+        vineLineRenderer.startColor = vineColor;
+        vineLineRenderer.endColor = vineColor;
 
         // Track segments to apply to vineroot/VineLineRenderer
         List<Transform> segments = new List<Transform>();
@@ -160,9 +169,7 @@ public class VineFactory : ScriptableObject
             newHinge.anchor = new Vector2(0f, anchorYOffset);
             newHinge.connectedAnchor = new Vector2(0f, -anchorYOffset);
             newHinge.connectedBody = prevSegment.GetComponent<Rigidbody2D>();
-            // Setup sprite to match segLength
-            SpriteRenderer spriteRenderer = newSegment.GetComponent<SpriteRenderer>();
-            spriteRenderer.size = new Vector2(factoryConfig.segmentWidth, segLength);
+
             //  - set curl
             bool hasCurl = RNG.SampleProbability(factoryConfig.pctChanceCurl);
             if (hasCurl)
@@ -175,9 +182,6 @@ public class VineFactory : ScriptableObject
                 newHinge.motor = motor;
                 newHinge.useMotor = true;
             }
-
-            // Set Vine Color
-            newSegment.GetComponentInChildren<SpriteRenderer>().color = vineColor;
 
             newHinge.breakForce = RNG.RandomRange(factoryConfig.normalBreakForce.min, factoryConfig.normalBreakForce.max);
 
@@ -213,8 +217,110 @@ public class VineFactory : ScriptableObject
         }
 
         // Set segments in VineLineRenderer
-        vineRoot.GetComponent<VineRoot>().Init(segments, factoryConfig.segmentWidth, vineColor);
+        vineRoot.GetComponent<VineRoot>().Init(segments);
 
         return vineRoot;
     }
 }
+
+
+//=========== ORIG GenerateVine (works with sprite approach)
+//    public Transform GenerateVine(Vector2 position, Transform containerParent, VineFactoryConfig factoryConfigOverride = null)
+//     {
+//         // Setup FactoryConfig; First use provided override or defaultConfig; Then Check for a Zone override which has priority.
+//         VineFactoryConfig factoryConfig = factoryConfigOverride ?? defaultFactoryConfig;
+//         VineFactoryConfig zoneOverride = CheckIfInVineOverrideZone(position, factoryConfig);
+//         factoryConfig = zoneOverride ?? factoryConfig;
+
+//         // Instantiate VineRoot
+//         Transform vineRoot = GameObject.Instantiate(vineRootPrefab, position, Quaternion.identity, containerParent);
+
+//         //instantiate anchor
+//         Transform prevSegment;
+//         prevSegment = GameObject.Instantiate(vineSegmentPrefabs[0], position, Quaternion.identity, vineRoot);
+//         prevSegment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+//         prevSegment.GetComponent<HingeJoint2D>().enabled = false;
+
+//         bool isWeak = RNG.SampleProbability(factoryConfig.pctChanceWeak);
+//         int vineLength = RNG.RandomRange(factoryConfig.length.min, factoryConfig.length.max);
+//         float segLength = factoryConfig.segmentLength;
+
+//         Color vineColor = isWeak ? factoryConfig.weakSegmentColor : factoryConfig.normalSegmentColor;
+
+//         // Track segments to apply to vineroot/VineLineRenderer
+//         List<Transform> segments = new List<Transform>();
+
+//         // Set up each segment
+//         for (int i = 0; i < vineLength; i++)
+//         {
+//             // Get Random Vine segment prefab
+//             Transform rndSegment = RNG.RandomChoice(vineSegmentPrefabs);
+//             // instantiate new segment at previous segment minus segmentLength Y;
+//             Vector2 newPosition = (Vector2)prevSegment.position + new Vector2(0, -segLength);
+//             Transform newSegment = GameObject.Instantiate(rndSegment, newPosition, Quaternion.identity, vineRoot);
+//             // Set up collider size
+//             CapsuleCollider2D segCollider = newSegment.GetComponent<CapsuleCollider2D>();
+//             segCollider.size = new Vector2(factoryConfig.segmentWidth, segLength);
+//             // Setup hinge; configure anchor points and set previous segment as the connected rb; 
+//             HingeJoint2D newHinge = newSegment.GetComponent<HingeJoint2D>();
+//             float anchorYOffset = segLength * 0.4f;
+//             newHinge.anchor = new Vector2(0f, anchorYOffset);
+//             newHinge.connectedAnchor = new Vector2(0f, -anchorYOffset);
+//             newHinge.connectedBody = prevSegment.GetComponent<Rigidbody2D>();
+//             // Setup sprite to match segLength
+//             SpriteRenderer spriteRenderer = newSegment.GetComponent<SpriteRenderer>();
+//             spriteRenderer.size = new Vector2(factoryConfig.segmentWidth, segLength);
+//             //  - set curl
+//             bool hasCurl = RNG.SampleProbability(factoryConfig.pctChanceCurl);
+//             if (hasCurl)
+//             {
+//                 JointMotor2D motor = new JointMotor2D();
+//                 float motorForce = RNG.RandomRange(0, factoryConfig.maxCurlForce);
+//                 float motorSpeed = RNG.RandomRange(-factoryConfig.curlSpeed, factoryConfig.curlSpeed);
+//                 motor.motorSpeed = motorSpeed;
+//                 motor.maxMotorTorque = motorForce;
+//                 newHinge.motor = motor;
+//                 newHinge.useMotor = true;
+//             }
+
+//             // Set Vine Color
+//             newSegment.GetComponentInChildren<SpriteRenderer>().color = vineColor;
+
+//             newHinge.breakForce = RNG.RandomRange(factoryConfig.normalBreakForce.min, factoryConfig.normalBreakForce.max);
+
+//             // Add Adornment at Random
+//             bool hasAdornment = RNG.SampleProbability(factoryConfig.pctChanceAdornment);
+//             if (hasAdornment)
+//             {
+//                 Transform newAdornment = vineAdornmentFactory.GenerateVineAdornment(newSegment.position, newSegment, factoryConfig.adornmentScale);
+//                 if (isWeak)
+//                     newAdornment.GetComponentInChildren<SpriteRenderer>().color = vineColor;
+//             }
+
+//             // Set segmentIndex
+//             newSegment.GetComponent<VineSegment>().SetSegmentIndex(i);
+
+//             // Add Segment to segments list
+//             segments.Add(newSegment);
+//             // - update prevSegment
+//             prevSegment = newSegment;
+//         }
+
+//         if (isWeak)
+//         {
+//             //pick one segment at random and reset breakforce to random weak breakforce
+//             int numWeakSegments = (int)vineLength / 4;
+//             for (int i = 0; i < numWeakSegments; i++)
+//             {
+//                 HingeJoint2D[] allSegments = vineRoot.gameObject.GetComponentsInChildren<HingeJoint2D>();
+//                 HingeJoint2D rndSegment = RNG.RandomChoice(allSegments);
+//                 float rndWeakBreakForce = RNG.RandomRange(factoryConfig.weakBreakForce.min, factoryConfig.weakBreakForce.max);
+//                 rndSegment.breakForce = rndWeakBreakForce;
+//             }
+//         }
+
+//         // Set segments in VineLineRenderer
+//         vineRoot.GetComponent<VineRoot>().Init(segments, factoryConfig.segmentWidth, vineColor);
+
+//         return vineRoot;
+//     }

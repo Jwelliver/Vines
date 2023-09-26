@@ -8,21 +8,16 @@ public class VineRoot : MonoBehaviour
     List<Transform> segments = new List<Transform>();
     VineLineRenderer vineLineRenderer;
 
-    float width;
-    Color color;
-
     void Awake()
     {
         sfx = GameObject.Find("SFX").GetComponent<SfxHandler>();
         vineLineRenderer = GetComponentInChildren<VineLineRenderer>();
     }
 
-    public void Init(List<Transform> _segments, float _width, Color _color)
+    public void Init(List<Transform> _segments)
     {// Called from VineFactory; //TODO: this should take the vine's config (once that's setup)
         segments = _segments;
-        width = _width;
-        color = _color;
-        vineLineRenderer.Init(_segments, _width, _color);
+        vineLineRenderer.Init(_segments);
     }
 
     public void OnVineSnap(Joint2D joint, int segmentIndex)
@@ -47,11 +42,11 @@ public class VineRoot : MonoBehaviour
 
         segments = segmentsRemaining;
         // reinit our line renderer with the new segments list
-        vineLineRenderer.Init(segments, width, color);
+        vineLineRenderer.Init(segments);
         // Clone VineRoot and set detached segment head at segmentIndex and init it
         Transform newVineRoot = GameObject.Instantiate(transform);
         //Init new vineLineRenderer
-        newVineRoot.GetComponent<VineLineRenderer>().Init(segmentsDetached, width, color);
+        newVineRoot.GetComponent<VineLineRenderer>().Init(segmentsDetached);
         // Set segment as child of newVineRoot
         segment.SetParent(newVineRoot);
     }

@@ -13,15 +13,11 @@ public class VineLineRenderer : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    public void Init(List<Transform> _segments, float width, Color color)
+    public void Init(List<Transform> _segments)
     {// Called by VineRoot
         segments = _segments;
         positions = new Vector3[_segments.Count];
         lineRenderer.positionCount = positions.Length;
-        lineRenderer.startWidth = width;
-        lineRenderer.endWidth = width;
-        lineRenderer.startColor = color;
-        lineRenderer.endColor = color;
     }
 
 
