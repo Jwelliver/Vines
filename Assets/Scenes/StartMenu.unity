@@ -363,7 +363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &42449960
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1498,7 +1498,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -811496249
-  m_SortingLayer: -4
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1643,7 +1643,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -811496249
-  m_SortingLayer: -4
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2114,7 +2114,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -811496249
-  m_SortingLayer: -4
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
