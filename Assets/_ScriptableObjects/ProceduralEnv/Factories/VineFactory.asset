@@ -17,6 +17,7 @@ MonoBehaviour:
       min: 15
       max: 25
     segmentLength: 0.7
+    segmentWidth: 0.35
     normalBreakForce:
       min: 1500
       max: 2500
@@ -33,7 +34,7 @@ MonoBehaviour:
       max: 0.8
     normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
     weakSegmentColor: {r: 0.764151, g: 0.50165635, b: 0, a: 1}
-  vineRootPrefab: {fileID: 5796282939409325729, guid: 3df7d8c869540184aab89dc46f29b159, type: 3}
+  vineRootPrefab: {fileID: 5796282939409325729, guid: 29846fb65ca6f3b49993d7d35ce2beb9, type: 3}
   vineSegmentPrefabs:
-  - {fileID: 3456149593492605008, guid: e250ff1051ac8204e87d1c926e787831, type: 3}
+  - {fileID: 3456149593492605008, guid: 7b56aa5f9b7c7e341814d81b1618de62, type: 3}
   vineAdornmentFactory: {fileID: 11400000, guid: 754822778f850714c917873530b5d60e, type: 2}
