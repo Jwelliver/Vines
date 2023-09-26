@@ -22,9 +22,14 @@ public class IntroTextNextLevel : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && !transitionStarted)
         {
             // startTransition();
-            StartCoroutine(transition());
+            LoadNext();
 
         }
+    }
+
+    public void LoadNext()
+    {
+        StartCoroutine(transition());
     }
 
     // void startTransition()
