@@ -14,7 +14,7 @@ public class LevelLoader : MonoBehaviour
     {
         // remove persistant audio
         GameObject[] audioPlayers = GameObject.FindGameObjectsWithTag("PersistantAudio");
-        Debug.Log("Number of audio players: " + audioPlayers.Length);
+        // Debug.Log("Number of audio players: " + audioPlayers.Length);
         foreach (GameObject audio in audioPlayers)
         {
             Destroy(audio);
