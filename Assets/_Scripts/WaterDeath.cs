@@ -22,8 +22,13 @@ public class WaterDeath : MonoBehaviour
     {
         if (other.tag == "Player" && !hasDied)
         {
-            handleWaterSplash();
-            StartCoroutine(onDeath());
+            // Only Trigger death if player is not swinging or is "swinging" on a detached vine.
+            if (!SwingingController.isSwinging || !SwingingController.currentVineSegmentRef.vineRoot.isRootAnchored)
+            {
+                handleWaterSplash();
+                StartCoroutine(onDeath());
+            }
+
         }
     }
 
