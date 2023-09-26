@@ -150,7 +150,7 @@ public class VineFactory : ScriptableObject
         vineLineRenderer.endColor = vineColor;
 
         // Track segments to apply to vineroot/VineLineRenderer
-        List<Transform> segments = new List<Transform>();
+        List<VineSegment> vineSegments = new List<VineSegment>();
 
         // Set up each segment
         for (int i = 0; i < vineLength; i++)
@@ -194,11 +194,8 @@ public class VineFactory : ScriptableObject
                     newAdornment.GetComponentInChildren<SpriteRenderer>().color = vineColor;
             }
 
-            // Set segmentIndex
-            newSegment.GetComponent<VineSegment>().SetSegmentIndex(i);
-
             // Add Segment to segments list
-            segments.Add(newSegment);
+            vineSegments.Add(newSegment.GetComponent<VineSegment>());
             // - update prevSegment
             prevSegment = newSegment;
         }
@@ -217,7 +214,7 @@ public class VineFactory : ScriptableObject
         }
 
         // Set segments in VineLineRenderer
-        vineRoot.GetComponent<VineRoot>().Init(segments);
+        vineRoot.GetComponent<VineRoot>().Init(vineSegments, true, true);
 
         return vineRoot;
     }

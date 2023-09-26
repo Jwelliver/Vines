@@ -18,71 +18,16 @@ public class SwingingController : MonoBehaviour
     [SerializeField] float climbSpeed = 1.0f; // the speed of climbing up and down vines
     [SerializeField] float climbSecondsBetweenMove = 1f;
 
-    // private bool isClimbing;
-
     Transform myTransform;
-
-    // bool hasAttemptedGrab;
-    // bool hasReleased;
     public static bool isClimbing;
     public static bool isSwinging;
-
-
-    // void OnEnable()
-    // {
-    //     CharacterController2D.input.Player.Grab.performed += OnGrabAttempt;
-    //     CharacterController2D.input.Player.Grab.canceled += OnGrabAttemptCanceled;
-
-    // }
-
-    // void OnDisable()
-    // {
-    //     CharacterController2D.input.Player.Grab.performed -= OnGrabAttempt;
-    //     CharacterController2D.input.Player.Grab.canceled -= OnGrabAttemptCanceled;
-    // }
-
-    // void OnGrabAttempt(InputAction.CallbackContext callbackContext)
-    // {
-    //     Debug.Log("OnGrabAttempt");
-    //     if (!isSwinging)
-    //     {
-    //         hasAttemptedGrab = true;
-    //     }
-    // }
-
-    // void OnGrabAttemptCanceled(InputAction.CallbackContext callbackContext)
-    // {
-    //     Debug.Log("OnGrabAttemptCanceled");
-    //     if (isSwinging)
-    //     {
-    //         hasReleased = true;
-    //     }
-    // }
+    public static VineSegment currentVineSegmentRef;
 
     void Awake()
     {
         myTransform = transform;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        // handleGrabInput(); //! 092523 testing new input system
-        // handleClimbInput();
-    }
-
-    // void handleGrabInput()
-    // {
-    //     if (Input.GetKeyDown(grabKey) && !isSwinging)
-    //     {
-    //         PlayerInput.hasAttemptedGrab = true;
-    //         // Debug.Log("isAttemptingGrab()");
-    //     }
-    //     else if (Input.GetKeyUp(grabKey) && isSwinging)
-    //     {
-    //         PlayerInput.hasReleased = true;
-    //     }
-    // }
 
 
     void FixedUpdate()
@@ -92,17 +37,19 @@ public class SwingingController : MonoBehaviour
         handleClimbInput();
     }
 
-    void attachJoints(Rigidbody2D vineSegment)
+    void attachJoints(Rigidbody2D vineSegmentRb)
     {
-        if (vineSegment == null) { return; }
-        grabJoint.connectedBody = vineSegment;
+        if (vineSegmentRb == null) { return; }
+        grabJoint.connectedBody = vineSegmentRb;
         grabJoint.enabled = true;
+        currentVineSegmentRef = vineSegmentRb.transform.GetComponent<VineSegment>();
     }
 
     void releaseJoints()
     {
         grabJoint.connectedBody = null;
         grabJoint.enabled = false;
+        currentVineSegmentRef = null;
     }
 
     void handleSwingGrab()
@@ -132,6 +79,7 @@ public class SwingingController : MonoBehaviour
     void endSwing()
     {
         // playerCollider.isTrigger=false;
+
         isSwinging = false;
         scoreSystem.onSwingRelease();
     }
@@ -184,41 +132,7 @@ public class SwingingController : MonoBehaviour
             isClimbing = true;
             StartCoroutine(Climb("down"));
         }
-
-        // if (isClimbing && (Input.GetKeyUp(climbUpKey) || Input.GetKeyUp(climbDownKey)))
-        // {
-        //     endClimb();
-        // }
     }
-
-
-
-    //====== ORIG input sys
-    // void handleClimbInput()
-    // {
-    //     if (!isSwinging) { return; }
-    //     if (isClimbing && !Input.GetKey(climbUpKey) && !Input.GetKey(climbDownKey))
-    //     {
-    //         endClimb();
-    //     }
-
-    //     if (!isClimbing && Input.GetKeyDown(climbUpKey))
-    //     {
-    //         isClimbing = true;
-    //         StartCoroutine(Climb("up"));
-    //     }
-
-    //     if (!isClimbing && Input.GetKeyDown(climbDownKey))
-    //     {
-    //         isClimbing = true;
-    //         StartCoroutine(Climb("down"));
-    //     }
-
-    //     if (isClimbing && (Input.GetKeyUp(climbUpKey) || Input.GetKeyUp(climbDownKey)))
-    //     {
-    //         endClimb();
-    //     }
-    // }
 
     void endClimb()
     {
@@ -237,13 +151,16 @@ public class SwingingController : MonoBehaviour
         Rigidbody2D nextVineSegment;
         try
         {
-            nextVineSegment = GetNextVineSegment(direction);
-
-            if (nextVineSegment == null)
+            // Try to get nextSegment as Transform from the currentVineSegmentRef;
+            Transform nextSegmentTransform = direction == "up" ? currentVineSegmentRef.GetPrevSegment() : currentVineSegmentRef.GetNextSegment();
+            // If it's not found, abort.
+            if (nextSegmentTransform == null)
             {
                 endClimb();
                 yield break;
             }
+            // Otherwise, get the nextVineSegment's RigidBody2D
+            nextVineSegment = nextSegmentTransform.GetComponent<Rigidbody2D>();
         }
         catch (Exception e)
         {
@@ -265,39 +182,41 @@ public class SwingingController : MonoBehaviour
         // }  
     }
 
+    // ============ ORIG before trying prevSegment and nextSegment
     //TODO: replace with using GetNext and GetPrevSegment
-    private Rigidbody2D GetNextVineSegment(string direction)
-    {
-        int checkRadiusOffsetY = direction == "up" ? 1 : -1;
-        Vector3 checkRadiusOffset = new Vector3(0, checkRadiusOffsetY, 0);
-        Vector2 checkRadiusStartPosition = grabJoint.connectedBody.transform.position + checkRadiusOffset;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(checkRadiusStartPosition, 0.5f, swingableLayer);
-        Collider2D closestSegment = null;
-        float closestDistance = direction == "up" ? float.MaxValue : float.MinValue;
+    // private Rigidbody2D GetNextVineSegment(string direction)
+    // {
+    //     int checkRadiusOffsetY = direction == "up" ? 1 : -1;
+    //     Vector3 checkRadiusOffset = new Vector3(0, checkRadiusOffsetY, 0);
+    //     Vector2 checkRadiusStartPosition = grabJoint.connectedBody.transform.position + checkRadiusOffset;
+    //     Collider2D[] colliders = Physics2D.OverlapCircleAll(checkRadiusStartPosition, 0.5f, swingableLayer);
+    //     Collider2D closestSegment = null;
+    //     float closestDistance = direction == "up" ? float.MaxValue : float.MinValue;
 
-        GameObject currentVineRoot = grabJoint.connectedBody.transform.GetComponent<VineSegment>().GetVineRoot().gameObject;
-        // Debug.Log("currentVineRoot: "+currentVineRoot.name);
+    //     // GameObject currentVineRoot = grabJoint.connectedBody.transform.GetComponent<VineSegment>().vineRoot.gameObject;
+    //     GameObject currentVineRoot = currentVineSegmentRef.vineRoot.gameObject;
+    //     // Debug.Log("currentVineRoot: "+currentVineRoot.name);
 
-        foreach (Collider2D collider in colliders)
-        {
-            // skip over vine segments that do not belong to the same vine;
-            GameObject vineRoot = collider.transform.GetComponent<VineSegment>().GetVineRoot().gameObject;
-            if (!GameObject.ReferenceEquals(currentVineRoot, vineRoot))
-            {
-                continue;
-            }
-            float distance = Vector2.Distance(collider.transform.position, grabJoint.connectedBody.transform.position);
-            if (direction == "up" && distance < closestDistance)
-            {
-                closestSegment = collider;
-                closestDistance = distance;
-            }
-            else if (direction == "down" && distance > closestDistance)
-            {
-                closestSegment = collider;
-                closestDistance = distance;
-            }
-        }
-        return closestSegment.attachedRigidbody;
-    }
+    //     foreach (Collider2D collider in colliders)
+    //     {
+    //         // skip over vine segments that do not belong to the same vine;
+    //         GameObject vineRoot = collider.transform.GetComponent<VineSegment>().vineRoot.gameObject;
+    //         if (!GameObject.ReferenceEquals(currentVineRoot, vineRoot))
+    //         {
+    //             continue;
+    //         }
+    //         float distance = Vector2.Distance(collider.transform.position, grabJoint.connectedBody.transform.position);
+    //         if (direction == "up" && distance < closestDistance)
+    //         {
+    //             closestSegment = collider;
+    //             closestDistance = distance;
+    //         }
+    //         else if (direction == "down" && distance > closestDistance)
+    //         {
+    //             closestSegment = collider;
+    //             closestDistance = distance;
+    //         }
+    //     }
+    //     return closestSegment.attachedRigidbody;
+    // }
 }

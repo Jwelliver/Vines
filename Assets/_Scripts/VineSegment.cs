@@ -3,23 +3,27 @@ using UnityEngine;
 
 public class VineSegment : MonoBehaviour
 {
-    VineRoot vineRoot;
+    public VineRoot vineRoot;
     int segmentIndex;
     //TODO: consider setting up index and/or reference to next/prev segment; use for climbing
 
-    void Awake()
+    public void Init(VineRoot vineRootRef, int _segmentIndex)
     {
-        vineRoot = GetComponentInParent<VineRoot>();
-    }
-
-    public VineRoot GetVineRoot()
-    {
-        return vineRoot;
-    }
-
-    public void SetSegmentIndex(int _segmentIndex)
-    {
+        vineRoot = vineRootRef;
         segmentIndex = _segmentIndex;
+        transform.SetParent(vineRootRef.transform);
+    }
+
+    public Transform GetNextSegment()
+    {
+        // returns next segment in the vine if exists
+        return vineRoot.GetSegmentAtIndex(segmentIndex + 1);
+    }
+
+    public Transform GetPrevSegment()
+    {
+        // returns previous segment in the vine if exists
+        return vineRoot.GetSegmentAtIndex(segmentIndex - 1);
     }
 
     void OnJointBreak2D(Joint2D joint)
