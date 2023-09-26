@@ -66,7 +66,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _RefractionStrength: 1
+    - _RefractionStrength: 0.1
     - _WaterSpeed: 0.001
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

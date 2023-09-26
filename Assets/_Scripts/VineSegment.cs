@@ -4,6 +4,7 @@ using UnityEngine;
 public class VineSegment : MonoBehaviour
 {
     VineRoot vineRoot;
+    int segmentIndex;
     //TODO: consider setting up index and/or reference to next/prev segment; use for climbing
 
     void Awake()
@@ -16,9 +17,14 @@ public class VineSegment : MonoBehaviour
         return vineRoot;
     }
 
+    public void SetSegmentIndex(int _segmentIndex)
+    {
+        segmentIndex = _segmentIndex;
+    }
+
     void OnJointBreak2D(Joint2D joint)
     {
-        vineRoot.OnVineSnap(joint);
+        vineRoot.OnVineSnap(joint, segmentIndex);
     }
 }
 
