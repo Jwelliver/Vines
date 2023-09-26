@@ -33,8 +33,8 @@ MonoBehaviour:
     maxTreeRotation: 5
     maxPalmRotation: 5
     maxVines: 4
-    pctChangeLightShaft: 0.3
-    maxLightShafts: 2
+    pctChangeLightShaft: 0.25
+    maxLightShafts: 3
   vineSettings:
     length:
       min: 15
