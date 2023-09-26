@@ -52,14 +52,15 @@ public class PlayerGroundHandler : MonoBehaviour
         updateGroundChecks();
     }
 
-    void updateGroundChecks() {
+    void updateGroundChecks()
+    {
         /* updates state according to ground checks*/
         checkIsGrounded();
         //if not grounded, exit;
-        if(!isGrounded) { return; }
+        if (!isGrounded) { return; }
         checkIsUpright();
         //if isUpright, exit;
-        if(isUpright) {return;}
+        if (isUpright) { return; }
         checkIsFallen();
     }
 
@@ -67,19 +68,22 @@ public class PlayerGroundHandler : MonoBehaviour
        =============== Grounded ===============
     */
 
-    void checkIsGrounded() {
+    void checkIsGrounded()
+    {
         /*returns true if any groundCheck isTouchingPlatform;*/
         bool groundedCheck = frontUpper.isTouchingPlatform || frontLower.isTouchingPlatform || backUpper.isTouchingPlatform || backLower.isTouchingPlatform || bottom.isTouchingPlatform;
-        if(!groundedCheck && !isGrounded) {return;}
-        else if(!groundedCheck && isGrounded) {onGroundedStart();}
-        else if(groundedCheck && !isGrounded) {onGroundedEnd();}
+        if (!groundedCheck && !isGrounded) { return; }
+        else if (!groundedCheck && isGrounded) { onGroundedStart(); }
+        else if (groundedCheck && !isGrounded) { onGroundedEnd(); }
     }
 
-    void onGroundedStart() {
+    void onGroundedStart()
+    {
         isGrounded = true;
     }
 
-    void onGroundedEnd() {
+    void onGroundedEnd()
+    {
         isGrounded = false;
         isFallen = false;
         isUpright = false;
@@ -91,22 +95,25 @@ public class PlayerGroundHandler : MonoBehaviour
         =============== Upright ===============
     */
 
-    void checkIsUpright() {
+    void checkIsUpright()
+    {
         /* returns true if only the bottom groundcheck is touchingPlatform*/
         bool uprightCheck = bottom.isTouchingPlatform && !isFallen;
-        if(uprightCheck && !isUpright) {handleOnUprightStart();}
-        else if (!uprightCheck && isUpright) {handleOnUprightEnd();}
+        if (uprightCheck && !isUpright) { handleOnUprightStart(); }
+        else if (!uprightCheck && isUpright) { handleOnUprightEnd(); }
     }
 
-    void handleOnUprightStart() {
+    void handleOnUprightStart()
+    {
         isUpright = true;
         //todo: stop crawling/standing anim;
         isStandingUp = false;
         isCrawling = false;
-        playerController.enableInput();
+        PlayerInput.EnableInput();
     }
 
-    void handleOnUprightEnd() {
+    void handleOnUprightEnd()
+    {
         isUpright = false;
     }
 
@@ -114,36 +121,42 @@ public class PlayerGroundHandler : MonoBehaviour
         =============== Fallen ===============
     */
 
-    void checkIsFallen() {
+    void checkIsFallen()
+    {
         /* returns true if any front or back groundChecks are touchingPlatform*/
         bool fallenCheck = frontUpper.isTouchingPlatform || frontLower.isTouchingPlatform || backUpper.isTouchingPlatform || backLower.isTouchingPlatform;
-        if(fallenCheck && !isFallen) {handleOnFallenStart();}
-        else if(!fallenCheck && isFallen) {handleOnFallenEnd();}
+        if (fallenCheck && !isFallen) { handleOnFallenStart(); }
+        else if (!fallenCheck && isFallen) { handleOnFallenEnd(); }
     }
 
-    void handleOnFallenStart() {
+    void handleOnFallenStart()
+    {
         isFallen = true;
-        playerController.disableInput();
+        PlayerInput.DisableInput();
         bool upperTouching = frontUpper.isTouchingPlatform || backUpper.isTouchingPlatform;
         bool lowerTouching = frontLower.isTouchingPlatform || backLower.isTouchingPlatform;
         //if player is on their back, flip the player direction;
         bool isOnBack = backUpper.isTouchingPlatform || backLower.isTouchingPlatform;
-        if(isOnBack) {
+        if (isOnBack)
+        {
             playerController.flipPlayerFacingDirection();
         }
         //if front upper and front lower are touching platform, 
-        if(upperTouching && lowerTouching) {
+        if (upperTouching && lowerTouching)
+        {
             isStandingUp = true;
             playerAnimator.SetBool("isStandingUp", true);
         }
         //if only front is touching,
-        else if(upperTouching && !lowerTouching) {
+        else if (upperTouching && !lowerTouching)
+        {
             isCrawling = true;
             playerAnimator.SetBool("isCrawling", true);
         }
     }
 
-    void handleOnFallenEnd() {
+    void handleOnFallenEnd()
+    {
         isFallen = false;
     }
 

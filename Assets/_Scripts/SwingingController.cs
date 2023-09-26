@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class SwingingController : MonoBehaviour
 {
 
 
-    [SerializeField] KeyCode grabKey = KeyCode.LeftShift;
+    // [SerializeField] KeyCode grabKey = KeyCode.LeftShift;
     [SerializeField] KeyCode climbUpKey = KeyCode.W;
     [SerializeField] KeyCode climbDownKey = KeyCode.S;
     [SerializeField] LayerMask swingableLayer;
@@ -18,14 +18,46 @@ public class SwingingController : MonoBehaviour
     [SerializeField] float climbSpeed = 1.0f; // the speed of climbing up and down vines
     [SerializeField] float climbSecondsBetweenMove = 1f;
 
-    private bool isClimbing;
+    // private bool isClimbing;
 
     Transform myTransform;
 
-    bool hasAttemptedGrab;
-    bool hasReleased;
-    public bool isSwinging;
+    // bool hasAttemptedGrab;
+    // bool hasReleased;
+    public static bool isClimbing;
+    public static bool isSwinging;
 
+
+    // void OnEnable()
+    // {
+    //     CharacterController2D.input.Player.Grab.performed += OnGrabAttempt;
+    //     CharacterController2D.input.Player.Grab.canceled += OnGrabAttemptCanceled;
+
+    // }
+
+    // void OnDisable()
+    // {
+    //     CharacterController2D.input.Player.Grab.performed -= OnGrabAttempt;
+    //     CharacterController2D.input.Player.Grab.canceled -= OnGrabAttemptCanceled;
+    // }
+
+    // void OnGrabAttempt(InputAction.CallbackContext callbackContext)
+    // {
+    //     Debug.Log("OnGrabAttempt");
+    //     if (!isSwinging)
+    //     {
+    //         hasAttemptedGrab = true;
+    //     }
+    // }
+
+    // void OnGrabAttemptCanceled(InputAction.CallbackContext callbackContext)
+    // {
+    //     Debug.Log("OnGrabAttemptCanceled");
+    //     if (isSwinging)
+    //     {
+    //         hasReleased = true;
+    //     }
+    // }
 
     void Awake()
     {
@@ -35,28 +67,29 @@ public class SwingingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        handleGrabInput();
-        handleClimbInput();
+        // handleGrabInput(); //! 092523 testing new input system
+        // handleClimbInput();
     }
 
-    void handleGrabInput()
-    {
-        if (Input.GetKeyDown(grabKey) && !isSwinging)
-        {
-            hasAttemptedGrab = true;
-            // Debug.Log("isAttemptingGrab()");
-        }
-        else if (Input.GetKeyUp(grabKey) && isSwinging)
-        {
-            hasReleased = true;
-        }
-    }
+    // void handleGrabInput()
+    // {
+    //     if (Input.GetKeyDown(grabKey) && !isSwinging)
+    //     {
+    //         PlayerInput.hasAttemptedGrab = true;
+    //         // Debug.Log("isAttemptingGrab()");
+    //     }
+    //     else if (Input.GetKeyUp(grabKey) && isSwinging)
+    //     {
+    //         PlayerInput.hasReleased = true;
+    //     }
+    // }
 
 
     void FixedUpdate()
     {
         handleSwingGrab();
         handleSwingRelease();
+        handleClimbInput();
     }
 
     void attachJoints(Rigidbody2D vineSegment)
@@ -74,7 +107,7 @@ public class SwingingController : MonoBehaviour
 
     void handleSwingGrab()
     {
-        if (hasAttemptedGrab)
+        if (PlayerInput.hasAttemptedGrab)
         {
             // Debug.Log("handleSwingGrab()");
             Collider2D[] colliders = Physics2D.OverlapCircleAll(grabCollider.transform.position, grabCollider.radius, swingableLayer);
@@ -86,7 +119,7 @@ public class SwingingController : MonoBehaviour
                 startSwing();
             }
         }
-        hasAttemptedGrab = false;
+        PlayerInput.hasAttemptedGrab = false;
     }
 
     void startSwing()
@@ -105,14 +138,14 @@ public class SwingingController : MonoBehaviour
 
     public void handleSwingRelease(bool forceRelease = false)
     {
-        if (hasReleased || forceRelease)
+        if (PlayerInput.hasReleased || forceRelease)
         {
             endClimb();
             releaseJoints();
             endSwing();
         }
-        hasReleased = false;
-        hasAttemptedGrab = false;
+        PlayerInput.hasReleased = false;
+        PlayerInput.hasAttemptedGrab = false;
     }
 
 
@@ -132,33 +165,60 @@ public class SwingingController : MonoBehaviour
         return nearestCollider;
     }
 
-
-
     void handleClimbInput()
     {
         if (!isSwinging) { return; }
-        if (isClimbing && !Input.GetKey(climbUpKey) && !Input.GetKey(climbDownKey))
+        if (isClimbing && !PlayerInput.isAttemptingClimbUp && !PlayerInput.isAttemptingClimbDown)
         {
             endClimb();
         }
 
-        if (!isClimbing && Input.GetKeyDown(climbUpKey))
+        if (!isClimbing && PlayerInput.isAttemptingClimbUp)
         {
             isClimbing = true;
             StartCoroutine(Climb("up"));
         }
 
-        if (!isClimbing && Input.GetKeyDown(climbDownKey))
+        if (!isClimbing && PlayerInput.isAttemptingClimbDown)
         {
             isClimbing = true;
             StartCoroutine(Climb("down"));
         }
 
-        if (isClimbing && (Input.GetKeyUp(climbUpKey) || Input.GetKeyUp(climbDownKey)))
-        {
-            endClimb();
-        }
+        // if (isClimbing && (Input.GetKeyUp(climbUpKey) || Input.GetKeyUp(climbDownKey)))
+        // {
+        //     endClimb();
+        // }
     }
+
+
+
+    //====== ORIG input sys
+    // void handleClimbInput()
+    // {
+    //     if (!isSwinging) { return; }
+    //     if (isClimbing && !Input.GetKey(climbUpKey) && !Input.GetKey(climbDownKey))
+    //     {
+    //         endClimb();
+    //     }
+
+    //     if (!isClimbing && Input.GetKeyDown(climbUpKey))
+    //     {
+    //         isClimbing = true;
+    //         StartCoroutine(Climb("up"));
+    //     }
+
+    //     if (!isClimbing && Input.GetKeyDown(climbDownKey))
+    //     {
+    //         isClimbing = true;
+    //         StartCoroutine(Climb("down"));
+    //     }
+
+    //     if (isClimbing && (Input.GetKeyUp(climbUpKey) || Input.GetKeyUp(climbDownKey)))
+    //     {
+    //         endClimb();
+    //     }
+    // }
 
     void endClimb()
     {
@@ -205,6 +265,7 @@ public class SwingingController : MonoBehaviour
         // }  
     }
 
+    //TODO: replace with using GetNext and GetPrevSegment
     private Rigidbody2D GetNextVineSegment(string direction)
     {
         int checkRadiusOffsetY = direction == "up" ? 1 : -1;

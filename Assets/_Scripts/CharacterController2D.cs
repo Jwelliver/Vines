@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// using UnityEngine.InputSystem;
+
 
 public class CharacterController2D : MonoBehaviour
 {
@@ -27,21 +29,13 @@ public class CharacterController2D : MonoBehaviour
     private bool isSwinging;
 
     private SwingingController swingingController;
-    // private GameManager gameManager;
-
 
     private bool playerTookFirstSwing;
-
-    private bool inputEnabled = true;
-
-    private float moveInput;
-    private bool _jump;
-    private bool isAttacking;
 
     private bool isHitByArrow;
     private bool isFacingLeft;
 
-    // enum RagdollAnimationBlendStrengh {
+    // enum RagdollAnimationBlendStrengh { //TODO: correctly implement this enum and replace vars below
     //     High=100,Med=50,Low=5,None=0
     // }
 
@@ -54,24 +48,25 @@ public class CharacterController2D : MonoBehaviour
 
     void Awake()
     {
+        // input = new CustomInput();
         myTransform = transform;
-    }
-
-
-    private void Start()
-    {
-        // groundCheck = GetComponentInChildren<GroundCheck>();
-        // rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         swingingController = GetComponent<SwingingController>();
-        // gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        // playerAudio = GetComponentInChildren<AudioSource>();
     }
+
+    void OnDisable()
+    {
+        // Disable ragdoll parts
+        foreach (TargetRotation i in ragdollParts)
+        {
+            i.transform.root.gameObject.SetActive(false);
+        }
+    }
+
 
     private void Update()
     {
         if (isHitByArrow) return;
-        getInput();
         handleJump();
         // handleAttack(); //090823 disabled for prod; bugs/net not in use
         updateIsSwinging();
@@ -85,31 +80,19 @@ public class CharacterController2D : MonoBehaviour
         else { handleNormalMovement(); }
     }
 
-    void getInput()
-    {
-        if (!inputEnabled)
-        {
-            moveInput = 0f;
-            return;
-        }
-        moveInput = Input.GetAxis("Horizontal");
-        _jump = Input.GetKeyDown(jumpKey);
-        isAttacking = Input.GetMouseButtonDown(0);
-    }
-
-    void handleAttack()
-    {
-        if (isAttacking)
-        {
-            swingNetAttack.attack();
-            isAttacking = false;
-        }
-    }
+    // void handleAttack() // * 092523 Not in use
+    // {
+    //     if (isAttacking)
+    //     {
+    //         swingNetAttack.attack();
+    //         isAttacking = false;
+    //     }
+    // }
 
     void updateIsSwinging()
     {
-        bool swingStarted = !isSwinging && swingingController.isSwinging;
-        bool swingEnded = isSwinging && !swingingController.isSwinging;
+        bool swingStarted = !isSwinging && SwingingController.isSwinging;
+        bool swingEnded = isSwinging && !SwingingController.isSwinging;
         if (swingStarted)
         {
             onSwingStart();
@@ -118,7 +101,7 @@ public class CharacterController2D : MonoBehaviour
         {
             onSwingEnd();
         }
-        isSwinging = swingingController.isSwinging;
+        isSwinging = SwingingController.isSwinging;
     }
 
     void onSwingStart()
@@ -145,11 +128,11 @@ public class CharacterController2D : MonoBehaviour
     void handleSpriteDirection()
     {
         // Flip the sprite based on the direction of movement
-        if (moveInput < 0 && !isFacingLeft)
+        if (PlayerInput.moveInput < 0 && !isFacingLeft)
         {
             setPlayerFacingDirection("left");
         }
-        else if (moveInput > 0 && isFacingLeft)
+        else if (PlayerInput.moveInput > 0 && isFacingLeft)
         {
             setPlayerFacingDirection("right");
         }
@@ -172,10 +155,25 @@ public class CharacterController2D : MonoBehaviour
     void handleNormalMovement()
     {
         animator.SetBool("isSwinging", false);
-        // Move the character horizontally
-        if (moveInput != 0 && isGrounded)
+
+        // Check if the character is on the ground
+        if (groundCheck.isTouchingPlatform && !isGrounded) { onGroundTouched(); }
+        else if (!groundCheck.isTouchingPlatform && isGrounded) { onGroundLeft(); }
+
+        if (isGrounded)
         {
-            rb.velocity = new Vector2(moveInput * normalMoveSpeed, rb.velocity.y);
+            keepPlayerUpright();
+            // Move the character horizontally
+            if (PlayerInput.moveInput != 0)
+            {
+                rb.velocity = new Vector2(PlayerInput.moveInput * normalMoveSpeed, rb.velocity.y);
+            }
+            // Deccelerate
+            if (PlayerInput.moveInput == 0 && Mathf.Abs(rb.velocity.x) > 0.1f)
+            {
+                float slowdownFactor = rb.velocity.x > 0f ? -normalMoveSpeed : normalMoveSpeed;
+                rb.velocity += new Vector2(slowdownFactor * Time.fixedDeltaTime, 0);
+            }
         }
 
         //if player is in platform landing zone, move upright
@@ -184,31 +182,8 @@ public class CharacterController2D : MonoBehaviour
             keepPlayerUpright();
         }
 
-        // Check if the character is on the ground
-        if (groundCheck.isTouchingPlatform && !isGrounded)
-        {
-            onGroundTouched();
-        }
-        else if (!groundCheck.isTouchingPlatform && isGrounded)
-        {
-            onGroundLeft();
-        }
-
-        if (isGrounded)
-        {
-            keepPlayerUpright();
-        }
-
         handleRunningAnimation();
     }
-
-    // void keepPlayerUpright() {
-    //     Quaternion targetRotation = Quaternion.Euler(0, 0, 0); // upright rotation
-    //     float str = Mathf.Min(standupSpeed * Time.deltaTime, 1);
-    //     float targetRotationAngle = targetRotation.eulerAngles.z;
-    //     float nextRotation = Mathf.Lerp(rb.rotation, targetRotationAngle, str);
-    //     rb.MoveRotation(nextRotation);
-    // }
 
     void keepPlayerUpright()
     {
@@ -252,7 +227,7 @@ public class CharacterController2D : MonoBehaviour
     void handleJump()
     {
         // Jump logic
-        if (_jump)
+        if (PlayerInput.hasAttemptedJump)
         {
             if (isGrounded || jumpCount < maxJumps)
             {
@@ -269,22 +244,22 @@ public class CharacterController2D : MonoBehaviour
 
     void handleSwingingMovement()
     {
-        if (moveInput != 0)
+        if (PlayerInput.moveInput != 0)
         {
             sfx.vineSFX.playVineStretchSound();
             // rb.AddForce(new Vector2(moveInput * swingingMoveSpeed, rb.velocity.y)) ;
-            rb.AddForce(new Vector2(moveInput * swingingMoveSpeed, 0));
+            rb.AddForce(new Vector2(PlayerInput.moveInput * swingingMoveSpeed, 0));
         }
     }
 
     void handleRunningAnimation()
     {
-        if (isGrounded && moveInput != 0)
+        if (isGrounded && PlayerInput.moveInput != 0)
         {
             animator.SetBool("isRunning", true);
             setTargetRotationForceInRagdollParts(ragdollAnimationBlendHigh);
         }
-        else if (isGrounded && moveInput == 0 && Mathf.Abs(rb.velocity.x) > 0.1f)
+        else if (isGrounded && PlayerInput.moveInput == 0 && Mathf.Abs(rb.velocity.x) > 0.1f)
         {
             animator.SetBool("isRunning", true);
             setTargetRotationForceInRagdollParts(ragdollAnimationBlendMed);
@@ -350,28 +325,13 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    void OnDisable()
-    {
-        foreach (TargetRotation i in ragdollParts)
-        {
-            i.transform.root.gameObject.SetActive(false);
-        }
-    }
 
 
-    public void onDeath()
-    {
+    // public void onDeath()
+    // {
 
-    }
+    // }
 
-    public void disableInput()
-    {
-        inputEnabled = false;
-    }
 
-    public void enableInput()
-    {
-        inputEnabled = true;
-    }
 }
 

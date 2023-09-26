@@ -55,12 +55,12 @@ public class SwingWindSound : MonoBehaviour
 
     void handleAudioStartStop()
     {
-        if (!isSwinging && swingingController.isSwinging)
+        if (!isSwinging && SwingingController.isSwinging)
         {
             audioSource.Play();
             isSwinging = true;
         }
-        else if (isSwinging && !swingingController.isSwinging)
+        else if (isSwinging && !SwingingController.isSwinging)
         {
             audioSource.Stop();
             isSwinging = false;
