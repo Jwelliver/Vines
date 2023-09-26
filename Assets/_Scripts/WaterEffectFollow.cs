@@ -1,23 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+// * 092523: Updating to handle water speed adjustment; Following is now handled by MatchCameraPosition
 public class WaterEffectFollow : MonoBehaviour
 {
-    [SerializeField] Transform player;
-    [SerializeField] SpriteRenderer water;
+    // [SerializeField] Rigidbody2D playerRb;
+    [SerializeField] Transform cameraTransform;
+    [SerializeField] SpriteRenderer waterSpriteRenderer;
+    Material waterMaterial;
 
-    private Vector2 playerPrevPos;
-    // Update is called once per frame
+    string waterSpeedRef = "_WaterSpeed"; // property ref in Water material
+    float defaultWaterSpeed;
 
-    void Start() {
-        playerPrevPos = player.position;
+    float prevCameraX;
+
+    void Start()
+    {
+        // playerPrevPos = playerRb.position;
+        waterMaterial = waterSpriteRenderer.material;
+        defaultWaterSpeed = waterMaterial.GetFloat(waterSpeedRef);
+        prevCameraX = cameraTransform.position.x;
     }
+
     void Update()
     {
-        transform.position = new Vector2(player.position.x, transform.position.y);
-        // Vector2 textureOffset = water.material.GetTextureOffset("_WaterTexture") + new Vector2(Time.deltaTime*10f,0);//(Vector2)playerPrevPos - (Vector2)player.position;
-        // water.material.SetTextureOffset("_WaterTexture",textureOffset);
-        playerPrevPos = player.position;
+        float currentCameraX = cameraTransform.position.x;
+        float diff = prevCameraX - currentCameraX;
+        float newSpeed = defaultWaterSpeed + (defaultWaterSpeed * diff);
+        if (diff < 0) newSpeed = -newSpeed;
+        waterMaterial.SetFloat(waterSpeedRef, newSpeed); //todo: if you keep this, add a buffer so that if ref is not moving, dont keep setting the float; causes artifacts
+        prevCameraX = currentCameraX;
+        // if (newSpeed != defaultWaterSpeed) Debug.Log(newSpeed);
     }
 }
