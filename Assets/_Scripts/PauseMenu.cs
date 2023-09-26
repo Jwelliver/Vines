@@ -60,8 +60,8 @@ public class PauseMenu : MonoBehaviour
     public void QuitGame()
     {
 #if UNITY_WEBGL
-            LoadMenu();
-            return;
+        LoadStartMenu();
+        return;
 #endif
         Application.Quit();
     }
