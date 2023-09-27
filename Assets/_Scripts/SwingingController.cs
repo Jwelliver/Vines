@@ -28,6 +28,16 @@ public class SwingingController : MonoBehaviour
         myTransform = transform;
     }
 
+    void OnDisable()
+    {
+        currentVineSegmentRef = null;
+    }
+
+    void OnDestroy()
+    {
+        currentVineSegmentRef = null;
+    }
+
 
 
     void FixedUpdate()
