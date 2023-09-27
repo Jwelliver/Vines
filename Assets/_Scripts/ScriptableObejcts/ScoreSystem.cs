@@ -18,10 +18,10 @@ public class ScoreSystem : MonoBehaviour
     [SerializeField] FadeText newRecordTextObj;
     [SerializeField] FadeText statsFadeTextObj;
     [SerializeField] AudioSource recordBreakAudio;
-    [SerializeField] SimpleSave simpleSave;
+    // [SerializeField] SimpleSave simpleSave;
     bool isRecordingSwingStats = false;
 
-    PlayerStats sessionStats;
+    public static PlayerStats sessionStats;
     // PlayerStats allTimeStats;
 
     bool allTimeLevelDistanceBeatThisSession;
@@ -40,11 +40,11 @@ public class ScoreSystem : MonoBehaviour
         sessionStats = new PlayerStats();
         // Init/Load AllTimeStats
         // simpleSave.LoadAllTimeStats();
-        Debug.Log("Loading: " + simpleSave.RecordStats.ToString());
+        Debug.Log("Loading: " + SimpleSave.RecordStats.ToString());
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (isRecordingSwingStats)
         {
@@ -57,39 +57,39 @@ public class ScoreSystem : MonoBehaviour
     {
         recordBreakAudio.Play();
         newRecordTextObj.FadeTo("New Record!!\n" + recordKey + "\n" + value.ToString());
-        simpleSave.RecordStats.Save();
+        SimpleSave.RecordStats.Save();
     }
 
     void CheckForAllTimeRecord()
     {
-        if (sessionStats.bestJumpDistance > simpleSave.RecordStats.bestJumpDistance)
+        if (sessionStats.bestJumpDistance > SimpleSave.RecordStats.bestJumpDistance)
         {
-            simpleSave.RecordStats.bestJumpDistance = sessionStats.bestJumpDistance;
+            SimpleSave.RecordStats.bestJumpDistance = sessionStats.bestJumpDistance;
             OnNewRecord("Jump Distance", sessionStats.bestJumpDistance);
         }
 
-        if (sessionStats.bestJumpVelocity > simpleSave.RecordStats.bestJumpVelocity)
+        if (sessionStats.bestJumpVelocity > SimpleSave.RecordStats.bestJumpVelocity)
         {
-            simpleSave.RecordStats.bestJumpVelocity = sessionStats.bestJumpVelocity;
+            SimpleSave.RecordStats.bestJumpVelocity = sessionStats.bestJumpVelocity;
             OnNewRecord("Jump Velocity", sessionStats.bestJumpVelocity);
         }
 
-        if (sessionStats.bestJumpVelocity > simpleSave.RecordStats.bestJumpVelocity)
+        if (sessionStats.bestJumpVelocity > SimpleSave.RecordStats.bestJumpVelocity)
         {
-            simpleSave.RecordStats.bestJumpVelocity = sessionStats.bestJumpVelocity;
+            SimpleSave.RecordStats.bestJumpVelocity = sessionStats.bestJumpVelocity;
             OnNewRecord("Jump Height", sessionStats.bestJumpVelocity);
         }
 
-        if (sessionStats.bestLevelDistance > simpleSave.RecordStats.bestLevelDistance)
+        if (sessionStats.bestLevelDistance > SimpleSave.RecordStats.bestLevelDistance)
         {
-            simpleSave.RecordStats.bestLevelDistance = sessionStats.bestLevelDistance;
+            SimpleSave.RecordStats.bestLevelDistance = sessionStats.bestLevelDistance;
             // Only notify the first time it's beaten on the session, so we don't notify on every grab thereon
             if (!allTimeLevelDistanceBeatThisSession)
             {
                 OnNewRecord("Level Distance", sessionStats.bestLevelDistance);
                 allTimeLevelDistanceBeatThisSession = true;
             }
-            else { simpleSave.RecordStats.Save(); }
+            else { SimpleSave.RecordStats.Save(); }
         }
     }
 

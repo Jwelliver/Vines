@@ -24,7 +24,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
     ""name"": ""CustomInput"",
     ""maps"": [
         {
-            ""name"": ""Player"",
+            ""name"": ""GamePlay"",
             ""id"": ""fddb1c45-fd95-448e-aa74-f31ca2db44ac"",
             ""actions"": [
                 {
@@ -76,6 +76,24 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                     ""name"": ""Restart"",
                     ""type"": ""Button"",
                     ""id"": ""23f3c36b-1c6d-4ccd-804d-44119463f341"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""92094b74-aeed-46dd-9dee-36f15391a7e0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShowFPS"",
+                    ""type"": ""Button"",
+                    ""id"": ""962854f7-d4e0-4ce7-9772-b55ae4287ef9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -280,6 +298,50 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                     ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ad5c24a8-a3e9-47a5-98d5-96257be1901d"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3d29058f-4017-460e-a946-50d7d705c7d3"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""305e996a-ab41-4d73-8865-14adfa5a912e"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mobile"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e579865e-4e52-4fb1-8155-553dafcc0ac9"",
+                    ""path"": ""<Keyboard>/backquote"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KeyboardAndMouse"",
+                    ""action"": ""ShowFPS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -314,14 +376,16 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Player
-        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
-        m_Player_HorizontalMovement = m_Player.FindAction("HorizontalMovement", throwIfNotFound: true);
-        m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
-        m_Player_Grab = m_Player.FindAction("Grab", throwIfNotFound: true);
-        m_Player_ClimbUp = m_Player.FindAction("ClimbUp", throwIfNotFound: true);
-        m_Player_ClimbDown = m_Player.FindAction("ClimbDown", throwIfNotFound: true);
-        m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
+        // GamePlay
+        m_GamePlay = asset.FindActionMap("GamePlay", throwIfNotFound: true);
+        m_GamePlay_HorizontalMovement = m_GamePlay.FindAction("HorizontalMovement", throwIfNotFound: true);
+        m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
+        m_GamePlay_Grab = m_GamePlay.FindAction("Grab", throwIfNotFound: true);
+        m_GamePlay_ClimbUp = m_GamePlay.FindAction("ClimbUp", throwIfNotFound: true);
+        m_GamePlay_ClimbDown = m_GamePlay.FindAction("ClimbDown", throwIfNotFound: true);
+        m_GamePlay_Restart = m_GamePlay.FindAction("Restart", throwIfNotFound: true);
+        m_GamePlay_Pause = m_GamePlay.FindAction("Pause", throwIfNotFound: true);
+        m_GamePlay_ShowFPS = m_GamePlay.FindAction("ShowFPS", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -378,54 +442,64 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Player
-    private readonly InputActionMap m_Player;
-    private IPlayerActions m_PlayerActionsCallbackInterface;
-    private readonly InputAction m_Player_HorizontalMovement;
-    private readonly InputAction m_Player_Jump;
-    private readonly InputAction m_Player_Grab;
-    private readonly InputAction m_Player_ClimbUp;
-    private readonly InputAction m_Player_ClimbDown;
-    private readonly InputAction m_Player_Restart;
-    public struct PlayerActions
+    // GamePlay
+    private readonly InputActionMap m_GamePlay;
+    private IGamePlayActions m_GamePlayActionsCallbackInterface;
+    private readonly InputAction m_GamePlay_HorizontalMovement;
+    private readonly InputAction m_GamePlay_Jump;
+    private readonly InputAction m_GamePlay_Grab;
+    private readonly InputAction m_GamePlay_ClimbUp;
+    private readonly InputAction m_GamePlay_ClimbDown;
+    private readonly InputAction m_GamePlay_Restart;
+    private readonly InputAction m_GamePlay_Pause;
+    private readonly InputAction m_GamePlay_ShowFPS;
+    public struct GamePlayActions
     {
         private @CustomInput m_Wrapper;
-        public PlayerActions(@CustomInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @HorizontalMovement => m_Wrapper.m_Player_HorizontalMovement;
-        public InputAction @Jump => m_Wrapper.m_Player_Jump;
-        public InputAction @Grab => m_Wrapper.m_Player_Grab;
-        public InputAction @ClimbUp => m_Wrapper.m_Player_ClimbUp;
-        public InputAction @ClimbDown => m_Wrapper.m_Player_ClimbDown;
-        public InputAction @Restart => m_Wrapper.m_Player_Restart;
-        public InputActionMap Get() { return m_Wrapper.m_Player; }
+        public GamePlayActions(@CustomInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @HorizontalMovement => m_Wrapper.m_GamePlay_HorizontalMovement;
+        public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
+        public InputAction @Grab => m_Wrapper.m_GamePlay_Grab;
+        public InputAction @ClimbUp => m_Wrapper.m_GamePlay_ClimbUp;
+        public InputAction @ClimbDown => m_Wrapper.m_GamePlay_ClimbDown;
+        public InputAction @Restart => m_Wrapper.m_GamePlay_Restart;
+        public InputAction @Pause => m_Wrapper.m_GamePlay_Pause;
+        public InputAction @ShowFPS => m_Wrapper.m_GamePlay_ShowFPS;
+        public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
-        public void SetCallbacks(IPlayerActions instance)
+        public static implicit operator InputActionMap(GamePlayActions set) { return set.Get(); }
+        public void SetCallbacks(IGamePlayActions instance)
         {
-            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
+            if (m_Wrapper.m_GamePlayActionsCallbackInterface != null)
             {
-                @HorizontalMovement.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHorizontalMovement;
-                @HorizontalMovement.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHorizontalMovement;
-                @HorizontalMovement.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHorizontalMovement;
-                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
-                @Grab.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
-                @Grab.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
-                @Grab.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnGrab;
-                @ClimbUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbUp;
-                @ClimbUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbUp;
-                @ClimbUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbUp;
-                @ClimbDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbDown;
-                @ClimbDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbDown;
-                @ClimbDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnClimbDown;
-                @Restart.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRestart;
-                @Restart.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRestart;
-                @Restart.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRestart;
+                @HorizontalMovement.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnHorizontalMovement;
+                @HorizontalMovement.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnHorizontalMovement;
+                @HorizontalMovement.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnHorizontalMovement;
+                @Jump.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
+                @Grab.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnGrab;
+                @Grab.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnGrab;
+                @Grab.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnGrab;
+                @ClimbUp.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnClimbUp;
+                @ClimbUp.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnClimbUp;
+                @ClimbUp.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnClimbUp;
+                @ClimbDown.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnClimbDown;
+                @ClimbDown.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnClimbDown;
+                @ClimbDown.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnClimbDown;
+                @Restart.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRestart;
+                @Restart.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRestart;
+                @Restart.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRestart;
+                @Pause.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnPause;
+                @ShowFPS.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShowFPS;
+                @ShowFPS.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShowFPS;
+                @ShowFPS.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnShowFPS;
             }
-            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
+            m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @HorizontalMovement.started += instance.OnHorizontalMovement;
@@ -446,10 +520,16 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
                 @Restart.started += instance.OnRestart;
                 @Restart.performed += instance.OnRestart;
                 @Restart.canceled += instance.OnRestart;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @ShowFPS.started += instance.OnShowFPS;
+                @ShowFPS.performed += instance.OnShowFPS;
+                @ShowFPS.canceled += instance.OnShowFPS;
             }
         }
     }
-    public PlayerActions @Player => new PlayerActions(this);
+    public GamePlayActions @GamePlay => new GamePlayActions(this);
     private int m_KeyboardAndMouseSchemeIndex = -1;
     public InputControlScheme KeyboardAndMouseScheme
     {
@@ -468,7 +548,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
             return asset.controlSchemes[m_MobileSchemeIndex];
         }
     }
-    public interface IPlayerActions
+    public interface IGamePlayActions
     {
         void OnHorizontalMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
@@ -476,5 +556,7 @@ public partial class @CustomInput : IInputActionCollection2, IDisposable
         void OnClimbUp(InputAction.CallbackContext context);
         void OnClimbDown(InputAction.CallbackContext context);
         void OnRestart(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnShowFPS(InputAction.CallbackContext context);
     }
 }

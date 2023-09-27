@@ -4,36 +4,28 @@ using UnityEngine.UI;
 public class FramesPerSecond : MonoBehaviour
 {
     public float updateInterval = 0.5F;
-
     private double lastInterval;
     private int frames = 0;
     private float fps;
     public TMPro.TextMeshProUGUI display_Text;
-    public KeyCode toggleKey = KeyCode.BackQuote;
+    public static bool ShowFPS;
+    // public KeyCode toggleKey = KeyCode.BackQuote;
 
-    //debug test
-    // Transform player;
-    GameManager gameManager;
-
-    // int totalBackgroundObjects;
 
     void Awake()
     {
-        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        // player = GameObject.Find("Player").transform;
-        // totalBackgroundObjects = gameManager.levelGen.getTotalBackgroundObjects();
         lastInterval = Time.realtimeSinceStartup;
         frames = 0;
     }
 
+    public static void OnFpsButtonPressed()
+    {
+        ShowFPS = !ShowFPS;
+    }
+
     void Update()
     {
-        if (Input.GetKeyDown(toggleKey))
-        {
-            display_Text.enabled = !display_Text.enabled;
-        }
-
-        if (display_Text.enabled)
+        if (ShowFPS)
         {
             updateFPS();
         }
@@ -51,8 +43,6 @@ public class FramesPerSecond : MonoBehaviour
         }
 
         string newtext = "FPS: " + Mathf.Ceil(fps).ToString();
-        // newtext += "Player X: " + player.position.x;
-        // newtext += " Total GB Obj: " + totalBackgroundObjects;
         display_Text.text = newtext;
     }
 }

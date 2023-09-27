@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         // Cursor.visible = false; //TODO reimplement
         levelGen.InitLevel();
+        GameContext.SetGameState(GameState.InGame);
     }
 
     void HandleNewSectionGeneration()

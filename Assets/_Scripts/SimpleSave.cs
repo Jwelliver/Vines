@@ -47,7 +47,7 @@ public class PlayerStats
 [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/SimpleSave")]
 public class SimpleSave : ScriptableObject
 {
-    public PlayerStats RecordStats;
+    public static PlayerStats RecordStats;
 
     void OnEnable()
     {

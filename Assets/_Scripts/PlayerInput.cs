@@ -23,6 +23,7 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] GameObject mobileControls; // TODO: temp placement here; move to dedicated class
     [SerializeField] LevelLoader levelLoader; //TODO: move
+    [SerializeField] PauseMenu pauseMenu;
 
 
 
@@ -38,32 +39,35 @@ public class PlayerInput : MonoBehaviour
     void OnEnable()
     {
         customInput.Enable();
-        customInput.Player.HorizontalMovement.performed += OnHorizontalMovement;
-        customInput.Player.HorizontalMovement.canceled += OnHorizontalMovementCanceled;
-        customInput.Player.Jump.performed += OnJump;
-        customInput.Player.Jump.canceled += OnJumpCanceled;
-        customInput.Player.Grab.performed += OnGrabAttempt;
-        customInput.Player.Grab.canceled += OnGrabAttemptCanceled;
-        customInput.Player.ClimbUp.performed += ctx => isAttemptingClimbUp = true;
-        customInput.Player.ClimbUp.canceled += ctx => isAttemptingClimbUp = false;
-        customInput.Player.ClimbDown.performed += ctx => isAttemptingClimbDown = true;
-        customInput.Player.ClimbDown.canceled += ctx => isAttemptingClimbDown = false;
-        customInput.Player.Restart.performed += ctx => levelLoader.reloadCurrentLevel();
+        customInput.GamePlay.HorizontalMovement.performed += OnHorizontalMovement;
+        customInput.GamePlay.HorizontalMovement.canceled += OnHorizontalMovementCanceled;
+        customInput.GamePlay.Jump.performed += OnJump;
+        customInput.GamePlay.Jump.canceled += OnJumpCanceled;
+        customInput.GamePlay.Grab.performed += OnGrabAttempt;
+        customInput.GamePlay.Grab.canceled += OnGrabAttemptCanceled;
+        customInput.GamePlay.ClimbUp.performed += ctx => isAttemptingClimbUp = true;
+        customInput.GamePlay.ClimbUp.canceled += ctx => isAttemptingClimbUp = false;
+        customInput.GamePlay.ClimbDown.performed += ctx => isAttemptingClimbDown = true;
+        customInput.GamePlay.ClimbDown.canceled += ctx => isAttemptingClimbDown = false;
+        customInput.GamePlay.Restart.performed += ctx => levelLoader.reloadCurrentLevel();
+        customInput.GamePlay.Pause.performed += ctx => pauseMenu.OnPauseButtonPressed();
+        customInput.GamePlay.ShowFPS.performed += ctx => FramesPerSecond.OnFpsButtonPressed();
     }
     void OnDisable()
     {
         customInput.Disable();
-        customInput.Player.HorizontalMovement.performed -= OnHorizontalMovement;
-        customInput.Player.HorizontalMovement.canceled -= OnHorizontalMovementCanceled;
-        customInput.Player.Jump.performed -= OnJump;
-        customInput.Player.Jump.canceled -= OnJumpCanceled;
-        customInput.Player.Grab.performed -= OnGrabAttempt;
-        customInput.Player.Grab.canceled -= OnGrabAttemptCanceled;
-        customInput.Player.ClimbUp.performed -= ctx => isAttemptingClimbUp = true;
-        customInput.Player.ClimbUp.canceled -= ctx => isAttemptingClimbUp = false;
-        customInput.Player.ClimbDown.performed -= ctx => isAttemptingClimbDown = true;
-        customInput.Player.ClimbDown.canceled -= ctx => isAttemptingClimbDown = false;
-        customInput.Player.Restart.performed -= ctx => levelLoader.reloadCurrentLevel();
+        customInput.GamePlay.HorizontalMovement.performed -= OnHorizontalMovement;
+        customInput.GamePlay.HorizontalMovement.canceled -= OnHorizontalMovementCanceled;
+        customInput.GamePlay.Jump.performed -= OnJump;
+        customInput.GamePlay.Jump.canceled -= OnJumpCanceled;
+        customInput.GamePlay.Grab.performed -= OnGrabAttempt;
+        customInput.GamePlay.Grab.canceled -= OnGrabAttemptCanceled;
+        customInput.GamePlay.ClimbUp.performed -= ctx => isAttemptingClimbUp = true;
+        customInput.GamePlay.ClimbUp.canceled -= ctx => isAttemptingClimbUp = false;
+        customInput.GamePlay.ClimbDown.performed -= ctx => isAttemptingClimbDown = true;
+        customInput.GamePlay.ClimbDown.canceled -= ctx => isAttemptingClimbDown = false;
+        customInput.GamePlay.Restart.performed -= ctx => levelLoader.reloadCurrentLevel();
+        customInput.GamePlay.Pause.performed -= ctx => pauseMenu.OnPauseButtonPressed();
         customInput = null;
     }
 

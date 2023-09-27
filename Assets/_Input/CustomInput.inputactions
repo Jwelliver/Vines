@@ -2,7 +2,7 @@
     "name": "CustomInput",
     "maps": [
         {
-            "name": "Player",
+            "name": "GamePlay",
             "id": "fddb1c45-fd95-448e-aa74-f31ca2db44ac",
             "actions": [
                 {
@@ -54,6 +54,24 @@
                     "name": "Restart",
                     "type": "Button",
                     "id": "23f3c36b-1c6d-4ccd-804d-44119463f341",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "92094b74-aeed-46dd-9dee-36f15391a7e0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ShowFPS",
+                    "type": "Button",
+                    "id": "962854f7-d4e0-4ce7-9772-b55ae4287ef9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -256,6 +274,50 @@
                     "processors": "",
                     "groups": "Mobile",
                     "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ad5c24a8-a3e9-47a5-98d5-96257be1901d",
+                    "path": "<Keyboard>/p",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3d29058f-4017-460e-a946-50d7d705c7d3",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "305e996a-ab41-4d73-8865-14adfa5a912e",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Mobile",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e579865e-4e52-4fb1-8155-553dafcc0ac9",
+                    "path": "<Keyboard>/backquote",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardAndMouse",
+                    "action": "ShowFPS",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

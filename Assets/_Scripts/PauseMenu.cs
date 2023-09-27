@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
@@ -8,26 +7,20 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pauseMenuUI;
     // [SerializeField] GameManager gameManager;
     public static bool isPaused;
+
+
     // * did not work:
     // bool isPlayerSwinging; //temp method to ensure player's isSwinging state is set after unpause, preventing immediate falling
 
-    bool CheckPauseInput()
+    public void OnPauseButtonPressed()
     {
-        return Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P);
-    }
-
-    void Update()
-    {
-        if (CheckPauseInput())
+        if (isPaused)
         {
-            if (isPaused)
-            {
-                UnpauseGame();
-            }
-            else
-            {
-                PauseGame();
-            }
+            UnpauseGame();
+        }
+        else
+        {
+            PauseGame();
         }
     }
 
@@ -39,6 +32,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        GameContext.SetGameState(GameState.PauseMenu);
     }
 
     public void UnpauseGame()
@@ -49,6 +43,7 @@ public class PauseMenu : MonoBehaviour
         // gameManager.playerRef.GetComponent<SwingingController>().isSwinging = isPlayerSwinging;
         // Debug.Log("UnPaused: isSwinging: " + isPlayerSwinging);
         isPaused = false;
+        GameContext.SetGameState(GameState.InGame);
     }
 
     public void LoadStartMenu()
