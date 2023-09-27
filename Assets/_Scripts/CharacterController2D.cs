@@ -34,6 +34,7 @@ public class CharacterController2D : MonoBehaviour
 
     private bool isHitByArrow;
     private bool isFacingLeft;
+    private FlipScaleX[] flipScaleXArr;
 
     // enum RagdollAnimationBlendStrengh { //TODO: correctly implement this enum and replace vars below
     //     High=100,Med=50,Low=5,None=0
@@ -52,6 +53,7 @@ public class CharacterController2D : MonoBehaviour
         myTransform = transform;
         animator = GetComponent<Animator>();
         swingingController = GetComponent<SwingingController>();
+        flipScaleXArr = transform.parent.GetComponentsInChildren<FlipScaleX>();
     }
 
     void OnDisable()
@@ -141,8 +143,10 @@ public class CharacterController2D : MonoBehaviour
     void setPlayerFacingDirection(string newDir = "left")
     {
         isFacingLeft = newDir == "left";
-        float xValue = isFacingLeft ? -1f : 1f;
-        myTransform.localScale = new Vector3(xValue, 1f, 1f);
+        foreach (FlipScaleX flip in flipScaleXArr)
+        {
+            flip.FlipX(newDir);
+        }
     }
 
     public void flipPlayerFacingDirection()
