@@ -2,10 +2,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/* // TODO: May want to rename; Turns out the new input system package contains a component called PlayerInput which performs a similar role*/
 public class PlayerInput : MonoBehaviour
 {
 
-    public CustomInput customInput;
+    public static CustomInput customInput;
     public static bool inputEnabled = true;
 
     // TODO: may be worth renaming these bools to specifically represent key presses. e.g. jumpKeyPressed ?
@@ -21,6 +22,7 @@ public class PlayerInput : MonoBehaviour
     public static bool isAttemptingClimbDown;
 
     [SerializeField] GameObject mobileControls; // TODO: temp placement here; move to dedicated class
+    [SerializeField] LevelLoader levelLoader; //TODO: move
 
 
 
@@ -46,6 +48,7 @@ public class PlayerInput : MonoBehaviour
         customInput.Player.ClimbUp.canceled += ctx => isAttemptingClimbUp = false;
         customInput.Player.ClimbDown.performed += ctx => isAttemptingClimbDown = true;
         customInput.Player.ClimbDown.canceled += ctx => isAttemptingClimbDown = false;
+        customInput.Player.Restart.performed += ctx => levelLoader.reloadCurrentLevel();
     }
     void OnDisable()
     {
@@ -60,6 +63,8 @@ public class PlayerInput : MonoBehaviour
         customInput.Player.ClimbUp.canceled -= ctx => isAttemptingClimbUp = false;
         customInput.Player.ClimbDown.performed -= ctx => isAttemptingClimbDown = true;
         customInput.Player.ClimbDown.canceled -= ctx => isAttemptingClimbDown = false;
+        customInput.Player.Restart.performed -= ctx => levelLoader.reloadCurrentLevel();
+        customInput = null;
     }
 
     public static void DisableInput()
