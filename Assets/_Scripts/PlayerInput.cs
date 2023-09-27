@@ -30,7 +30,7 @@ public class PlayerInput : MonoBehaviour
     void Awake()
     {
         customInput = new CustomInput();
-        if (Application.isMobilePlatform)
+        if (GameContext.PlayerSettings.useTouchScreenControls)
         {
             mobileControls.SetActive(true);
         }
@@ -49,8 +49,8 @@ public class PlayerInput : MonoBehaviour
         customInput.GamePlay.ClimbUp.canceled += ctx => isAttemptingClimbUp = false;
         customInput.GamePlay.ClimbDown.performed += ctx => isAttemptingClimbDown = true;
         customInput.GamePlay.ClimbDown.canceled += ctx => isAttemptingClimbDown = false;
-        customInput.GamePlay.Restart.performed += ctx => levelLoader.reloadCurrentLevel();
-        customInput.GamePlay.Pause.performed += ctx => pauseMenu.OnPauseButtonPressed();
+        customInput.GamePlay.Restart.performed += ctx => { levelLoader.reloadCurrentLevel(); Debug.Log("Restart btn Pressed"); };
+        customInput.GamePlay.Pause.performed += ctx => { pauseMenu.OnPauseButtonPressed(); Debug.Log("Pause button pressed"); };
         customInput.GamePlay.ShowFPS.performed += ctx => FramesPerSecond.OnFpsButtonPressed();
     }
     void OnDisable()
@@ -68,6 +68,7 @@ public class PlayerInput : MonoBehaviour
         customInput.GamePlay.ClimbDown.canceled -= ctx => isAttemptingClimbDown = false;
         customInput.GamePlay.Restart.performed -= ctx => levelLoader.reloadCurrentLevel();
         customInput.GamePlay.Pause.performed -= ctx => pauseMenu.OnPauseButtonPressed();
+        customInput.GamePlay.ShowFPS.performed -= ctx => FramesPerSecond.OnFpsButtonPressed();
         customInput = null;
     }
 
@@ -105,13 +106,13 @@ public class PlayerInput : MonoBehaviour
 
     void OnGrabAttempt(InputAction.CallbackContext callbackContext)
     {
-        Debug.Log("GrabAttempt");
+        // Debug.Log("GrabAttempt");
         if (!SwingingController.isSwinging) hasAttemptedGrab = true;
     }
 
     void OnGrabAttemptCanceled(InputAction.CallbackContext callbackContext)
     {
-        Debug.Log("GrabCancel");
+        // Debug.Log("GrabCancel");
         if (SwingingController.isSwinging) hasReleased = true;
     }
 

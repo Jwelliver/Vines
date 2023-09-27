@@ -7,13 +7,14 @@ public class WaterDeath : MonoBehaviour
     [SerializeField] AudioClip waterSplash;
     [SerializeField] AudioClip deadMusic;
 
-    [SerializeField] Animator deathTextAnimator;
+    // [SerializeField] Animator deathTextAnimator;
 
-    [SerializeField] Rigidbody2D playerRb;
-    [SerializeField] GameObject playerBody;
+    // [SerializeField] Rigidbody2D playerRb;
+    // [SerializeField] GameObject playerBody;
     [SerializeField] Transform deathHat;
     [SerializeField] Transform deathHatBuoyancyObj;
     [SerializeField] ParticleSystem waterSplashParticles;
+    [SerializeField] CharacterController2D playerController;
     bool hasDied;
     // [SerializeField] Cinemachine.CinemachineVirtualCamera cam;
 
@@ -38,7 +39,7 @@ public class WaterDeath : MonoBehaviour
         // set hasDied flag; (prevents accidental multiple calls if multiple colliders hit trigger)
         hasDied = true;
         // stop player motion
-        disablePlayer();
+        playerController.OnDeath();
 
         yield return new WaitForSeconds(0.5f);
         //spawn deathHat
@@ -47,7 +48,7 @@ public class WaterDeath : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         // play deathText animation
-        deathTextAnimator.SetTrigger("StartDeathText");
+        // deathTextAnimator.SetTrigger("StartDeathText");
         // play deadMusic
         audioSource.PlayOneShot(deadMusic);
 
@@ -68,18 +69,5 @@ public class WaterDeath : MonoBehaviour
         audioSource.PlayOneShot(waterSplash);
     }
 
-    void disablePlayer()
-    {
-        foreach (AudioSource a in playerBody.transform.root.GetComponents<AudioSource>())
-        {
-            a.Stop();
-        }
-        // Rigidbody2D playerRb = other.transform.root.gameObject.GetComponent<Rigidbody2D>();
-        playerRb.velocity = Vector2.zero;
-        playerRb.gravityScale = 0;
-        playerRb.bodyType = RigidbodyType2D.Static;
-        // disable player sprite
-        // playerBody.SetActive(false);
-        playerRb.transform.root.gameObject.SetActive(false);
-    }
+
 }

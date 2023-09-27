@@ -12,7 +12,8 @@ public class VineRoot : MonoBehaviour
 
     void Awake()
     {
-        sfx = GameObject.Find("SFX").GetComponent<SfxHandler>();
+        try { sfx = GameObject.Find("SFX").GetComponent<SfxHandler>(); }
+        catch { sfx = null; }
         vineLineRenderer = GetComponentInChildren<VineLineRenderer>();
     }
 
@@ -35,7 +36,7 @@ public class VineRoot : MonoBehaviour
     public void OnVineSnap(Joint2D joint, int segmentIndex)
     {
         //TODO: Consider passing the vineSegment instance itself, or the transform;
-        sfx.vineSFX.playVineSnapSound();
+        if (sfx != null) sfx.vineSFX.playVineSnapSound();
         GameManager.Instantiate(snapParticles, joint.attachedRigidbody.position, Quaternion.identity);
         DetachSegments(segmentIndex);
     }

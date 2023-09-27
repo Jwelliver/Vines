@@ -13,6 +13,10 @@ public class PlayerSFX : MonoBehaviour
     [SerializeField] AudioClip playerDamage;
     [SerializeField] List<AudioClip> whoas = new List<AudioClip>();
 
+    public void StopAllAudio()
+    {
+        playerAudio.Stop();
+    }
 
     public void playJumpStartSound()
     {

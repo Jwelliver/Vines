@@ -12,7 +12,7 @@ public enum GameState
 
 public class PlayerSettings
 {
-    public bool useTouchScreenControls = GameContext.IsMobilePlatform();
+    public bool useTouchScreenControls = false;//GameContext.IsMobilePlatform(); //TODO: reimplmeentnonjasdjkak
 }
 
 
@@ -38,6 +38,10 @@ public class GameContext : ScriptableObject
         return Application.isMobilePlatform;
     }
 
+    public void SetUseTouchScreen(bool newValue)
+    { //TODO: temp method for testing; move to PlayerSettings
+        PlayerSettings.useTouchScreenControls = newValue;
+    }
 
 
 }

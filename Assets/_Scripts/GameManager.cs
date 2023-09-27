@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 {
     public LevelGenerator levelGen;
     [SerializeField] LevelLoader levelLoader;
+    [SerializeField] GameOverUI gameOverUI;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip winMusic;
     [SerializeField] AudioClip amuletPickupSound;
@@ -97,10 +98,10 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            levelLoader.reloadCurrentLevel();
-        }
+        // if (Input.GetKeyDown(KeyCode.R))
+        // {
+        //     levelLoader.reloadCurrentLevel();
+        // }
         //TODO: Move this out of here; Come up with a better way of handling the endless generatino
         if (levelGen.levelSettings.levelType == LevelType.ENDLESS)
         {
@@ -118,6 +119,16 @@ public class GameManager : MonoBehaviour
         // audioSource.PlayOneShot(winSound);
         // music.volume = 1;
         // music.Play();
+    }
+
+    public void OnPlayerDied()
+    {
+        OnGameOver();
+    }
+
+    void OnGameOver()
+    {
+        gameOverUI.ShowGameOverUI();
     }
 
 

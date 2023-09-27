@@ -16,7 +16,7 @@ public class ScoreSystem : MonoBehaviour
 {
 
     [SerializeField] FadeText newRecordTextObj;
-    [SerializeField] FadeText statsFadeTextObj;
+    // [SerializeField] FadeText statsFadeTextObj;
     [SerializeField] AudioSource recordBreakAudio;
     // [SerializeField] SimpleSave simpleSave;
     bool isRecordingSwingStats = false;
@@ -130,15 +130,15 @@ public class ScoreSystem : MonoBehaviour
         sessionStats.Reset();
     }
 
-    void UpdateSessionStatsText()
-    {
-        statsFadeTextObj.FadeTo(sessionStats.ToString());
-    }
+    // void UpdateSessionStatsText() //* 092723 now handled by StatsTextDisplay and GameOverUI
+    // {
+    //     statsFadeTextObj.FadeTo(sessionStats.ToString());
+    // }
 
     public void onSwingGrab()
     {
         isRecordingSwingStats = false;
-        UpdateSessionStatsText();
+        // UpdateSessionStatsText();
         CheckForAllTimeRecord();
     }
 

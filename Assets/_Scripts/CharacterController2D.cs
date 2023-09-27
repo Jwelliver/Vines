@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 // using UnityEngine.InputSystem;
 
@@ -35,6 +36,7 @@ public class CharacterController2D : MonoBehaviour
     private bool isHitByArrow;
     private bool isFacingLeft;
     private FlipScaleX[] flipScaleXArr;
+    private GameManager gameManager;
 
     // enum RagdollAnimationBlendStrengh { //TODO: correctly implement this enum and replace vars below
     //     High=100,Med=50,Low=5,None=0
@@ -54,6 +56,7 @@ public class CharacterController2D : MonoBehaviour
         animator = GetComponent<Animator>();
         swingingController = GetComponent<SwingingController>();
         flipScaleXArr = transform.parent.GetComponentsInChildren<FlipScaleX>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     void OnDisable()
@@ -329,12 +332,19 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
+    public void OnDeath() //TODO: move to CharacterController
+    {
+        sfx.playerSFX.StopAllAudio();
+        // Rigidbody2D playerRb = other.transform.root.gameObject.GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = 0;
+        rb.bodyType = RigidbodyType2D.Static;
+        // disable player sprite
+        // playerBody.SetActive(false);
+        rb.transform.root.gameObject.SetActive(false);
 
-
-    // public void onDeath()
-    // {
-
-    // }
+        gameManager.OnPlayerDied();
+    }
 
 
 }

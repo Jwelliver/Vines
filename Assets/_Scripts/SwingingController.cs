@@ -184,7 +184,8 @@ public class SwingingController : MonoBehaviour
 
         // while (rb.position.y != targetPosition.y)
         // {
-        rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, climbSpeed * Time.fixedDeltaTime));
+        // ! 092723  removed Temporarily for mobile test; TODO: reimplement
+        // rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, climbSpeed * Time.fixedDeltaTime));
         // rb.MovePosition(nextVineSegment.position);
         attachJoints(nextVineSegment);
         yield return new WaitForSeconds(climbSecondsBetweenMove);
