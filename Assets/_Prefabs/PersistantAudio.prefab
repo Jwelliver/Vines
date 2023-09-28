@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1226875069}
   - component: {fileID: 8529884923756450633}
   m_Layer: 0
-  m_Name: Music
+  m_Name: PersistantAudio
   m_TagString: PersistantAudio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6e7a66363ff7c414c93d9fab463f6ceb, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1

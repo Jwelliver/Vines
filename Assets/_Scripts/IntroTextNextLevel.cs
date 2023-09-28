@@ -14,11 +14,17 @@ public class IntroTextNextLevel : MonoBehaviour
     {
         // musicFadeOut = GameObject.Find("Music").GetComponent<Animator>();
         music = GameObject.Find("Music").GetComponent<PersistentAudio>();
+        // music = GameObject.FindObjectOfType<PersistentAudio>();
+        // if (music == null)
+        // {
+        //     Debug.LogError("Error: Music Not Found");
+        // }
     }
 
     // Update is called once per frame
     void Update()
     {
+        // TODO: update this input 
         if (Input.GetKeyDown(KeyCode.Space) && !transitionStarted)
         {
             // startTransition();

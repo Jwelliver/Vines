@@ -12,17 +12,38 @@ public class LevelLoader : MonoBehaviour
 
     public void LoadStartMenu()
     {
-        // remove persistant audio
-        GameObject[] audioPlayers = GameObject.FindGameObjectsWithTag("PersistantAudio");
-        // Debug.Log("Number of audio players: " + audioPlayers.Length);
-        foreach (GameObject audio in audioPlayers)
+        if (SceneManager.GetActiveScene().name == "GameMain")
         {
-            Destroy(audio);
+            // remove persistant audio
+            GameObject[] audioPlayers = GameObject.FindGameObjectsWithTag("PersistantAudio");
+            // Debug.Log("Number of audio players: " + audioPlayers.Length);
+            foreach (GameObject audio in audioPlayers)
+            {
+                Destroy(audio);
+            }
+            Resources.UnloadUnusedAssets();//added 090623 in attempt to address mem issue and crash
         }
-        Resources.UnloadUnusedAssets();//added 090623 in attempt to address mem issue and crash
+
         // SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         Cursor.visible = true;
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadSettingsMenu()
+    {
+        SceneManager.LoadScene("SettingsMenu");
+    }
+
+    public void LoadGameMain()
+    {
+        // StartCoroutine(loadLevel(SceneManager.GetSceneByName("GameMain").buildIndex));
+        StartCoroutine(loadLevel(3));
+    }
+
+    public void LoadCutScene()
+    {
+        // StartCoroutine(loadLevel(SceneManager.GetSceneByName("CutScene").buildIndex));
+        StartCoroutine(loadLevel(2));
     }
 
     public void loadNextLevel()

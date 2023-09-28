@@ -4,15 +4,28 @@ using UnityEngine;
 public enum GameState
 {
     MainMenu,
+    SettingsMenu,
     GameLoading,
     InGame,
     PauseMenu,
     GameOver
 }
 
-public class PlayerSettings
+public struct PlayerSettings
 {
-    public bool useTouchScreenControls = GameContext.IsMobilePlatform();
+
+    public bool useTouchScreenControls;
+    public int vsyncCount;
+    public int targetFrameRate;
+    public PlayerSettings(bool loadOnInit = true)
+    {
+        //TODO: if loadOnInit, try to  Load existing settings; otherwise use defaults
+        useTouchScreenControls = GameContext.IsMobilePlatform();
+        vsyncCount = QualitySettings.vSyncCount;
+        targetFrameRate = Application.targetFrameRate;
+
+    }
+
 }
 
 
@@ -20,7 +33,7 @@ public class PlayerSettings
 public class GameContext : ScriptableObject
 {
     public static GameState CurrentGameState = new GameState();
-    public static PlayerSettings PlayerSettings = new PlayerSettings();
+    public static PlayerSettings ActiveSettings = new PlayerSettings(true);
 
     void OnEnable()
     {
@@ -32,16 +45,12 @@ public class GameContext : ScriptableObject
         CurrentGameState = newGameState;
     }
 
-    public static bool IsMobilePlatform()
+    public static bool IsMobilePlatform() //TODO: should move to dedicated util class (platformutil or something)
     {
         //TODO: figure out how to ID ipad on webgl with JS.
         return Application.isMobilePlatform;
     }
 
-    public void SetUseTouchScreen(bool newValue)
-    { //TODO: temp method for testing; move to PlayerSettings
-        PlayerSettings.useTouchScreenControls = newValue;
-    }
 
 
 }

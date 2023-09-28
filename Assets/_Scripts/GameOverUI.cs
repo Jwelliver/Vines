@@ -22,7 +22,7 @@ public class GameOverUI : MonoBehaviour
 
     void ActivatePlatformUI()
     {
-        if (GameContext.PlayerSettings.useTouchScreenControls)
+        if (GameContext.ActiveSettings.useTouchScreenControls)
         {
             mobilePanel.SetActive(true);
         }

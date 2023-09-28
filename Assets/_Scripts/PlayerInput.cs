@@ -30,7 +30,7 @@ public class PlayerInput : MonoBehaviour
     void Awake()
     {
         customInput = new CustomInput();
-        if (GameContext.PlayerSettings.useTouchScreenControls)
+        if (GameContext.ActiveSettings.useTouchScreenControls)
         {
             mobileControls.SetActive(true);
         }
