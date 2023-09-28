@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapParticles: {fileID: 1320025458011433992, guid: 3fac02e5af5ec5443a54a21261016135, type: 3}
+  isRootAnchored: 0
 --- !u!114 &3651313886903420529
 MonoBehaviour:
   m_ObjectHideFlags: 0
