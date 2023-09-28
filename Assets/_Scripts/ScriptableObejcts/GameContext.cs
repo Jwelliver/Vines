@@ -12,7 +12,7 @@ public enum GameState
 
 public class PlayerSettings
 {
-    public bool useTouchScreenControls = false;//GameContext.IsMobilePlatform(); //TODO: reimplmeentnonjasdjkak
+    public bool useTouchScreenControls = GameContext.IsMobilePlatform();
 }
 
 
