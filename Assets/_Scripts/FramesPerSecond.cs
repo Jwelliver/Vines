@@ -23,11 +23,16 @@ public class FramesPerSecond : MonoBehaviour
         ShowFPS = !ShowFPS;
     }
 
-    void Update()
+    void Update() //TODO: need a nicer way of handling this (text enabled) instead of on Udpate
     {
         if (ShowFPS)
         {
+            if (!display_Text.enabled) { display_Text.enabled = true; }
             updateFPS();
+        }
+        else
+        {
+            if (display_Text.enabled) { display_Text.enabled = false; }
         }
     }
 
