@@ -13,46 +13,121 @@ MonoBehaviour:
   m_Name: LevelSettings
   m_EditorClassIdentifier: 
   levelType: 0
-  rngSeed: -1
+  rngSeed: 1
   startPos: {x: 0, y: 0}
   levelLength:
-    min: 350
-    max: 600
-  globalStartOffset: 0
-  globalEndOffset: 0
-  treeSpacing:
-    min: 5
-    max: 10
-  treeSettings:
-    treeScale:
-      min: 1
-      max: 1.25
-    trunkHeight:
-      min: 1.5
-      max: 2.5
-    maxTreeRotation: 5
-    maxPalmRotation: 5
-    maxVines: 4
-    pctChangeLightShaft: 0.25
-    maxLightShafts: 3
-  vineSettings:
-    length:
+    min: 100
+    max: 100
+  direction: 1
+  treeLayers:
+  - spacing:
+      min: 30
+      max: 50
+    treeSettings:
+      treeScale:
+        min: 2.25
+        max: 2.5
+      trunkHeight:
+        min: 2
+        max: 3
+      maxTreeRotation: 10
+      maxPalmRotation: 10
+      maxVines: 3
+      pctChangeLightShaft: 0.4
+      maxLightShafts: 3
+    vineSettings:
+      length:
+        min: 30
+        max: 40
+      segmentLength: 0.7
+      segmentWidth: 0.5
+      normalBreakForce:
+        min: 1500
+        max: 2500
+      weakBreakForce:
+        min: 250
+        max: 500
+      pctChanceWeak: 0.05
+      pctChanceCurl: 0.3
+      maxCurlForce: 10
+      curlSpeed: 10
+      pctChanceAdornment: 0.7
+      adornmentScale:
+        min: 0.8
+        max: 1.2
+      normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
+      weakSegmentColor: {r: 0.745283, g: 0.5820474, b: 0, a: 1}
+  - spacing:
       min: 15
       max: 25
-    segmentLength: 0.7
-    normalBreakForce:
-      min: 1500
-      max: 2500
-    weakBreakForce:
-      min: 250
-      max: 500
-    pctChanceWeak: 0.08
-    pctChanceCurl: 0.3
-    maxCurlForce: 10
-    curlSpeed: 10
-    pctChanceAdornment: 0.7
-    adornmentScale:
-      min: 0.3
-      max: 0.8
-    normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
-    weakSegmentColor: {r: 0.764151, g: 0.50165635, b: 0, a: 1}
+    treeSettings:
+      treeScale:
+        min: 1.2
+        max: 1.25
+      trunkHeight:
+        min: 3
+        max: 4.5
+      maxTreeRotation: 10
+      maxPalmRotation: 5
+      maxVines: 3
+      pctChangeLightShaft: 0.2
+      maxLightShafts: 2
+    vineSettings:
+      length:
+        min: 15
+        max: 25
+      segmentLength: 0.7
+      segmentWidth: 0.35
+      normalBreakForce:
+        min: 1500
+        max: 2500
+      weakBreakForce:
+        min: 250
+        max: 500
+      pctChanceWeak: 0.08
+      pctChanceCurl: 0.3
+      maxCurlForce: 10
+      curlSpeed: 10
+      pctChanceAdornment: 0.7
+      adornmentScale:
+        min: 0.3
+        max: 0.8
+      normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
+      weakSegmentColor: {r: 0.7169812, g: 0.5533985, b: 0, a: 1}
+  - spacing:
+      min: 8
+      max: 25
+    treeSettings:
+      treeScale:
+        min: 1.1
+        max: 1.3
+      trunkHeight:
+        min: 1.5
+        max: 2.5
+      maxTreeRotation: 5
+      maxPalmRotation: 5
+      maxVines: 2
+      pctChangeLightShaft: 0
+      maxLightShafts: 0
+    vineSettings:
+      length:
+        min: 15
+        max: 25
+      segmentLength: 0.7
+      segmentWidth: 0.35
+      normalBreakForce:
+        min: 1500
+        max: 2500
+      weakBreakForce:
+        min: 250
+        max: 500
+      pctChanceWeak: 0.08
+      pctChanceCurl: 0.3
+      maxCurlForce: 10
+      curlSpeed: 10
+      pctChanceAdornment: 0.7
+      adornmentScale:
+        min: 0.3
+        max: 0.8
+      normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
+      weakSegmentColor: {r: 0.7647059, g: 0.5228865, b: 0, a: 1}

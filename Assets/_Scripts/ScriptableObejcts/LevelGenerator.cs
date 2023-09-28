@@ -279,17 +279,28 @@ public class LevelGenerator : ScriptableObject
 
     private void InitCurrentSection()
     {   // Run once on level start;
+
         currentSection = new Section
         {
             startPos = levelSettings.startPos,
-            length = RNG.RandomRange(levelSettings.levelLength)
+            length = RNG.RandomRange(levelSettings.levelLength) * (int)levelSettings.direction
         };
+        return;
+
+
+
+        // if(levelSettings.direction==LevelDirection.BOTH) {
+        //     currentSection = new Section {
+
+        //     }
+        // }
+
     }
 
     private void InitFactories()
     {
-        treeFactory.SetDefaultFactoryConfig(levelSettings.treeSettings);
-        vineFactory.SetDefaultFactoryConfig(levelSettings.vineSettings);
+        // treeFactory.SetDefaultFactoryConfig(levelSettings.treeSettings);
+        // vineFactory.SetDefaultFactoryConfig(levelSettings.vineSettings);
         lightShaftFactory.SetLightShaftContainerParent(GameObject.Find(GetElementContainerPath(lightShaftContainerName)).transform);
     }
 
@@ -389,20 +400,28 @@ public class LevelGenerator : ScriptableObject
         }
         if (fillType == SectionFillType.ALL || fillType == SectionFillType.TREES_ONLY)
         {
-            AddTreeLayerSection(section);
+            AddTreeLayerSection(section, levelSettings.treeLayers);
         }
     }
 
-    void AddTreeLayerSection(Section section)
+    void AddTreeLayerSection(Section section, TreeLayer treeLayer)
     {
         Transform treeLayerParent = GameObject.Find(GetElementContainerPath(treeParentName)).transform;
-        List<Vector2> positions = GeneratePositions(section, levelSettings.treeSpacing);
+        List<Vector2> positions = GeneratePositions(section, treeLayer.spacing);
         foreach (Vector2 position in positions)
         {
-            treeFactory.GenerateTree(position, treeLayerParent, null);
+            treeFactory.GenerateTree(position, treeLayerParent, treeLayer.treeSettings, treeLayer.vineSettings);
         }
         InitManualTrees();
         // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
+    }
+
+    void AddTreeLayerSection(Section section, List<TreeLayer> treeLayers)
+    {
+        foreach (TreeLayer treeLayer in treeLayers)
+        {
+            AddTreeLayerSection(section, treeLayer);
+        }
     }
 
     string GetElementContainerPath(string containerName)
