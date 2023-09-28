@@ -43,7 +43,7 @@ public class StatsTextDisplay : MonoBehaviour
 
     string GetAllTimeStats()
     {
-        return "Best Ever:\n" + SimpleSave.RecordStats.ToString();
+        return "Best Ever:\n" + ScoreSystem.RecordStats.ToString();
     }
 
 
