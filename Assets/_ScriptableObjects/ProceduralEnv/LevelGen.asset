@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelSettings: {fileID: 11400000, guid: 0e2ae0436583b4d4a9727f49e454f82c, type: 2}
   proceduralElementsPath: Environment/ProceduralElements
-  treeParentName: TreeContainer
+  treeLayersContainerName: TreeLayersContainer
   backgroundParentName: SpriteLayers
   lightShaftContainerName: LightShafts
   treeFactory: {fileID: 11400000, guid: 53c7487dc524065478240f549d8d2ce9, type: 2}
@@ -279,7 +279,7 @@ MonoBehaviour:
     useAutoZDistance: 0
     zDistance: 3
   - id: bg_reg_trees1
-    enabled: 1
+    enabled: 0
     proceduralObject:
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
@@ -304,7 +304,7 @@ MonoBehaviour:
     useAutoZDistance: 0
     zDistance: 5
   - id: bg_reg_trees2 tall
-    enabled: 1
+    enabled: 0
     proceduralObject:
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
@@ -351,7 +351,7 @@ MonoBehaviour:
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -7
+      sortOrder: -5
       color: {r: 0.37647063, g: 0.37647063, b: 0.37647063, a: 1}
     minSpacing: 10
     maxSpacing: 20
@@ -413,7 +413,7 @@ MonoBehaviour:
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -8
+      sortOrder: -6
       color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
     minSpacing: 2
     maxSpacing: 4
@@ -446,7 +446,7 @@ MonoBehaviour:
         - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -9
+      sortOrder: -7
       color: {r: 0.4431373, g: 0.4431373, b: 0.4431373, a: 1}
     minSpacing: 5
     maxSpacing: 10
@@ -481,7 +481,7 @@ MonoBehaviour:
         - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -10
+      sortOrder: -8
       color: {r: 0.16862746, g: 0.16862746, b: 0.16862746, a: 1}
     minSpacing: 4
     maxSpacing: 8
@@ -516,7 +516,7 @@ MonoBehaviour:
         - item: {fileID: -1253160961, guid: 0c0593ad78fa5c446bdcf3b193c00db9, type: 3}
           probability: 1
       sortLayerName: Background
-      sortOrder: -11
+      sortOrder: -9
       color: {r: 0, g: 0, b: 0, a: 1}
     minSpacing: 5
     maxSpacing: 15
