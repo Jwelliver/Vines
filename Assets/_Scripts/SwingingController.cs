@@ -1,15 +1,10 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SwingingController : MonoBehaviour
 {
 
-
-    // [SerializeField] KeyCode grabKey = KeyCode.LeftShift;
-    [SerializeField] KeyCode climbUpKey = KeyCode.W;
-    [SerializeField] KeyCode climbDownKey = KeyCode.S;
     [SerializeField] LayerMask swingableLayer;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] CircleCollider2D grabCollider;
@@ -152,8 +147,8 @@ public class SwingingController : MonoBehaviour
 
     bool shouldContinueClimb(string direction)
     {
-        KeyCode keyToCheck = direction == "up" ? climbUpKey : climbDownKey;
-        return isClimbing && Input.GetKey(keyToCheck);
+        bool isClimbButtonStillPressed = direction == "up" ? PlayerInput.isAttemptingClimbUp : PlayerInput.isAttemptingClimbDown;
+        return isClimbing && isClimbButtonStillPressed;
     }
 
     IEnumerator Climb(string direction = "down")
