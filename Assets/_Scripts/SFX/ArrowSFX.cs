@@ -11,7 +11,7 @@ public class ArrowSFX : MonoBehaviour
 
     public void PlayArrowHitSound()
     {
-        arrowShootAudioSource.Play();
+        arrowHitAudioSource.Play();
     }
 
     public void PlayArrowShootSound()
