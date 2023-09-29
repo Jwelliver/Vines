@@ -12,6 +12,10 @@ public class TreeFactoryConfig
     public float maxTreeRotation = 5f;
     public float maxPalmRotation = 5f;
 
+    // [Header("Sprite Sorting")]
+    // public int baseTrunkSortOrder = -10;
+    // public int basePalmSortOrder = 40;
+
     [Header("Vines")]
     public int maxVines = 4;
 
@@ -28,10 +32,12 @@ public class TreeConfig
     public float treeAngleOffset;
     public float palmAngleOffset;
     public int palmSortOrder;
+    public int trunkSortOrder;
     public int nVines;
     public int nLightShafts;
     public Transform rndPalmPrefab;
     public Sprite rndTrunkSprite;
+    public VineFactoryConfig vineFactoryConfig; //optional; Using null will use VineFactory's default
 }
 
 public class NewTreeAssembly
@@ -40,7 +46,7 @@ public class NewTreeAssembly
     public TreeConfig treeConfig;
     public Transform newTree;
     public RectTransform trunk;
-    public RectTransform palmPrefabAnchor;
+    public RectTransform palmPrefabAnchor; //TODO: destroy after use.
     public Transform vinesContainer;
     public List<Vector2> palmAnchorPositions = new List<Vector2>();
 
@@ -58,13 +64,23 @@ public class NewTreeAssembly
 public class TreeFactory : ScriptableObject
 {
     [SerializeField] TreeFactoryConfig defaultFactoryConfig = new TreeFactoryConfig();
-    [SerializeField] Transform treePrefab;
+    [Header("Factories")]
     [SerializeField] VineFactory vineFactory;
     [SerializeField] LightShaftFactory lightShaftFactory;
+
+    [Header("Prefabs")]
+    [SerializeField] Transform treePrefab;
     [SerializeField] List<Transform> palmPrefabs;
     [SerializeField] List<Sprite> trunkSprites;
+    [Header("TreeLayer Sort Settings")]
 
-    private List<int> palmSortOrderPool = new List<int> { 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
+    // TODO: would like to have these in tree config, but then the range pool doesn't work if we are feeding the factory config every generate call; Maybe instead(or in addition to) using factoryConfig override, have levelgen set the default factory to use when building the entire layer.
+    [SerializeField] int palmSortOrderBase = 40;
+    [SerializeField] int palmSortOrderPoolLength = 10; //how many sortOrders on top of palmBaseSortOrders to use
+    [SerializeField] int trunkSortOrderBase = -10;
+
+
+    private List<int> palmSortOrderPool;
 
     public void SetDefaultFactoryConfig(TreeFactoryConfig newConfig)
     {
@@ -72,7 +88,7 @@ public class TreeFactory : ScriptableObject
         defaultFactoryConfig = newConfig;
     }
 
-    TreeConfig GetRandomTreeConfig(TreeFactoryConfig factoryConfigOverride = null)
+    TreeConfig GetRandomTreeConfig(TreeFactoryConfig factoryConfigOverride = null, VineFactoryConfig vineFactoryConfigOverride = null)
     {
         TreeFactoryConfig factoryConfig = factoryConfigOverride ?? defaultFactoryConfig;
         return new TreeConfig
@@ -82,10 +98,12 @@ public class TreeFactory : ScriptableObject
             treeAngleOffset = RNG.RandomRange(-factoryConfig.maxTreeRotation, factoryConfig.maxTreeRotation),
             palmAngleOffset = RNG.RandomRange(-factoryConfig.maxPalmRotation, factoryConfig.maxPalmRotation),
             palmSortOrder = GetPalmSortOrder(),
+            trunkSortOrder = trunkSortOrderBase,
             nLightShafts = RNG.SampleOccurrences(factoryConfig.maxLightShafts, factoryConfig.pctChangeLightShaft),
             nVines = RNG.RandomRange(1, factoryConfig.maxVines),
             rndPalmPrefab = RNG.RandomChoice(palmPrefabs),
-            rndTrunkSprite = RNG.RandomChoice(trunkSprites)
+            rndTrunkSprite = RNG.RandomChoice(trunkSprites),
+            vineFactoryConfig = vineFactoryConfigOverride
         };
     }
 
@@ -94,20 +112,41 @@ public class TreeFactory : ScriptableObject
         // Instantiate new tree prefab
         Transform newTree = GameObject.Instantiate(treePrefab, position, Quaternion.identity, parent);
         // Get new random TreeConfig
-        TreeConfig newTreeConfig = GetRandomTreeConfig(factoryConfigOverride ?? defaultFactoryConfig);
-        // Setup new tree assembly
-        NewTreeAssembly newTreeAssembly = new NewTreeAssembly(newTree, newTreeConfig);
-        // Assemble New Tree
-        InitTree(newTreeAssembly);
-        InitPalms(newTreeAssembly);
-        PopulateVines(newTreeAssembly, vineFactoryConfigOverride);
-        PopulateLightShafts(newTreeAssembly);
-        // Destroy Assembly Objects
-        newTreeAssembly = null;
-        newTreeConfig = null;
+        TreeConfig newTreeConfig = GetRandomTreeConfig(factoryConfigOverride ?? defaultFactoryConfig, vineFactoryConfigOverride);
+        // AssembleTree
+        AssembleTree(newTree, newTreeConfig);
         // Return New Tree
         return newTree;
     }
+
+    public Transform GenerateTree(Vector2 position, Transform parent, TreeLayer treeLayer)
+    { // Generate a Tree from a given TreeLayer; Automatically handles layer sorting for trunk and palms
+
+        // Instantiate new tree prefab
+        Transform newTree = GameObject.Instantiate(treePrefab, position, Quaternion.identity, parent);
+        // Get new random TreeConfig
+        TreeConfig newTreeConfig = GetRandomTreeConfig(treeLayer.treeSettings, treeLayer.vineSettings);
+        // Manually adjust sortorders for palm and trunk 
+        newTreeConfig.palmSortOrder += palmSortOrderPoolLength * (treeLayer.layerIndex + 1); // ensure we get a unique range of length palmSortOrderPool length for each treeLayerIndex
+        newTreeConfig.trunkSortOrder -= treeLayer.layerIndex;
+        //Assemble
+        AssembleTree(newTree, newTreeConfig);
+        return newTree;
+    }
+
+    private NewTreeAssembly AssembleTree(Transform newTree, TreeConfig treeConfig)
+    {
+        // Setup new tree assembly
+        NewTreeAssembly newTreeAssembly = new NewTreeAssembly(newTree, treeConfig);
+
+        // Assemble New Tree
+        InitTree(newTreeAssembly);
+        InitPalms(newTreeAssembly);
+        PopulateVines(newTreeAssembly);
+        PopulateLightShafts(newTreeAssembly);
+        return newTreeAssembly;
+    }
+
 
     private void InitTree(NewTreeAssembly newTreeAssembly)
     {
@@ -123,6 +162,7 @@ public class TreeFactory : ScriptableObject
         // Assign random sprite
         SpriteRenderer trunkSpriteRenderer = trunk.GetComponent<SpriteRenderer>();
         trunkSpriteRenderer.sprite = newTreeAssembly.treeConfig.rndTrunkSprite;
+        trunkSpriteRenderer.sortingOrder = newTreeAssembly.treeConfig.trunkSortOrder;
 
         // Apply random rotation
         newTreeAssembly.newTree.eulerAngles = Vector3.forward * newTreeAssembly.treeConfig.treeAngleOffset; //TODO: verify this is working; otherwise use Quaternion.Euler()
@@ -131,15 +171,19 @@ public class TreeFactory : ScriptableObject
 
     private int GetPalmSortOrder()
     {
+        // If the pool is not initiated or is empty, rebuild it.
+        if (palmSortOrderPool == null || palmSortOrderPool.Count == 0)
+        {
+            palmSortOrderPool = new List<int>();
+            for (int i = 0; i < palmSortOrderPoolLength; i++)
+            {
+                palmSortOrderPool.Add(palmSortOrderBase + i);
+            }
+        }
         // Get Random Choice from PalmSortOrderPool
         int sortOrder = RNG.RandomChoice(palmSortOrderPool);
         // Remove the choice we just got;
         palmSortOrderPool.Remove(sortOrder);
-        // If the pool is used up, remove the pool entirely.
-        if (palmSortOrderPool.Count == 0)
-        {
-            palmSortOrderPool = new List<int> { 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50 };
-        }
         return sortOrder;
     }
 
@@ -154,6 +198,9 @@ public class TreeFactory : ScriptableObject
 
         // Instantiate newPalm at newTree's palmPrefabAnchor position
         Transform newPalm = Instantiate(rndPalmPrefab, position, Quaternion.identity, newTree);
+
+        // Set Palm name
+        newPalm.name = "Palm";
 
         // Apply Random SortOrder to prevent overlap flickering
         newPalm.GetComponent<SpriteRenderer>().sortingOrder = newTreeAssembly.treeConfig.palmSortOrder;
@@ -185,7 +232,7 @@ public class TreeFactory : ScriptableObject
         for (int i = 0; i < newTreeAssembly.treeConfig.nVines; i++)
         {
             Vector2 rndPosition = RNG.RandomChoice(newTreeAssembly.palmAnchorPositions);
-            vineFactory.GenerateVine(rndPosition, vinesContainer, vineFactoryConfigOverride);
+            vineFactory.GenerateVine(rndPosition, vinesContainer, vineFactoryConfigOverride ?? newTreeAssembly.treeConfig.vineFactoryConfig);
         }
     }
 

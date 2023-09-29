@@ -33,3 +33,6 @@ MonoBehaviour:
   trunkSprites:
   - {fileID: -363360082, guid: 183629812909a1041b19a55e7191c253, type: 3}
   - {fileID: -1295716066, guid: 665112540f093154fa0b1dac37d108bf, type: 3}
+  palmSortOrderPoolLength: 10
+  trunkSortOrderBase: -10
+  palmSortOrderBase: 40

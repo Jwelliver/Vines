@@ -125,22 +125,28 @@ public class VineFactory : ScriptableObject
         VineFactoryConfig zoneOverride = CheckIfInVineOverrideZone(position, factoryConfig);
         factoryConfig = zoneOverride ?? factoryConfig;
 
+        // Track segments to apply to vineroot/VineLineRenderer
+        List<VineSegment> vineSegments = new List<VineSegment>();
+
         // Instantiate VineRoot
         Transform vineRoot = GameObject.Instantiate(vineRootPrefab, position, Quaternion.identity, containerParent);
 
+        // Init Vine properties
+        bool isWeak = RNG.SampleProbability(factoryConfig.pctChanceWeak);
+        int vineLength = RNG.RandomRange(factoryConfig.length.min, factoryConfig.length.max);
+        float segLength = factoryConfig.segmentLength;
+        Color vineColor = isWeak ? factoryConfig.weakSegmentColor : factoryConfig.normalSegmentColor;
 
-
-        //instantiate anchor
+        //instantiate anchor segment
         Transform prevSegment;
         prevSegment = GameObject.Instantiate(vineSegmentPrefabs[0], position, Quaternion.identity, vineRoot);
         prevSegment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         prevSegment.GetComponent<HingeJoint2D>().enabled = false;
+        vineSegments.Add(prevSegment.GetComponent<VineSegment>());
 
-        bool isWeak = RNG.SampleProbability(factoryConfig.pctChanceWeak);
-        int vineLength = RNG.RandomRange(factoryConfig.length.min, factoryConfig.length.max);
-        float segLength = factoryConfig.segmentLength;
-
-        Color vineColor = isWeak ? factoryConfig.weakSegmentColor : factoryConfig.normalSegmentColor;
+        // Set up anchor collider size
+        CapsuleCollider2D anchorCollider = prevSegment.GetComponent<CapsuleCollider2D>();
+        anchorCollider.size = new Vector2(factoryConfig.segmentWidth, segLength);
 
         // Get LineRenderer and setup
         LineRenderer vineLineRenderer = vineRoot.GetComponent<LineRenderer>();
@@ -149,15 +155,13 @@ public class VineFactory : ScriptableObject
         vineLineRenderer.startColor = vineColor;
         vineLineRenderer.endColor = vineColor;
 
-        // Track segments to apply to vineroot/VineLineRenderer
-        List<VineSegment> vineSegments = new List<VineSegment>();
-
         // Set up each segment
         for (int i = 0; i < vineLength; i++)
         {
             // Get Random Vine segment prefab
             Transform rndSegment = RNG.RandomChoice(vineSegmentPrefabs);
             // instantiate new segment at previous segment minus segmentLength Y;
+            //TODO: try using position offset of one; and also try not parenting until after segment is setup.
             Vector2 newPosition = (Vector2)prevSegment.position + new Vector2(0, -segLength);
             Transform newSegment = GameObject.Instantiate(rndSegment, newPosition, Quaternion.identity, vineRoot);
             // Set up collider size

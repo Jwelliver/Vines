@@ -252,7 +252,7 @@ public class LevelGenerator : ScriptableObject
 
     [Header("Container Paths")]
     [SerializeField] string proceduralElementsPath = "Environment/ProceduralElements";
-    [SerializeField] string treeParentName = "TreeContainer";
+    [SerializeField] string treeLayersContainerName = "TreeLayersContainer";
     [SerializeField] string backgroundParentName = "SpriteLayers";
     [SerializeField] string lightShaftContainerName = "LightShafts";
 
@@ -288,7 +288,7 @@ public class LevelGenerator : ScriptableObject
         return;
 
 
-
+        //TODO: implement
         // if(levelSettings.direction==LevelDirection.BOTH) {
         //     currentSection = new Section {
 
@@ -406,11 +406,19 @@ public class LevelGenerator : ScriptableObject
 
     void AddTreeLayerSection(Section section, TreeLayer treeLayer)
     {
-        Transform treeLayerParent = GameObject.Find(GetElementContainerPath(treeParentName)).transform;
+        // Get treeLayersContainer
+        Transform treeLayersContainer = GameObject.Find(GetElementContainerPath(treeLayersContainerName)).transform;
+        // Find or Create a parent to contain this treeLayer and name it
+        string treeLayerParentName = "TreeLayer " + treeLayer.layerIndex.ToString() + " " + treeLayer.id;
+        Transform treeLayerParent = treeLayersContainer.Find(treeLayerParentName) ?? GameObject.Instantiate(blankParentPrefab, treeLayersContainer);
+        treeLayerParent.name = treeLayerParentName; // TODO: We're unecessarily renaming the tree if it already exists; refactor.
+        // Generate Positions and generate a tree at each position
         List<Vector2> positions = GeneratePositions(section, treeLayer.spacing);
+        int treeIndex = 0; //loop index tracker
         foreach (Vector2 position in positions)
-        {
-            treeFactory.GenerateTree(position, treeLayerParent, treeLayer.treeSettings, treeLayer.vineSettings);
+        {// Since we're receiving a transform, we just name it here
+            treeFactory.GenerateTree(position, treeLayerParent, treeLayer).name = "Tree." + treeLayer.layerIndex.ToString() + "." + treeIndex.ToString();
+            treeIndex++;
         }
         InitManualTrees();
         // StaticBatchingUtility.Combine(treeLayerParent.gameObject);
@@ -418,9 +426,15 @@ public class LevelGenerator : ScriptableObject
 
     void AddTreeLayerSection(Section section, List<TreeLayer> treeLayers)
     {
-        foreach (TreeLayer treeLayer in treeLayers)
+        for (int i = 0; i < treeLayers.Count; i++)
         {
-            AddTreeLayerSection(section, treeLayer);
+            TreeLayer treeLayer = treeLayers[i];
+            // * Assign the layerIndex here to be used by TreeFactory for appropriate sorting
+            treeLayer.layerIndex = i;
+            if (treeLayer.enabled)
+            {
+                AddTreeLayerSection(section, treeLayer);
+            }
         }
     }
 
