@@ -192,42 +192,4 @@ public class SwingingController : MonoBehaviour
         if (shouldContinueClimb(direction)) StartCoroutine(Climb(direction));
         // }  
     }
-
-    // ============ ORIG before trying prevSegment and nextSegment
-    //TODO: replace with using GetNext and GetPrevSegment
-    // private Rigidbody2D GetNextVineSegment(string direction)
-    // {
-    //     int checkRadiusOffsetY = direction == "up" ? 1 : -1;
-    //     Vector3 checkRadiusOffset = new Vector3(0, checkRadiusOffsetY, 0);
-    //     Vector2 checkRadiusStartPosition = grabJoint.connectedBody.transform.position + checkRadiusOffset;
-    //     Collider2D[] colliders = Physics2D.OverlapCircleAll(checkRadiusStartPosition, 0.5f, swingableLayer);
-    //     Collider2D closestSegment = null;
-    //     float closestDistance = direction == "up" ? float.MaxValue : float.MinValue;
-
-    //     // GameObject currentVineRoot = grabJoint.connectedBody.transform.GetComponent<VineSegment>().vineRoot.gameObject;
-    //     GameObject currentVineRoot = currentVineSegmentRef.vineRoot.gameObject;
-    //     // Debug.Log("currentVineRoot: "+currentVineRoot.name);
-
-    //     foreach (Collider2D collider in colliders)
-    //     {
-    //         // skip over vine segments that do not belong to the same vine;
-    //         GameObject vineRoot = collider.transform.GetComponent<VineSegment>().vineRoot.gameObject;
-    //         if (!GameObject.ReferenceEquals(currentVineRoot, vineRoot))
-    //         {
-    //             continue;
-    //         }
-    //         float distance = Vector2.Distance(collider.transform.position, grabJoint.connectedBody.transform.position);
-    //         if (direction == "up" && distance < closestDistance)
-    //         {
-    //             closestSegment = collider;
-    //             closestDistance = distance;
-    //         }
-    //         else if (direction == "down" && distance > closestDistance)
-    //         {
-    //             closestSegment = collider;
-    //             closestDistance = distance;
-    //         }
-    //     }
-    //     return closestSegment.attachedRigidbody;
-    // }
 }
