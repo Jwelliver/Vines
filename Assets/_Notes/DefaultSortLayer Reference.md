@@ -2,6 +2,7 @@
 
   - Tree Trunks -20
   - foliage in front of trees -15 to -10
+  - Arrow: -1
   - Platform 0 to 5
   - vineSegment 10
   - vine adornments 11

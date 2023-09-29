@@ -16,6 +16,8 @@ public class ArrowProjectile : MonoBehaviour
     [SerializeField] Collider2D myCollider;
     [SerializeField] FixedJoint2D fixedJoint;
     [SerializeField] Transform spriteObj;
+
+    public Transform playerRef; //assigned by ArrowGenerator on init
     public ArrowSFX sfx; //assigned by ArrowGenerator on instantiation
 
     bool hasLanded;
@@ -30,17 +32,18 @@ public class ArrowProjectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (hasLanded) return;
-        HingeJoint2D otherHinge = col.gameObject.GetComponent<HingeJoint2D>();
-        if (otherHinge != null && RNG.SampleProbability(pctChanceBreakHinge))
+        VineSegment vineSegment;
+        bool isVineSegment = col.gameObject.TryGetComponent<VineSegment>(out vineSegment);
+        if (isVineSegment && RNG.SampleProbability(pctChanceBreakHinge))
         {
-            otherHinge.enabled = false;
+            vineSegment.ForceBreakJoint();
             return;
         }
         stickToBody(col.rigidbody);
         // Penetrate(col.rigidbody);
-        if (col.transform.root.tag == "Player")
+        if (col.gameObject.tag == "Player")
         {
-            col.transform.root.GetComponentInChildren<CharacterController2D>().hitByArrow();
+            playerRef.GetComponent<CharacterController2D>().hitByArrow();
         }
     }
 

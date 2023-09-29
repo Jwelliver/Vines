@@ -70,9 +70,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -2070817595
-  m_SortingLayer: 1
-  m_SortingOrder: -4
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 419635049, guid: 5f27ce5efea454f43ac500a80dcac464, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -145,7 +145,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!61 &1491060176522621677
 BoxCollider2D:
@@ -166,16 +166,16 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 72
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 8
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 584
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 584
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -191,7 +191,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.1, y: 1.6}
-  m_EdgeRadius: 0.1
+  m_EdgeRadius: 0
 --- !u!114 &1491060176522621676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -208,12 +208,13 @@ MonoBehaviour:
   maxVelocity: 36
   minAngle: 60
   maxAngle: 90
-  pctChanceBreakHinge: 0.5
+  pctChanceBreakHinge: 0.4
   penetrationDistance: 0.1
   rb: {fileID: 1491060176522621674}
   myCollider: {fileID: 1491060176522621677}
   fixedJoint: {fileID: 1079000615448439925}
   spriteObj: {fileID: 1590893534}
+  playerRef: {fileID: 0}
   sfx: {fileID: 0}
 --- !u!255 &1079000615448439925
 FixedJoint2D:
