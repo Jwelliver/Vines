@@ -125,12 +125,15 @@ public class TreeFactory : ScriptableObject
         // Instantiate new tree prefab
         Transform newTree = GameObject.Instantiate(treePrefab, position, Quaternion.identity, parent);
         // Get new random TreeConfig
-        TreeConfig newTreeConfig = GetRandomTreeConfig(treeLayer.treeSettings, treeLayer.vineSettings);
+        TreeConfig treeConfig = GetRandomTreeConfig(treeLayer.treeSettings, treeLayer.vineSettings);
         // Manually adjust sortorders for palm and trunk 
-        newTreeConfig.palmSortOrder += palmSortOrderPoolLength * (treeLayer.layerIndex + 1); // ensure we get a unique range of length palmSortOrderPool length for each treeLayerIndex
-        newTreeConfig.trunkSortOrder -= treeLayer.layerIndex;
+        //      PalmSort method 1:
+        // newTreeConfig.palmSortOrder += palmSortOrderPoolLength * (treeLayer.layerIndex + 1); // ensure we get a unique range of length palmSortOrderPool length for each treeLayerIndex
+        //      PalmSort method 2:
+        treeConfig.palmSortOrder += (int)(palmSortOrderPoolLength * treeConfig.trunkHeight * treeConfig.treeScale);
+        treeConfig.trunkSortOrder -= treeLayer.layerIndex;
         //Assemble
-        AssembleTree(newTree, newTreeConfig);
+        AssembleTree(newTree, treeConfig);
         return newTree;
     }
 
