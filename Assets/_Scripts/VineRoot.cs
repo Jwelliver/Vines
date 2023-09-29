@@ -56,19 +56,20 @@ public class VineRoot : MonoBehaviour
         // Remove from segmentIndex to the end of segments from the segments list
         List<VineSegment> segmentsRemaining = new List<VineSegment>();
         List<VineSegment> segmentsDetached = new List<VineSegment>();
-        // Get List of detached segments
+        // Get List of detached segments;
         for (int i = 0; i < segments.Count; i++)
         {
             if (i < segmentIndex) { segmentsRemaining.Add(segments[i]); }
             else { segmentsDetached.Add(segments[i]); }
+            // Unparent all segments so we can clone this vineroot without cloning all segments;
+            segments[i].transform.SetParent(null);
         }
 
-        segments = segmentsRemaining;
-        // reinit this vineRoot with the new (still attached) segments list; no need to reinit segments since their indexes haven't changed.
-        Init(segments, true, false);
         // Clone VineRoot and set detached segment head at segmentIndex and init it
-        Transform newVineRoot = GameObject.Instantiate(transform);
-        //Init new VineRoot; Set it to not anchored, and reint detached segments;
+        Transform newVineRoot = GameObject.Instantiate(transform, transform.parent);
+        // reinit this vineRoot with the segments remaining with this root; Reinit them so they re-parent themselves;
+        Init(segmentsRemaining, true, true);
+        //Init new VineRoot; Set it to not anchored, and reinit detached segments;
         newVineRoot.GetComponent<VineRoot>().Init(segmentsDetached, false, true);
     }
 

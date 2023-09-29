@@ -5,7 +5,6 @@ public class VineSegment : MonoBehaviour
 {
     public VineRoot vineRoot;
     int segmentIndex;
-    //TODO: consider setting up index and/or reference to next/prev segment; use for climbing
 
     public void Init(VineRoot vineRootRef, int _segmentIndex)
     {
@@ -29,6 +28,14 @@ public class VineSegment : MonoBehaviour
     void OnJointBreak2D(Joint2D joint)
     {
         vineRoot.OnVineSnap(joint, segmentIndex);
+    }
+
+    public void ForceBreakJoint()
+    {
+        HingeJoint2D myHinge = GetComponent<HingeJoint2D>();
+        myHinge.enabled = false;
+        OnJointBreak2D(myHinge);
+
     }
 }
 
