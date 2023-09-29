@@ -169,13 +169,13 @@ BoxCollider2D:
     m_Bits: 72
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 584
+    m_Bits: 840
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 584
+    m_Bits: 840
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

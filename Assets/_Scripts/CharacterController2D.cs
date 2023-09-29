@@ -308,16 +308,36 @@ public class CharacterController2D : MonoBehaviour
     //     }
     // }
 
-
-
-    public void hitByArrow()
+    bool IsCollisionFatal(Collider2D playerColliderHit)
     {
-        isHitByArrow = true;
-        isSwinging = false;
-        swingingController.handleSwingRelease(true);
-        swingingController.enabled = false;
-        sfx.playerSFX.playJumpStopSound(); //temp hit by arrow sound
-        animator.SetBool("isFalling", true);
+        // determine whether a collision (i.e. with an arrow) has hit a vital component, and whether player should die
+
+        //* 092823 crude quick way to only trigger a fatal shot if the collider hit i NOT one of the legs;
+        // ... i.e. if one of the legs was hit, just ignore the hit.
+        foreach (TargetRotation target in ragdollParts)
+        {
+            if (target.gameObject.GetComponent<Collider2D>() == playerColliderHit)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+    public void hitByArrow(Collider2D playerColliderHit)
+    {
+        if (IsCollisionFatal(playerColliderHit))
+        {
+            isHitByArrow = true;
+            isSwinging = false;
+            swingingController.handleSwingRelease(true);
+            swingingController.enabled = false;
+            sfx.playerSFX.playJumpStopSound(); //temp hit by arrow sound
+            animator.SetBool("isFalling", true);
+        }
+
     }
 
     void OnDestroy()

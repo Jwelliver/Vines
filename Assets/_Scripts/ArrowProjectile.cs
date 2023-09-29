@@ -39,18 +39,19 @@ public class ArrowProjectile : MonoBehaviour
             vineSegment.ForceBreakJoint();
             return;
         }
-        stickToBody(col.rigidbody);
+        stickToBody(col);
         // Penetrate(col.rigidbody);
         if (col.gameObject.tag == "Player")
         {
-            playerRef.GetComponent<CharacterController2D>().hitByArrow();
+            playerRef.GetComponent<CharacterController2D>().hitByArrow(col.otherCollider);
         }
     }
 
-    void stickToBody(Rigidbody2D otherBody)
+    void stickToBody(Collision2D col)
     {
         sfx.PlayArrowHitSound();
-        fixedJoint.connectedBody = otherBody;
+        fixedJoint.connectedBody = col.rigidbody;
+        // Vector2 contactPoint = col.contacts[0].point; //TODO: later, maybe we can use this to set the fixed joint anchor to allow penetration.
         myCollider.enabled = false;
         fixedJoint.enabled = true;
         hasLanded = true;

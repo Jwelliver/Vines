@@ -718,23 +718,23 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -934,7 +934,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1463898354729037251}
   - component: {fileID: 733440904}
-  - component: {fileID: 1984522515}
   m_Layer: 9
   m_Name: PlayerContainer
   m_TagString: Player
@@ -1019,20 +1018,6 @@ MonoBehaviour:
     sortOrderOffset: 3
   - spriteRenderer: {fileID: 849144548641346570}
     sortOrderOffset: 7
---- !u!114 &1984522515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1463898354729037250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d0701949606fe34397d89402dfa10b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mobileControls: {fileID: 0}
-  levelLoader: {fileID: 0}
 --- !u!1 &1463898354834967803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,16 +1185,16 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2048
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2048
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2048
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 2048
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1355,7 +1340,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d52b1f5794064ed489840d1dec422183, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.67
+  m_Volume: 0
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1429,7 +1414,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0.529
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1452,13 +1437,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRb: {fileID: 3562631163907043526}
-  swingingController: {fileID: 3562631163907043524}
   minPitch: 0.5
   maxPitch: 1.5
   velocityAtMaxPitch: 20
-  minVelocityVolume: 0
+  cutoffVelocity: 5
   maxVolume: 0.7
-  velocityAtMaxVolume: 50
+  velocityAtMaxVolume: 30
 --- !u!1 &1463898355362701651
 GameObject:
   m_ObjectHideFlags: 0
@@ -1645,23 +1629,23 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   m_ContactCaptureLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2048
   m_CallbackLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -3980,7 +3964,7 @@ MonoBehaviour:
   - {x: -0.37281418, y: -0.4507203, z: 0.00000017508864}
   m_ShapePathHash: 1259167985
   m_Mesh: {fileID: 0}
-  m_InstanceId: -2942
+  m_InstanceId: -1300
 --- !u!233 &3562631163907043542
 HingeJoint2D:
   m_ObjectHideFlags: 0
