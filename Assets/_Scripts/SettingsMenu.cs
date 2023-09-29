@@ -71,17 +71,10 @@ public class SettingsMenu : MonoBehaviour
             if (kv.Value == newIndex)
             {
                 tempSettings.targetFrameRate = kv.Key;
-                Debug.Log("FrameRateValue Changed: newValue: " + tempSettings.targetFrameRate);
+                // Debug.Log("FrameRateValue Changed: newValue: " + tempSettings.targetFrameRate);
                 return;
             }
         }
-    }
-
-    // ===== UTIL
-
-    void ConvertFrameRateToDropdownIndex()
-    {
-
     }
 
 
