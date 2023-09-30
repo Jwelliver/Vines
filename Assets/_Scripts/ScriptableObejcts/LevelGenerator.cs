@@ -385,7 +385,7 @@ public class LevelGenerator : ScriptableObject
 
     public void ExtendCurrentSection()
     {   // Used for Endless mode
-        int extensionLength = 25; // * Don't go too low (i.e. below max treeSpacing), otherwise it affects treeSpacing
+        int extensionLength = 50; // * Don't go too low (i.e. below max treeSpacing), otherwise it affects treeSpacing
         //Create a SectionOffset and set currentSection to the new section that is returned
         currentSection = AddSectionOffset(currentSection, extensionLength, SectionFillType.ALL);
         // ! DEBUGING MARKER
@@ -430,9 +430,10 @@ public class LevelGenerator : ScriptableObject
         {
             TreeLayer treeLayer = treeLayers[i];
             // * Assign the layerIndex here to be used by TreeFactory for appropriate sorting
-            treeLayer.layerIndex = i;
+
             if (treeLayer.enabled)
             {
+                treeLayer.layerIndex = i;
                 AddTreeLayerSection(section, treeLayer);
             }
         }
