@@ -29,6 +29,7 @@ public class TargetRotation : MonoBehaviour
     void FixedUpdate()
     {
         handleRotation();
+        // handlePosition(); //TODO looks better but weird behavior on grab.
     }
 
     public void setForce(float newForce)
