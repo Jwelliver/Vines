@@ -12,6 +12,7 @@ public class SwingingController : MonoBehaviour
     [SerializeField] Joint2D grabJoint;
     [SerializeField] float climbSpeed = 1.0f; // the speed of climbing up and down vines
     [SerializeField] float climbSecondsBetweenMove = 1f;
+    [SerializeField] float minSlideForce;
 
     Transform myTransform;
     public static bool isClimbing;
@@ -175,16 +176,42 @@ public class SwingingController : MonoBehaviour
 
         if (!isClimbing) { yield break; }
         // Debug.Log("Climb > nextVineSegment" + nextVineSegment);
-        Vector2 targetPosition = nextVineSegment.position;
 
-        // while (rb.position.y != targetPosition.y)
-        // {
-        // ! 092723  removed Temporarily for mobile test; TODO: reimplement
-        // rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, climbSpeed * Time.fixedDeltaTime));
-        // rb.MovePosition(nextVineSegment.position);
-        attachJoints(nextVineSegment);
+
+
+        // float reactionForceMag = grabJoint.reactionForce.magnitude;
+
+        Vector2 targetPosition = nextVineSegment.position;
+        if (direction == "down" && grabJoint.reactionForce.magnitude > minSlideForce)
+        {
+            attachJoints(nextVineSegment);
+        }
+        else if (direction == "up")
+        {
+            attachJoints(nextVineSegment);
+        }
+        // // while (rb.position.y != targetPosition.y)
+        // // {
+        // // ! 092723  removed Temporarily for mobile test; TODO: reimplement
+        // // rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, climbSpeed * Time.fixedDeltaTime));
+        // // rb.MovePosition(nextVineSegment.position);
+
+
+
+        // float acc = reactionForceMag / rb.mass;
+        // float vel = acc * Time.deltaTime;
+        // float displacement = Vector2.Distance(currentVineSegmentRef.GetComponent<Rigidbody2D>().position, targetPosition);
+        // float seconds = displacement / vel;
+
+
+
+        // TODO: set climbseconds to velocity derived from reaction force
         yield return new WaitForSeconds(climbSecondsBetweenMove);
         if (shouldContinueClimb(direction)) StartCoroutine(Climb(direction));
         // }  
     }
+
+    // IEnumerable Slide(Transform targetSegment) {
+
+    // }
 }
