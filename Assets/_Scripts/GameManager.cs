@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         }
 
         audioSource = GetComponent<AudioSource>();
-        // Cursor.visible = false; //TODO reimplement
+        Cursor.visible = false;
         levelGen.InitLevel();
         GameContext.SetGameState(GameState.InGame);
     }

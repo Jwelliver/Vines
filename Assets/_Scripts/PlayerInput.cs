@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 /* // TODO: May want to rename; Turns out the new input system package contains a component called PlayerInput which performs a similar role*/
 public class PlayerInput : MonoBehaviour
 {
-
     public static CustomInput customInput;
     public static bool inputEnabled = true;
 

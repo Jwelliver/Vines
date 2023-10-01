@@ -36,4 +36,4 @@ MonoBehaviour:
   - {fileID: 7798826883474618400, guid: c3f2e5507bbbe1f4a9ba08cd119d5cc3, type: 3}
   palmSortOrderBase: 40
   palmSortOrderPoolLength: 10
-  trunkSortOrderBase: -10
+  trunkSortOrderBase: -20

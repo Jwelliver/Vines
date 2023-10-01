@@ -33,11 +33,12 @@ public struct PlayerSettings
 public class GameContext : ScriptableObject
 {
     public static GameState CurrentGameState = new GameState();
-    public static PlayerSettings ActiveSettings = new PlayerSettings(true);
+    public static PlayerSettings ActiveSettings;
 
     void OnEnable()
     {
         CurrentGameState = GameState.MainMenu;
+        ActiveSettings = new PlayerSettings(true);
     }
 
     public static void SetGameState(GameState newGameState)

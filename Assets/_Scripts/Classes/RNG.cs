@@ -25,6 +25,11 @@ public static class RNG
         return _seed;
     }
 
+    public static int GetCurrentSeed()
+    {
+        return _seed;
+    }
+
     public static int RandomRange(int lo, int hi)
     {
         return SysRandomInstance.Next(lo, hi);

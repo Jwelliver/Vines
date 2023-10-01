@@ -341,6 +341,7 @@ public class LevelGenerator : ScriptableObject
     public void InitLevel()
     {
         InitRNG(); // This Must be First;
+        Debug.Log("Seed: " + RNG.GetCurrentSeed());
         InitFactories();
         if (levelSettings.levelType == LevelType.NORMAL)
         {
@@ -411,6 +412,7 @@ public class LevelGenerator : ScriptableObject
         // Find or Create a parent to contain this treeLayer and name it
         string treeLayerParentName = "TreeLayer " + treeLayer.layerIndex.ToString() + " " + treeLayer.id;
         Transform treeLayerParent = treeLayersContainer.Find(treeLayerParentName) ?? GameObject.Instantiate(blankParentPrefab, treeLayersContainer);
+        treeLayerParent.position = new Vector2(0, 0);
         treeLayerParent.name = treeLayerParentName; // TODO: We're unecessarily renaming the tree if it already exists; refactor.
         // Generate Positions and generate a tree at each position
         List<Vector2> positions = GeneratePositions(section, treeLayer.spacing);
@@ -470,6 +472,7 @@ public class LevelGenerator : ScriptableObject
             //
             Transform layerParent = layerParentContainer.Find(layer.id) ?? GameObject.Instantiate(blankParentPrefab, layerParentContainer);
             layerParent.name = layer.id;
+            layerParent.position = new Vector3(0, 0);
             if (layer.enableParallax)
             {
                 layerParent.gameObject.AddComponent<Paralaxer>();

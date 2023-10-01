@@ -52,6 +52,7 @@ public struct TreeLayer
     public string id;
     public bool enabled;
     public MinMax<float> spacing;
+    public MinMax<float> yOffset;
     public TreeFactoryConfig treeSettings;
     public VineFactoryConfig vineSettings;
     public int layerIndex; // auto set by LevelGen

@@ -12,10 +12,6 @@ public class TreeFactoryConfig
     public float maxTreeRotation = 5f;
     public float maxPalmRotation = 5f;
 
-    // [Header("Sprite Sorting")]
-    // public int baseTrunkSortOrder = -10;
-    // public int basePalmSortOrder = 40;
-
     [Header("Vines")]
     public int maxVines = 4;
 
@@ -108,7 +104,7 @@ public class TreeFactory : ScriptableObject
             palmSortOrder = GetPalmSortOrder(),
             trunkSortOrder = trunkSortOrderBase,
             nLightShafts = RNG.SampleOccurrences(factoryConfig.maxLightShafts, factoryConfig.pctChangeLightShaft),
-            nVines = RNG.RandomRange(1, factoryConfig.maxVines),
+            nVines = factoryConfig.maxVines == 0 ? 0 : RNG.RandomRange(1, factoryConfig.maxVines),
             rndPalmPrefab = RNG.RandomChoice(palmPrefabs),
             rndTrunkPrefab = RNG.RandomChoice(trunkPrefabs),
             vineFactoryConfig = vineFactoryConfigOverride
@@ -131,7 +127,8 @@ public class TreeFactory : ScriptableObject
     { // Generate a Tree from a given TreeLayer; Automatically handles layer sorting for trunk and palms
 
         // Instantiate new tree prefab
-        Transform newTree = GameObject.Instantiate(treePrefab, position, Quaternion.identity, parent);
+        float rndYOffset = RNG.RandomRange(treeLayer.yOffset);
+        Transform newTree = GameObject.Instantiate(treePrefab, position + new Vector2(0, rndYOffset), Quaternion.identity, parent);
         // Get new random TreeConfig
         TreeConfig treeConfig = GetRandomTreeConfig(treeLayer.treeSettings, treeLayer.vineSettings);
         // Manually adjust sortorders for palm and trunk 

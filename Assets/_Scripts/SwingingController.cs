@@ -154,9 +154,10 @@ public class SwingingController : MonoBehaviour
 
     IEnumerator Climb(string direction = "down")
     {
-        Rigidbody2D nextVineSegment;
-        try
+        do
         {
+            Rigidbody2D nextVineSegment;
+
             // Try to get nextSegment as Transform from the currentVineSegmentRef;
             Transform nextSegmentTransform = direction == "up" ? currentVineSegmentRef.GetPrevSegment() : currentVineSegmentRef.GetNextSegment();
             // If it's not found, abort.
@@ -167,51 +168,93 @@ public class SwingingController : MonoBehaviour
             }
             // Otherwise, get the nextVineSegment's RigidBody2D
             nextVineSegment = nextSegmentTransform.GetComponent<Rigidbody2D>();
+
+            float reactionForceMag = grabJoint.reactionForce.magnitude;
+            Vector2 targetPosition = nextVineSegment.position;
+
+            if (direction == "down")//&& reactionForceMag >= minSlideForce
+            {
+                // float acc = Mathf.Abs(reactionForceMag / rb.mass);
+                // float vel = acc * Time.deltaTime;
+                // float displacement = Mathf.Abs(Vector2.Distance(currentVineSegmentRef.GetComponent<Rigidbody2D>().position, targetPosition));
+                // float seconds = Mathf.Abs(displacement / vel);
+
+                //directionToTargetPos = grabCollider.transform.position - targetPosition;
+                //float velocityInDirection = Vector3.Dot(rb.velocity, directionToTargetPos); // this is the magnitude of velocity in the direction to target (unverified)
+
+                attachJoints(nextVineSegment);
+                // Debug.Log("Slide: seconds: " + seconds + " | d: " + displacement + " | vel: " + vel + " acc: " + acc);
+                // yield return new WaitForSeconds(seconds);
+            }
+            else if (direction == "up")
+            {
+                attachJoints(nextVineSegment);
+                // yield return new WaitForSeconds(climbSecondsBetweenMove);
+            }
+
+            yield return new WaitForSeconds(climbSecondsBetweenMove);
         }
-        catch (Exception e)
-        {
-            // Debug.LogError("Error: " + e);
-            yield break;
-        }
-
-        if (!isClimbing) { yield break; }
-        // Debug.Log("Climb > nextVineSegment" + nextVineSegment);
-
-
-
-        // float reactionForceMag = grabJoint.reactionForce.magnitude;
-
-        Vector2 targetPosition = nextVineSegment.position;
-        if (direction == "down" && grabJoint.reactionForce.magnitude > minSlideForce)
-        {
-            attachJoints(nextVineSegment);
-        }
-        else if (direction == "up")
-        {
-            attachJoints(nextVineSegment);
-        }
-        // // while (rb.position.y != targetPosition.y)
-        // // {
-        // // ! 092723  removed Temporarily for mobile test; TODO: reimplement
-        // // rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, climbSpeed * Time.fixedDeltaTime));
-        // // rb.MovePosition(nextVineSegment.position);
-
-
-
-        // float acc = reactionForceMag / rb.mass;
-        // float vel = acc * Time.deltaTime;
-        // float displacement = Vector2.Distance(currentVineSegmentRef.GetComponent<Rigidbody2D>().position, targetPosition);
-        // float seconds = displacement / vel;
-
-
-
-        // TODO: set climbseconds to velocity derived from reaction force
-        yield return new WaitForSeconds(climbSecondsBetweenMove);
-        if (shouldContinueClimb(direction)) StartCoroutine(Climb(direction));
-        // }  
+        while (shouldContinueClimb(direction));
     }
 
-    // IEnumerable Slide(Transform targetSegment) {
 
+    // =========== bak 093023
+    // IEnumerator Climb(string direction = "down")
+    // {
+    //     Rigidbody2D nextVineSegment;
+    //     try
+    //     {
+    //         // Try to get nextSegment as Transform from the currentVineSegmentRef;
+    //         Transform nextSegmentTransform = direction == "up" ? currentVineSegmentRef.GetPrevSegment() : currentVineSegmentRef.GetNextSegment();
+    //         // If it's not found, abort.
+    //         if (nextSegmentTransform == null)
+    //         {
+    //             endClimb();
+    //             yield break;
+    //         }
+    //         // Otherwise, get the nextVineSegment's RigidBody2D
+    //         nextVineSegment = nextSegmentTransform.GetComponent<Rigidbody2D>();
+    //     }
+    //     catch (Exception e)
+    //     {
+    //         // Debug.LogError("Error: " + e);
+    //         yield break;
+    //     }
+
+    //     if (!isClimbing) { yield break; }
+    //     // Debug.Log("Climb > nextVineSegment" + nextVineSegment);
+
+    //     float reactionForceMag = grabJoint.reactionForce.magnitude;
+
+    //     Vector2 targetPosition = nextVineSegment.position;
+    //     if (direction == "down" && reactionForceMag> minSlideForce)
+    //     {
+    //         attachJoints(nextVineSegment);
+    //     }
+    //     else if (direction == "up")
+    //     {
+    //         attachJoints(nextVineSegment);
+    //     }
+    //     // // while (rb.position.y != targetPosition.y)
+    //     // // {
+    //     // // ! 092723  removed Temporarily for mobile test; TODO: reimplement
+    //     // // rb.MovePosition(Vector2.MoveTowards(rb.position, targetPosition, climbSpeed * Time.fixedDeltaTime));
+    //     // // rb.MovePosition(nextVineSegment.position);
+
+    //     // Slide
+    //     while(shouldContinueClimb(direction)) {
+
+    //     }
+
+    //     float acc = reactionForceMag / rb.mass;
+    //     float vel = acc * Time.deltaTime;
+    //     float displacement = Vector2.Distance(currentVineSegmentRef.GetComponent<Rigidbody2D>().position, targetPosition);
+    //     float seconds = displacement / vel;
+
+    //     // TODO: set climbseconds to velocity derived from reaction force
+    //     yield return new WaitForSeconds(climbSecondsBetweenMove);
+    //     if (shouldContinueClimb(direction)) StartCoroutine(Climb(direction));
+    //     // }  
     // }
+
 }
