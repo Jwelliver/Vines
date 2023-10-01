@@ -16,12 +16,92 @@ MonoBehaviour:
   rngSeed: -1
   startPos: {x: 0, y: 0}
   levelLength:
-    min: 300
-    max: 500
+    min: 100
+    max: 1000
   direction: 1
   treeLayers:
-  - id: Tiny Guys
-    enabled: 1
+  - id: course 3
+    enabled: 0
+    spacing:
+      min: 6
+      max: 10
+    treeSettings:
+      treeScale:
+        min: 1.2
+        max: 1.5
+      trunkHeight:
+        min: 1.5
+        max: 2
+      maxTreeRotation: 5
+      maxPalmRotation: 5
+      maxVines: 2
+      pctChangeLightShaft: 0.3
+      maxLightShafts: 3
+    vineSettings:
+      length:
+        min: 15
+        max: 25
+      segmentLength: 0.7
+      segmentWidth: 0.35
+      normalBreakForce:
+        min: 1500
+        max: 2500
+      weakBreakForce:
+        min: 250
+        max: 500
+      pctChanceWeak: 0.1
+      pctChanceCurl: 0.3
+      maxCurlForce: 10
+      curlSpeed: 10
+      pctChanceAdornment: 0.7
+      adornmentScale:
+        min: 0.3
+        max: 0.8
+      normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
+      weakSegmentColor: {r: 0.7647059, g: 0.5228865, b: 0, a: 1}
+    layerIndex: 0
+  - id: course 2
+    enabled: 0
+    spacing:
+      min: 6
+      max: 10
+    treeSettings:
+      treeScale:
+        min: 1
+        max: 1.25
+      trunkHeight:
+        min: 2.5
+        max: 2.7
+      maxTreeRotation: 5
+      maxPalmRotation: 5
+      maxVines: 2
+      pctChangeLightShaft: 0.3
+      maxLightShafts: 3
+    vineSettings:
+      length:
+        min: 15
+        max: 25
+      segmentLength: 0.7
+      segmentWidth: 0.35
+      normalBreakForce:
+        min: 1500
+        max: 2500
+      weakBreakForce:
+        min: 250
+        max: 500
+      pctChanceWeak: 0.1
+      pctChanceCurl: 0.3
+      maxCurlForce: 10
+      curlSpeed: 10
+      pctChanceAdornment: 0.7
+      adornmentScale:
+        min: 0.3
+        max: 0.8
+      normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
+      weakSegmentColor: {r: 0.7647059, g: 0.5228865, b: 0, a: 1}
+    layerIndex: 0
+  - id: course 1
+    enabled: 0
     spacing:
       min: 8
       max: 12
@@ -35,8 +115,8 @@ MonoBehaviour:
       maxTreeRotation: 5
       maxPalmRotation: 5
       maxVines: 2
-      pctChangeLightShaft: 0
-      maxLightShafts: 0
+      pctChangeLightShaft: 0.3
+      maxLightShafts: 3
     vineSettings:
       length:
         min: 15
@@ -49,7 +129,7 @@ MonoBehaviour:
       weakBreakForce:
         min: 250
         max: 500
-      pctChanceWeak: 0.08
+      pctChanceWeak: 0.5
       pctChanceCurl: 0.3
       maxCurlForce: 10
       curlSpeed: 10
@@ -61,7 +141,7 @@ MonoBehaviour:
       weakSegmentColor: {r: 0.7647059, g: 0.5228865, b: 0, a: 1}
     layerIndex: 0
   - id: Middle Guys
-    enabled: 1
+    enabled: 0
     spacing:
       min: 15
       max: 25
@@ -115,6 +195,46 @@ MonoBehaviour:
       maxTreeRotation: 10
       maxPalmRotation: 10
       maxVines: 3
+      pctChangeLightShaft: 0.4
+      maxLightShafts: 3
+    vineSettings:
+      length:
+        min: 30
+        max: 40
+      segmentLength: 0.7
+      segmentWidth: 0.5
+      normalBreakForce:
+        min: 1500
+        max: 2500
+      weakBreakForce:
+        min: 250
+        max: 500
+      pctChanceWeak: 0.05
+      pctChanceCurl: 0.3
+      maxCurlForce: 10
+      curlSpeed: 10
+      pctChanceAdornment: 0.7
+      adornmentScale:
+        min: 0.8
+        max: 1.2
+      normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
+      weakSegmentColor: {r: 0.745283, g: 0.5820474, b: 0, a: 1}
+    layerIndex: 0
+  - id: StandardSizeTest
+    enabled: 1
+    spacing:
+      min: 20
+      max: 20
+    treeSettings:
+      treeScale:
+        min: 1
+        max: 1
+      trunkHeight:
+        min: 1
+        max: 1
+      maxTreeRotation: 0
+      maxPalmRotation: 0
+      maxVines: 1
       pctChangeLightShaft: 0.4
       maxLightShafts: 3
     vineSettings:
