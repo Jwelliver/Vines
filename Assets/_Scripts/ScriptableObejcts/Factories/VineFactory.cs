@@ -130,6 +130,7 @@ public class VineFactory : ScriptableObject
 
         // Instantiate VineRoot
         Transform vineRoot = GameObject.Instantiate(vineRootPrefab, position, Quaternion.identity, containerParent);
+        // vineRoot.name = "VineRoot";
 
         // Init Vine properties
         bool isWeak = RNG.SampleProbability(factoryConfig.pctChanceWeak);
@@ -140,6 +141,7 @@ public class VineFactory : ScriptableObject
         //instantiate anchor segment
         Transform prevSegment;
         prevSegment = GameObject.Instantiate(vineSegmentPrefabs[0], position, Quaternion.identity, vineRoot);
+        prevSegment.name = "0 (AnchorSegment)";
         prevSegment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         prevSegment.GetComponent<HingeJoint2D>().enabled = false;
         vineSegments.Add(prevSegment.GetComponent<VineSegment>());
@@ -164,6 +166,8 @@ public class VineFactory : ScriptableObject
             //TODO: try using position offset of one; and also try not parenting until after segment is setup.
             Vector2 newPosition = (Vector2)prevSegment.position + new Vector2(0, -segLength);
             Transform newSegment = GameObject.Instantiate(rndSegment, newPosition, Quaternion.identity, vineRoot);
+            // Set segment name
+            newSegment.name = (i + 1).ToString();
             // Set up collider size
             CapsuleCollider2D segCollider = newSegment.GetComponent<CapsuleCollider2D>();
             segCollider.size = new Vector2(factoryConfig.segmentWidth, segLength);

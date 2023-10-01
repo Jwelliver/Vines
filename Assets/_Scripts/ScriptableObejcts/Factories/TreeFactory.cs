@@ -36,7 +36,8 @@ public class TreeConfig
     public int nVines;
     public int nLightShafts;
     public Transform rndPalmPrefab;
-    public Sprite rndTrunkSprite;
+    // public Sprite rndTrunkSprite;
+    public Transform rndTrunkPrefab;
     public VineFactoryConfig vineFactoryConfig; //optional; Using null will use VineFactory's default
 }
 
@@ -45,8 +46,9 @@ public class NewTreeAssembly
     // Contains components used by TreeFactory to pass around as a new tree is configured and built
     public TreeConfig treeConfig;
     public Transform newTree;
-    public RectTransform trunk;
-    public RectTransform palmPrefabAnchor; //TODO: destroy after use.
+    // public Transform trunk;
+    // public Transform palm;
+    public Transform palmPrefabAnchor; //TODO: destroy after use.
     public Transform vinesContainer;
     public List<Vector2> palmAnchorPositions = new List<Vector2>();
 
@@ -54,8 +56,14 @@ public class NewTreeAssembly
     {
         newTree = _newTree;
         treeConfig = _treeConfig;
-        trunk = (RectTransform)newTree.Find("Trunk");
-        palmPrefabAnchor = (RectTransform)trunk.Find("PalmPrefabAnchor");
+        // Instantiate Trunk prefab
+        // trunk = GameObject.Instantiate(treeConfig.rndTrunkPrefab, _newTree);
+        // Instantiate Palm prefab at the trunk's PalmAnchor position
+        // Vector2 palmAnchorPos = trunk.Find("PalmAnchor").position;
+        // palm = GameObject.Instantiate(treeConfig.rndPalmPrefab, palmAnchorPos, Quaternion.identity, newTree);
+        //// trunk = (RectTransform)newTree.Find("Trunk");
+        //// palmPrefabAnchor = (RectTransform)trunk.Find("PalmAnchor");
+        // Assign vinesContainer
         vinesContainer = (RectTransform)newTree.Find("VinesContainer");
     }
 }
@@ -71,7 +79,7 @@ public class TreeFactory : ScriptableObject
     [Header("Prefabs")]
     [SerializeField] Transform treePrefab;
     [SerializeField] List<Transform> palmPrefabs;
-    [SerializeField] List<Sprite> trunkSprites;
+    [SerializeField] List<Transform> trunkPrefabs;
     [Header("TreeLayer Sort Settings")]
 
     // TODO: would like to have these in tree config, but then the range pool doesn't work if we are feeding the factory config every generate call; Maybe instead(or in addition to) using factoryConfig override, have levelgen set the default factory to use when building the entire layer.
@@ -102,7 +110,7 @@ public class TreeFactory : ScriptableObject
             nLightShafts = RNG.SampleOccurrences(factoryConfig.maxLightShafts, factoryConfig.pctChangeLightShaft),
             nVines = RNG.RandomRange(1, factoryConfig.maxVines),
             rndPalmPrefab = RNG.RandomChoice(palmPrefabs),
-            rndTrunkSprite = RNG.RandomChoice(trunkSprites),
+            rndTrunkPrefab = RNG.RandomChoice(trunkPrefabs),
             vineFactoryConfig = vineFactoryConfigOverride
         };
     }
@@ -155,20 +163,27 @@ public class TreeFactory : ScriptableObject
     {
         // Apply scale to tree
         float treeScale = newTreeAssembly.treeConfig.treeScale;
-        newTreeAssembly.newTree.localScale = new Vector2(treeScale, treeScale);
+        newTreeAssembly.newTree.localScale *= new Vector2(treeScale, treeScale);
+
+        // Instantiate Trunk prefab
+        Transform newTrunk = GameObject.Instantiate(newTreeAssembly.treeConfig.rndTrunkPrefab, newTreeAssembly.newTree.position, Quaternion.identity, newTreeAssembly.newTree);
+
+        // Rename Trunk
+        newTrunk.name = "Trunk";
+
+        // Get Palm Position Anchor from trunk and add it to the newTreeAssembly
+        newTreeAssembly.palmPrefabAnchor = newTrunk.Find("PalmAnchor");
 
         // Apply scale to trunk
-        Transform trunk = newTreeAssembly.trunk;
         float trunkHeight = newTreeAssembly.treeConfig.trunkHeight;
-        trunk.localScale = new Vector3(trunk.localScale.x, trunkHeight);
+        newTrunk.localScale = new Vector3(newTrunk.localScale.x, newTrunk.localScale.y * trunkHeight);
 
         // Assign random sprite
-        SpriteRenderer trunkSpriteRenderer = trunk.GetComponent<SpriteRenderer>();
-        trunkSpriteRenderer.sprite = newTreeAssembly.treeConfig.rndTrunkSprite;
+        SpriteRenderer trunkSpriteRenderer = newTrunk.GetComponent<SpriteRenderer>();
         trunkSpriteRenderer.sortingOrder = newTreeAssembly.treeConfig.trunkSortOrder;
 
         // Apply random rotation
-        newTreeAssembly.newTree.eulerAngles = Vector3.forward * newTreeAssembly.treeConfig.treeAngleOffset; //TODO: verify this is working; otherwise use Quaternion.Euler()
+        newTreeAssembly.newTree.eulerAngles = Vector3.forward * newTreeAssembly.treeConfig.treeAngleOffset;
     }
 
 
@@ -196,11 +211,15 @@ public class TreeFactory : ScriptableObject
         Transform rndPalmPrefab = newTreeAssembly.treeConfig.rndPalmPrefab;
 
         // Apply position 
-        Vector3 position = newTreeAssembly.palmPrefabAnchor.position;
+        Transform palmAnchor = newTreeAssembly.palmPrefabAnchor;
         Transform newTree = newTreeAssembly.newTree;
 
         // Instantiate newPalm at newTree's palmPrefabAnchor position
-        Transform newPalm = Instantiate(rndPalmPrefab, position, Quaternion.identity, newTree);
+        Transform newPalm = GameObject.Instantiate(rndPalmPrefab, palmAnchor.position, Quaternion.identity, newTree);
+
+        // Destroy palmAnchor since we no longer need it
+        newTreeAssembly.palmPrefabAnchor = null;
+        Destroy(palmAnchor.gameObject);
 
         // Set Palm name
         newPalm.name = "Palm";
@@ -231,6 +250,7 @@ public class TreeFactory : ScriptableObject
 
     private void PopulateVines(NewTreeAssembly newTreeAssembly, VineFactoryConfig vineFactoryConfigOverride = null)
     {
+        if (newTreeAssembly.treeConfig.nVines == 0) { return; }
         Transform vinesContainer = newTreeAssembly.vinesContainer;
         for (int i = 0; i < newTreeAssembly.treeConfig.nVines; i++)
         {

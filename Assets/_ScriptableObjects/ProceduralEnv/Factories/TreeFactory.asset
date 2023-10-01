@@ -24,15 +24,16 @@ MonoBehaviour:
     maxVines: 4
     pctChangeLightShaft: 0.25
     maxLightShafts: 3
-  treePrefab: {fileID: 8428600142129587418, guid: f80f469dce6593a4aa6cd1d1b006aa40, type: 3}
   vineFactory: {fileID: 11400000, guid: df32491e6ba27db4ea1d127078f3d561, type: 2}
   lightShaftFactory: {fileID: 11400000, guid: 6692fbecb148a7444a8ecde546acc676, type: 2}
+  treePrefab: {fileID: 7250127176608980803, guid: 79c198f9998653243a44e3ca63e56d04, type: 3}
   palmPrefabs:
   - {fileID: 2052431411895931276, guid: fe12a1fc1deee9841a529c959aadf98d, type: 3}
   - {fileID: 1533440076823647700, guid: 2f30883bd44c70547b9915184d135114, type: 3}
-  trunkSprites:
-  - {fileID: -363360082, guid: 183629812909a1041b19a55e7191c253, type: 3}
-  - {fileID: -1295716066, guid: 665112540f093154fa0b1dac37d108bf, type: 3}
+  trunkPrefabs:
+  - {fileID: 2089449614829593735, guid: a5775a7559e90b0498c23a1cd53125f2, type: 3}
+  - {fileID: 8485268169460014153, guid: 8fd6e1e0855fa0b41bee1a3b21ba11ee, type: 3}
+  - {fileID: 7798826883474618400, guid: c3f2e5507bbbe1f4a9ba08cd119d5cc3, type: 3}
+  palmSortOrderBase: 40
   palmSortOrderPoolLength: 10
   trunkSortOrderBase: -10
-  palmSortOrderBase: 40
