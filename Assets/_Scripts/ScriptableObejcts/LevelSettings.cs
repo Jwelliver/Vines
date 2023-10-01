@@ -26,8 +26,16 @@ public class LevelSettings : ScriptableObject
 [Serializable]
 public enum LevelType
 {
-    NORMAL,
-    ENDLESS
+    NORMAL = 0,
+    ENDLESS = 1,
+    ENDLESS_DEFINED_LAYERS = 2,
+    ENDLESS_LINEAR_DIFFICULTY = 3,
+    ENDLESS_WANDERING_DIFFICULTY = 4,
+
+    // public static void GetStringList() {
+
+    // }
+
 }
 
 [Serializable]
