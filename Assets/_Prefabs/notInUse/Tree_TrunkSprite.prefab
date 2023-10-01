@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 3979215831457384075}
   - component: {fileID: 6276382532064396898}
   m_Layer: 0
-  m_Name: TreeNewPalms2
+  m_Name: Tree_TrunkSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

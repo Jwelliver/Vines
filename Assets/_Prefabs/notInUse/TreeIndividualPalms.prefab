@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5908892215329595907}
   - component: {fileID: 3612917376586097386}
   m_Layer: 0
-  m_Name: Tree_NewPalms
+  m_Name: TreeIndividualPalms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
