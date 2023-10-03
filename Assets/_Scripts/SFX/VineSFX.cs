@@ -12,28 +12,63 @@ public class VineSFX : MonoBehaviour
     [SerializeField] AudioClip vineSnap;
     [SerializeField] List<AudioClip> vineStretchAudioClips = new List<AudioClip>();
     [SerializeField] List<AudioClip> vineImpactAudioClips = new List<AudioClip>();
+    [SerializeField] List<AudioClip> vineStressAudioClips = new List<AudioClip>();
 
 
-    public void playVineStretchSound()
+    public void playVineStretchSound(float volume = -1)
     {
         // Debug.Log("VineStretchSound");
         if (vineAudio.isPlaying) return;
         if (RNG.RandomBool()) return;
         AudioClip rndSound = RNG.RandomChoice(vineStretchAudioClips);
-        vineAudio.PlayOneShot(rndSound);
+        if (volume == -1)
+        {
+            vineAudio.PlayOneShot(rndSound);
+        }
+        else
+        {
+            vineAudio.PlayOneShot(rndSound, volume);
+        }
     }
 
-    public void playVineImpactSound()
+    public void playVineStressSound(float volume = -1)
+    {
+        AudioClip rndSound = RNG.RandomChoice(vineStressAudioClips);
+        if (volume == -1)
+        {
+            vineAudio.PlayOneShot(rndSound);
+        }
+        else
+        {
+            vineAudio.PlayOneShot(rndSound, volume);
+        }
+    }
+
+    public void playVineImpactSound(float volume = -1)
     {
         // if(Random.Range(0f,1f)>0.05f) return;
         AudioClip rndSound = RNG.RandomChoice(vineImpactAudioClips);
-        vineAudio.PlayOneShot(rndSound);
+        if (volume == -1)
+        {
+            vineAudio.PlayOneShot(rndSound);
+        }
+        else
+        {
+            vineAudio.PlayOneShot(rndSound, volume);
+        }
     }
 
-    public void playVineSnapSound()
+    public void playVineSnapSound(float volume = -1)
     {
         vineAudio.Stop();
-        vineAudio.PlayOneShot(vineSnap);
+        if (volume == -1)
+        {
+            vineAudio.PlayOneShot(vineSnap);
+        }
+        else
+        {
+            vineAudio.PlayOneShot(vineSnap, volume);
+        }
     }
 
 }

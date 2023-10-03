@@ -38,6 +38,11 @@ public class SwingingController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isSwinging)
+        {
+            if (currentVineSegmentRef == null) { isSwinging = false; } //TODO: put this here to handle an odd case where player starts level with isSwinging apparently = true
+            else { currentVineSegmentRef.vineRoot.CheckVineStress(); }
+        }
         handleSwingGrab();
         handleSwingRelease();
         handleClimbInput();
@@ -77,17 +82,16 @@ public class SwingingController : MonoBehaviour
 
     void startSwing()
     {
-        isSwinging = true;
         scoreSystem.onSwingGrab();
+        isSwinging = true;
 
     }
 
     void endSwing()
     {
         // playerCollider.isTrigger=false;
-
-        isSwinging = false;
         scoreSystem.onSwingRelease();
+        isSwinging = false;
     }
 
     public void handleSwingRelease(bool forceRelease = false)

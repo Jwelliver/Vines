@@ -9,6 +9,8 @@ public class VineRoot : MonoBehaviour
     VineLineRenderer vineLineRenderer;
     public bool isRootAnchored; // is this root still attached to the tree
 
+    public List<Joint2D> segmentJoints; // ref for use in CheckVineStress method
+
 
     void Awake()
     {
@@ -17,11 +19,22 @@ public class VineRoot : MonoBehaviour
         vineLineRenderer = GetComponentInChildren<VineLineRenderer>();
     }
 
+    void OnDisable()
+    {
+        segmentJoints = null;
+        segments = null;
+    }
+
     public void Init(List<VineSegment> _segments, bool _isRootAnchored = true, bool initSegments = true)
     {// Called from VineFactory; //TODO: this should take the vine's config (once that's setup)
         isRootAnchored = _isRootAnchored;
         vineLineRenderer.Init(_segments);
         segments = _segments;
+        segmentJoints = new List<Joint2D>();
+        foreach (VineSegment segment in segments)
+        {
+            segmentJoints.Add(segment.GetComponent<Joint2D>());
+        }
         if (initSegments) { InitSegments(); }
     }
 
@@ -30,15 +43,41 @@ public class VineRoot : MonoBehaviour
         // if the index is out of range; return null
         if (index > segments.Count - 1 || index < 0) return null;
         return segments[index].transform;
-
     }
 
     public void OnVineSnap(Joint2D joint, int segmentIndex)
     {
-        //TODO: Consider passing the vineSegment instance itself, or the transform;
         if (sfx != null) sfx.vineSFX.playVineSnapSound();
+        segmentJoints.Remove(joint);
         GameManager.Instantiate(snapParticles, joint.attachedRigidbody.position, Quaternion.identity);
         DetachSegments(segmentIndex);
+    }
+
+    public void CheckVineStress()
+    {
+        // this will be called from SwingingController's FixedUpdate when player is on the vine.
+        // We're calling from there to avoid having each VineRoot need an Update function;
+        // This gets the average force applied to each joint; if any (or maybe avg of all?) are experiencing like 0.25 or 0.5 pct of their breaking point, play stretch noise.
+        //  ... if it is nearing breaking, like 0.9, 0.95, play a vineSnap clip with increasing audio the closer to one.
+        if (segmentJoints == null) return;
+        foreach (Joint2D joint in segmentJoints)
+        {
+            float pctOfBreakForce = joint.reactionForce.magnitude / joint.breakForce;
+
+            // stretch if 
+            if (pctOfBreakForce > 0.2f)
+            {
+                sfx.vineSFX.playVineStretchSound();
+                return;
+            }
+            if (pctOfBreakForce > 0.85f)
+            {
+                sfx.vineSFX.playVineStressSound(pctOfBreakForce - 0.1f);
+                return;
+            }
+            // random probability to stretch on any given check.
+            if (RNG.SampleProbability(0.005f) && PlayerInput.moveInput != 0) { sfx.vineSFX.playVineStretchSound(); return; }
+        }
     }
 
     void InitSegments()

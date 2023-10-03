@@ -253,7 +253,7 @@ public class CharacterController2D : MonoBehaviour
     {
         if (PlayerInput.moveInput != 0)
         {
-            sfx.vineSFX.playVineStretchSound();
+            // sfx.vineSFX.playVineStretchSound(); // TODO: 100123 removed for testing physicallybased sfx
             // rb.AddForce(new Vector2(moveInput * swingingMoveSpeed, rb.velocity.y)) ;
             rb.AddForce(new Vector2(PlayerInput.moveInput * swingingMoveSpeed, 0));
         }
