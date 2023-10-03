@@ -29,6 +29,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 1.5
       maxScale: 2
+      rotation:
+        min: -3
+        max: 3
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -45,7 +48,10 @@ MonoBehaviour:
       color: {r: 0.4245283, g: 0.4245283, b: 0.4245283, a: 1}
     minSpacing: 10
     maxSpacing: 20
-    yOffset: -15
+    yOffset: -8
+    objectYOffsetVariance:
+      min: -0.2
+      max: 0.2
     enableParallax: 1
     useAutoSortOrder: 1
     autoSortOrderStart: 0
@@ -58,6 +64,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 0.4
       maxScale: 0.8
+      rotation:
+        min: -5
+        max: 5
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -72,13 +81,16 @@ MonoBehaviour:
         - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
           probability: 0.05
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-          probability: 0.2
+          probability: 0.05
       sortLayerName: Default
       sortOrder: -10
       color: {r: 1, g: 1, b: 1, a: 1}
     minSpacing: 2
-    maxSpacing: 10
-    yOffset: 0.6
+    maxSpacing: 8
+    yOffset: 0.35
+    objectYOffsetVariance:
+      min: -0.05
+      max: 0.1
     enableParallax: 0
     useAutoSortOrder: 1
     autoSortOrderStart: -10
@@ -91,6 +103,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 0.2
       maxScale: 0.7
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -103,20 +118,62 @@ MonoBehaviour:
         - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
           probability: 0.9
         - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-          probability: 0.2
+          probability: 0.1
         - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-          probability: 0.2
+          probability: 0.05
       sortLayerName: Default
       sortOrder: -11
       color: {r: 1, g: 1, b: 1, a: 1}
-    minSpacing: 5
-    maxSpacing: 10
-    yOffset: 0.3
+    minSpacing: 2
+    maxSpacing: 5
+    yOffset: 0.7
+    objectYOffsetVariance:
+      min: -0.05
+      max: 0.2
     enableParallax: 0
     useAutoSortOrder: 1
     autoSortOrderStart: 0
     useAutoZDistance: 1
     zDistance: 0
+  - id: DefaultFoliage3
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.5
+      maxScale: 1
+      rotation:
+        min: 0
+        max: 0
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 0.9
+        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 0.05
+        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 0.03
+      sortLayerName: Default
+      sortOrder: -23
+      color: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
+    minSpacing: 3
+    maxSpacing: 7
+    yOffset: 2
+    objectYOffsetVariance:
+      min: 0
+      max: 0
+    enableParallax: 1
+    useAutoSortOrder: 0
+    autoSortOrderStart: 0
+    useAutoZDistance: 0
+    zDistance: 2
   - id: bg foliage2
     enabled: 1
     proceduralObject:
@@ -124,6 +181,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 0.5
       maxScale: 1
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -142,9 +202,12 @@ MonoBehaviour:
       sortLayerName: Background
       sortOrder: 0
       color: {r: 0.83137256, g: 0.83137256, b: 0.83137256, a: 1}
-    minSpacing: 6
-    maxSpacing: 10
+    minSpacing: 3
+    maxSpacing: 5
     yOffset: 2
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 1
     autoSortOrderStart: 0
@@ -157,6 +220,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 0.6
       maxScale: 0.9
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -177,7 +243,10 @@ MonoBehaviour:
       color: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     minSpacing: 3
     maxSpacing: 8
-    yOffset: 3
+    yOffset: 2.5
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 1
     autoSortOrderStart: 0
@@ -190,6 +259,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 0.3
       maxScale: 0.5
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -206,7 +278,10 @@ MonoBehaviour:
       color: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 1}
     minSpacing: 1
     maxSpacing: 3
-    yOffset: 4
+    yOffset: 3
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 1
     autoSortOrderStart: 0
@@ -217,8 +292,11 @@ MonoBehaviour:
     proceduralObject:
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 1
-      maxScale: 1.3
+      minScale: 0.6
+      maxScale: 0.8
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -239,7 +317,10 @@ MonoBehaviour:
       color: {r: 0.7058824, g: 0.7058824, b: 0.7058824, a: 1}
     minSpacing: 10
     maxSpacing: 20
-    yOffset: 0
+    yOffset: 3.2
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 1
     autoSortOrderStart: 0
@@ -250,8 +331,11 @@ MonoBehaviour:
     proceduralObject:
       prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
       enableRandomScale: 1
-      minScale: 0.6
-      maxScale: 1
+      minScale: 1
+      maxScale: 1.3
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -272,90 +356,10 @@ MonoBehaviour:
       color: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
     minSpacing: 10
     maxSpacing: 20
-    yOffset: 0
-    enableParallax: 1
-    useAutoSortOrder: 1
-    autoSortOrderStart: 0
-    useAutoZDistance: 0
-    zDistance: 3
-  - id: bg_reg_trees1
-    enabled: 0
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 1
-      maxScale: 2
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: 770723486, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
-          probability: 1
-        - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
-          probability: 1
-      sortLayerName: Background
-      sortOrder: -5
-      color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
-    minSpacing: 10
-    maxSpacing: 20
-    yOffset: 0
-    enableParallax: 1
-    useAutoSortOrder: 1
-    autoSortOrderStart: 0
-    useAutoZDistance: 0
-    zDistance: 5
-  - id: bg_reg_trees2 tall
-    enabled: 0
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 1.2
-      maxScale: 2.2
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: 770723486, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
-          probability: 1
-        - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
-          probability: 1
-      sortLayerName: Background
-      sortOrder: -6
-      color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
-    minSpacing: 5
-    maxSpacing: 15
-    yOffset: 0
-    enableParallax: 1
-    useAutoSortOrder: 1
-    autoSortOrderStart: 0
-    useAutoZDistance: 0
-    zDistance: 6
-  - id: bg_foliage 1.1
-    enabled: 1
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 0.7
-      maxScale: 1.2
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-          probability: 1
-        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-          probability: 1
-      sortLayerName: Background
-      sortOrder: -5
-      color: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
-    minSpacing: 15
-    maxSpacing: 30
-    yOffset: 0
+    yOffset: 3.3
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 1
     autoSortOrderStart: 0
@@ -368,6 +372,48 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 0.8
       maxScale: 1.4
+      rotation:
+        min: 0
+        max: 0
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 1
+        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -5
+      color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
+    minSpacing: 5
+    maxSpacing: 7
+    yOffset: 3.6
+    objectYOffsetVariance:
+      min: 0
+      max: 0
+    enableParallax: 1
+    useAutoSortOrder: 1
+    autoSortOrderStart: 0
+    useAutoZDistance: 0
+    zDistance: 3
+  - id: Large Last Layer Foliage
+    enabled: 1
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 1.2
+      maxScale: 1.6
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -385,43 +431,13 @@ MonoBehaviour:
           probability: 1
       sortLayerName: Background
       sortOrder: -6
-      color: {r: 0.5882353, g: 0.5882353, b: 0.5882353, a: 1}
-    minSpacing: 5
-    maxSpacing: 7
-    yOffset: 2
-    enableParallax: 1
-    useAutoSortOrder: 1
-    autoSortOrderStart: 0
-    useAutoZDistance: 0
-    zDistance: 3
-  - id: Large Last Layer Foliage
-    enabled: 1
-    proceduralObject:
-      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
-      enableRandomScale: 1
-      minScale: 1.2
-      maxScale: 1.6
-      enableRandomFlip: 1
-      weightedSprites:
-        items:
-        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
-          probability: 1
-        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-          probability: 1
-        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-          probability: 1
-      sortLayerName: Background
-      sortOrder: -7
       color: {r: 0.54901963, g: 0.54901963, b: 0.54901963, a: 1}
     minSpacing: 20
     maxSpacing: 25
-    yOffset: 10
+    yOffset: 4
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 1
     autoSortOrderStart: 0
@@ -434,6 +450,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 0.3
       maxScale: 0.5
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -446,11 +465,14 @@ MonoBehaviour:
         - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
           probability: 0.9
       sortLayerName: Background
-      sortOrder: -8
+      sortOrder: -7
       color: {r: 0.74509805, g: 0.74509805, b: 0.74509805, a: 1}
     minSpacing: 1
     maxSpacing: 3
-    yOffset: 7
+    yOffset: 4.2
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 1
     autoSortOrderStart: 0
@@ -463,6 +485,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 1
       maxScale: 1.5
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -484,6 +509,9 @@ MonoBehaviour:
     minSpacing: 5
     maxSpacing: 10
     yOffset: 0
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 0
     autoSortOrderStart: -15
@@ -496,6 +524,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 1.4
       maxScale: 1.4
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -517,6 +548,9 @@ MonoBehaviour:
     minSpacing: 4
     maxSpacing: 8
     yOffset: 0
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 0
     autoSortOrderStart: 0
@@ -529,6 +563,9 @@ MonoBehaviour:
       enableRandomScale: 1
       minScale: 0.8
       maxScale: 0.8
+      rotation:
+        min: 0
+        max: 0
       enableRandomFlip: 1
       weightedSprites:
         items:
@@ -550,11 +587,115 @@ MonoBehaviour:
     minSpacing: 3
     maxSpacing: 8
     yOffset: 0
+    objectYOffsetVariance:
+      min: 0
+      max: 0
     enableParallax: 1
     useAutoSortOrder: 0
     autoSortOrderStart: 0
     useAutoZDistance: 0
     zDistance: 20
+  - id: bg_reg_trees1
+    enabled: 0
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 1
+      maxScale: 2
+      rotation:
+        min: 0
+        max: 0
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: 770723486, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+        - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -5
+      color: {r: 0.7924528, g: 0.7924528, b: 0.7924528, a: 1}
+    minSpacing: 10
+    maxSpacing: 20
+    yOffset: 0
+    objectYOffsetVariance:
+      min: 0
+      max: 0
+    enableParallax: 1
+    useAutoSortOrder: 1
+    autoSortOrderStart: 0
+    useAutoZDistance: 0
+    zDistance: 5
+  - id: bg_reg_trees2 tall
+    enabled: 0
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 1.2
+      maxScale: 2.2
+      rotation:
+        min: 0
+        max: 0
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: 770723486, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+        - item: {fileID: 217451737, guid: a683932ed5f5cbe488937ed36cf5dd9a, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -6
+      color: {r: 0.8679245, g: 0.8679245, b: 0.8679245, a: 1}
+    minSpacing: 5
+    maxSpacing: 15
+    yOffset: 0
+    objectYOffsetVariance:
+      min: 0
+      max: 0
+    enableParallax: 1
+    useAutoSortOrder: 1
+    autoSortOrderStart: 0
+    useAutoZDistance: 0
+    zDistance: 6
+  - id: bg_foliage 1.1
+    enabled: 0
+    proceduralObject:
+      prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+      enableRandomScale: 1
+      minScale: 0.7
+      maxScale: 1.2
+      rotation:
+        min: 0
+        max: 0
+      enableRandomFlip: 1
+      weightedSprites:
+        items:
+        - item: {fileID: -486352077, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -1746398904, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: -189169908, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 19661907, guid: f86b9134791521741820b3359d0ad7a9, type: 3}
+          probability: 1
+        - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+          probability: 1
+        - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+          probability: 1
+      sortLayerName: Background
+      sortOrder: -5
+      color: {r: 0.627451, g: 0.627451, b: 0.627451, a: 1}
+    minSpacing: 15
+    maxSpacing: 30
+    yOffset: 0
+    objectYOffsetVariance:
+      min: 0
+      max: 0
+    enableParallax: 1
+    useAutoSortOrder: 1
+    autoSortOrderStart: 0
+    useAutoZDistance: 0
+    zDistance: 3
   startPlatformPrefab: {fileID: 5920794777373195843, guid: 6e6ed922812815141bf9681ac432dab4, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
   blankParentPrefab: {fileID: 2094452519030092049, guid: e5d8140a28e33414380f47bc2939aae0, type: 3}
