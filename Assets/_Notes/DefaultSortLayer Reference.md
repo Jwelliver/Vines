@@ -9,3 +9,13 @@
   - Water 14 to 15
   - player 20 to 35
   - palms 40 to 50
+
+========
+100123
+
+ground and tree layer depth brainstorm
+
+-
+- trees layer 1 -20
+- ground mask 1 masks -20 only
+- foliage in front of trees -15 to -10
