@@ -10,7 +10,7 @@ public class ProbWeightedItem<T>
 }
 
 [Serializable]
-class ProbWeightItemList<T>
+public class ProbWeightItemList<T>
 {
     public List<ProbWeightedItem<T>> items = new List<ProbWeightedItem<T>>();
     public T getRandom()
@@ -88,7 +88,7 @@ public class ProceduralObject
 }
 
 [Serializable]
-class ProceduralSpriteObject : ProceduralObject
+public class ProceduralSpriteObject : ProceduralObject
 {
     public ProbWeightItemList<Sprite> weightedSprites;
     public string sortLayerName = null;
@@ -144,9 +144,6 @@ public class Section
     public Vector2 startPos;
     public int length;
     public Vector2 endPos => new Vector2(startPos.x + length, startPos.y);
-
-    // public List<Transform> objects;
-
     public Section Copy()
     {
         return new Section
@@ -277,9 +274,8 @@ public class LevelGenerator : ScriptableObject
 
     [Header("Background Layers")]
     [SerializeField] float zDistanceInterval = 5f;//any layer that doesn't have a set zDistance will have Abs(sortOrder) * zDistanceInterval applied
-    [SerializeField] List<ProceduralLayer<ProceduralSpriteObject>> backgroundLayers = new List<ProceduralLayer<ProceduralSpriteObject>>();
     // [SerializeField] List<EnvironmentLayer> environmentLayers = new List<EnvironmentLayer>();
-
+    [SerializeField] BackgroundPreset backgroundPreset;
 
     [Header("Prefabs")]
     [SerializeField] Transform startPlatformPrefab;
@@ -466,9 +462,9 @@ public class LevelGenerator : ScriptableObject
 
         Dictionary<string, int> sortLayerOrdering = new Dictionary<string, int>();
 
-        for (int i = 0; i < backgroundLayers.Count; i++)
+        for (int i = 0; i < backgroundPreset.backgroundLayers.Count; i++)
         {
-            ProceduralLayer<ProceduralSpriteObject> layer = backgroundLayers[i];
+            ProceduralLayer<ProceduralSpriteObject> layer = backgroundPreset.backgroundLayers[i];
             if (!layer.enabled) { continue; }
 
             //handle sortLayer and auto sortOrder
