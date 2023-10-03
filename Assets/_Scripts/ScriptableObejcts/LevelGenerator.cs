@@ -36,6 +36,8 @@ public class ProceduralObject
     public bool enableRandomScale = true;
     public float minScale;
     public float maxScale;
+
+    public MinMax<float> rotation;
     public bool enableRandomFlip = true;
 
     public virtual void applyRandomScale(Transform obj)
@@ -44,6 +46,11 @@ public class ProceduralObject
         float rndScale = RNG.RandomRange(minScale, maxScale);
         obj.localScale = new Vector2(rndScale, rndScale);
         return;
+    }
+
+    private void applyRandomRotation(Transform obj)
+    {
+        obj.localRotation = Quaternion.Euler(new Vector3(0, 0, obj.eulerAngles.z + RNG.RandomRange(rotation)));
     }
 
     private void applyRandomFlip(Transform obj)
@@ -60,6 +67,7 @@ public class ProceduralObject
         Transform newObj = GameObject.Instantiate(prefab, position, Quaternion.identity, parent);
         applyRandomScale(newObj);
         applyRandomFlip(newObj);
+        applyRandomRotation(newObj);
         objectSetup(newObj);
     }
 
@@ -179,7 +187,12 @@ class ProceduralLayerGenerator
         }
         if (!proceduralLayer.enabled) { return; }
         List<Vector2> positions = getPositions(section, proceduralLayer.minSpacing, proceduralLayer.maxSpacing);
-        proceduralLayer.proceduralObject.createMany(positions, parent);
+        List<Vector2> positionsWithObjectYOffset = new List<Vector2>();
+        foreach (Vector2 pos in positions)
+        {
+            positionsWithObjectYOffset.Add(pos + new Vector2(0, pos.y + RNG.RandomRange(proceduralLayer.objectYOffsetVariance)));
+        }
+        proceduralLayer.proceduralObject.createMany(positionsWithObjectYOffset, parent);
     }
 }
 
@@ -193,6 +206,7 @@ public class ProceduralLayer<T> where T : ProceduralObject
     public float minSpacing;
     public float maxSpacing;
     public float yOffset;
+    public MinMax<float> objectYOffsetVariance;
     public bool enableParallax;
     public bool useAutoSortOrder = true;
     public int autoSortOrderStart = 0;
