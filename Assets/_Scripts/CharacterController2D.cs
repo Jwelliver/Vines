@@ -246,6 +246,7 @@ public class CharacterController2D : MonoBehaviour
                 // Play jump animation
                 animator.SetBool("isFlying", true);
             }
+            PlayerInput.hasAttemptedJump = false;
         }
     }
 
