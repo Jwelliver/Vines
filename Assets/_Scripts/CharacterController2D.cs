@@ -13,16 +13,14 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] float jumpForce = 10f;
     [SerializeField] int maxJumps = 2;
     [SerializeField] float fallingInitSpeed = -10f;
-    [SerializeField] KeyCode jumpKey = KeyCode.Space;
     [SerializeField] Animator controlsTextAnimator;
     [SerializeField] List<TargetRotation> ragdollParts = new List<TargetRotation>();
     [SerializeField] SwingNetAttack swingNetAttack;
-    [SerializeField] float standupSpeed = 5f; //the speed at which the player is kept upright when grounded
+    // [SerializeField] float standupSpeed = 5f; //the speed at which the player is kept upright when grounded //* Not in Use 100323
     [SerializeField] GroundCheck groundCheck;
     [SerializeField] SfxHandler sfx;
 
 
-    Transform myTransform;
     private int jumpCount = 0;
 
     private Animator animator;
@@ -38,21 +36,14 @@ public class CharacterController2D : MonoBehaviour
     private FlipScaleX[] flipScaleXArr;
     private GameManager gameManager;
 
-    // enum RagdollAnimationBlendStrengh { //TODO: correctly implement this enum and replace vars below
-    //     High=100,Med=50,Low=5,None=0
-    // }
-
-    // RagdollAnimationBlendStrengh ragdollAnimationBlendStrengh;
-
-    float ragdollAnimationBlendHigh = 100f;
-    float ragdollAnimationBlendMed = 20f;
-    float ragdollAnimationBlendLow = 5f;
-    float ragdollAnimationBlendNone = 0f;
+    enum PhysicsAnimationBlendStrength
+    {
+        High = 100, Med = 20, Low = 5, None = 0
+    }
 
     void Awake()
     {
         // input = new CustomInput();
-        myTransform = transform;
         animator = GetComponent<Animator>();
         swingingController = GetComponent<SwingingController>();
         flipScaleXArr = transform.parent.GetComponentsInChildren<FlipScaleX>();
@@ -68,11 +59,10 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-
     private void Update()
     {
         if (isHitByArrow) return;
-        handleJump();
+
         // handleAttack(); //090823 disabled for prod; bugs/net not in use
         updateIsSwinging();
         handleFallingAnimation();
@@ -80,6 +70,7 @@ public class CharacterController2D : MonoBehaviour
 
     void FixedUpdate()
     {
+        handleJump();
         handleSpriteDirection();
         if (isSwinging) { handleSwingingMovement(); }
         else { handleNormalMovement(); }
@@ -111,10 +102,9 @@ public class CharacterController2D : MonoBehaviour
 
     void onSwingStart()
     {
-
         sfx.vineSFX.playVineImpactSound();
         jumpCount = 0;
-        setTargetRotationForceInRagdollParts(ragdollAnimationBlendNone);
+        setTargetRotationForceInRagdollParts(PhysicsAnimationBlendStrength.None);
         animator.SetBool("isSwinging", true);
         animator.SetBool("isFlying", false);
         animator.SetBool("isFalling", false);
@@ -223,6 +213,8 @@ public class CharacterController2D : MonoBehaviour
         {
             i.resetAngularVelocity();
         }
+        //Enable TargetRotation
+        setTargetRotationForceInRagdollParts(PhysicsAnimationBlendStrength.High);
         isGrounded = true;
     }
 
@@ -265,12 +257,12 @@ public class CharacterController2D : MonoBehaviour
         if (isGrounded && PlayerInput.moveInput != 0)
         {
             animator.SetBool("isRunning", true);
-            setTargetRotationForceInRagdollParts(ragdollAnimationBlendHigh);
+            setTargetRotationForceInRagdollParts(PhysicsAnimationBlendStrength.High);
         }
         else if (isGrounded && PlayerInput.moveInput == 0 && Mathf.Abs(rb.velocity.x) > 0.1f)
         {
             animator.SetBool("isRunning", true);
-            setTargetRotationForceInRagdollParts(ragdollAnimationBlendMed);
+            setTargetRotationForceInRagdollParts(PhysicsAnimationBlendStrength.Low);
         }
         else
         {
@@ -283,7 +275,7 @@ public class CharacterController2D : MonoBehaviour
         if (isSwinging) return;
         if (!isGrounded && rb.velocity.y < fallingInitSpeed)
         {
-            setTargetRotationForceInRagdollParts(ragdollAnimationBlendMed);
+            setTargetRotationForceInRagdollParts(PhysicsAnimationBlendStrength.High);
             animator.SetBool("isFlying", false);
             animator.SetBool("isFalling", true);
             sfx.playerSFX.playWhoaSound();
@@ -295,11 +287,11 @@ public class CharacterController2D : MonoBehaviour
         }
     }
 
-    void setTargetRotationForceInRagdollParts(float newForce)
+    void setTargetRotationForceInRagdollParts(PhysicsAnimationBlendStrength strength)
     {
         foreach (TargetRotation i in ragdollParts)
         {
-            i.setForce(newForce);
+            i.setForce((int)strength);
         }
     }
 
