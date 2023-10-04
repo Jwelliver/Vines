@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [Serializable]
 public class ProbWeightedItem<T>
@@ -205,10 +206,18 @@ public class ProceduralLayer<T> where T : ProceduralObject
     public float yOffset;
     public MinMax<float> objectYOffsetVariance;
     public bool enableParallax;
+    [Header("Sorting")]
     public bool useAutoSortOrder = true;
     public int autoSortOrderStart = 0;
     public bool useAutoZDistance;
     public float zDistance;
+
+    [Header("SortingGroup")]
+    public bool useSortGroup;
+    public bool useObjectSortLayer;
+    public bool useObjectSortOrder;
+    public LayerMask sortGroupLayer;
+    public int sortGroupOrderInLayer;
 }
 
 [Serializable]
@@ -483,6 +492,17 @@ public class LevelGenerator : ScriptableObject
             Transform layerParent = layerParentContainer.Find(layer.id) ?? GameObject.Instantiate(blankParentPrefab, layerParentContainer);
             layerParent.name = layer.id;
             layerParent.position = new Vector3(0, 0);
+            // Setup Optional SortingGroup
+            if (layer.useSortGroup)
+            {
+                // Add SortingGorup component
+                SortingGroup sortingGroup = layerParent.gameObject.AddComponent<SortingGroup>();
+                // Setup the SortingGroup Layer; If using objectSortLayer, apply to layerName, otherwise apply to sortLayerId from setting in layer; TODO: note: the object should also use the layerMask type instead of a string; update that and we can change to using a ternary here instead of fussing with either string or the id.
+                if (layer.useObjectSortLayer) { sortingGroup.sortingLayerName = sortLayerName; }
+                else { sortingGroup.sortingLayerID = layer.sortGroupLayer; }
+                // Setup SortingGroup order
+                sortingGroup.sortingOrder = layer.useObjectSortOrder ? sortLayerOrdering[sortLayerName] : layer.sortGroupOrderInLayer;
+            }
             if (layer.enableParallax)
             {
                 layerParent.gameObject.AddComponent<Paralaxer>();
