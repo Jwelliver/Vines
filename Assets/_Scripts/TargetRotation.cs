@@ -44,7 +44,7 @@ public class TargetRotation : MonoBehaviour
         {
             // float targetRotation = targetTransform.localEulerAngles.z;
             targetRotation = rotationTargetTransform.eulerAngles.z;
-            rb.MoveRotation(Mathf.LerpAngle(rb.rotation, targetRotation, force * Time.deltaTime));
+            rb.MoveRotation(Mathf.LerpAngle(rb.rotation, targetRotation, force * Time.fixedDeltaTime));
         }
     }
 
