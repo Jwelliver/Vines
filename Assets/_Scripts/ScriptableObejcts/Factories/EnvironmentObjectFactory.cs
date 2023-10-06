@@ -4,7 +4,6 @@ using UnityEngine;
 public class EnvironmentObjectFactoryConfig
 {
     [Header("Transform Properties")]
-    public bool enableRandomScale = true;
     public MinMax<float> scale = new MinMax<float>(1f, 2f);
     public float maxRotation = 5f;
     public bool enableRandomFlip = true;
@@ -13,16 +12,16 @@ public class EnvironmentObjectFactoryConfig
 public class EnvironmentSpriteObjectFactoryConfig : EnvironmentObjectFactoryConfig
 {
     [Header("Sprite Properties")]
-    public ProbabilityWeightedSpritePool spritePool = null;
-    public ProbabilityWeightedColorPool colorPool = null;
-    public string sortLayerName = null;
+    public ProbWeightItemList<Sprite> spritePool = null;
+    public ProbWeightItemList<Color> colorPool = null;
+    public string sortLayerName;
     public int sortOrder;
     public Color secondaryTint = new Color(1f, 1f, 1f, 1f); //Additional tint applied to selected color
 }
 
 public class EnvironmentObjectBlueprint
 {
-    public float scale;
+    public float scaleModifier;
     public float rotationAmt;
     public bool isFlipped;
 }
@@ -36,6 +35,7 @@ public class EnvironmentSpriteObjectBlueprint : EnvironmentObjectBlueprint
 }
 
 
+[CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Factories/EnvironmentObjFactory")]
 public class EnvironmentObjectFactory : ScriptableObject
 {
 
@@ -45,7 +45,7 @@ public class EnvironmentObjectFactory : ScriptableObject
     {
         return new EnvironmentObjectBlueprint
         {
-            scale = config.enableRandomScale ? RNG.RandomRange(config.scale) : -1,
+            scaleModifier = RNG.RandomRange(config.scale),
             rotationAmt = RNG.RandomRange(-config.maxRotation, config.maxRotation),
             isFlipped = config.enableRandomFlip ? RNG.RandomBool() : false
         };
@@ -55,17 +55,32 @@ public class EnvironmentObjectFactory : ScriptableObject
     {
         return new EnvironmentSpriteObjectBlueprint
         {
-            scale = config.enableRandomScale ? RNG.RandomRange(config.scale) : -1,
+            scaleModifier = RNG.RandomRange(config.scale),
             rotationAmt = RNG.RandomRange(-config.maxRotation, config.maxRotation),
             isFlipped = config.enableRandomFlip ? RNG.RandomBool() : false,
             sprite = config.spritePool.getRandomItem(),
-            color = config.colorPool != null ? config.colorPool.getRandomItem() * config.secondaryTint : config.secondaryTint,
+            color = config.colorPool != null && config.colorPool.items.Count > 0 ? config.colorPool.getRandomItem() * config.secondaryTint : config.secondaryTint,
             sortLayerName = config.sortLayerName,
             sortOrder = config.sortOrder
         };
     }
 
-    public Transform Instantiate(Vector2 position, Transform parent, EnvironmentSpriteObjectFactoryConfig factoryConfig, Transform prefabOverride = null)
+    // public Transform Instantiate<T>(Vector2 position, Transform parent, T factoryConfig, Transform prefabOverride) where T : EnvironmentObjectFactoryConfig
+    // {
+    //     if (factoryConfig is EnvironmentObjectFactoryConfig)
+    //     {
+    //         Debug.Log("Envfactory: normal obj");
+    //         return InstantiateObj(position, parent, factoryConfig, prefabOverride);
+    //     }
+    //     else if (factoryConfig is EnvironmentSpriteObjectFactoryConfig)
+    //     {
+    //         Debug.Log("envFactory: Sprite OBj");
+    //         return InstantiateSpriteObj(position, parent, factoryConfig as EnvironmentSpriteObjectFactoryConfig, prefabOverride);
+    //     }
+    //     return null;
+    // }
+
+    public Transform InstantiateSpriteObj(Vector2 position, Transform parent, EnvironmentSpriteObjectFactoryConfig factoryConfig, Transform prefabOverride = null)
     {
         // Set Prefab
         Transform prefab = prefabOverride ?? defaultPrefab;
@@ -80,14 +95,13 @@ public class EnvironmentObjectFactory : ScriptableObject
         SpriteRenderer spriteRenderer = newObj.GetComponent<SpriteRenderer>();
 
         // Apply Random Scale to SpriteRenderer if possible (eg. drawMode tiled or sliced); otherwise apply to the transform
-        if (factoryConfig.enableRandomScale)
-        {
-            Vector2 newScale = new Vector2(blueprint.scale, blueprint.scale);
-            if (spriteRenderer == null || spriteRenderer.drawMode == SpriteDrawMode.Simple)
-                newObj.localScale = newScale;
-            else
-                spriteRenderer.size *= newScale; //TODO: verify this uniformly scales as expected
-        }
+
+        Vector2 scaleModifier = new Vector2(blueprint.scaleModifier, blueprint.scaleModifier);
+        if (spriteRenderer == null || spriteRenderer.drawMode == SpriteDrawMode.Simple)
+            newObj.localScale *= scaleModifier;
+        else
+            spriteRenderer.size *= scaleModifier;
+
 
         // Apply random flip
         if (blueprint.isFlipped)
@@ -108,7 +122,7 @@ public class EnvironmentObjectFactory : ScriptableObject
         return newObj;
     }
 
-    public Transform Instantiate(Vector2 position, Transform parent, EnvironmentObjectFactoryConfig factoryConfig, Transform prefabOverride = null)
+    public Transform InstantiateObj(Vector2 position, Transform parent, EnvironmentObjectFactoryConfig factoryConfig, Transform prefabOverride = null)
     {
         // Set Prefab
         Transform prefab = prefabOverride ?? defaultPrefab;
@@ -120,8 +134,7 @@ public class EnvironmentObjectFactory : ScriptableObject
         Transform newObj = GameObject.Instantiate(prefab, position, Quaternion.identity);
 
         // Apply Random Scale
-        if (factoryConfig.enableRandomScale)
-            newObj.localScale = new Vector2(blueprint.scale, blueprint.scale);
+        newObj.localScale *= new Vector2(blueprint.scaleModifier, blueprint.scaleModifier);
 
         // Apply random flip
         if (blueprint.isFlipped)

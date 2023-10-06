@@ -17,11 +17,12 @@ MonoBehaviour:
   treeLayersContainerName: TreeLayersContainer
   backgroundParentName: SpriteLayers
   lightShaftContainerName: LightShafts
+  environmentObjectFactory: {fileID: 11400000, guid: 2d1da28d72357cf4c9a5a1abbe706baa, type: 2}
   treeFactory: {fileID: 11400000, guid: 53c7487dc524065478240f549d8d2ce9, type: 2}
   vineFactory: {fileID: 11400000, guid: df32491e6ba27db4ea1d127078f3d561, type: 2}
   lightShaftFactory: {fileID: 11400000, guid: 6692fbecb148a7444a8ecde546acc676, type: 2}
   zDistanceInterval: 1
-  backgroundPreset: {fileID: 11400000, guid: b4dd954938247834387aa5984099c09c, type: 2}
+  environmentPreset: {fileID: 0}
   startPlatformPrefab: {fileID: 5920794777373195843, guid: 6e6ed922812815141bf9681ac432dab4, type: 3}
   winPlatformPrefab: {fileID: 6276113295380785052, guid: c95fb984ca0ee4945a1e33b7847a0ed2, type: 3}
   blankParentPrefab: {fileID: 2094452519030092049, guid: e5d8140a28e33414380f47bc2939aae0, type: 3}

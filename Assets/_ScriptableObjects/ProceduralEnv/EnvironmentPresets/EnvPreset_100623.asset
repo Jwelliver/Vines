@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652443ffdc1c68f4e95b506d1ec6fadc, type: 3}
+  m_Name: EnvPreset_100623
+  m_EditorClassIdentifier: 
+  environmentLayers:
+  - id: Test
+    enabled: 1
+    spacing:
+      min: 1
+      max: 3
+    yOffset: 0
+    yOffsetVariance: 1
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 1
+      max: 3
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 1929826770, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
+        probability: 1
+      - item: {fileID: 910849603, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
+        probability: 1
+      - item: {fileID: 1139132553, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
+        probability: 1
+      - item: {fileID: -1042946626, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
+        probability: 1
+      - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
+        probability: 1
+      - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    sortLayerName: Background
+    sortOrder: 0
+    autoSort: 1
+    layerTint: {r: 1, g: 1, b: 1, a: 1}
+    useSortGroup: 1
