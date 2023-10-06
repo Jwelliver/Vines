@@ -112,34 +112,6 @@ public class VineRoot : MonoBehaviour
         newVineRoot.GetComponent<VineRoot>().Init(segmentsDetached, false, true);
     }
 
-    // == ORIG (prerefactor)
-    // void DetachSegments(Transform segment, int segmentIndex)
-    // {
-    //     // Remove from segmentIndex to the end of segments from the segments list
-    //     List<Transform> segmentsRemaining = new List<Transform>();
-    //     List<Transform> segmentsDetached = new List<Transform>();
-    //     // Get List of detached segments
-    //     for (int i = 0; i < segments.Count; i++)
-    //     {
-    //         if (i < segmentIndex) { segmentsRemaining.Add(segments[i]); }
-    //         else { segmentsDetached.Add(segments[i]); }
-    //     }
-
-    //     segments = segmentsRemaining;
-    //     // reinit our line renderer with the new segments list
-    //     vineLineRenderer.Init(segments);
-    //     // Clone VineRoot and set detached segment head at segmentIndex and init it
-    //     Transform newVineRoot = GameObject.Instantiate(transform);
-    //     //Init new vineLineRenderer
-    //     newVineRoot.GetComponent<VineLineRenderer>().Init(segmentsDetached);
-    //     //
-    //     // Set segment as child of newVineRoot
-    //     segment.SetParent(newVineRoot);
-    // }
-
-
-
-
 
     // void OnBecameVisible()
     // {
