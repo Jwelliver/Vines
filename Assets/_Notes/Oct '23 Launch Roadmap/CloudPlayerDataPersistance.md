@@ -23,5 +23,7 @@
       - Maybe just Organize the list by Seed, and then include the associated player run data on each, So, like a mini leader board for each type and seed ?
     - Challenge Will load the associated seed to allow the player to challenge;
     - Results will then be added to the Data for that seed db item
+    - ! NOTE: We will need to save the levelSettings and potentially the assets/bg assets along with the seed in order to reproduce the level accurately (especially after bg assets and stuff have changed in later updates)
+      - One approach to this may be to store all the asset settings in the cloud by version number.. then, we only need to store the seed and the level settings.
   - [] OPTIONAL: Allow Player to "rank" the run, enabling it to be auto-uploaded on completion
     - [] OPTIONAL: may want to consider adding a start timer
