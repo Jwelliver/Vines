@@ -13,41 +13,35 @@ MonoBehaviour:
   m_Name: EnvPreset_100623
   m_EditorClassIdentifier: 
   environmentLayers:
-  - id: Test
+  - id: CameraForegroundFoliage
     enabled: 1
     spacing:
-      min: 1
-      max: 3
-    yOffset: 0
-    yOffsetVariance: 1
+      min: 8
+      max: 20
+    yOffset: -3
+    yOffsetVariance: 0.2
     enableParallax: 1
-    useAutoZDistance: 1
-    zDistance: 0
+    useAutoZDistance: 0
+    zDistance: -5
     type: 0
     prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
     scaleModifier:
-      min: 1
-      max: 3
+      min: 0.5
+      max: 0.8
     maxRotation: 20
     enableRandomFlip: 1
     spritePool:
       items:
       - item: {fileID: 1929826770, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
         probability: 1
-      - item: {fileID: 910849603, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
-        probability: 1
       - item: {fileID: 1139132553, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
-        probability: 1
+        probability: 0.5
       - item: {fileID: -1042946626, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
-        probability: 1
-      - item: {fileID: -255197617, guid: 4a35a220242076245b61138412672bd3, type: 3}
-        probability: 1
-      - item: {fileID: 1494573451, guid: d77ed5d2148a0714fa7339257b7e1fa5, type: 3}
-        probability: 1
+        probability: 0.5
     colorPool:
       items: []
-    sortLayerName: Background
-    sortOrder: 0
-    autoSort: 1
+    sortLayerName: Foreground
+    sortOrder: 10
+    autoSort: 0
     layerTint: {r: 1, g: 1, b: 1, a: 1}
-    useSortGroup: 1
+    useSortGroup: 0
