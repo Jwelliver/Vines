@@ -24,6 +24,7 @@ SpriteAtlasImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   packingSettings:
@@ -31,7 +32,7 @@ SpriteAtlasImporter:
     padding: 8
     blockOffset: 1
     allowAlphaSplitting: 0
-    enableRotation: 1
+    enableRotation: 0
     enableTightPacking: 1
     enableAlphaDilation: 0
   secondaryTextureSettings: {}
