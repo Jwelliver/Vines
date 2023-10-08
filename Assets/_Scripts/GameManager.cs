@@ -25,8 +25,8 @@ public class GameManager : MonoBehaviour
     TMPro.TextMeshProUGUI amuletFoundText;
     [SerializeField] ArrowGenerator arrowGenerator;
     [SerializeField] SpriteRenderer playerAmulet;
-    public Transform playerRef;
-    public Camera cameraRef;
+    public static Transform playerRef;
+    public static Camera cameraRef;
     AudioSource audioSource;
     PersistentAudio music;
     public bool playerHasAmulet;
@@ -47,6 +47,13 @@ public class GameManager : MonoBehaviour
         Cursor.visible = false;
         levelGen.InitLevel();
         GameContext.SetGameState(GameState.InGame);
+    }
+
+    void Start()
+    {
+        playerRef = GameObject.Find("Player").transform;
+        cameraRef = Camera.main;
+
     }
 
     void HandleNewSectionGeneration()

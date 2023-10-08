@@ -9,31 +9,37 @@ Place on a paralax backround parent to control the paralax movement
 
 public class Paralaxer : MonoBehaviour
 {
-    [SerializeField] Camera cam;
-    [SerializeField] Transform referenceObj; //Object to for paralaxing against
+    // [SerializeField] Transform cam;
+    // [SerializeField] Transform referenceObj; //Object to for paralaxing against
 
+    Camera cam;
+    Transform referenceObj; //Object to paralax against ()
     Vector2 startPos;
     float clippingPlane;
     float parallaxFactor;
 
-    Vector2 travel => (Vector2)cam.transform.position - startPos;
+    Transform myTransform;
+    Transform camTransform;
+
+    Vector2 travel => (Vector2)camTransform.position - startPos;
 
     void Start()
     {
-        GameManager gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        cam = gameManager.cameraRef;
-        referenceObj = gameManager.playerRef;
+        myTransform = transform;
+        cam = GameManager.cameraRef;
+        camTransform = cam.transform;
+        referenceObj = GameManager.playerRef;
         // prevReferencePosition = referenceObj.position;
-        startPos = transform.position;
-        float zDistanceFromReferenceObj = transform.position.z - referenceObj.position.z;
-        clippingPlane = cam.transform.position.z + (zDistanceFromReferenceObj > 0 ? cam.farClipPlane : cam.nearClipPlane);
+        startPos = myTransform.position;
+        float zDistanceFromReferenceObj = myTransform.position.z - referenceObj.position.z;
+        clippingPlane = camTransform.position.z + (zDistanceFromReferenceObj > 0 ? cam.farClipPlane : cam.nearClipPlane);
         parallaxFactor = MathF.Abs(zDistanceFromReferenceObj) / clippingPlane;
     }
 
-    void Update()
+    void FixedUpdate() //TODO: test if this works fine compared to update
     {
         Vector2 newPos = travel * parallaxFactor + startPos;
-        transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);
+        myTransform.position = new Vector3(newPos.x, myTransform.position.y, myTransform.position.z);
     }
 }
 

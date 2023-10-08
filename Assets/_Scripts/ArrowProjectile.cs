@@ -16,8 +16,6 @@ public class ArrowProjectile : MonoBehaviour
     [SerializeField] Collider2D myCollider;
     [SerializeField] FixedJoint2D fixedJoint;
     [SerializeField] Transform spriteObj;
-
-    public Transform playerRef; //assigned by ArrowGenerator on init
     public ArrowSFX sfx; //assigned by ArrowGenerator on instantiation
 
     bool hasLanded;
@@ -43,7 +41,7 @@ public class ArrowProjectile : MonoBehaviour
         // Penetrate(col.rigidbody);
         if (col.gameObject.tag == "Player")
         {
-            playerRef.GetComponent<CharacterController2D>().hitByArrow(col.otherCollider);
+            GameManager.playerRef.GetComponent<CharacterController2D>().hitByArrow(col.otherCollider);
         }
     }
 
