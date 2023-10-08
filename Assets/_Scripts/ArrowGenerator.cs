@@ -9,18 +9,18 @@ public class ArrowGenerator : MonoBehaviour
     [SerializeField] float minTimeBetweenShots;
     [SerializeField] float maxTimeBetweenShots;
     // [SerializeField] float pctChance;
-    [SerializeField] ArrowSFX sfx;
+    ArrowSFX sfx;
 
 
     void Start()
     {
+        sfx = SfxHandler.arrowSFX;
         StartCoroutine(wait());
     }
 
     void fireArrow()
     {
         ArrowProjectile newArrow = GameObject.Instantiate(arrowProjectile, transform.position, Quaternion.identity).GetComponent<ArrowProjectile>();
-        newArrow.sfx = sfx;
         sfx.PlayArrowShootSound();
     }
 

@@ -16,7 +16,7 @@ public class ArrowProjectile : MonoBehaviour
     [SerializeField] Collider2D myCollider;
     [SerializeField] FixedJoint2D fixedJoint;
     [SerializeField] Transform spriteObj;
-    public ArrowSFX sfx; //assigned by ArrowGenerator on instantiation
+    // public ArrowSFX sfx; //assigned by ArrowGenerator on instantiation
 
     bool hasLanded;
 
@@ -47,7 +47,7 @@ public class ArrowProjectile : MonoBehaviour
 
     void stickToBody(Collision2D col)
     {
-        sfx.PlayArrowHitSound();
+        SfxHandler.arrowSFX.PlayArrowHitSound();
         fixedJoint.connectedBody = col.rigidbody;
         // Vector2 contactPoint = col.contacts[0].point; //TODO: later, maybe we can use this to set the fixed joint anchor to allow penetration.
         myCollider.enabled = false;

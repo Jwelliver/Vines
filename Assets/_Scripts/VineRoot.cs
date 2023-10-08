@@ -4,18 +4,19 @@ using UnityEngine;
 public class VineRoot : MonoBehaviour
 {
     [SerializeField] ParticleSystem snapParticles;
-    SfxHandler sfx;
     List<VineSegment> segments = new List<VineSegment>();
     VineLineRenderer vineLineRenderer;
     public bool isRootAnchored; // is this root still attached to the tree
 
     public List<Joint2D> segmentJoints; // ref for use in CheckVineStress method
 
+    private VineSFX vineSFX;
 
     void Awake()
     {
-        try { sfx = GameObject.Find("SFX").GetComponent<SfxHandler>(); }
-        catch { sfx = null; }
+        // try { sfx = GameObject.Find("SFX").GetComponent<SfxHandler>(); }
+        // catch { sfx = null; }
+        vineSFX = SfxHandler.vineSFX;
         vineLineRenderer = GetComponentInChildren<VineLineRenderer>();
     }
 
@@ -47,7 +48,7 @@ public class VineRoot : MonoBehaviour
 
     public void OnVineSnap(Joint2D joint, int segmentIndex)
     {
-        if (sfx != null) sfx.vineSFX.playVineSnapSound();
+        vineSFX.playVineSnapSound();
         segmentJoints.Remove(joint);
         GameManager.Instantiate(snapParticles, joint.attachedRigidbody.position, Quaternion.identity);
         DetachSegments(segmentIndex);
@@ -67,16 +68,16 @@ public class VineRoot : MonoBehaviour
             // stretch if 
             if (pctOfBreakForce > 0.2f)
             {
-                sfx.vineSFX.playVineStretchSound();
+                vineSFX.playVineStretchSound();
                 return;
             }
             if (pctOfBreakForce > 0.85f)
             {
-                sfx.vineSFX.playVineStressSound(pctOfBreakForce - 0.1f);
+                vineSFX.playVineStressSound(pctOfBreakForce - 0.1f);
                 return;
             }
             // random probability to stretch on any given check.
-            if (RNG.SampleProbability(0.005f) && PlayerInput.moveInput != 0) { sfx.vineSFX.playVineStretchSound(); return; }
+            if (RNG.SampleProbability(0.005f) && PlayerInput.moveInput != 0) { vineSFX.playVineStretchSound(); return; }
         }
     }
 

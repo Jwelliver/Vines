@@ -18,7 +18,7 @@ public class CharacterController2D : MonoBehaviour
     [SerializeField] SwingNetAttack swingNetAttack;
     // [SerializeField] float standupSpeed = 5f; //the speed at which the player is kept upright when grounded //* Not in Use 100323
     [SerializeField] GroundCheck groundCheck;
-    [SerializeField] SfxHandler sfx;
+    SfxHandler sfx;
 
 
     private int jumpCount = 0;
@@ -102,7 +102,7 @@ public class CharacterController2D : MonoBehaviour
 
     void onSwingStart()
     {
-        sfx.vineSFX.playVineImpactSound();
+        SfxHandler.vineSFX.playVineImpactSound();
         jumpCount = 0;
         setTargetRotationForceInRagdollParts(PhysicsAnimationBlendStrength.None);
         animator.SetBool("isSwinging", true);
@@ -205,7 +205,7 @@ public class CharacterController2D : MonoBehaviour
         jumpCount = 0;
         //stop flying anim
         animator.SetBool("isFlying", false);
-        sfx.playerSFX.playJumpStopSound();
+        SfxHandler.playerSFX.playJumpStopSound();
         //remove angular velocity and freeze rotation
         rb.angularVelocity = 0f;
         //reset angular velocity for ragdoll parts (e.g. legs)
@@ -233,7 +233,7 @@ public class CharacterController2D : MonoBehaviour
                 // rb.AddForce(new Vector2(rb.velocity.x, jumpForce));
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 jumpCount++;
-                sfx.playerSFX.playJumpStartSound();
+                SfxHandler.playerSFX.playJumpStartSound();
 
                 // Play jump animation
                 animator.SetBool("isFlying", true);
@@ -278,7 +278,7 @@ public class CharacterController2D : MonoBehaviour
             setTargetRotationForceInRagdollParts(PhysicsAnimationBlendStrength.High);
             animator.SetBool("isFlying", false);
             animator.SetBool("isFalling", true);
-            sfx.playerSFX.playWhoaSound();
+            SfxHandler.playerSFX.playWhoaSound();
 
         }
         else
@@ -327,7 +327,7 @@ public class CharacterController2D : MonoBehaviour
             isSwinging = false;
             swingingController.handleSwingRelease(true);
             swingingController.enabled = false;
-            sfx.playerSFX.playJumpStopSound(); //temp hit by arrow sound
+            SfxHandler.playerSFX.playJumpStopSound(); //temp hit by arrow sound
             animator.SetBool("isFalling", true);
         }
 
@@ -347,7 +347,7 @@ public class CharacterController2D : MonoBehaviour
 
     public void OnDeath() //TODO: move to CharacterController
     {
-        sfx.playerSFX.StopAllAudio();
+        SfxHandler.playerSFX.StopAllAudio();
         // Rigidbody2D playerRb = other.transform.root.gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;

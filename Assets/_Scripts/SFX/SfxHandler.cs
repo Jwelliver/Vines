@@ -4,6 +4,15 @@ using UnityEngine;
 
 public class SfxHandler : MonoBehaviour
 {
-    public PlayerSFX playerSFX;
-    public VineSFX vineSFX;
+    public static PlayerSFX playerSFX;
+    public static VineSFX vineSFX;
+    public static ArrowSFX arrowSFX;
+
+    void Awake()
+    {
+        playerSFX = gameObject.GetComponentInChildren<PlayerSFX>();
+        vineSFX = gameObject.GetComponentInChildren<VineSFX>();
+        arrowSFX = gameObject.GetComponentInChildren<ArrowSFX>();
+
+    }
 }
