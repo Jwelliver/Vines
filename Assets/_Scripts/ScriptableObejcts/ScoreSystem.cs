@@ -41,10 +41,7 @@ public class ScoreSystem : MonoBehaviour
         try
         {
             playerRb = GameManager.GetPlayerRef().GetComponent<Rigidbody2D>();
-            // allTimeStats = simpleSave.GetAllTimeStats();
             sessionStats = new PlayerStats();
-            // Init/Load AllTimeStats
-            // simpleSave.LoadAllTimeStats();
             RecordStats = simpleSave.GetRecordStats();
             Debug.Log("Loading: " + RecordStats.ToString());
         }
