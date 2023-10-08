@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[Serializable]
 public class PlayerStats
 { //todo: move this to own module; Probably should have some version that is static so multiple consumers can update and read as needed
   // ... however, still want the struct version that can be used for session stats, all time stats, etc.
@@ -15,10 +16,10 @@ public class PlayerStats
     public void Save()
     {
         PlayerPrefs.SetInt("nDeaths", nDeaths);
-        PlayerPrefs.GetFloat("bestJumpDistance", bestJumpDistance);
-        PlayerPrefs.GetFloat("bestJumpHeight", bestJumpHeight);
-        PlayerPrefs.GetFloat("bestJumpVelocity", bestJumpVelocity);
-        PlayerPrefs.GetFloat("bestLevelDistance", bestLevelDistance);
+        PlayerPrefs.SetFloat("bestJumpDistance", bestJumpDistance);
+        PlayerPrefs.SetFloat("bestJumpHeight", bestJumpHeight);
+        PlayerPrefs.SetFloat("bestJumpVelocity", bestJumpVelocity);
+        PlayerPrefs.SetFloat("bestLevelDistance", bestLevelDistance);
         Debug.Log("Saving: " + ToString());
         PlayerPrefs.Save();
     }
