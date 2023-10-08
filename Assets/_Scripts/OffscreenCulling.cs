@@ -5,11 +5,16 @@ using UnityEngine;
 public class OffscreenCulling : MonoBehaviour
 {
     [SerializeField] float xDistanceOffset = 1.5f;
+
+    private Camera cam;
+    private Transform myTransform;
     private SpriteRenderer spriteRenderer;
 
 
     void Start()
     {
+        cam = Camera.main;
+        myTransform = transform;
         spriteRenderer = GetComponent<SpriteRenderer>();
         // Debug.Log("Culling: " + name);
     }
@@ -18,7 +23,7 @@ public class OffscreenCulling : MonoBehaviour
     {
         try
         {
-            Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
+            Vector3 screenPoint = cam.WorldToViewportPoint(myTransform.position);
             bool onScreenX = screenPoint.x > -xDistanceOffset && screenPoint.x < xDistanceOffset;//&& screenPoint.y > 0 && screenPoint.y < 1;
             spriteRenderer.enabled = onScreenX;
         }
