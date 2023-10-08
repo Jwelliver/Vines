@@ -52,8 +52,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerRef = GetPlayerRef();
-        Debug.Log("GameManagerStart playerRef: " + playerRef.name);
-
     }
 
     public static Transform GetPlayerRef()
