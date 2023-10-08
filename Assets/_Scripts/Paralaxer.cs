@@ -32,7 +32,7 @@ public class Paralaxer : MonoBehaviour
 
     void Update()
     {
-        Vector2 newPos = startPos + travel * parallaxFactor;
+        Vector2 newPos = travel * parallaxFactor + startPos;
         transform.position = new Vector3(newPos.x, transform.position.y, transform.position.z);
     }
 }
