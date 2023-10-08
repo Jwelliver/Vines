@@ -15,6 +15,10 @@ public class SwingingController : MonoBehaviour
     [SerializeField] float minSlideForce;
 
     Transform myTransform;
+    Collider2D[] vineSegmentColliders;// used i getNearestCollider;
+    ContactFilter2D contactFilter2D;
+
+
     public static bool isClimbing;
     public static bool isSwinging;
     public static VineSegment currentVineSegmentRef;
@@ -22,6 +26,8 @@ public class SwingingController : MonoBehaviour
     void Awake()
     {
         myTransform = transform;
+        vineSegmentColliders = new Collider2D[5];
+        contactFilter2D = new ContactFilter2D { layerMask = swingableLayer, useLayerMask = true };
     }
 
     void OnDisable()
@@ -68,13 +74,14 @@ public class SwingingController : MonoBehaviour
         if (PlayerInput.hasAttemptedGrab)
         {
             // Debug.Log("handleSwingGrab()");
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(grabCollider.transform.position, grabCollider.radius, swingableLayer);
-            if (colliders.Length > 0)
+            int nResults = Physics2D.OverlapCircle(grabCollider.transform.position, grabCollider.radius, contactFilter2D, vineSegmentColliders);
+            if (nResults > 0)
             {
-                Collider2D nearestCollider = getNearestCollider(colliders);
+                Collider2D nearestCollider = getNearestCollider();
                 myTransform.position = nearestCollider.transform.position;
                 attachJoints(nearestCollider.attachedRigidbody);
                 startSwing();
+
             }
         }
         PlayerInput.hasAttemptedGrab = false;
@@ -107,12 +114,14 @@ public class SwingingController : MonoBehaviour
     }
 
 
-    private Collider2D getNearestCollider(Collider2D[] colliders)
+    private Collider2D getNearestCollider()
     {
-        Collider2D nearestCollider = colliders[0];
+        Collider2D nearestCollider = vineSegmentColliders[0];
         float nearestDistance = float.MaxValue;
-        foreach (Collider2D collider in colliders)
+
+        foreach (Collider2D collider in vineSegmentColliders)
         {
+            if (collider == null) continue;
             float distance = Vector2.Distance(collider.transform.position, grabCollider.transform.position);
             if (distance < nearestDistance)
             {
