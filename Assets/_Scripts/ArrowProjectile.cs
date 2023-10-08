@@ -41,7 +41,7 @@ public class ArrowProjectile : MonoBehaviour
         // Penetrate(col.rigidbody);
         if (col.gameObject.tag == "Player")
         {
-            GameManager.playerRef.GetComponent<CharacterController2D>().hitByArrow(col.otherCollider);
+            GameManager.GetPlayerRef().GetComponent<CharacterController2D>().hitByArrow(col.otherCollider);
         }
     }
 

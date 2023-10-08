@@ -21,14 +21,14 @@ public class Paralaxer : MonoBehaviour
     Transform myTransform;
     Transform camTransform;
 
-    Vector2 travel => (Vector2)camTransform.position - startPos;
+    // Vector2 travel => (Vector2)camTransform.position - startPos;
 
     void Start()
     {
         myTransform = transform;
-        cam = GameManager.cameraRef;
+        cam = Camera.main;
         camTransform = cam.transform;
-        referenceObj = GameManager.playerRef;
+        referenceObj = GameManager.GetPlayerRef();
         // prevReferencePosition = referenceObj.position;
         startPos = myTransform.position;
         float zDistanceFromReferenceObj = myTransform.position.z - referenceObj.position.z;
@@ -38,6 +38,7 @@ public class Paralaxer : MonoBehaviour
 
     void FixedUpdate() //TODO: test if this works fine compared to update
     {
+        Vector2 travel = (Vector2)camTransform.position - startPos;
         Vector2 newPos = travel * parallaxFactor + startPos;
         myTransform.position = new Vector3(newPos.x, myTransform.position.y, myTransform.position.z);
     }

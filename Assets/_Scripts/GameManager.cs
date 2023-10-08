@@ -25,14 +25,14 @@ public class GameManager : MonoBehaviour
     TMPro.TextMeshProUGUI amuletFoundText;
     [SerializeField] ArrowGenerator arrowGenerator;
     [SerializeField] SpriteRenderer playerAmulet;
-    public static Transform playerRef;
-    public static Camera cameraRef;
+    private static Transform playerRef;
     AudioSource audioSource;
     PersistentAudio music;
     public bool playerHasAmulet;
 
     void Awake()
     {
+
         amuletFoundText = GameObject.Find("AmuletFoundText").GetComponent<TMPro.TextMeshProUGUI>();
         try
         {
@@ -51,9 +51,18 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        playerRef = GameObject.Find("Player").transform;
-        cameraRef = Camera.main;
+        playerRef = GetPlayerRef();
+        Debug.Log("GameManagerStart playerRef: " + playerRef.name);
 
+    }
+
+    public static Transform GetPlayerRef()
+    {
+        if (playerRef == null)
+        {
+            playerRef = GameObject.Find("Player").transform;
+        }
+        return playerRef;
     }
 
     void HandleNewSectionGeneration()
@@ -105,10 +114,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.R))
-        // {
-        //     levelLoader.reloadCurrentLevel();
-        // }
         //TODO: Move this out of here; Come up with a better way of handling the endless generatino
         if (levelGen.levelSettings.levelType == LevelType.ENDLESS)
         {
@@ -122,10 +127,6 @@ public class GameManager : MonoBehaviour
         if (!music) { Debug.Log("Music Component Not Found."); return; }
         music.reset();
         music.playClip(winSound);
-
-        // audioSource.PlayOneShot(winSound);
-        // music.volume = 1;
-        // music.Play();
     }
 
     public void OnPlayerDied()

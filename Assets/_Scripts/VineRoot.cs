@@ -16,8 +16,12 @@ public class VineRoot : MonoBehaviour
     {
         // try { sfx = GameObject.Find("SFX").GetComponent<SfxHandler>(); }
         // catch { sfx = null; }
-        vineSFX = SfxHandler.vineSFX;
         vineLineRenderer = GetComponentInChildren<VineLineRenderer>();
+    }
+
+    void Start()
+    {
+        vineSFX = SfxHandler.vineSFX;
     }
 
     void OnDisable()
