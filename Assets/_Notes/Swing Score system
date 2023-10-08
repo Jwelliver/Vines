@@ -1,19 +1,16 @@
 051923
 
-
 - Store player stats since last swing grab.
--- max Velocity (x,y)
--- distance travelled (x,y) (since last grab)
--- Player rotations (amount and speed)
+  -- max Velocity (x,y)
+  -- distance travelled (x,y) (since last grab)
+  -- Player rotations (amount and speed)
 
 - Use the stats to derive score functions
-
 
 An end grab bonus, especially when done with high downward velocity (i.e. a close save)
 
 - when player starts a new grab:
--- check the max velocity 
-
+  -- check the max velocity
 
 ===
 
@@ -21,11 +18,35 @@ Approach 1:
 
 - Set up scriptable object class that contains score vars and methods
 - for swing-related stats:
-    - Trigger stat record from SwingingController (i.e. swingStart and swingEnd)
-
+  - Trigger stat record from SwingingController (i.e. swingStart and swingEnd)
 
 ====
 
 -- Use stunt or other things like the end grab as sequence for achievements (e.g. 10 end grabs awards achievement/something similar)
 --- achievements can be used to unlock hats
 ---- hats may each have specific buffs like +10% jump power, etc.
+
+===============
+100823
+
+Leaderboard and score systems
+
+- Multiple leaderboards
+
+  - Overall HighScore
+
+    - Player at the top of this list is current Vines World Champion
+    - Scoring:
+      - Some formula combining distance achieved, level difficulty, and trick stats (jump distance, etc.)
+        - Note: Ensure "easy" tricks are not introduced that can game the system.
+          - actually, this might be mitigated by scoring them based on the metric achieved compared to global average... so, just combine the entire average of, say, jump velocity, and then apply the score based on a normal distribution.
+          - Otherwise, just weight the distance and difficulty much more.
+            ... or just treat them as separate "style points"
+
+  - Highest Level:
+
+    - ranks players based on the highest difficulty level completed in the progressive difficulty category
+
+  - LeaderBoard for each individual stat:
+    - Things like distance might not be equal here since it depends on the level difficulty.. maybe use the style/trick stats
+    - Also include lifetime stats like deaths, games played, pct wins in out-and-back
