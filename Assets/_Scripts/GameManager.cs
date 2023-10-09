@@ -32,10 +32,9 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-
-        amuletFoundText = GameObject.Find("AmuletFoundText").GetComponent<TMPro.TextMeshProUGUI>();
         try
         {
+            amuletFoundText = GameObject.Find("AmuletFoundText").GetComponent<TMPro.TextMeshProUGUI>();
             music = GameObject.Find("Music").GetComponent<PersistentAudio>();
         }
         catch
