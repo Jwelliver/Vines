@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5796282939409325729}
   - component: {fileID: 7231680182425418481}
-  - component: {fileID: 3651313886903420529}
   - component: {fileID: 1358186353222492978}
   m_Layer: 3
   m_Name: VineRoot
@@ -48,19 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapParticles: {fileID: 1320025458011433992, guid: 3fac02e5af5ec5443a54a21261016135, type: 3}
   isRootAnchored: 0
-  segmentJoints: []
---- !u!114 &3651313886903420529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5796282939409325735}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03f069fcfd032ea4fba7b34289b1d031, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  suspensionWaitSeconds: 5
 --- !u!120 &1358186353222492978
 LineRenderer:
   serializedVersion: 2

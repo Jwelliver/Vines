@@ -125,18 +125,18 @@ public class VineFactory : ScriptableObject
         VineFactoryConfig zoneOverride = CheckIfInVineOverrideZone(position, factoryConfig);
         factoryConfig = zoneOverride ?? factoryConfig;
 
-        // Track segments to apply to vineroot/VineLineRenderer
-        List<VineSegment> vineSegments = new List<VineSegment>();
-
-        // Instantiate VineRoot
-        Transform vineRoot = GameObject.Instantiate(vineRootPrefab, position, Quaternion.identity, containerParent);
-        // vineRoot.name = "VineRoot";
-
         // Init Vine properties
         bool isWeak = RNG.SampleProbability(factoryConfig.pctChanceWeak);
         int vineLength = RNG.RandomRange(factoryConfig.length.min, factoryConfig.length.max);
         float segLength = factoryConfig.segmentLength;
         Color vineColor = isWeak ? factoryConfig.weakSegmentColor : factoryConfig.normalSegmentColor;
+
+        // Track segments to apply to vineroot/VineLineRenderer; Adding 1 to vineLength to account for anchor segment;
+        VineSegment[] vineSegments = new VineSegment[vineLength + 1];
+
+        // Instantiate VineRoot
+        Transform vineRoot = GameObject.Instantiate(vineRootPrefab, position, Quaternion.identity, containerParent);
+        // vineRoot.name = "VineRoot";
 
         //instantiate anchor segment
         Transform prevSegment;
@@ -144,7 +144,7 @@ public class VineFactory : ScriptableObject
         prevSegment.name = "0 (AnchorSegment)";
         prevSegment.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
         prevSegment.GetComponent<HingeJoint2D>().enabled = false;
-        vineSegments.Add(prevSegment.GetComponent<VineSegment>());
+        vineSegments[0] = prevSegment.GetComponent<VineSegment>();
 
         // Set up anchor collider size
         CapsuleCollider2D anchorCollider = prevSegment.GetComponent<CapsuleCollider2D>();
@@ -203,7 +203,8 @@ public class VineFactory : ScriptableObject
             }
 
             // Add Segment to segments list
-            vineSegments.Add(newSegment.GetComponent<VineSegment>());
+            // vineSegments.Add(newSegment.GetComponent<VineSegment>());
+            vineSegments[i + 1] = newSegment.GetComponent<VineSegment>();
             // - update prevSegment
             prevSegment = newSegment;
         }
