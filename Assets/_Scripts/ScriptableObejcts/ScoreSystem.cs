@@ -17,15 +17,12 @@ public class ScoreSystem : MonoBehaviour
 {
 
     [SerializeField] FadeText newRecordTextObj;
-    // [SerializeField] FadeText statsFadeTextObj;
     [SerializeField] AudioSource recordBreakAudio;
     [SerializeField] SimpleSave simpleSave;
-    // [SerializeField] SimpleSave simpleSave;
     bool isRecordingSwingStats = false;
 
     public static PlayerStats sessionStats;
     public static PlayerStats RecordStats;
-    // PlayerStats allTimeStats;
 
     bool allTimeLevelDistanceBeatThisSession;
 
