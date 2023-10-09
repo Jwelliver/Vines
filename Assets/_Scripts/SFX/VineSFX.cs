@@ -6,7 +6,7 @@ public class VineSFX : MonoBehaviour
 {
 
     [Header("AudioSources")]
-    [SerializeField] AudioSource vineAudio;
+    public AudioSource vineAudio;
 
     [Header("Clips")]
     [SerializeField] AudioClip vineSnap;
