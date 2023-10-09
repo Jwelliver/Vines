@@ -64,8 +64,10 @@ public class VineRoot : MonoBehaviour
     }
 
     public void InitSuspsend()
-    {
-        if (!lineRenderer.isVisible) { Invoke("SuspendSegments", suspensionWaitSeconds); }
+    {   //Called once at start; Invokes the suspend at random intervals so we don't do the whole thing in a single frame
+        //TODO: To do the initial time fastforward, we could maybe use a static event in VineRoot, each root subscribes it's InitSuspend to the event;
+        //  todo: ... then, after the time forward is called and completed elsewhere, gamemanager, or levelgen can invoke the static event? After complete; each root can remove it's own method or manager does removeAll
+        if (!lineRenderer.isVisible) { Invoke("SuspendSegments", RNG.RandomRange(5f, 10f)); }
     }
 
     void FixedUpdate()
