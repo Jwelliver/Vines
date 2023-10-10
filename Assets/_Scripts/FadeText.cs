@@ -86,6 +86,8 @@ public class FadeText : MonoBehaviour
         }
     }
 
+
+    // TODO: Fade can probably be static and placed elsewhere, then FadeText monobehavior can be a FadeTextController that implements it
     /// <summary>
     /// Method to animate vertex colors of a TMP Text object.
     /// </summary>
@@ -169,10 +171,6 @@ public class FadeText : MonoBehaviour
                         m_TextComponent.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
 
                         yield return waitForOneSecond;
-
-                        // Reset our counters.
-                        currentCharacter = 0;
-                        startingCharacterRange = 0;
 
                         // Call OnFadeComplete
                         OnFadeComplete(fadeMode);
