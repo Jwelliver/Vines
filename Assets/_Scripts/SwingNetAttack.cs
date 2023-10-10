@@ -9,32 +9,44 @@ public class SwingNetAttack : MonoBehaviour
     [SerializeField] Net net;
     [SerializeField] float attackTime;
 
+    private WaitForSeconds waitForSeconds;
 
-    public void attack() {
+    void Awake()
+    {
+        waitForSeconds = new WaitForSeconds(attackTime);
+    }
+
+
+    public void attack()
+    {
         syncAttackArmToNormalArm();
         toggleAttackArm(true);
         StartCoroutine(waitForAttack());
     }
 
-    IEnumerator waitForAttack() {
-        yield return new WaitForSeconds(1f);
+    IEnumerator waitForAttack()
+    {
+        yield return waitForSeconds;
         syncNormalArmToAttackArm();
         // net.clearCapturedObjects();
         toggleAttackArm(false);
-        
+
     }
 
-    void syncAttackArmToNormalArm() {
+    void syncAttackArmToNormalArm()
+    {
         attackPlayerArm.position = normalPlayerArm.position;
         attackPlayerArm.rotation = normalPlayerArm.rotation;
     }
 
-    void syncNormalArmToAttackArm() {
+    void syncNormalArmToAttackArm()
+    {
         normalPlayerArm.position = attackPlayerArm.position;
         normalPlayerArm.rotation = attackPlayerArm.rotation;
     }
 
-    void toggleAttackArm(bool state) {
+    void toggleAttackArm(bool state)
+    {
         normalPlayerArm.gameObject.SetActive(!state);
         attackPlayerArm.gameObject.SetActive(state);
     }

@@ -14,6 +14,8 @@ public class SwingingController : MonoBehaviour
     [SerializeField] float climbSecondsBetweenMove = 1f;
     [SerializeField] float minSlideForce;
 
+    private WaitForSeconds waitForSecondsClimb; // cached to avoid GC
+
     Transform myTransform;
     Collider2D[] vineSegmentColliders;// used i getNearestCollider;
     ContactFilter2D contactFilter2D;
@@ -28,6 +30,7 @@ public class SwingingController : MonoBehaviour
         myTransform = transform;
         vineSegmentColliders = new Collider2D[5];
         contactFilter2D = new ContactFilter2D { layerMask = swingableLayer, useLayerMask = true };
+        waitForSecondsClimb = new WaitForSeconds(climbSecondsBetweenMove);
     }
 
     void OnDisable()
@@ -205,7 +208,7 @@ public class SwingingController : MonoBehaviour
                 // yield return new WaitForSeconds(climbSecondsBetweenMove);
             }
 
-            yield return new WaitForSeconds(climbSecondsBetweenMove);
+            yield return waitForSecondsClimb;
         }
         while (shouldContinueClimb(direction));
     }
