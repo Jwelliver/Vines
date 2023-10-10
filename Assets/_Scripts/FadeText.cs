@@ -1,125 +1,194 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
+using System;
 
 public class FadeText : MonoBehaviour
 {
+    [SerializeField] private TextMeshProUGUI m_TextComponent;
+    [SerializeField] private float FadeSpeed = 20.0f;
+    [SerializeField] private int RolloverCharacterSpread = 10;
+    [SerializeField] private bool fadeInOnStart = false;
+    [SerializeField] private bool fadeOutAfterComplete = false;
+    [SerializeField] private float secondsBeforeFadeOut = 1f; //nSeconds after Fade in complete before beginning fade out.
+    [SerializeField] private bool disableAfterFadeOut = true;
 
-    [Tooltip("Number of seconds each character should take to fade up")]
-    public float fadeDuration = 2f;
+    enum FadeMode
+    {
+        FadeIn,
+        FadeOut
+    }
 
-    [Tooltip("Speed the reveal travels along the text, in characters per second")]
-    public float travelSpeed = 8f;
 
-    public bool enabledAtStart = true;
-    public bool disableOnFadeout = false;
+    private WaitForSeconds waitForOneSecond;
+    private WaitForSeconds waitForSecondsPerChar;
 
-    // Cached reference to our Text object.
-    TMPro.TMP_Text _text;
+    // Temp action caches; Will be stored when received in FadeTo()
+    private Action FadeInCompleteAction;
+    private Action FadeOutCompleteAction;
 
-    Coroutine _fade;
-
-    // Lookup table for hex characters.
-    static readonly char[] NIBBLE_TO_HEX = new char[] {
-        '0', '1', '2', '3',
-        '4', '5', '6', '7',
-        '8', '9', 'A', 'B',
-        'C', 'D', 'E', 'F'};
-
-    // Use this for initialization
     void Start()
     {
-        _text = GetComponent<TMPro.TMP_Text>();
+        // Init
+        waitForSecondsPerChar = new WaitForSeconds(0.25f - FadeSpeed * 0.01f);
+        // If FadeInOnStart, begin init fade in
+        if (fadeInOnStart) { StartCoroutine(Fade(FadeMode.FadeIn)); }
+    }
 
-        _text.enabled = enabledAtStart;
-        if (enabledAtStart)
+    public void FadeTo(string text = null, Action OnFadeInComplete = null, Action OnFadeOutComplete = null)
+    {
+        if (OnFadeInComplete != null) { FadeInCompleteAction = OnFadeInComplete; }
+        if (OnFadeInComplete != null && !fadeOutAfterComplete)
         {
-            FadeTo(_text.text);
-            _text.text = "";
+            Debug.LogError("Warning: FadeOutComplete callback provided, but text is not set to Fade Out.");
+        }
+        else
+        {
+            FadeOutCompleteAction = OnFadeOutComplete;
+        }
+        if (!m_TextComponent.enabled) m_TextComponent.enabled = true;
+        //Update the text if provided; Otherwise use the textMeshGui's preset text.
+        if (text != null) { m_TextComponent.text = text; }
+        StartCoroutine(Fade(FadeMode.FadeIn));
+    }
+
+    void OnFadeComplete(FadeMode fadeMode)
+    {
+        switch (fadeMode)
+        {
+            case FadeMode.FadeIn:
+                {
+                    // Handle FadeInComplete callback
+                    if (FadeInCompleteAction != null)
+                    {
+                        FadeInCompleteAction.Invoke();
+                        FadeInCompleteAction = null;
+                    }
+                    // Handle fade out if enabled
+                    if (fadeOutAfterComplete)
+                    {
+                        StartCoroutine(Fade(FadeMode.FadeOut, secondsBeforeFadeOut));
+                    }
+                    break;
+                }
+            case FadeMode.FadeOut:
+                {
+                    //Handle Disable after fade out
+                    if (disableAfterFadeOut) { m_TextComponent.enabled = false; }
+                    //Handle FadeOutComplete callback
+                    if (FadeOutCompleteAction != null)
+                    {
+                        FadeOutCompleteAction.Invoke();
+                        FadeInCompleteAction = null;
+                    }
+                    break;
+                }
         }
     }
 
-    public void FadeTo(string text)
+    /// <summary>
+    /// Method to animate vertex colors of a TMP Text object.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator Fade(FadeMode fadeMode, float initialDelay = 0f)
     {
-        _text.enabled = true;
-        // Abort a fade in progress, if any.
-        StopFade();
+        int startAlpha = fadeMode == FadeMode.FadeIn ? 0 : 255;
+        int targetAlpha = fadeMode == FadeMode.FadeIn ? 255 : 0;
 
-        // Start fading, and keep track of the coroutine so we can interrupt if needed.
-        _fade = StartCoroutine(fadeText(text));
-    }
+        // Handle InitialDelay
+        yield return new WaitForSeconds(initialDelay);
 
-    public void StopFade()
-    {
-        if (_fade != null)
-            StopCoroutine(_fade);
-    }
+        // Set the whole text transparent
+        m_TextComponent.color = new Color
+            (
+                m_TextComponent.color.r,
+                m_TextComponent.color.g,
+                m_TextComponent.color.b,
+                startAlpha
+            );
+        // Need to force the text object to be generated so we have valid data to work with right from the start.
+        m_TextComponent.ForceMeshUpdate();
 
-    // Currently this expects a string of plain text,
-    // and will not correctly handle rich text tags etc.
-    IEnumerator fadeText(string text)
-    {
+        TMP_TextInfo textInfo = m_TextComponent.textInfo;
+        Color32[] newVertexColors;
 
-        int length = text.Length;
+        int currentCharacter = 0;
+        int startingCharacterRange = currentCharacter;
+        bool isRangeMax = false;
 
-        // Build a character buffer of our desired text,
-        // with a rich text "color" tag around every character.
-        var builder = new System.Text.StringBuilder(length * 26);
-        Color32 color = _text.color;
-        for (int i = 0; i < length; i++)
+        int characterCount = textInfo.characterCount;
+
+        while (!isRangeMax)
         {
-            builder.Append("<color=#");
-            builder.Append(NIBBLE_TO_HEX[color.r >> 4]);
-            builder.Append(NIBBLE_TO_HEX[color.r & 0xF]);
-            builder.Append(NIBBLE_TO_HEX[color.g >> 4]);
-            builder.Append(NIBBLE_TO_HEX[color.g & 0xF]);
-            builder.Append(NIBBLE_TO_HEX[color.b >> 4]);
-            builder.Append(NIBBLE_TO_HEX[color.b & 0xF]);
-            builder.Append("00>");
-            builder.Append(text[i]);
-            builder.Append("</color>");
-        }
+            // Spread should not exceed the number of characters.
+            byte fadeSteps = (byte)Mathf.Max(1, 255 / RolloverCharacterSpread);
 
-        // Each frame, update the alpha values along the fading frontier.
-        float fadingProgress = 0f;
-        int opaqueChars = -1;
-        while (opaqueChars < length - 1)
-        {
-            yield return null;
+            //If we're fading out; then negate fadeSteps
+            // if (fadeMode == FadeMode.FadeOut) fadeSteps = (byte)-fadeSteps;
 
-            fadingProgress += Time.deltaTime;
-
-            float leadingEdge = fadingProgress * travelSpeed;
-
-            int lastChar = Mathf.Min(length - 1, Mathf.FloorToInt(leadingEdge));
-
-            int newOpaque = opaqueChars;
-
-            for (int i = lastChar; i > opaqueChars; i--)
+            for (int i = startingCharacterRange; i < currentCharacter + 1; i++)
             {
-                byte fade = (byte)(255f * Mathf.Clamp01((leadingEdge - i) / (travelSpeed * fadeDuration)));
-                builder[i * 26 + 14] = NIBBLE_TO_HEX[fade >> 4];
-                builder[i * 26 + 15] = NIBBLE_TO_HEX[fade & 0xF];
+                // Skip characters that are not visible (like white spaces)
+                if (!textInfo.characterInfo[i].isVisible) continue;
 
-                if (fade == 255)
-                    newOpaque = Mathf.Max(newOpaque, i);
+                // Get the index of the material used by the current character.
+                int materialIndex = textInfo.characterInfo[i].materialReferenceIndex;
+
+                // Get the vertex colors of the mesh used by this text element (character or sprite).
+                newVertexColors = textInfo.meshInfo[materialIndex].colors32;
+
+                // Get the index of the first vertex used by this text element.
+                int vertexIndex = textInfo.characterInfo[i].vertexIndex;
+
+                // Get the current character's alpha value.
+                byte alpha;
+                if (fadeMode == FadeMode.FadeIn)
+                {
+                    alpha = (byte)Mathf.Clamp(newVertexColors[vertexIndex].a + fadeSteps, 0, 255);
+                }
+                else
+                {
+                    alpha = (byte)Mathf.Clamp(newVertexColors[vertexIndex].a - fadeSteps, 0, 255);
+                }
+
+
+                // Set new alpha values.
+                newVertexColors[vertexIndex + 0].a = alpha;
+                newVertexColors[vertexIndex + 1].a = alpha;
+                newVertexColors[vertexIndex + 2].a = alpha;
+                newVertexColors[vertexIndex + 3].a = alpha;
+
+                if (alpha == targetAlpha)
+                {
+                    startingCharacterRange += 1;
+
+                    // When FadeIn is Complete
+                    if (startingCharacterRange == characterCount)
+                    {
+                        // Update mesh vertex data one last time.
+                        m_TextComponent.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+
+                        yield return waitForOneSecond;
+
+                        // Reset our counters.
+                        currentCharacter = 0;
+                        startingCharacterRange = 0;
+
+                        // Call OnFadeComplete
+                        OnFadeComplete(fadeMode);
+
+                        // Exit Coroutine
+                        yield break;
+                    }
+                }
             }
 
-            opaqueChars = newOpaque;
+            // Upload the changed vertex colors to the Mesh.
+            m_TextComponent.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
 
-            // This allocates a new string.
-            _text.text = builder.ToString();
+            if (currentCharacter + 1 < characterCount) currentCharacter += 1;
+
+            yield return waitForSecondsPerChar;
         }
-
-        // Once all the characters are opaque, 
-        // ditch the unnecessary markup and end the routine.
-        _text.text = text;
-
-        // Mark the fade transition as finished.
-        // This can also fire an event/message if you want to signal UI.
-        _fade = null;
-        if (disableOnFadeout) _text.enabled = false;
     }
 }
