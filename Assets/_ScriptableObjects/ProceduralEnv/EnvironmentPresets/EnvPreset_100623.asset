@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environmentLayers:
   - id: CameraForegroundFoliage
-    enabled: 1
+    enabled: 0
     spacing:
       min: 8
       max: 20
@@ -42,6 +42,60 @@ MonoBehaviour:
       items: []
     sortLayerName: Foreground
     sortOrder: 10
+    autoSort: 0
+    layerTint: {r: 1, g: 1, b: 1, a: 1}
+    useSortGroup: 0
+  - id: RiverBankFoliage
+    enabled: 1
+    spacing:
+      min: 8
+      max: 20
+    yOffset: -3
+    yOffsetVariance: 0.2
+    enableParallax: 0
+    useAutoZDistance: 0
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.1
+      max: 0.3
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 430103352, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 1
+      - item: {fileID: 1987424398, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 1
+      - item: {fileID: 1659736017, guid: ca76f3bc72772a24dac644f8e32c6712, type: 3}
+        probability: 1
+      - item: {fileID: -356484523, guid: fea2c6c329c366041b911649486f5c32, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 1
+      - item: {fileID: 138843971, guid: ed99739fe8480fc4caa36b158202fa3c, type: 3}
+        probability: 1
+      - item: {fileID: -805737317, guid: 0c7dce5657c707749815faf9a2a0154f, type: 3}
+        probability: 1
+      - item: {fileID: 1929826770, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
+        probability: 1
+      - item: {fileID: 910849603, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
+        probability: 1
+      - item: {fileID: 1139132553, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
+        probability: 1
+      - item: {fileID: -1042946626, guid: 7c54f63eed4a5fc4887fe301801547ce, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    sortLayerName: Default
+    sortOrder: -10
     autoSort: 0
     layerTint: {r: 1, g: 1, b: 1, a: 1}
     useSortGroup: 0
