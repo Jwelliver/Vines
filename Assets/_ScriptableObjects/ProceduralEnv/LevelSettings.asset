@@ -17,7 +17,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0}
   levelLength:
     min: 100
-    max: 1000
+    max: 100
   direction: 1
   treeLayers:
   - id: MainTrees
