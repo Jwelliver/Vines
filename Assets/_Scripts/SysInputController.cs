@@ -13,8 +13,7 @@ public class SysInputController : MonoBehaviour
     [Header("KeyCodes")]
     [SerializeField] KeyCode escape = KeyCode.Escape;
     [SerializeField] KeyCode restartLevel = KeyCode.R;
-    [Header("Object References")]
-    [SerializeField] LevelLoader levelLoader;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +39,7 @@ public class SysInputController : MonoBehaviour
         //if current scene is the game, then ask levelLoader to restart
         if (SceneManager.GetActiveScene().name == "GameMain")
         {
-            levelLoader.reloadCurrentLevel();
+            SceneLoader.ReloadCurrentScene();
         }
     }
 

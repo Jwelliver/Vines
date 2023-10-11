@@ -13,7 +13,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public LevelGenerator levelGen;
-    [SerializeField] LevelLoader levelLoader;
     [SerializeField] GameOverUI gameOverUI;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip winMusic;
@@ -78,7 +77,7 @@ public class GameManager : MonoBehaviour
     {
         // Debug.Log("You Won!");
         playWinMusic();
-        levelLoader.loadNextLevel();
+        SceneLoader.FadeToScene(SceneRef.Win);
     }
 
     public void playerFoundAmulet()
@@ -106,7 +105,7 @@ public class GameManager : MonoBehaviour
         audioSource.PlayOneShot(tribeChaseMusic);
         amuletFoundTextAnimator.SetTrigger("FadeOut");
         yield return new WaitForSeconds(4f);
-        arrowGenerator.enabled = true;
+        arrowGenerator.StartFiring();
     }
 
     void Update()
@@ -116,6 +115,13 @@ public class GameManager : MonoBehaviour
         {
             HandleNewSectionGeneration();
         }
+
+        // TODO: Test for bg regen; Remove
+        // if (Input.GetKeyDown(KeyCode.N))
+        // {
+        //     Debug.Log("Generating New");
+        //     levelGen.InitLevel();
+        // }
 
     }
 

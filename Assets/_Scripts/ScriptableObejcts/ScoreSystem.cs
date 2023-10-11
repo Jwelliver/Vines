@@ -62,7 +62,7 @@ public class ScoreSystem : MonoBehaviour
     void OnNewRecord(string recordKey, float value)
     {
         recordBreakAudio.Play();
-        newRecordTextObj.FadeTo("New Record!!\n" + recordKey + "\n" + value.ToString());
+        newRecordTextObj.SetTextAndFadeIn("New Record!!\n" + recordKey + "\n" + value.ToString());
         RecordStats.Save();
     }
 

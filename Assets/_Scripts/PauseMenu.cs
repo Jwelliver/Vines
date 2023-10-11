@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] LevelLoader levelLoader;
     [SerializeField] GameObject pauseMenuUI;
     // [SerializeField] GameManager gameManager;
     public static bool isPaused;
@@ -49,7 +48,7 @@ public class PauseMenu : MonoBehaviour
     public void LoadStartMenu()
     {
         UnpauseGame();
-        levelLoader.LoadStartMenu();
+        SceneLoader.FadeToScene(SceneRef.MainMenu);
     }
 
     public void QuitGame()

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
@@ -41,4 +43,74 @@ public class PlayerStats
         statsText += "\n" + "Total Distance: " + bestLevelDistance;
         return statsText;
     }
+}
+
+[Serializable]
+public class CharacterSettings
+{
+    public Color hatColor;
+    //todo: implement all other colors.
+}
+
+[Serializable]
+public class PlayerData
+{
+
+    // public Guid id = System.Guid.NewGuid(); //TODO: implement uuid
+    public string name;
+    public CharacterSettings characterSettings;
+    public PlayerStats personalStats;
+
+}
+
+[Serializable]
+public class GameData
+{
+    // GameData holds local player's playerData, current quality settings, etc.
+    // ... if possible, you should be able to just save and load this object to get everything you need for local persistant data.
+    public List<PlayerData> localPlayers;
+
+    public void InitAsNew()
+    {
+
+    }
+
+}
+
+public class GameDataManager
+{
+    // ? might be able to handle saving/loading in GameData itself by using a static singleton Instance in there?
+
+    private static GameData _gameData;
+
+    public static GameData GameData
+    {
+        get
+        {
+            if (GameDataManager._gameData == null)
+            {
+                LoadGameData();
+            }
+            return _gameData;
+        }
+    }
+
+    static void LoadGameData()
+    {
+        string gameDataString = PlayerPrefs.GetString("GameData");
+        if (gameDataString == null)
+        {
+            _gameData = new GameData();
+            _gameData.InitAsNew();
+        }
+        _gameData = JsonUtility.FromJson<GameData>(gameDataString);
+    }
+
+    static void SaveGameData()
+    {
+        string gameDataString = JsonUtility.ToJson(_gameData);
+        PlayerPrefs.SetString("GameData", gameDataString);
+    }
+
+
 }

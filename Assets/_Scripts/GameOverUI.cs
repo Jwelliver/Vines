@@ -7,7 +7,6 @@ public class GameOverUI : MonoBehaviour
     [SerializeField] GameObject mobilePanel;
     [SerializeField] StatsTextDisplay statsTextDisplay;
     [SerializeField] Animator fadeInAnimator;
-    [SerializeField] LevelLoader levelLoader;
 
     // private ControlTextByPlatform restartText = new ControlTextByPlatform
     // {
@@ -49,6 +48,6 @@ public class GameOverUI : MonoBehaviour
     {
         // play some sound.
         //
-        levelLoader.reloadCurrentLevel();
+        SceneLoader.ReloadCurrentScene();
     }
 }

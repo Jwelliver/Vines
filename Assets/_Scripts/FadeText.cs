@@ -5,13 +5,13 @@ using System;
 
 public class FadeText : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI m_TextComponent;
-    [SerializeField] private float FadeSpeed = 20.0f;
-    [SerializeField] private int RolloverCharacterSpread = 10;
-    [SerializeField] private bool fadeInOnStart = false;
-    [SerializeField] private bool fadeOutAfterComplete = false;
-    [SerializeField] private float secondsBeforeFadeOut = 1f; //nSeconds after Fade in complete before beginning fade out.
-    [SerializeField] private bool disableAfterFadeOut = true;
+    public TextMeshProUGUI textMeshGUI;
+    public float FadeSpeed = 20.0f;
+    public int RolloverCharacterSpread = 10;
+    public bool fadeInOnStart = false;
+    public bool fadeOutAfterComplete = false;
+    public float secondsBeforeFadeOut = 1f; //nSeconds after Fade in complete before beginning fade out.
+    public bool disableAfterFadeOut = true;
 
     enum FadeMode
     {
@@ -35,7 +35,27 @@ public class FadeText : MonoBehaviour
         if (fadeInOnStart) { StartCoroutine(Fade(FadeMode.FadeIn)); }
     }
 
-    public void FadeTo(string text = null, Action OnFadeInComplete = null, Action OnFadeOutComplete = null)
+    /// <summary>
+    /// Fades in using the existing text on textMeshUI
+    /// </summary>
+    /// <param name="OnFadeInComplete"></param>
+    public void FadeIn(Action OnFadeInComplete = null)
+    {
+        if (OnFadeInComplete != null) { FadeInCompleteAction = OnFadeInComplete; }
+        StartCoroutine(Fade(FadeMode.FadeIn));
+    }
+
+    /// <summary>
+    /// Fades out the textMeshUI
+    /// </summary>
+    /// <param name="OnFadeOutComplete"></param>
+    public void FadeOut(Action OnFadeOutComplete = null)
+    {
+        if (OnFadeOutComplete != null) { FadeOutCompleteAction = OnFadeOutComplete; }
+        StartCoroutine(Fade(FadeMode.FadeOut));
+    }
+
+    public void SetTextAndFadeIn(string text = null, Action OnFadeInComplete = null, Action OnFadeOutComplete = null)
     {
         if (OnFadeInComplete != null) { FadeInCompleteAction = OnFadeInComplete; }
         if (OnFadeInComplete != null && !fadeOutAfterComplete)
@@ -46,9 +66,8 @@ public class FadeText : MonoBehaviour
         {
             FadeOutCompleteAction = OnFadeOutComplete;
         }
-        if (!m_TextComponent.enabled) m_TextComponent.enabled = true;
         //Update the text if provided; Otherwise use the textMeshGui's preset text.
-        if (text != null) { m_TextComponent.text = text; }
+        if (text != null) { textMeshGUI.text = text; }
         StartCoroutine(Fade(FadeMode.FadeIn));
     }
 
@@ -74,7 +93,7 @@ public class FadeText : MonoBehaviour
             case FadeMode.FadeOut:
                 {
                     //Handle Disable after fade out
-                    if (disableAfterFadeOut) { m_TextComponent.enabled = false; }
+                    if (disableAfterFadeOut) { textMeshGUI.enabled = false; }
                     //Handle FadeOutComplete callback
                     if (FadeOutCompleteAction != null)
                     {
@@ -92,26 +111,34 @@ public class FadeText : MonoBehaviour
     /// Method to animate vertex colors of a TMP Text object.
     /// </summary>
     /// <returns></returns>
-    IEnumerator Fade(FadeMode fadeMode, float initialDelay = 0f)
+    IEnumerator Fade(FadeMode fadeMode, float initialDelay = 0)
     {
+        // Setup alpha values
         int startAlpha = fadeMode == FadeMode.FadeIn ? 0 : 255;
         int targetAlpha = fadeMode == FadeMode.FadeIn ? 255 : 0;
 
+        //Ensure textMesh is enabled
+        if (!textMeshGUI.enabled) textMeshGUI.enabled = true;
+
         // Handle InitialDelay
-        yield return new WaitForSeconds(initialDelay);
+        if (initialDelay > 0)
+        {
+            yield return new WaitForSeconds(initialDelay);
+        }
+
 
         // Set the whole text transparent
-        m_TextComponent.color = new Color
+        textMeshGUI.color = new Color
             (
-                m_TextComponent.color.r,
-                m_TextComponent.color.g,
-                m_TextComponent.color.b,
+                textMeshGUI.color.r,
+                textMeshGUI.color.g,
+                textMeshGUI.color.b,
                 startAlpha
             );
         // Need to force the text object to be generated so we have valid data to work with right from the start.
-        m_TextComponent.ForceMeshUpdate();
+        textMeshGUI.ForceMeshUpdate();
 
-        TMP_TextInfo textInfo = m_TextComponent.textInfo;
+        TMP_TextInfo textInfo = textMeshGUI.textInfo;
         Color32[] newVertexColors;
 
         int currentCharacter = 0;
@@ -168,7 +195,7 @@ public class FadeText : MonoBehaviour
                     if (startingCharacterRange == characterCount)
                     {
                         // Update mesh vertex data one last time.
-                        m_TextComponent.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+                        textMeshGUI.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
 
                         yield return waitForOneSecond;
 
@@ -182,7 +209,7 @@ public class FadeText : MonoBehaviour
             }
 
             // Upload the changed vertex colors to the Mesh.
-            m_TextComponent.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
+            textMeshGUI.UpdateVertexData(TMP_VertexDataUpdateFlags.Colors32);
 
             if (currentCharacter + 1 < characterCount) currentCharacter += 1;
 

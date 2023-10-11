@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 /* // TODO: May want to rename; Turns out the new input system package contains a component called PlayerInput which performs a similar role*/
 public class PlayerInput : MonoBehaviour
 {
-    public static CustomInput customInput;
+    public static CustomInput customInput; //TODO: customInput ref should be seperate in a scriptable object as static for reference throughout all scenes
     public static bool inputEnabled = true;
 
     // TODO: may be worth renaming these bools to specifically represent key presses. e.g. jumpKeyPressed ?
@@ -21,7 +21,7 @@ public class PlayerInput : MonoBehaviour
     public static bool isAttemptingClimbDown;
 
     [SerializeField] GameObject mobileControls; // TODO: temp placement here; move to dedicated class
-    [SerializeField] LevelLoader levelLoader; //TODO: move
+
     [SerializeField] PauseMenu pauseMenu;
 
 
@@ -33,7 +33,7 @@ public class PlayerInput : MonoBehaviour
         {
             mobileControls.SetActive(true);
         }
-
+        // customInput.
     }
     void OnEnable()
     {
@@ -48,8 +48,8 @@ public class PlayerInput : MonoBehaviour
         customInput.GamePlay.ClimbUp.canceled += ctx => isAttemptingClimbUp = false;
         customInput.GamePlay.ClimbDown.performed += ctx => isAttemptingClimbDown = true;
         customInput.GamePlay.ClimbDown.canceled += ctx => isAttemptingClimbDown = false;
-        customInput.GamePlay.Restart.performed += ctx => { levelLoader.reloadCurrentLevel(); Debug.Log("Restart btn Pressed"); };
-        customInput.GamePlay.Pause.performed += ctx => { pauseMenu.OnPauseButtonPressed(); Debug.Log("Pause button pressed"); };
+        customInput.GamePlay.Restart.performed += ctx => { SceneLoader.ReloadCurrentScene(); };
+        customInput.GamePlay.Pause.performed += ctx => { pauseMenu.OnPauseButtonPressed(); };
         customInput.GamePlay.ShowFPS.performed += ctx => FramesPerSecond.OnFpsButtonPressed();
     }
     void OnDisable()
@@ -65,7 +65,7 @@ public class PlayerInput : MonoBehaviour
         customInput.GamePlay.ClimbUp.canceled -= ctx => isAttemptingClimbUp = false;
         customInput.GamePlay.ClimbDown.performed -= ctx => isAttemptingClimbDown = true;
         customInput.GamePlay.ClimbDown.canceled -= ctx => isAttemptingClimbDown = false;
-        customInput.GamePlay.Restart.performed -= ctx => levelLoader.reloadCurrentLevel();
+        customInput.GamePlay.Restart.performed -= ctx => SceneLoader.ReloadCurrentScene();
         customInput.GamePlay.Pause.performed -= ctx => pauseMenu.OnPauseButtonPressed();
         customInput.GamePlay.ShowFPS.performed -= ctx => FramesPerSecond.OnFpsButtonPressed();
         customInput = null;
@@ -114,8 +114,4 @@ public class PlayerInput : MonoBehaviour
         // Debug.Log("GrabCancel");
         if (SwingingController.isSwinging) hasReleased = true;
     }
-
-
-
-
 }
