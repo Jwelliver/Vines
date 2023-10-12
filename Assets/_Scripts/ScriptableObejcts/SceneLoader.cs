@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,19 +25,16 @@ public enum SceneTransitionType
     FadeOutAndWait = 2
 }
 
-// [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/SceneLoader")]
 public class SceneLoader : MonoBehaviour
 {
-    // [SerializeField] float transitionTime = 2f;
-    // [SerializeField] bool allowNextLevelKey; //TODO: find references and refactor
-    // [SerializeField] KeyCode nextLevelKeyCode = KeyCode.Space; //TODO: move this out of here and trigger on event; 
-
-
-    static SceneLoader Instance;
+    public static SceneLoader Instance;
     public static bool isLoadingNewScene;
+    public static float sceneLoadingProgress;
 
     private static int CurrentSceneIndex => SceneManager.GetActiveScene().buildIndex;
     private static int NextSceneIndex => CurrentSceneIndex + 1;
+
+    private static WaitForSeconds asyncSceneLoadProgressCheckInterval;
 
     void Awake()
     {
@@ -44,12 +42,17 @@ public class SceneLoader : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            Init();
         }
         else if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
         }
+    }
 
+    void Init()
+    {
+        asyncSceneLoadProgressCheckInterval = new WaitForSeconds(0.1f);
         SceneManager.sceneLoaded += CustomOnSceneLoad.OnSceneLoad;
         SceneManager.sceneUnloaded += CustomSceneUnload.OnSceneUnload;
     }
@@ -69,7 +72,70 @@ public class SceneLoader : MonoBehaviour
 
     public static void ReloadCurrentScene()
     {
-        FadeToScene(SceneRef.Current);
+        FadeToScene(SceneRef.Current, 1.75f, false);
+    }
+
+    public static void LoadSceneNoTransition(SceneRef sceneRef)
+    {
+        // Return if already loading scene;
+        if (isLoadingNewScene) { return; }
+        isLoadingNewScene = true;
+        SceneManager.LoadScene((int)sceneRef);
+    }
+
+    public void LoadSceneAsync(SceneRef sceneRef, bool loadSceneOnComplete, Action<AsyncOperation> OnSceneLoadComplete = null)
+    {
+        StartCoroutine(_LoadSceneAsync(sceneRef, loadSceneOnComplete, OnSceneLoadComplete));
+    }
+
+    private static IEnumerator _LoadSceneAsync(SceneRef sceneRef, bool loadSceneOnComplete = true, Action<AsyncOperation> OnSceneLoadComplete = null)
+    {
+        // Handle case where loadSceneOnComplete is falde and no callback was provided.
+        if (!loadSceneOnComplete && OnSceneLoadComplete == null)
+        {
+            Debug.LogError("Error: Either loadSceneOnComplete must be true or the AsyncSceneOperation must be handled in a provided OnSceneLoadComplete callback, otherwise the Scene will never load. Aborting.");
+            yield break;
+        }
+
+        sceneLoadingProgress = 0f;
+        isLoadingNewScene = true;
+
+        AsyncOperation scene = SceneManager.LoadSceneAsync(GetBuildIndexFromSceneRef(sceneRef));
+        scene.allowSceneActivation = false;
+
+        // Wait while the scene is loaded;
+        while (!scene.isDone) //Notes were that Scene is Fully loaded at 0.9f instead of 1f?
+        {
+            sceneLoadingProgress = scene.progress;
+            yield return asyncSceneLoadProgressCheckInterval;
+        }
+
+        // Call the callback if one exists;
+        if (OnSceneLoadComplete != null)
+        {
+            OnSceneLoadComplete.Invoke(scene);
+        }
+
+        //load scene if requested
+        if (loadSceneOnComplete) scene.allowSceneActivation = true;
+    }
+
+    public static void FadeToScene(SceneRef sceneRef, float duration = 2f, bool autoFadeInAfterLoad = true, Action OnFadeOutComplete = null, Action OnFadeInComplete = null)
+    {
+        Debug.Log("FadeToScene() entry > isLoadingNewScene: " + isLoadingNewScene);
+        // Return if already loading scene;
+        if (isLoadingNewScene) { return; }
+        isLoadingNewScene = true;
+        int buildIndex = GetBuildIndexFromSceneRef(sceneRef);
+        CrossFadeCanvas.FadeToOpaque(duration, () =>
+        {
+            OnFadeOutComplete?.Invoke();
+            SceneManager.LoadScene(buildIndex);
+            if (autoFadeInAfterLoad)
+            {
+                CrossFadeCanvas.FadeToTransparent(duration, OnFadeInComplete);
+            }
+        });
     }
 
     private static int GetBuildIndexFromSceneRef(SceneRef sceneRef)
@@ -89,32 +155,6 @@ public class SceneLoader : MonoBehaviour
                     return (int)sceneRef;
                 }
         }
-    }
-
-    public static void LoadSceneNoTransition(SceneRef sceneRef)
-    {
-        // Return if already loading scene;
-        if (isLoadingNewScene) { return; }
-        isLoadingNewScene = true;
-        SceneManager.LoadScene((int)sceneRef);
-    }
-
-    public static void FadeToScene(SceneRef sceneRef, float duration = 2f, bool autoFadeInAfterLoad = true, Action OnFadeOutComplete = null, Action OnFadeInComplete = null)
-    {
-        Debug.Log("FadeToScene() entry > isLoadingNewScene: " + isLoadingNewScene);
-        // Return if already loading scene;
-        if (isLoadingNewScene) { return; }
-        isLoadingNewScene = true;
-        int buildIndex = GetBuildIndexFromSceneRef(sceneRef);
-        CrossFadeCanvas.FadeToOpaque(duration, () =>
-        {
-            if (OnFadeOutComplete != null) OnFadeOutComplete.Invoke();
-            SceneManager.LoadScene(buildIndex);
-            if (autoFadeInAfterLoad)
-            {
-                CrossFadeCanvas.FadeToTransparent(duration, OnFadeInComplete);
-            }
-        });
     }
 }
 
