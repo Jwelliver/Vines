@@ -3,32 +3,35 @@ using UnityEngine;
 
 public class PauseMenu : MonoBehaviour
 {
-    [SerializeField] GameObject pauseMenuUI;
-    // [SerializeField] GameManager gameManager;
-    public static bool isPaused;
 
+    [SerializeField] GameObject pauseMenu;
+    public static PauseMenu Instance;
+    public bool isPaused;
 
-    // * did not work:
-    // bool isPlayerSwinging; //temp method to ensure player's isSwinging state is set after unpause, preventing immediate falling
+    void Awake()
+    {
+        // Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+
+    }
 
     public void OnPauseButtonPressed()
     {
-        if (isPaused)
-        {
-            UnpauseGame();
-        }
-        else
-        {
-            PauseGame();
-        }
+        if (isPaused) { UnpauseGame(); }
+        else { PauseGame(); }
     }
 
     public void PauseGame()
     {
-        // isPlayerSwinging = gameManager.playerRef.GetComponent<SwingingController>().isSwinging;
-        // Debug.Log("Paused: isSwinging: " + isPlayerSwinging);
         Cursor.visible = true;
-        pauseMenuUI.SetActive(true);
+        pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
         GameContext.SetGameState(GameState.PauseMenu);
@@ -37,10 +40,8 @@ public class PauseMenu : MonoBehaviour
     public void UnpauseGame()
     {
         Cursor.visible = false;
-        pauseMenuUI.SetActive(false);
+        pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        // gameManager.playerRef.GetComponent<SwingingController>().isSwinging = isPlayerSwinging;
-        // Debug.Log("UnPaused: isSwinging: " + isPlayerSwinging);
         isPaused = false;
         GameContext.SetGameState(GameState.InGame);
     }
