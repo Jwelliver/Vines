@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -577,8 +578,10 @@ public class LevelGenerator : ScriptableObject
             // Setup Optional SortingGroup
             if (layer.useSortGroup)
             {
-                // Add SortingGorup component
-                SortingGroup sortingGroup = layerParent.gameObject.AddComponent<SortingGroup>();
+                // Add SortingGorup component if it doesn't already exist;
+                SortingGroup sortingGroup;
+                bool hasSortingGroup = layerParent.gameObject.TryGetComponent<SortingGroup>(out sortingGroup);
+                if (!hasSortingGroup) sortingGroup = layerParent.gameObject.AddComponent<SortingGroup>();
                 // Setup the SortingGroup Layer;
                 sortingGroup.sortingLayerName = sortLayerName;
                 // Setup SortingGroup order
@@ -586,7 +589,9 @@ public class LevelGenerator : ScriptableObject
             }
             if (layer.enableParallax)
             {
-                layerParent.gameObject.AddComponent<Paralaxer>();
+                Paralaxer paralaxer;
+                bool hasParalaxer = layerParent.gameObject.TryGetComponent<Paralaxer>(out paralaxer);
+                if (!hasParalaxer) paralaxer = layerParent.gameObject.AddComponent<Paralaxer>();
                 layerParent.position = new Vector3(layerParent.position.x, layerParent.position.y, zDistance);
             }
 
