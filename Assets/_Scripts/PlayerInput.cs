@@ -22,8 +22,6 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] GameObject mobileControls; // TODO: temp placement here; move to dedicated class
 
-    [SerializeField] PauseMenu pauseMenu;
-
 
 
     void Awake()
@@ -49,7 +47,7 @@ public class PlayerInput : MonoBehaviour
         customInput.GamePlay.ClimbDown.performed += ctx => isAttemptingClimbDown = true;
         customInput.GamePlay.ClimbDown.canceled += ctx => isAttemptingClimbDown = false;
         customInput.GamePlay.Restart.performed += ctx => { SceneLoader.ReloadCurrentScene(); };
-        customInput.GamePlay.Pause.performed += ctx => { pauseMenu.OnPauseButtonPressed(); };
+        customInput.GamePlay.Pause.performed += ctx => { PauseMenu.Instance.OnPauseButtonPressed(); };
         customInput.GamePlay.ShowFPS.performed += ctx => FramesPerSecond.OnFpsButtonPressed();
     }
     void OnDisable()
@@ -66,7 +64,7 @@ public class PlayerInput : MonoBehaviour
         customInput.GamePlay.ClimbDown.performed -= ctx => isAttemptingClimbDown = true;
         customInput.GamePlay.ClimbDown.canceled -= ctx => isAttemptingClimbDown = false;
         customInput.GamePlay.Restart.performed -= ctx => SceneLoader.ReloadCurrentScene();
-        customInput.GamePlay.Pause.performed -= ctx => pauseMenu.OnPauseButtonPressed();
+        customInput.GamePlay.Pause.performed -= ctx => PauseMenu.Instance.OnPauseButtonPressed();
         customInput.GamePlay.ShowFPS.performed -= ctx => FramesPerSecond.OnFpsButtonPressed();
         customInput = null;
     }
