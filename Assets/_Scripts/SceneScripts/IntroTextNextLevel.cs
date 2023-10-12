@@ -24,12 +24,10 @@ public class IntroTextNextLevel : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("IntroText.Start() entry");
         //Append ControlText to mainText;
         bool isMobilePlatform = GameContext.IsMobilePlatform();
         string controlText = isMobilePlatform ? "Tap to continue..." : "Press spacebar to continue...";
         mainTextFadeController.textMeshGUI.text += "\n\n" + controlText;
-        Debug.Log("IntroText > Calling FadeIn");
         mainTextFadeController.FadeIn(StartTransition);
     }
 
@@ -52,13 +50,12 @@ public class IntroTextNextLevel : MonoBehaviour
     IEnumerator Transition()
     {
         if (transitionStarted) { yield break; }
-        Debug.Log("Transition Started");
         transitionStarted = true;
         // musicFadeOut.SetTrigger("FadeOut");
         if (music != null) music.fadeOutAndStop(1.5f);
         jungleSound.Play();
         yield return new WaitForSeconds(0.5f);
         // musicFadeOut.transform.GetComponent<AudioSource>().Stop();
-        SceneLoader.FadeToScene(SceneRef.GameMain, 2f, true); //TODO: Set autoFadeIn on start to false; We're going to call it manually
+        SceneLoader.FadeToScene(SceneRef.GameMain, 2f, false); //TODO: Set autoFadeIn on start to false; We're going to call it manually
     }
 }
