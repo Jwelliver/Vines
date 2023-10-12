@@ -104,31 +104,31 @@ public class CrossFadeCanvas : MonoBehaviour
         Debug.LogError("Error: CrossFadeCanvas Not initialized; Static method called but no targetCanvasGroup was found.");
     }
 
-    void Update() //TODO: Testing only; Remove later
-    {
-        // if (Input.GetKeyDown(KeyCode.T))
-        // {
-        //     if (isFading)
-        //     {
-        //         Debug.Log("Is Fading; cannot transition");
-        //         return;
-        //     }
-        //     if (isOpaque)
-        //     {
-        //         Debug.Log("Fading To Transparent...");
-        //         FadeToTransparent(2f, () => Debug.Log("Fade to Transparent Complete"));
-        //     }
-        //     else
-        //     {
-        //         Debug.Log("Fading To Opaque...");
-        //         FadeToOpaque(2f, () => Debug.Log("Fade to Opaque Complete"));
-        //     }
-        // }
+    // void Update() //TODO: Testing only; Remove later
+    // {
+    //     // if (Input.GetKeyDown(KeyCode.T))
+    //     // {
+    //     //     if (isFading)
+    //     //     {
+    //     //         Debug.Log("Is Fading; cannot transition");
+    //     //         return;
+    //     //     }
+    //     //     if (isOpaque)
+    //     //     {
+    //     //         Debug.Log("Fading To Transparent...");
+    //     //         FadeToTransparent(2f, () => Debug.Log("Fade to Transparent Complete"));
+    //     //     }
+    //     //     else
+    //     //     {
+    //     //         Debug.Log("Fading To Opaque...");
+    //     //         FadeToOpaque(2f, () => Debug.Log("Fade to Opaque Complete"));
+    //     //     }
+    //     // }
 
-        // if (Input.GetKeyDown(KeyCode.T))
-        // {
-        //     SceneLoader.FadeToScene(SceneRef.MainMenu, 3f, true, () => Debug.Log("FadeOutComplete"), () => Debug.Log("FadeInComplete"));
-        // }
-    }
+    //     // if (Input.GetKeyDown(KeyCode.T))
+    //     // {
+    //     //     SceneLoader.FadeToScene(SceneRef.MainMenu, 3f, true, () => Debug.Log("FadeOutComplete"), () => Debug.Log("FadeInComplete"));
+    //     // }
+    // }
 
 }
