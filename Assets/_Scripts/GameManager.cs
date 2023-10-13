@@ -43,13 +43,15 @@ public class GameManager : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
-        levelGen.InitLevel();
         GameContext.SetGameState(GameState.InGame);
+        levelGen.InitLevel();
     }
 
-    void Start()
+    IEnumerator Start()
     {
         playerRef = GetPlayerRef();
+        yield return new WaitForSeconds(0.25f);
+        CrossFadeCanvas.FadeToTransparent(1.75f);
     }
 
     public static Transform GetPlayerRef()
