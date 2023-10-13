@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   environmentLayers:
   - id: CameraForegroundFoliage
-    enabled: 0
+    enabled: 1
     spacing:
-      min: 8
-      max: 20
-    yOffset: -3
+      min: 10
+      max: 40
+    yOffset: -15
     yOffsetVariance: 0.2
     enableParallax: 1
     useAutoZDistance: 0
@@ -26,8 +26,8 @@ MonoBehaviour:
     type: 0
     prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
     scaleModifier:
-      min: 0.5
-      max: 0.8
+      min: 1.8
+      max: 2
     maxRotation: 20
     enableRandomFlip: 1
     spritePool:
@@ -43,7 +43,7 @@ MonoBehaviour:
     sortLayerName: Foreground
     sortOrder: 10
     autoSort: 0
-    layerTint: {r: 1, g: 1, b: 1, a: 1}
+    layerTint: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
     useSortGroup: 0
   - id: RiverBankFoliage
     enabled: 1
@@ -98,7 +98,7 @@ MonoBehaviour:
     sortOrder: -10
     autoSort: 0
     layerTint: {r: 1, g: 1, b: 1, a: 1}
-    useSortGroup: 0
+    useSortGroup: 1
   - id: RiverBankFoliage
     enabled: 1
     spacing:
