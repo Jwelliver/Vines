@@ -364,3 +364,51 @@ MonoBehaviour:
       normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
       weakSegmentColor: {r: 0.745283, g: 0.5820474, b: 0, a: 1}
     layerIndex: 0
+  sunspots:
+  - id: DefaultLayerSunspots
+    scaleMultiplier:
+      min: 1
+      max: 1
+    spacing:
+      min: 15
+      max: 25
+    yOffset:
+      min: -5
+      max: 10
+    maxRotation: 180
+    TargetSortingLayer: Default
+    intensity:
+      min: 0.4
+      max: 0.9
+    sunspotPrefabs:
+    - {fileID: 8274566079337636943, guid: 3c6ed645ed992ff459e6d02c85cc3a08, type: 3}
+    - {fileID: 7575771181296115447, guid: aef7a81ca2da16e49be7583acd0fd02f, type: 3}
+    - {fileID: 3067927794198339701, guid: 90f57f06ee6b8494c8168b4cabed4dba, type: 3}
+    - {fileID: 314002653665735845, guid: 89d50ee65d5948d4f8657564f6c4c49b, type: 3}
+    - {fileID: 5087858123467027428, guid: 2d6bbb19fb5adc148a84a41ba469b0b7, type: 3}
+    - {fileID: 5448071997172259295, guid: 6eee937062f5388439a654a04ef814d4, type: 3}
+    - {fileID: 8932587370481728862, guid: 87203eb935a72de4a9e8ea0c0d4ee683, type: 3}
+    - {fileID: 8257242890127070591, guid: 8274c4e493adfc1428c5266ee201a12d, type: 3}
+  - id: BackgroundLayerSunspots
+    scaleMultiplier:
+      min: 1
+      max: 1
+    spacing:
+      min: 15
+      max: 25
+    yOffset:
+      min: 3
+      max: 10
+    maxRotation: 180
+    TargetSortingLayer: Default
+    intensity:
+      min: 0.4
+      max: 0.9
+    sunspotPrefabs:
+    - {fileID: 117462648112288627, guid: 1a80e29a1078fe9478d609fb0e462b8f, type: 3}
+    - {fileID: 1060168467422837705, guid: 649fcb86785fba84e96a6c5fcec4183e, type: 3}
+    - {fileID: 4767600861477256419, guid: 6c9d1b0804a7b094ca82ebd36c685d2c, type: 3}
+    - {fileID: 5947041844713171391, guid: 94607b6c2a935cd44aadc94030b51764, type: 3}
+    - {fileID: 53402243578932003, guid: 718ed602dd8d99b46888af830735cba3, type: 3}
+    - {fileID: 2405028648959929211, guid: 34d5f45da27df864184f8aa78bd3cf50, type: 3}
+    - {fileID: 5449413674661734572, guid: 77aa633304c2efd42830c43eb8845e75, type: 3}

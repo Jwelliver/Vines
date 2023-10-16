@@ -21,6 +21,8 @@ public class LevelSettings : ScriptableObject
 
     [Header("Tree Layers")]
     public List<TreeLayer> treeLayers = new List<TreeLayer>();
+    [Header("Sunspot Layers")]
+    public List<SunspotBlueprint> sunspots = new List<SunspotBlueprint>();
 }
 
 [Serializable]
@@ -57,3 +59,4 @@ public struct TreeLayer
     public VineFactoryConfig vineSettings;
     public int layerIndex; // auto set by LevelGen
 }
+

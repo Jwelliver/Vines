@@ -363,6 +363,7 @@ public class LevelGenerator : ScriptableObject
     [SerializeField] TreeFactory treeFactory;
     [SerializeField] VineFactory vineFactory;
     [SerializeField] LightShaftFactory lightShaftFactory;
+    [SerializeField] SunspotFactory sunspotFactory;
 
     [Header("Background Layers")]
     [SerializeField] float zDistanceInterval = 5f;//any layer that doesn't have a set zDistance will have Abs(sortOrder) * zDistanceInterval applied
@@ -552,6 +553,8 @@ public class LevelGenerator : ScriptableObject
         {
             AddTreeLayerSection(section, levelSettings.treeLayers);
         }
+        //TODO: Temp adding sunspots in all cases; Need to setup system that allows us to only gen background sunspots with env and default/tree sunspots with tree gen
+        AddSunspotLayers(section);
     }
 
     void AddTreeLayerSection(Section section, TreeLayer treeLayer)
@@ -671,6 +674,29 @@ public class LevelGenerator : ScriptableObject
             }
             // StaticBatchingUtility.Combine(layerParent.gameObject);
         }
+    }
+
+    void AddSunspotLayers(Section section)
+    {
+        //TODO: You will need to place sunspot layers at the same zdistance as env layers, or just child them to env layers so that parallax works correctly with the light
+        //TODO: Refactor the parent and layer containers:
+        // todo: ... Place primary SunspotLayers container inside the environment parent; Create an individual sub parent for each layer of sunspots
+        // Instantiate parent
+        Transform sunspotParent = GameObject.Instantiate(blankParentPrefab);
+        sunspotParent.name = "SunspotLayers";
+
+        foreach (SunspotBlueprint sunspotBlueprint in levelSettings.sunspots)
+        {
+            List<Vector2> positions = GeneratePositions(section, sunspotBlueprint.spacing, 0);
+            foreach (Vector2 pos in positions)
+            {
+                Vector2 posWithYOffset = pos + new Vector2(0, RNG.RandomRange(sunspotBlueprint.yOffset));
+                sunspotFactory.GenerateSunspot(posWithYOffset, sunspotBlueprint, sunspotParent);
+            }
+
+
+        }
+
     }
 
     private void AddStartPlatform(Vector2 pos)
