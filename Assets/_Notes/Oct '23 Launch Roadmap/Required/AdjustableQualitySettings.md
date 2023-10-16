@@ -11,4 +11,7 @@
   - [] Consider how to implement multiple resolutions
 
   - [] Physics Settings:
+
     - [] Adjust Solver iterations (more=more stable vines; less= better performance)
+
+  - [] sound and music volumes
