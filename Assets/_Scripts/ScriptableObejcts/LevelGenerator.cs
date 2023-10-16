@@ -374,7 +374,11 @@ public class LevelGenerator : ScriptableObject
     [SerializeField] Transform blankParentPrefab; //Used to create empty parent container for individual spriteLayers
     [SerializeField] Transform debugSectionMarkerPrefab;
 
+
+
     Section currentSection;
+    Transform startPlatformRef;
+    Transform winPlatformRef;
 
     // EnvironmentLayerGenerator envLayerGenerator = new EnvironmentLayerGenerator();
 
@@ -414,11 +418,55 @@ public class LevelGenerator : ScriptableObject
     void OnDisable()
     {
         DeInitFactories();
+        startPlatformRef = null;
+        winPlatformRef = null;
     }
 
     private void InitRNG()
     {
         if (levelSettings.rngSeed != -1) { RNG.SetSeed(levelSettings.rngSeed); }
+    }
+
+    public void ReInit()
+    {
+        //Util function for quickly regenerating the level; Removes existing level components, and regenerates
+        RemoveEnvironment();
+        Debug.Log("Init New Level...");
+        InitLevel();
+    }
+
+    private void RemoveEnvironment()
+    {
+        // Cleanup Env layers
+        GameObject treeLayersContainer = GameObject.Find(GetElementContainerPath(treeLayersContainerName));
+        GameObject spriteLayersContainer = GameObject.Find(GetElementContainerPath(backgroundParentName));
+        GameObject lightShaftsContainer = GameObject.Find(GetElementContainerPath(lightShaftContainerName));
+        Debug.Log("Removing Tree Layers...");
+        foreach (Transform treeLayerParent in treeLayersContainer.transform)
+        {
+            Destroy(treeLayerParent.gameObject);
+        }
+        Debug.Log("Removing Env Sprite Layers...");
+        foreach (Transform spriteLayer in spriteLayersContainer.transform)
+        {
+            Destroy(spriteLayer.gameObject);
+        }
+        Debug.Log("Removing Lightshafts...");
+        foreach (Transform lightShaft in lightShaftsContainer.transform)
+        {
+            Destroy(lightShaft.gameObject);
+        }
+        Debug.Log("Removing Platforms...");
+        // Cleanup platforms;
+        if (startPlatformRef != null)
+        {
+            Destroy(startPlatformRef.gameObject);
+        }
+        if (winPlatformRef != null)
+        {
+            Destroy(winPlatformRef.gameObject);
+        }
+        Debug.Log("Cleanup Complete.");
     }
 
     private Section AddSectionOffset(Section section, int offsetLength, SectionFillType fillType)
@@ -469,7 +517,7 @@ public class LevelGenerator : ScriptableObject
         GenerateSection(currentSection, SectionFillType.ALL);
         // Append end BG section
         AddSectionOffset(currentSection, 100, SectionFillType.BG_ONLY);
-        BatchLightShafts();
+        // BatchLightShafts();
         DeInitFactories();
     }
 
@@ -627,12 +675,12 @@ public class LevelGenerator : ScriptableObject
 
     private void AddStartPlatform(Vector2 pos)
     {
-        GameObject.Instantiate(startPlatformPrefab, pos, Quaternion.identity);
+        startPlatformRef = GameObject.Instantiate(startPlatformPrefab, pos, Quaternion.identity);
     }
 
     private void AddWinPlatform(Vector2 pos)
     {
-        GameObject.Instantiate(winPlatformPrefab, pos, Quaternion.identity);
+        winPlatformRef = GameObject.Instantiate(winPlatformPrefab, pos, Quaternion.identity);
     }
 
     private void InitManualTrees()

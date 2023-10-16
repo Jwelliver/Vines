@@ -119,11 +119,11 @@ public class GameManager : MonoBehaviour
         }
 
         // TODO: Test for bg regen; Remove
-        // if (Input.GetKeyDown(KeyCode.N))
-        // {
-        //     Debug.Log("Generating New");
-        //     levelGen.InitLevel();
-        // }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            Debug.Log("Generating New");
+            levelGen.ReInit();
+        }
 
     }
 
