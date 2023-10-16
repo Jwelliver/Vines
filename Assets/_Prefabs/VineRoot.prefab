@@ -70,6 +70,7 @@ LineRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: c41914cdac7fa36438d9b894dbcbc344, type: 2}
+  - {fileID: 2100000, guid: c41914cdac7fa36438d9b894dbcbc344, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -144,8 +145,8 @@ LineRenderer:
     numCornerVertices: 8
     numCapVertices: 8
     alignment: 0
-    textureMode: 0
-    textureScale: {x: 0.3, y: 0.7}
+    textureMode: 3
+    textureScale: {x: 0.25, y: 0.7}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
