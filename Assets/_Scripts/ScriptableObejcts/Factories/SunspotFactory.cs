@@ -6,6 +6,8 @@ using UnityEngine.Rendering.Universal;
 [Serializable]
 public struct SunspotBlueprint
 {//TODO: this should be a "SunspotLayer" struct described in LevelSettings; and if you do use the blueprint, use it like the other factories as the finalized param storage for each sunspot.
+
+    //TODO: add fields for falloff amt and strength
     public string id;
     public MinMax<float> scaleMultiplier;
     public MinMax<float> spacing;
