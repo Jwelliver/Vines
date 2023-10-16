@@ -3865,15 +3865,12 @@ MonoBehaviour:
   jumpForce: 10
   maxJumps: 0
   fallingInitSpeed: -10
-  jumpKey: 32
   controlsTextAnimator: {fileID: 0}
   ragdollParts:
   - {fileID: 1463898354530351781}
   - {fileID: 1463898355445866097}
   swingNetAttack: {fileID: 0}
-  standupSpeed: 5
   groundCheck: {fileID: 1463898354415763327}
-  sfx: {fileID: 0}
 --- !u!114 &3562631163907043524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3966,7 +3963,7 @@ MonoBehaviour:
   - {x: -0.37281418, y: -0.4507203, z: 0.00000017508864}
   m_ShapePathHash: 1259167985
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1776
+  m_InstanceId: -20212704
   m_LocalBounds:
     m_Center: {x: 0.080641866, y: -1.4721859, z: 0}
     m_Extent: {x: 1.0644943, y: 2.490943, z: 0}
