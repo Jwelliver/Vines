@@ -5,14 +5,16 @@ using System;
 public static class RNG
 {
     private static System.Random _randomInstance;
-    private static int _seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
+    private static int _seed = -1;// = UnityEngine.Random.Range(int.MinValue, int.MaxValue);
 
     public static System.Random SysRandomInstance
     {
         get
         {
-            if (_randomInstance == null)
-                _randomInstance = new System.Random(_seed);
+            // if seed has not been set; Set it to random;
+            if (_seed == -1) { _seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue); }
+            // if instance not already init'd create new;
+            if (_randomInstance == null) { _randomInstance = new System.Random(_seed); }
             return _randomInstance;
         }
     }
@@ -21,7 +23,8 @@ public static class RNG
     {
         if (manualSeed.HasValue) { _seed = manualSeed.Value; }
         else { _seed = UnityEngine.Random.Range(int.MinValue, int.MaxValue); }
-        _randomInstance = null;
+        // Reinit Sys random with new seed;
+        _randomInstance = new System.Random(_seed);
         return _seed;
     }
 
