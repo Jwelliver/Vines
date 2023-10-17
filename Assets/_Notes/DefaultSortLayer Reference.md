@@ -4,10 +4,12 @@
   - foliage in front of trees -15 to -10
   - Arrow: -1
   - Platform 0 to 5
-  - vineSegment 10
-  - vine adornments 11
+  - vineSegment (behind player) 10
+    - vine adornments 11
   - Water 14 to 15
   - player 20 to 35
+  - vineSegment (front of player) 38
+    - vine adornments 39
   - palms 40 to 50
 
 ========

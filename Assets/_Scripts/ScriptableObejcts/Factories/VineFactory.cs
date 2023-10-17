@@ -97,6 +97,9 @@ public class VineFactory : ScriptableObject
     [SerializeField] Transform vineRootPrefab;
     [SerializeField] List<Transform> vineSegmentPrefabs;
     [SerializeField] VineAdornmentFactory vineAdornmentFactory;
+    //TODO: need to set up range for both groups of vineSort orders (like palms); Probably better to set up centralized reference system;
+    [SerializeField] int vineSortOrder_behindPlayer = 10; // vines on 10, adorns on 11
+    [SerializeField] int vineSortOrder_frontOfPlayer = 37; // vines 37, adorns 38;
 
     public void SetDefaultFactoryConfig(VineFactoryConfig newDefaultFactoryConfig)
     {
@@ -129,6 +132,8 @@ public class VineFactory : ScriptableObject
         bool isWeak = RNG.SampleProbability(factoryConfig.pctChanceWeak);
         int vineLength = RNG.RandomRange(factoryConfig.length.min, factoryConfig.length.max);
         float segLength = factoryConfig.segmentLength;
+        int vineSortOrder = RNG.RandomBool() ? vineSortOrder_behindPlayer : vineSortOrder_frontOfPlayer;
+        int vineAdornmentSortOrder = vineSortOrder + 1;
         Color vineColor = isWeak ? factoryConfig.weakSegmentColor : factoryConfig.normalSegmentColor;
 
         // Track segments to apply to vineroot/VineLineRenderer; Adding 1 to vineLength to account for anchor segment;
@@ -156,6 +161,7 @@ public class VineFactory : ScriptableObject
         vineLineRenderer.endWidth = factoryConfig.segmentWidth;
         vineLineRenderer.startColor = vineColor;
         vineLineRenderer.endColor = vineColor;
+        vineLineRenderer.sortingOrder = vineSortOrder;
 
         // Set up each segment
         for (int i = 0; i < vineLength; i++)
@@ -198,8 +204,9 @@ public class VineFactory : ScriptableObject
             if (hasAdornment)
             {
                 Transform newAdornment = vineAdornmentFactory.GenerateVineAdornment(newSegment.position, newSegment, factoryConfig.adornmentScale);
-                if (isWeak)
-                    newAdornment.GetComponentInChildren<SpriteRenderer>().color = vineColor;
+                SpriteRenderer adornmentSpriteRenderer = newAdornment.GetComponentInChildren<SpriteRenderer>();
+                adornmentSpriteRenderer.sortingOrder = vineAdornmentSortOrder;
+                if (isWeak) { adornmentSpriteRenderer.color = vineColor; }
             }
 
             // Add Segment to segments list
