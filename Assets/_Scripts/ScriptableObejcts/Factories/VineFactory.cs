@@ -96,10 +96,30 @@ public class VineFactory : ScriptableObject
     [SerializeField] VineFactoryConfig defaultFactoryConfig = new VineFactoryConfig();
     [SerializeField] Transform vineRootPrefab;
     [SerializeField] List<Transform> vineSegmentPrefabs;
-    [SerializeField] VineAdornmentFactory vineAdornmentFactory;
     //TODO: need to set up range for both groups of vineSort orders (like palms); Probably better to set up centralized reference system;
     [SerializeField] int vineSortOrder_behindPlayer = 10; // vines on 10, adorns on 11
     [SerializeField] int vineSortOrder_frontOfPlayer = 37; // vines 37, adorns 38;
+
+    public static VineFactory Instance;
+
+    void OnEnable()
+    {
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+    }
+
+    void OnDisable()
+    {
+        Instance = null;
+    }
+
 
     public void SetDefaultFactoryConfig(VineFactoryConfig newDefaultFactoryConfig)
     {
@@ -203,7 +223,7 @@ public class VineFactory : ScriptableObject
             bool hasAdornment = RNG.SampleProbability(factoryConfig.pctChanceAdornment);
             if (hasAdornment)
             {
-                Transform newAdornment = vineAdornmentFactory.GenerateVineAdornment(newSegment.position, newSegment, factoryConfig.adornmentScale);
+                Transform newAdornment = VineAdornmentFactory.Instance.GenerateVineAdornment(newSegment.position, newSegment, factoryConfig.adornmentScale);
                 SpriteRenderer adornmentSpriteRenderer = newAdornment.GetComponentInChildren<SpriteRenderer>();
                 adornmentSpriteRenderer.sortingOrder = vineAdornmentSortOrder;
                 if (isWeak) { adornmentSpriteRenderer.color = vineColor; }

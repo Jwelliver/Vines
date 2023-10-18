@@ -41,6 +41,26 @@ public class EnvironmentObjectFactory : ScriptableObject
 
     [SerializeField] Transform defaultPrefab;
 
+    public static EnvironmentObjectFactory Instance;
+
+    void OnEnable()
+    {
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+    }
+
+    void OnDisable()
+    {
+        Instance = null;
+    }
+
     EnvironmentObjectBlueprint GenerateBlueprint(EnvironmentObjectFactoryConfig config)
     {
         return new EnvironmentObjectBlueprint

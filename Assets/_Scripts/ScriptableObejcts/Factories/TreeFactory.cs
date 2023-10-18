@@ -68,9 +68,6 @@ public class NewTreeAssembly
 public class TreeFactory : ScriptableObject
 {
     [SerializeField] TreeFactoryConfig defaultFactoryConfig = new TreeFactoryConfig();
-    [Header("Factories")]
-    [SerializeField] VineFactory vineFactory;
-    [SerializeField] LightShaftFactory lightShaftFactory;
 
     [Header("Prefabs")]
     [SerializeField] Transform treePrefab;
@@ -82,6 +79,26 @@ public class TreeFactory : ScriptableObject
     [SerializeField] int palmSortOrderBase = 40;
     [SerializeField] int palmSortOrderPoolLength = 10; //how many sortOrders on top of palmBaseSortOrders to use
     [SerializeField] int trunkSortOrderBase = -10;
+
+    public static TreeFactory Instance;
+
+    void OnEnable()
+    {
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+    }
+
+    void OnDisable()
+    {
+        Instance = null;
+    }
 
 
     private List<int> palmSortOrderPool;
@@ -252,7 +269,7 @@ public class TreeFactory : ScriptableObject
         for (int i = 0; i < newTreeAssembly.treeConfig.nVines; i++)
         {
             Vector2 rndPosition = RNG.RandomChoice(newTreeAssembly.palmAnchorPositions);
-            vineFactory.GenerateVine(rndPosition, vinesContainer, vineFactoryConfigOverride ?? newTreeAssembly.treeConfig.vineFactoryConfig);
+            VineFactory.Instance.GenerateVine(rndPosition, vinesContainer, vineFactoryConfigOverride ?? newTreeAssembly.treeConfig.vineFactoryConfig);
         }
     }
 
@@ -261,7 +278,7 @@ public class TreeFactory : ScriptableObject
         for (int i = 0; i < newTreeAssembly.treeConfig.nLightShafts; i++)
         {
             Vector2 rndPosition = RNG.RandomChoice(newTreeAssembly.palmAnchorPositions);
-            lightShaftFactory.GenerateLightShaft(rndPosition);
+            LightShaftFactory.Instance.GenerateLightShaft(rndPosition);
         }
     }
 }

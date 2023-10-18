@@ -25,6 +25,26 @@ public class SunspotFactory : ScriptableObject
 {
     // [SerializeField] List<Transform> sunspotPrefabs = new List<Transform>();
 
+    public static SunspotFactory Instance;
+
+    void OnEnable()
+    {
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+    }
+
+    void OnDisable()
+    {
+        Instance = null;
+    }
+
     public Transform GenerateSunspot(Vector2 position, SunspotBlueprint sunspotBlueprint, Transform parent = null)
     {
         //Pick Random sunnspot prefab

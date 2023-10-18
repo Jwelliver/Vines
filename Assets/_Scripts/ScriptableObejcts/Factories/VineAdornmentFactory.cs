@@ -9,6 +9,27 @@ public class VineAdornmentFactory : ScriptableObject
     [SerializeField] ProbabilityWeightedSpritePool sprites;
     [SerializeField] ProbabilityWeightedColorPool colors;
 
+    public static VineAdornmentFactory Instance;
+
+    void OnEnable()
+    {
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(this);
+        }
+    }
+
+    void OnDisable()
+    {
+        Instance = null;
+    }
+
+
     public Transform GenerateVineAdornment(Vector2 position, Transform parent, MinMax<float> scale)
     {
         // Get Random Adornment Prefab

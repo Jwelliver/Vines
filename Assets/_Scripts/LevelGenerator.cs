@@ -38,13 +38,6 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] string backgroundParentName = "SpriteLayers";
     [SerializeField] string lightShaftContainerName = "LightShafts";
 
-    [Header("Factories")]
-    [SerializeField] EnvironmentObjectFactory environmentObjectFactory;
-    [SerializeField] TreeFactory treeFactory;
-    [SerializeField] VineFactory vineFactory;
-    [SerializeField] LightShaftFactory lightShaftFactory;
-    [SerializeField] SunspotFactory sunspotFactory;
-
     [Header("Background Layers")]
     [SerializeField] float zDistanceInterval = 1f;//any layer that doesn't have a set zDistance will have Abs(sortOrder) * zDistanceInterval applied
     [SerializeField] EnvironmentPreset environmentPreset;
@@ -99,21 +92,23 @@ public class LevelGenerator : MonoBehaviour
     {
         // treeFactory.SetDefaultFactoryConfig(levelSettings.treeSettings);
         // vineFactory.SetDefaultFactoryConfig(levelSettings.vineSettings);
-        lightShaftFactory.SetLightShaftContainerParent(GameObject.Find(GetElementContainerPath(lightShaftContainerName)).transform);
+        LightShaftFactory.Instance.SetLightShaftContainerParent(GameObject.Find(GetElementContainerPath(lightShaftContainerName)).transform);
     }
 
     private void DeInitFactories()
     {
         // Do any factory cleanup here
-        lightShaftFactory.SetLightShaftContainerParent(null);
+        LightShaftFactory.Instance.SetLightShaftContainerParent(null);
     }
 
-    void OnDisable()
+
+    void OnDestroy()
     {
         DeInitFactories();
         startPlatformRef = null;
         winPlatformRef = null;
         OnInitLevelGenComplete = null;
+        Instance = null;
     }
 
     private void InitRNG()
@@ -281,7 +276,7 @@ public class LevelGenerator : MonoBehaviour
         int treeIndex = 0; //loop index tracker
         foreach (Vector2 position in positions)
         {// Since we're receiving a transform, we just name it here
-            treeFactory.GenerateTree(position, treeLayerParent, treeLayer).name = "Tree." + treeLayer.layerIndex.ToString() + "." + treeIndex.ToString();
+            TreeFactory.Instance.GenerateTree(position, treeLayerParent, treeLayer).name = "Tree." + treeLayer.layerIndex.ToString() + "." + treeIndex.ToString();
             treeIndex++;
         }
         InitManualTrees();
@@ -374,11 +369,11 @@ public class LevelGenerator : MonoBehaviour
                 Transform newEnvObj;
                 if (layer.type == EnvLayerType.PrefabOnly)
                 {
-                    newEnvObj = environmentObjectFactory.InstantiateObj(position, layerParent, environmentObjectFactoryConfig, layer.prefab);
+                    newEnvObj = EnvironmentObjectFactory.Instance.InstantiateObj(position, layerParent, environmentObjectFactoryConfig, layer.prefab);
                 }
                 else if (layer.type == EnvLayerType.SpriteObj)
                 {
-                    newEnvObj = environmentObjectFactory.InstantiateSpriteObj(position, layerParent, environmentObjectFactoryConfig as EnvironmentSpriteObjectFactoryConfig, layer.prefab);
+                    newEnvObj = EnvironmentObjectFactory.Instance.InstantiateSpriteObj(position, layerParent, environmentObjectFactoryConfig as EnvironmentSpriteObjectFactoryConfig, layer.prefab);
                 }
 
             }
@@ -401,7 +396,7 @@ public class LevelGenerator : MonoBehaviour
             foreach (Vector2 pos in positions)
             {
                 Vector2 posWithYOffset = pos + new Vector2(0, RNG.RandomRange(sunspotBlueprint.yOffset));
-                sunspotFactory.GenerateSunspot(posWithYOffset, sunspotBlueprint, sunspotParent);
+                SunspotFactory.Instance.GenerateSunspot(posWithYOffset, sunspotBlueprint, sunspotParent);
             }
 
 
