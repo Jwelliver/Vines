@@ -4,31 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-[Serializable]
-public class ProbWeightedItem<T>
-{
-    public T item;
-    public float probability;
-}
 
-[Serializable]
-public class ProbWeightItemList<T>
-{
-    public List<ProbWeightedItem<T>> items = new List<ProbWeightedItem<T>>();
-    public T getRandomItem()
-    {
-        if (items.Count == 0) { return default; }//should return nullable value of T
-        ProbWeightedItem<T> item = RNG.RandomChoice(items);
-        if (RNG.SampleProbability(item.probability))
-        {
-            return item.item;
-        }
-        else
-        {
-            return getRandomItem();
-        }
-    }
-}
 
 
 // [Serializable]
@@ -218,115 +194,7 @@ public class ProbWeightItemList<T>
 // }
 
 
-[Serializable]
-public class Section
-{
-    public Vector2 startPos;
-    public int length;
-    public Vector2 endPos => new Vector2(startPos.x + length, startPos.y);
 
-    public Section Copy()
-    {
-        return new Section
-        {
-            startPos = startPos,
-            length = length
-        };
-    }
-}
-
-[Serializable]
-public enum EnvLayerType
-{
-    SpriteObj,
-    PrefabOnly
-}
-
-[Serializable]
-public enum EnvLayerAutoSortType
-{
-    Disable,
-    StartFromMySortOrder,
-    Inherit
-}
-
-[Serializable]
-public class EnvironmentLayer
-{
-    [Header("Layer Properties")]
-    public string id;
-    public bool enabled = true;
-    [Header("Placement")]
-    public MinMax<float> spacing;
-    public float yOffset;
-    public float yOffsetVariance;
-    [Header("Parallax")]
-    public bool enableParallax;
-    public bool useAutoZDistance;
-    public float zDistance;
-    [Header("Object Properties")]
-    public EnvLayerType type;
-    public Transform prefab;
-    public MinMax<float> scaleModifier = new MinMax<float>(1f, 1f);
-    public float maxRotation;
-    public bool enableRandomFlip;
-    public ProbWeightItemList<Sprite> spritePool;
-    public ProbWeightItemList<Color> colorPool;
-
-    [Header("Sorting")]
-    public string sortLayerName;
-    public int sortOrder;
-    public EnvLayerAutoSortType autoSort;
-    public Color layerTint = new Color(1f, 1f, 1f, 1f);
-    [Header("SortingGroup")]
-    public bool useSortGroup;
-
-    // [SerializeReference] public EnvironmentObjectFactoryConfig factoryConfig;
-
-
-    public EnvironmentObjectFactoryConfig GetEnvironmentObjectFactoryConfig()
-    {
-        switch (type)
-        {
-            case EnvLayerType.SpriteObj:
-                {
-                    return new EnvironmentSpriteObjectFactoryConfig
-                    {
-                        scale = scaleModifier,
-                        maxRotation = maxRotation,
-                        enableRandomFlip = enableRandomFlip,
-                        spritePool = spritePool,
-                        colorPool = colorPool,
-                        sortLayerName = sortLayerName,
-                        sortOrder = sortOrder,
-                        secondaryTint = layerTint
-                    };
-                }
-            case EnvLayerType.PrefabOnly:
-                {
-                    return new EnvironmentObjectFactoryConfig
-                    {
-                        scale = scaleModifier,
-                        maxRotation = maxRotation,
-                        enableRandomFlip = enableRandomFlip,
-                    };
-                }
-            default:
-                {
-                    return null;
-                }
-        }
-    }
-}
-
-
-
-public enum SectionFillType
-{
-    ALL,
-    TREES_ONLY,
-    BG_ONLY
-}
 
 
 /*
@@ -346,9 +214,10 @@ public enum SectionFillType
 
 
 
-[CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Level Generator")]
-public class LevelGenerator : ScriptableObject
+// [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Level Generator")]
+public class LevelGenerator : MonoBehaviour
 {
+    public static LevelGenerator Instance;
     [Header("Level")]
     public LevelSettings levelSettings;
 
@@ -366,7 +235,7 @@ public class LevelGenerator : ScriptableObject
     [SerializeField] SunspotFactory sunspotFactory;
 
     [Header("Background Layers")]
-    [SerializeField] float zDistanceInterval = 5f;//any layer that doesn't have a set zDistance will have Abs(sortOrder) * zDistanceInterval applied
+    [SerializeField] float zDistanceInterval = 1f;//any layer that doesn't have a set zDistance will have Abs(sortOrder) * zDistanceInterval applied
     [SerializeField] EnvironmentPreset environmentPreset;
 
     [Header("Prefabs")]
@@ -375,13 +244,26 @@ public class LevelGenerator : ScriptableObject
     [SerializeField] Transform blankParentPrefab; //Used to create empty parent container for individual spriteLayers
     [SerializeField] Transform debugSectionMarkerPrefab;
 
-
+    public static Action OnInitLevelGenComplete;
 
     Section currentSection;
     Transform startPlatformRef;
     Transform winPlatformRef;
 
     // EnvironmentLayerGenerator envLayerGenerator = new EnvironmentLayerGenerator();
+
+    void Awake()
+    {
+        //Singleton
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void InitCurrentSection()
     {   // Run once on level start;
@@ -400,7 +282,6 @@ public class LevelGenerator : ScriptableObject
 
         //     }
         // }
-
     }
 
     private void InitFactories()
@@ -421,6 +302,7 @@ public class LevelGenerator : ScriptableObject
         DeInitFactories();
         startPlatformRef = null;
         winPlatformRef = null;
+        OnInitLevelGenComplete = null;
     }
 
     private void InitRNG()
@@ -492,6 +374,8 @@ public class LevelGenerator : ScriptableObject
     {
         InitRNG(); // This Must be First;
         Debug.Log("Seed: " + RNG.GetCurrentSeed());
+        // Set FF Time
+        // Time.timeScale = 3;
         InitFactories();
         if (levelSettings.levelType == LevelType.NORMAL)
         {
@@ -501,6 +385,21 @@ public class LevelGenerator : ScriptableObject
         {
             InitEndlessMode();
         }
+        // Invoke callback action if not null;
+        // FinishInitLevelGen();
+    }
+
+    IEnumerator FinishInitLevelGen()
+    {
+        // Just waits some time before setting timeScale back to 1 and 
+        yield return new WaitForSeconds(1);
+        //Suspend All vine segments;
+        VineSuspenseManager.SuspendAllNotVisible();
+
+        //Reset TimeScale;
+        Time.timeScale = 1;
+
+        OnInitLevelGenComplete?.Invoke();
     }
 
     void InitNormalMode()

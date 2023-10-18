@@ -12,7 +12,6 @@ using UnityEngine;
 */
 public class GameManager : MonoBehaviour
 {
-    public LevelGenerator levelGen;
     [SerializeField] GameOverUI gameOverUI;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip winMusic;
@@ -44,7 +43,7 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
         GameContext.SetGameState(GameState.InGame);
-        levelGen.InitLevel();
+        LevelGenerator.Instance.InitLevel();
     }
 
     IEnumerator Start()
@@ -66,11 +65,11 @@ public class GameManager : MonoBehaviour
     void HandleNewSectionGeneration()
     {
         // *TODO TEMP code to test endless mode; todo: move
-        Section currentSection = levelGen.GetCurrentSection();
+        Section currentSection = LevelGenerator.Instance.GetCurrentSection();
         float endX = currentSection.startPos.x + currentSection.length;
         if (Mathf.Abs(playerRef.position.x - endX) < 30f)
         {
-            levelGen.ExtendCurrentSection();
+            LevelGenerator.Instance.ExtendCurrentSection();
             Debug.Log("Appending NewSection");
         }
     }
@@ -113,7 +112,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //TODO: Move this out of here; Come up with a better way of handling the endless generatino
-        if (levelGen.levelSettings.levelType == LevelType.ENDLESS)
+        if (LevelGenerator.Instance.levelSettings.levelType == LevelType.ENDLESS)
         {
             HandleNewSectionGeneration();
         }
@@ -122,8 +121,26 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.N))
         {
             Debug.Log("Generating New");
-            levelGen.ReInit();
+            LevelGenerator.Instance.ReInit();
         }
+
+        // Testing timescale 
+        // if (Input.GetKeyDown(KeyCode.Alpha1))
+        // {
+        //     Time.timeScale = 1;
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha2))
+        // {
+        //     Time.timeScale = 2;
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha3))
+        // {
+        //     Time.timeScale = 10;
+        // }
+        // if (Input.GetKeyDown(KeyCode.Alpha4))
+        // {
+        //     Time.timeScale = 100;
+        // }
 
     }
 

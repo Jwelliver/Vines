@@ -45,3 +45,30 @@ public class ProbabilityWeightedItemPool<T> : ItemPool<ProbabilityWeightedItem<T
         else { return getRandomItem(); }
     }
 }
+
+// TODO:  101723: Moved these here from LevelGen; ProbWeightedItem is a dupe of ProbabilityWeightedItem (above); Refactor without corrupting EnvPreset Layers
+[Serializable]
+public class ProbWeightedItem<T>
+{
+    public T item;
+    public float probability;
+}
+
+[Serializable]
+public class ProbWeightItemList<T>
+{
+    public List<ProbWeightedItem<T>> items = new List<ProbWeightedItem<T>>();
+    public T getRandomItem()
+    {
+        if (items.Count == 0) { return default; }//should return nullable value of T
+        ProbWeightedItem<T> item = RNG.RandomChoice(items);
+        if (RNG.SampleProbability(item.probability))
+        {
+            return item.item;
+        }
+        else
+        {
+            return getRandomItem();
+        }
+    }
+}
