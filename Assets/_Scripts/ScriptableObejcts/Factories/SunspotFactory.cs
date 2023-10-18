@@ -15,6 +15,8 @@ public struct SunspotBlueprint
     public float maxRotation;
     public string TargetSortingLayer;
     public MinMax<float> intensity;
+    // public MinMax<float> fallOff;
+    public MinMax<float> fallOffStrength;
     public List<Transform> sunspotPrefabs;
 }
 
@@ -64,6 +66,7 @@ public class SunspotFactory : ScriptableObject
         Light2D light2D = newSunspot.GetComponent<Light2D>();
         // Apply random intensity
         light2D.intensity = RNG.RandomRange(sunspotBlueprint.intensity);
+        light2D.falloffIntensity = RNG.RandomRange(sunspotBlueprint.fallOffStrength);
         // // Set the target sorting layer NOTE * Can't access light2D sortingLayer in any immediately easy way, so, skipping for now.
 
 

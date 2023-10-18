@@ -374,21 +374,35 @@ MonoBehaviour:
       max: 25
     yOffset:
       min: -5
-      max: 10
+      max: 20
     maxRotation: 180
     TargetSortingLayer: Default
     intensity:
-      min: 0.4
-      max: 0.9
+      min: 0.5
+      max: 1
+    fallOffStrength:
+      min: 0.1
+      max: 0.6
     sunspotPrefabs:
-    - {fileID: 8274566079337636943, guid: 3c6ed645ed992ff459e6d02c85cc3a08, type: 3}
-    - {fileID: 7575771181296115447, guid: aef7a81ca2da16e49be7583acd0fd02f, type: 3}
-    - {fileID: 3067927794198339701, guid: 90f57f06ee6b8494c8168b4cabed4dba, type: 3}
-    - {fileID: 314002653665735845, guid: 89d50ee65d5948d4f8657564f6c4c49b, type: 3}
-    - {fileID: 5087858123467027428, guid: 2d6bbb19fb5adc148a84a41ba469b0b7, type: 3}
-    - {fileID: 5448071997172259295, guid: 6eee937062f5388439a654a04ef814d4, type: 3}
-    - {fileID: 8932587370481728862, guid: 87203eb935a72de4a9e8ea0c0d4ee683, type: 3}
-    - {fileID: 8257242890127070591, guid: 8274c4e493adfc1428c5266ee201a12d, type: 3}
+    - {fileID: 4606479013819869443, guid: 0a095c65b2f877d41998c0be4e5f66e9, type: 3}
+    - {fileID: 2564968591103261050, guid: b0a59bdd8ce541544bc603a12fa8c702, type: 3}
+    - {fileID: 2739512125217733761, guid: a93108f838611464ca3d4868e5cd3066, type: 3}
+    - {fileID: 2859893644497304567, guid: 46e7f746d244768488fd77964ac7632e, type: 3}
+    - {fileID: 8347284112202537592, guid: bc0249701053c504b99804e957686acc, type: 3}
+    - {fileID: 4397937153805501391, guid: 1935e495eb8f59c4da1734f9a453d9ba, type: 3}
+    - {fileID: 5509232060115768787, guid: 37299caadaef6434a84f5ae5efaa8c71, type: 3}
+    - {fileID: 322055112235724149, guid: 8c5e1c933f9fb52499899bd008f0038e, type: 3}
+    - {fileID: 4452039249021676474, guid: 2d9738417f121374ca6fc773751dc210, type: 3}
+    - {fileID: 224932971571771581, guid: 4267e218a37de66429cd4a7e26cacc08, type: 3}
+    - {fileID: 2548925050965466485, guid: ef8491d3c27e0c84ebfee8df5bcbd511, type: 3}
+    - {fileID: 4618821421602541979, guid: 9d9928e6d89120141b0bdf18e2c129ea, type: 3}
+    - {fileID: 6052491008584339322, guid: c41368b9dd4f9dc4e8b063c83b66e192, type: 3}
+    - {fileID: 1805015812301576208, guid: 886fcb0b6d068c54e9a60f7dd54d7a87, type: 3}
+    - {fileID: 6018100876988887146, guid: 455248f8292949940bbc291e22bad017, type: 3}
+    - {fileID: 5152391158128631949, guid: 6eda94a0b7634dd4f8902c53fb5fb112, type: 3}
+    - {fileID: 5816719569233636948, guid: ce2c7d8d4a0dd6e47838dba337b36949, type: 3}
+    - {fileID: 4911106726430901149, guid: 4500a01b35171dc47b8f28f9ae8e09c4, type: 3}
+    - {fileID: 8155653852819461792, guid: 1ee7203f7736d614091d890d58434823, type: 3}
   - id: BackgroundLayerSunspots
     scaleMultiplier:
       min: 1
@@ -402,13 +416,28 @@ MonoBehaviour:
     maxRotation: 180
     TargetSortingLayer: Default
     intensity:
-      min: 0.4
-      max: 0.9
+      min: 0.5
+      max: 1
+    fallOffStrength:
+      min: 0.1
+      max: 0.6
     sunspotPrefabs:
-    - {fileID: 117462648112288627, guid: 1a80e29a1078fe9478d609fb0e462b8f, type: 3}
-    - {fileID: 1060168467422837705, guid: 649fcb86785fba84e96a6c5fcec4183e, type: 3}
-    - {fileID: 4767600861477256419, guid: 6c9d1b0804a7b094ca82ebd36c685d2c, type: 3}
-    - {fileID: 5947041844713171391, guid: 94607b6c2a935cd44aadc94030b51764, type: 3}
-    - {fileID: 53402243578932003, guid: 718ed602dd8d99b46888af830735cba3, type: 3}
-    - {fileID: 2405028648959929211, guid: 34d5f45da27df864184f8aa78bd3cf50, type: 3}
-    - {fileID: 5449413674661734572, guid: 77aa633304c2efd42830c43eb8845e75, type: 3}
+    - {fileID: 2878994971195215079, guid: 064bfcdc4565d26419ba40f419bb7933, type: 3}
+    - {fileID: 6215639095658826386, guid: 1bafdf988cb3f4b489a3ec6c98f22cb2, type: 3}
+    - {fileID: 2719024210259640676, guid: ab778c3f747219a4b9cd7fff6c37919f, type: 3}
+    - {fileID: 3043251381805699393, guid: 46d26debd4f826f49915e474f05458c2, type: 3}
+    - {fileID: 306541480226739711, guid: 20b3ab2a5b3393d438a825c76a5eec5c, type: 3}
+    - {fileID: 8281023345966688506, guid: 9b21fd8bb2e5d694492e8ea7abddea0f, type: 3}
+    - {fileID: 2556389547826050004, guid: a3b9c2a04d0134c459f687e80974e192, type: 3}
+    - {fileID: 5002185682037158733, guid: b7ce4ad6161c41048bcd3ff250ab2cb7, type: 3}
+    - {fileID: 3255116003650540459, guid: c9c528c333b516a41bd662b3a0fb3f0f, type: 3}
+    - {fileID: 6173003240166319181, guid: 69765cc2aeb1f284393a9cbbce09b723, type: 3}
+    - {fileID: 7436203781431618418, guid: 0ca6d669a36550d44a397ee6424e96d8, type: 3}
+    - {fileID: 1800341976477673979, guid: 11013a1ee48b76a40b1e43c63848083d, type: 3}
+    - {fileID: 3065317111006219666, guid: 720f43c6d5777544294c05ea9902138d, type: 3}
+    - {fileID: 2842474359500484261, guid: 143c75b4eca330348b1950b81fffb0c8, type: 3}
+    - {fileID: 3304228162443518868, guid: 69c3d4c07cd73704895ccf2ed51a936e, type: 3}
+    - {fileID: 1445406593829574561, guid: 3edc336648809bd46809b92856b8a94b, type: 3}
+    - {fileID: 7794519336139334626, guid: 8913a8c059383714096b10a786fd3236, type: 3}
+    - {fileID: 2483056752938143624, guid: c8948d5efed2bd24eae44723b3af572e, type: 3}
+    - {fileID: 2128300522552678529, guid: 12a5f44e7ae74be409b5ccd55eada1d3, type: 3}
