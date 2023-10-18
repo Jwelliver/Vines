@@ -48,8 +48,6 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] Transform blankParentPrefab; //Used to create empty parent container for individual spriteLayers
     [SerializeField] Transform debugSectionMarkerPrefab;
 
-    public static Action OnInitLevelGenComplete;
-
     Section currentSection;
     Transform startPlatformRef;
     Transform winPlatformRef;
@@ -93,6 +91,7 @@ public class LevelGenerator : MonoBehaviour
         // treeFactory.SetDefaultFactoryConfig(levelSettings.treeSettings);
         // vineFactory.SetDefaultFactoryConfig(levelSettings.vineSettings);
         LightShaftFactory.Instance.SetLightShaftContainerParent(GameObject.Find(GetElementContainerPath(lightShaftContainerName)).transform);
+
     }
 
     private void DeInitFactories()
@@ -107,7 +106,6 @@ public class LevelGenerator : MonoBehaviour
         DeInitFactories();
         startPlatformRef = null;
         winPlatformRef = null;
-        OnInitLevelGenComplete = null;
         Instance = null;
     }
 
@@ -176,12 +174,10 @@ public class LevelGenerator : MonoBehaviour
         return currentSection;
     }
 
-    public void InitLevel()
+    public void InitLevel(Action OnInitLevelGenComplete = null)
     {
         InitRNG(); // This Must be First;
         Debug.Log("Seed: " + RNG.GetCurrentSeed());
-        // Set FF Time
-        // Time.timeScale = 3;
         InitFactories();
         if (levelSettings.levelType == LevelType.NORMAL)
         {
@@ -192,18 +188,28 @@ public class LevelGenerator : MonoBehaviour
             InitEndlessMode();
         }
         // Invoke callback action if not null;
-        // FinishInitLevelGen();
+        // StartCoroutine(FinishInitLevelGen(OnInitLevelGenComplete)); //TODO: Commenting out for now; Need to ensure gameManager is handling all aspects of start after load (e.g. camera zoom; fade is correct, etc.)
+        OnInitLevelGenComplete?.Invoke(); // todo: replacing above with this as temp;
     }
 
-    IEnumerator FinishInitLevelGen()
+    IEnumerator FinishInitLevelGen(Action OnInitLevelGenComplete = null)
     {
+        Debug.Log("FinishInitLevelGen > 1");
+        // Set FF Time
+        Time.timeScale = 3;
+        //TODO: Vinesuspension needs to be handled elsewhere; Also needs to support endless (i.e. vines added after init load)
         // Just waits some time before setting timeScale back to 1 and 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSecondsRealtime(3);
+        Debug.Log("FinishInitLevelGen > 2 wait over");
         //Suspend All vine segments;
         VineSuspenseManager.SuspendAllNotVisible();
+        Debug.Log("FinishInitLevelGen > 3 Vines unsuspended");
+        //Set suspendOnStart to true so all future vineInstances (e.g. from endless) are suspended on start. // TODO: Note: This may not be needed since they should autosuspend once loaded if not visible.
+        VineSuspenseManager.suspendOnStart = true;
 
         //Reset TimeScale;
         Time.timeScale = 1;
+        Debug.Log("FinishInitLevelGen > 4 TimeScale returned to normal;");
 
         OnInitLevelGenComplete?.Invoke();
     }
