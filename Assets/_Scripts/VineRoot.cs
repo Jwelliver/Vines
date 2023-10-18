@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -5,27 +7,24 @@ public class VineRoot : MonoBehaviour
 {
     [SerializeField] ParticleSystem snapParticles;
     public bool isRootAnchored; // is this root still attached to the tree
-    public float suspensionWaitSeconds = 5f; // how many seconds to wait between triggering suspend and executing it
+    // * nSegments and segmentRbs need to be public for accessibility by VineSuspenseManager
+    public int nSegments;
+    public Rigidbody2D[] segmentRbs;
     VineSegment[] vineSegments;
-    Rigidbody2D[] segmentRbs;
     Joint2D[] segmentJoints;
-    int nSegments;
 
-    bool isVineSuspended;
-    private static float vineStretchSoundForce = 0.2f;
-    private static float vineStressSoundForce = 0.85f;
 
     Vector3[] positions;
     LineRenderer lineRenderer;
+    VineSuspenseManager vineSuspenseManager;
+
+    private static float vineStretchSoundForce = 0.2f;
+    private static float vineStressSoundForce = 0.85f;
 
     void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
-    }
-
-    void Start()
-    {
-        InitSuspsend();
+        vineSuspenseManager = GetComponent<VineSuspenseManager>();
     }
 
     void ClearSegmentRefs()
@@ -61,18 +60,17 @@ public class VineRoot : MonoBehaviour
         }
         if (initSegments) { InitSegments(); }
         lineRenderer.positionCount = nSegments;
-    }
+        // If this root is anchored, add our vineSuspenseManager instance to the resting queue
+        // if (_isRootAnchored) // ! Disabled while sorting out mem issue w/ vineSuspenseMgr 101723
+        // {
+        //     VineSuspenseManager.vineRestingQueue.Add(vineSuspenseManager);
+        // }
 
-    public void InitSuspsend()
-    {   //Called once at start; Invokes the suspend at random intervals so we don't do the whole thing in a single frame
-        //TODO: To do the initial time fastforward, we could maybe use a static event in VineRoot, each root subscribes it's InitSuspend to the event;
-        //  todo: ... then, after the time forward is called and completed elsewhere, gamemanager, or levelgen can invoke the static event? After complete; each root can remove it's own method or manager does removeAll
-        if (!lineRenderer.isVisible) { Invoke("SuspendSegments", RNG.RandomRange(5f, 10f)); }
     }
 
     void FixedUpdate()
     {   // Update VineSegment positions for LineRenderer
-        if (isVineSuspended || nSegments == 0) { return; }
+        if (vineSuspenseManager.isVineSuspended || nSegments == 0) { return; }
         for (int i = 0; i < nSegments; i++)
         {
             positions[i] = segmentRbs[i].position;
@@ -159,53 +157,6 @@ public class VineRoot : MonoBehaviour
     }
 
 
-    void OnBecameVisible()
-    {
-        // Debug.Log("VineRoot.OnBecameVisible() name: " + name);
-        UnsuspendSegments();
 
-    }
-
-    void OnBecameInvisible()
-    {
-        // Debug.Log("VineRoot.OnBecameInvisible() name: " + name);
-        if (segmentRbs != null) Invoke("SuspendSegments", suspensionWaitSeconds);
-    }
-
-    void SuspendSegments()
-    {// Method2 controls rb simulated flag; operation must be applied from bottom segment upward to avoid stretching issue.
-        if (lineRenderer.isVisible) { return; }
-        for (int i = nSegments - 1; i > 0; i--) { segmentRbs[i].simulated = false; }
-        isVineSuspended = true;
-    }
-
-    void UnsuspendSegments()
-    {// Method2 controls rb simulated flag; operation must be applied from bottom segment upward to avoid stretching issue.
-        CancelInvoke("SuspendSegments"); //stop any existing SuspendSegmentCalls
-        if (!isVineSuspended || segmentRbs == null) return;
-        for (int i = nSegments - 1; i > 0; i--) { segmentRbs[i].simulated = true; }
-        isVineSuspended = false;
-    }
-
-    // == Vine Suspension Method that controls rb Sleep/Wake
-    // void SuspendSegments_Method1()
-    // {
-    //     //Method1 uses sleep/wakeup
-    //     foreach (Rigidbody2D rb in segmentRbs)
-    //     {
-    //         rb.Sleep();
-    //     }
-    //     isVineSuspended = true;
-    // }
-
-    // void UnSuspendSegments_Method1()
-    // {
-    //     //Method1 uses sleep/wakeup
-    //     foreach (Rigidbody2D rb in segmentRbs)
-    //     {
-    //         rb.WakeUp();
-    //     }
-    //     isVineSuspended=false;
-    // }
 }
 
