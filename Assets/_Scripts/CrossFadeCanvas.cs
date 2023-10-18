@@ -4,6 +4,7 @@ using UnityEngine;
 public class CrossFadeCanvas : MonoBehaviour
 {
     public bool fadeInOnStart = false;
+    public bool startOpaque = false;
     public float defaultFadeTime = 2f;
     static Canvas canvasMain; // this is what will be enabled/disabled
     static CanvasGroup targetCanvasGroup;
@@ -20,10 +21,22 @@ public class CrossFadeCanvas : MonoBehaviour
 
     void Start()
     {
+        if (startOpaque)
+        {
+
+            return;
+        }
         if (fadeInOnStart)
         {
             FadeToTransparent(defaultFadeTime);
         }
+    }
+
+    void SetOpaque()
+    {
+        targetCanvasGroup.alpha = 1f;
+        canvasMain.enabled = true;
+
     }
 
     void OnApplicationQuit()
