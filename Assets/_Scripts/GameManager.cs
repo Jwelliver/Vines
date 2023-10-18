@@ -43,13 +43,18 @@ public class GameManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         Cursor.visible = false;
         GameContext.SetGameState(GameState.InGame);
-        LevelGenerator.Instance.InitLevel();
+
     }
 
-    IEnumerator Start()
+    void Start()
     {
         playerRef = GetPlayerRef();
-        yield return new WaitForSeconds(0.25f);
+        LevelGenerator.Instance.InitLevel(FadeIntoLevel);
+    }
+
+    void FadeIntoLevel()
+    {
+        //Called after level gen init is complete
         CrossFadeCanvas.FadeToTransparent(1.75f);
     }
 
