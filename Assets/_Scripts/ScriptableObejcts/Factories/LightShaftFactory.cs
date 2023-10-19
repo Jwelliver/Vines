@@ -15,30 +15,12 @@ public class LightShaftFactoryConfig
 [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Factories/LightShaftFactory")]
 public class LightShaftFactory : ScriptableObject
 {
-    public static LightShaftFactory Instance;
     [SerializeField] Transform lightShaftPrefab;
     [SerializeField] LightShaftFactoryConfig defaultFactoryConfig = new LightShaftFactoryConfig();
     public string lightShaftContainerPath;
     Transform lightShaftContainerParent;
 
-    void OnEnable()
-    {
-        // Singleton
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else if (Instance != this)
-        {
-            Destroy(this);
-        }
-    }
 
-    void OnDisable()
-    {
-        lightShaftContainerParent = null;
-        Instance = null;
-    }
 
     public void SetLightShaftContainerParent(Transform lightShaftContainer)
     {

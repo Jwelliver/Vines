@@ -38,6 +38,13 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] string backgroundParentName = "SpriteLayers";
     [SerializeField] string lightShaftContainerName = "LightShafts";
 
+    [Header("Factories")]
+    [SerializeField] EnvironmentObjectFactory environmentObjectFactory;
+    [SerializeField] TreeFactory treeFactory;
+    [SerializeField] VineFactory vineFactory;
+    [SerializeField] LightShaftFactory lightShaftFactory;
+    [SerializeField] SunspotFactory sunspotFactory;
+
     [Header("Background Layers")]
     [SerializeField] float zDistanceInterval = 1f;//any layer that doesn't have a set zDistance will have Abs(sortOrder) * zDistanceInterval applied
     [SerializeField] EnvironmentPreset environmentPreset;
@@ -90,14 +97,14 @@ public class LevelGenerator : MonoBehaviour
     {
         // treeFactory.SetDefaultFactoryConfig(levelSettings.treeSettings);
         // vineFactory.SetDefaultFactoryConfig(levelSettings.vineSettings);
-        LightShaftFactory.Instance.SetLightShaftContainerParent(GameObject.Find(GetElementContainerPath(lightShaftContainerName)).transform);
+        lightShaftFactory.SetLightShaftContainerParent(GameObject.Find(GetElementContainerPath(lightShaftContainerName)).transform);
 
     }
 
     private void DeInitFactories()
     {
         // Do any factory cleanup here
-        LightShaftFactory.Instance.SetLightShaftContainerParent(null);
+        lightShaftFactory.SetLightShaftContainerParent(null);
     }
 
 
@@ -282,7 +289,7 @@ public class LevelGenerator : MonoBehaviour
         int treeIndex = 0; //loop index tracker
         foreach (Vector2 position in positions)
         {// Since we're receiving a transform, we just name it here
-            TreeFactory.Instance.GenerateTree(position, treeLayerParent, treeLayer).name = "Tree." + treeLayer.layerIndex.ToString() + "." + treeIndex.ToString();
+            treeFactory.GenerateTree(position, treeLayerParent, treeLayer).name = "Tree." + treeLayer.layerIndex.ToString() + "." + treeIndex.ToString();
             treeIndex++;
         }
         InitManualTrees();
@@ -375,11 +382,11 @@ public class LevelGenerator : MonoBehaviour
                 Transform newEnvObj;
                 if (layer.type == EnvLayerType.PrefabOnly)
                 {
-                    newEnvObj = EnvironmentObjectFactory.Instance.InstantiateObj(position, layerParent, environmentObjectFactoryConfig, layer.prefab);
+                    newEnvObj = environmentObjectFactory.InstantiateObj(position, layerParent, environmentObjectFactoryConfig, layer.prefab);
                 }
                 else if (layer.type == EnvLayerType.SpriteObj)
                 {
-                    newEnvObj = EnvironmentObjectFactory.Instance.InstantiateSpriteObj(position, layerParent, environmentObjectFactoryConfig as EnvironmentSpriteObjectFactoryConfig, layer.prefab);
+                    newEnvObj = environmentObjectFactory.InstantiateSpriteObj(position, layerParent, environmentObjectFactoryConfig as EnvironmentSpriteObjectFactoryConfig, layer.prefab);
                 }
 
             }
@@ -402,7 +409,7 @@ public class LevelGenerator : MonoBehaviour
             foreach (Vector2 pos in positions)
             {
                 Vector2 posWithYOffset = pos + new Vector2(0, RNG.RandomRange(sunspotBlueprint.yOffset));
-                SunspotFactory.Instance.GenerateSunspot(posWithYOffset, sunspotBlueprint, sunspotParent);
+                sunspotFactory.GenerateSunspot(posWithYOffset, sunspotBlueprint, sunspotParent);
             }
 
 

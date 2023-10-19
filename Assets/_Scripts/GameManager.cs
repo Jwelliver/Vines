@@ -49,7 +49,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         playerRef = GetPlayerRef();
-        LevelGenerator.Instance.InitLevel(FadeIntoLevel);
+        // LevelGenerator.Instance.InitLevel(FadeIntoLevel); //TODO: check
+        LevelGenerator.Instance.InitLevel();
+        FadeIntoLevel();
     }
 
     void FadeIntoLevel()
