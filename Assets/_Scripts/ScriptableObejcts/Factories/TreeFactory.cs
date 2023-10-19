@@ -29,6 +29,8 @@ public class TreeConfig
     public float palmAngleOffset;
     public int palmSortOrder;
     public int trunkSortOrder;
+    public bool isTrunkFlipped;
+    public bool isPalmFlipped;
     public int nVines;
     public int nLightShafts;
     public Transform rndPalmPrefab;
@@ -103,6 +105,8 @@ public class TreeFactory : ScriptableObject
             palmAngleOffset = RNG.RandomRange(-factoryConfig.maxPalmRotation, factoryConfig.maxPalmRotation),
             palmSortOrder = GetPalmSortOrder(),
             trunkSortOrder = trunkSortOrderBase,
+            isTrunkFlipped = RNG.RandomBool(),
+            isPalmFlipped = RNG.RandomBool(),
             nLightShafts = RNG.SampleOccurrences(factoryConfig.maxLightShafts, factoryConfig.pctChangeLightShaft),
             nVines = factoryConfig.maxVines == 0 ? 0 : RNG.RandomRange(1, factoryConfig.maxVines),
             rndPalmPrefab = RNG.RandomChoice(palmPrefabs),
@@ -173,7 +177,8 @@ public class TreeFactory : ScriptableObject
 
         // Apply scale to trunk
         float trunkHeight = newTreeAssembly.treeConfig.trunkHeight;
-        newTrunk.localScale = new Vector3(newTrunk.localScale.x, newTrunk.localScale.y * trunkHeight);
+        float localScaleX = newTreeAssembly.treeConfig.isTrunkFlipped ? -newTrunk.localScale.x : newTrunk.localScale.x;
+        newTrunk.localScale = new Vector3(localScaleX, newTrunk.localScale.y * trunkHeight);
 
         // Assign random sprite
         SpriteRenderer trunkSpriteRenderer = newTrunk.GetComponent<SpriteRenderer>();
@@ -222,7 +227,13 @@ public class TreeFactory : ScriptableObject
         newPalm.name = "Palm";
 
         // Apply Random SortOrder to prevent overlap flickering
-        newPalm.GetComponent<SpriteRenderer>().sortingOrder = newTreeAssembly.treeConfig.palmSortOrder;
+        SpriteRenderer palmSprite = newPalm.GetComponent<SpriteRenderer>();
+        palmSprite.sortingOrder = newTreeAssembly.treeConfig.palmSortOrder;
+        // Apply Flip
+        if (newTreeAssembly.treeConfig.isPalmFlipped)
+        {
+            palmSprite.flipX = true;
+        }
 
         // Apply random rotation
         newPalm.eulerAngles = Vector3.forward * newTreeAssembly.treeConfig.palmAngleOffset;
