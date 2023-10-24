@@ -40,6 +40,7 @@ public class EnvironmentLayer
     public bool enableRandomFlip;
     public ProbWeightItemList<Sprite> spritePool;
     public ProbWeightItemList<Color> colorPool;
+    public Material materialOverride;
 
     [Header("Sorting")]
     public string sortLayerName;
@@ -67,7 +68,8 @@ public class EnvironmentLayer
                         colorPool = colorPool,
                         sortLayerName = sortLayerName,
                         sortOrder = sortOrder,
-                        secondaryTint = layerTint
+                        secondaryTint = layerTint,
+                        materialOverride = materialOverride
                     };
                 }
             case EnvLayerType.PrefabOnly:

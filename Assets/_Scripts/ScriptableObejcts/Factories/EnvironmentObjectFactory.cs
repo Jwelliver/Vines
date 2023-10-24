@@ -17,6 +17,8 @@ public class EnvironmentSpriteObjectFactoryConfig : EnvironmentObjectFactoryConf
     public string sortLayerName;
     public int sortOrder;
     public Color secondaryTint = new Color(1f, 1f, 1f, 1f); //Additional tint applied to selected color
+    public Material materialOverride;
+
 }
 
 public class EnvironmentObjectBlueprint
@@ -32,6 +34,7 @@ public class EnvironmentSpriteObjectBlueprint : EnvironmentObjectBlueprint
     public Color color;
     public string sortLayerName;
     public int sortOrder;
+    public Material material;
 }
 
 
@@ -95,6 +98,12 @@ public class EnvironmentObjectFactory : ScriptableObject
 
         // Get SpriteRenderer
         SpriteRenderer spriteRenderer = newObj.GetComponent<SpriteRenderer>();
+
+        // Apply material override if provided
+        if (factoryConfig.materialOverride != null)
+        {
+            spriteRenderer.material = factoryConfig.materialOverride;
+        }
 
         // Apply Random Scale to SpriteRenderer if possible (eg. drawMode tiled or sliced); otherwise apply to the transform
 
