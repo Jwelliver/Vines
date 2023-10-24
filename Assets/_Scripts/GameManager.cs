@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
 
     public void OnPlayerDied()
     {
-        OnGameOver();
+        Invoke("OnGameOver", 2f);
     }
 
     void OnGameOver()
