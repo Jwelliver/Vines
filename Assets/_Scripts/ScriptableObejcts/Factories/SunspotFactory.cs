@@ -40,7 +40,7 @@ public class SunspotFactory : ScriptableObject
         Transform newSunspot = GameObject.Instantiate(rndPrefab, position, rndRotation, parent);
         // Apply random scale;
         float rndScalar = RNG.RandomRange(sunspotBlueprint.scaleMultiplier);
-        rndPrefab.localScale *= new Vector2(rndScalar, rndScalar);
+        newSunspot.localScale *= new Vector2(rndScalar, rndScalar);
 
 
         // Get light2D component apply changes
