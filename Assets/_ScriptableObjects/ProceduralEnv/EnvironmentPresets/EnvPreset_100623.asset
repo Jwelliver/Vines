@@ -45,6 +45,7 @@ MonoBehaviour:
         probability: 0.5
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Foreground
     sortOrder: 10
     autoSort: 0
@@ -97,6 +98,7 @@ MonoBehaviour:
         probability: 0.5
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Default
     sortOrder: -10
     autoSort: 0
@@ -173,6 +175,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Default
     sortOrder: -25
     autoSort: 0
@@ -241,6 +244,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Background
     sortOrder: 0
     autoSort: 1
@@ -309,6 +313,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Background
     sortOrder: -1
     autoSort: 1
@@ -387,6 +392,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Default
     sortOrder: -21
     autoSort: 0
@@ -463,6 +469,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Background
     sortOrder: -2
     autoSort: 2
@@ -533,6 +540,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Background
     sortOrder: -3
     autoSort: 2
@@ -589,6 +597,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Background
     sortOrder: -4
     autoSort: 2
@@ -641,6 +650,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Background
     sortOrder: -5
     autoSort: 2
@@ -711,6 +721,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 0}
     sortLayerName: Background
     sortOrder: -6
     autoSort: 1
@@ -747,6 +758,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 2100000, guid: c627cb8f39ee4cb40b6d004de8bbeb1b, type: 2}
     sortLayerName: Background
     sortOrder: -7
     autoSort: 1
@@ -783,6 +795,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 2100000, guid: c627cb8f39ee4cb40b6d004de8bbeb1b, type: 2}
     sortLayerName: Background
     sortOrder: -8
     autoSort: 1
@@ -819,6 +832,7 @@ MonoBehaviour:
         probability: 1
     colorPool:
       items: []
+    materialOverride: {fileID: 2100000, guid: c627cb8f39ee4cb40b6d004de8bbeb1b, type: 2}
     sortLayerName: Background
     sortOrder: -9
     autoSort: 2
