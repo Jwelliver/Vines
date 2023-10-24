@@ -719,8 +719,8 @@ MonoBehaviour:
   - id: Bg-Trees-1-lowlevel
     enabled: 1
     spacing:
-      min: 5
-      max: 8
+      min: 2
+      max: 5
     yOffset: 5
     yOffsetVariance: 0.2
     enableParallax: 1
@@ -755,8 +755,8 @@ MonoBehaviour:
   - id: Bg-Trees-2-midlevel
     enabled: 1
     spacing:
-      min: 8
-      max: 15
+      min: 5
+      max: 10
     yOffset: 7
     yOffsetVariance: 0.2
     enableParallax: 1
