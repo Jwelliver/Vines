@@ -9,7 +9,8 @@ public class LightShaftFactoryConfig
     public float groundLevel = -3f;
     public MinMax<float> width = new MinMax<float>(1f, 3f);
     public MinMax<float> angle = new MinMax<float>(20f, 30f);
-    public MinMax<float> intensity = new MinMax<float>(1f, 3f);
+    public MinMax<float> intensity = new MinMax<float>(5f, 10f);
+    public MinMax<float> alpha = new MinMax<float>(0.02f, 0.2f);
 }
 
 [CreateAssetMenu(menuName = "MyAssets/ScriptableObjects/Factories/LightShaftFactory")]
@@ -68,6 +69,24 @@ public class LightShaftFactory : ScriptableObject
         // apply intensity
         Light2D light = newLightShaft.GetComponent<Light2D>();
         light.intensity = RNG.RandomRange(defaultFactoryConfig.intensity);
+
+        // Apply alpha
+        float alpha = defaultFactoryConfig.alpha.min;
+        int maxAlphaIncreases = 3;
+        float increaseAmount = RNG.RandomRange(0.002f, 0.005f);
+        // Only increase based on rnd bool; This will increase rarity of brighter lights.
+        for (int i = 0; i < maxAlphaIncreases || alpha >= defaultFactoryConfig.alpha.max; i++)
+        {
+            if (RNG.RandomBool())
+            {
+                alpha += increaseAmount;
+            }
+            else
+            {
+                break;
+            }
+        }
+        light.color = new Color(light.color.r, light.color.g, light.color.b, alpha);
 
         // Set Parent
         newLightShaft.SetParent(GetLightShaftContainerParent());
