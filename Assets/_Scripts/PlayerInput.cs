@@ -109,6 +109,7 @@ public class PlayerInput : MonoBehaviour
 
     void OnGrabAttemptCanceled(InputAction.CallbackContext callbackContext)
     {
+        if (PauseMenu.Instance.isPaused) { return; }
         // Debug.Log("GrabCancel");
         if (SwingingController.isSwinging) hasReleased = true;
     }
