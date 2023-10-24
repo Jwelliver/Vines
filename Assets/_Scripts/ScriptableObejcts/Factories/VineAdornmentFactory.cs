@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,10 +8,11 @@ public class VineAdornmentFactory : ScriptableObject
 {
     [SerializeField] List<Transform> vineAdornmentPrefabs = new List<Transform>();
     [SerializeField] ProbabilityWeightedSpritePool sprites;
-    [SerializeField] ProbabilityWeightedColorPool colors;
+    [SerializeField] ProbabilityWeightedColorPool healthyColors;
+    [SerializeField] ProbabilityWeightedColorPool weakColors;
 
 
-    public Transform GenerateVineAdornment(Vector2 position, Transform parent, MinMax<float> scale)
+    public Transform GenerateVineAdornment(Vector2 position, Transform parent, MinMax<float> scale, bool isWeak)
     {
         // Get Random Adornment Prefab
         Transform rndAdornment = RNG.RandomChoice(vineAdornmentPrefabs);
@@ -36,7 +38,8 @@ public class VineAdornmentFactory : ScriptableObject
         spriteRenderer.sprite = rndSprite;
 
         // Apply Random Color
-        Color rndColor = colors.getRandomItem();
+        ProbabilityWeightedColorPool colorPool = isWeak ? weakColors : healthyColors;
+        Color rndColor = colorPool.getRandomItem();
         spriteRenderer.color = rndColor;
 
         // Set Parent

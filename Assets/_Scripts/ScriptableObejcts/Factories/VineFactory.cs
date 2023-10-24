@@ -205,10 +205,10 @@ public class VineFactory : ScriptableObject
             bool hasAdornment = RNG.SampleProbability(factoryConfig.pctChanceAdornment);
             if (hasAdornment)
             {
-                Transform newAdornment = vineAdornmentFactory.GenerateVineAdornment(newSegment.position, newSegment, factoryConfig.adornmentScale);
+                Transform newAdornment = vineAdornmentFactory.GenerateVineAdornment(newSegment.position, newSegment, factoryConfig.adornmentScale, isWeak);
                 SpriteRenderer adornmentSpriteRenderer = newAdornment.GetComponentInChildren<SpriteRenderer>();
                 adornmentSpriteRenderer.sortingOrder = vineAdornmentSortOrder;
-                if (isWeak) { adornmentSpriteRenderer.color = vineColor; }
+                // if (isWeak) { adornmentSpriteRenderer.color = vineColor; }
             }
 
             // Add Segment to segments list
