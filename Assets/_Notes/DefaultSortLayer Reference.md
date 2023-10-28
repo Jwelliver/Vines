@@ -8,6 +8,7 @@
     - vine adornments 11
   - Water 14 to 15
   - player 20 to 35
+  - coconut 36
   - vineSegment (front of player) 38
     - vine adornments 39
   - palms 40 to 50

@@ -16,8 +16,12 @@ public class TreeFactoryConfig
     public int maxVines = 4;
 
     [Header("Light Shafts")]
-    public float pctChangeLightShaft = 0.3f;
+    public float pctChangeLightShaft = 0.3f; // TODO: type Change=>Chance (might lose value in existing objs)
     public int maxLightShafts = 2;
+
+    [Header("Coconuts")]
+    public float pctChanceCoconut = 0.3f;
+    public int maxCoconuts = 4;
 }
 
 public class TreeConfig
@@ -33,6 +37,7 @@ public class TreeConfig
     public bool isPalmFlipped;
     public int nVines;
     public int nLightShafts;
+    public int nCoconuts;
     public Transform rndPalmPrefab;
     // public Sprite rndTrunkSprite;
     public Transform rndTrunkPrefab;
@@ -75,12 +80,14 @@ public class TreeFactory : ScriptableObject
     [SerializeField] Transform treePrefab;
     [SerializeField] List<Transform> palmPrefabs;
     [SerializeField] List<Transform> trunkPrefabs;
+    [SerializeField] Transform coconutPrefab; // * Here as temp; Maybe setup coconut factory which handles assembling a group of coconuts.
     [Header("TreeLayer Sort Settings")]
 
     // TODO: would like to have these in tree config, but then the range pool doesn't work if we are feeding the factory config every generate call; Maybe instead(or in addition to) using factoryConfig override, have levelgen set the default factory to use when building the entire layer.
     [SerializeField] int palmSortOrderBase = 40;
     [SerializeField] int palmSortOrderPoolLength = 10; //how many sortOrders on top of palmBaseSortOrders to use
     [SerializeField] int trunkSortOrderBase = -10;
+
     [Header("Factories")]
     [SerializeField] VineFactory vineFactory;
     [SerializeField] LightShaftFactory lightShaftFactory;
@@ -111,7 +118,9 @@ public class TreeFactory : ScriptableObject
             nVines = factoryConfig.maxVines == 0 ? 0 : RNG.RandomRange(1, factoryConfig.maxVines),
             rndPalmPrefab = RNG.RandomChoice(palmPrefabs),
             rndTrunkPrefab = RNG.RandomChoice(trunkPrefabs),
-            vineFactoryConfig = vineFactoryConfigOverride
+            vineFactoryConfig = vineFactoryConfigOverride,
+            nCoconuts = RNG.SampleOccurrences(factoryConfig.maxCoconuts, factoryConfig.pctChanceCoconut)
+
         };
     }
 
@@ -156,6 +165,7 @@ public class TreeFactory : ScriptableObject
         InitPalms(newTreeAssembly);
         PopulateVines(newTreeAssembly);
         PopulateLightShafts(newTreeAssembly);
+        PopulateCoconuts(newTreeAssembly);
         return newTreeAssembly;
     }
 
@@ -252,7 +262,18 @@ public class TreeFactory : ScriptableObject
         }
 
         // Destroy anchor container now that we don't need it
-        Destroy(palmAnchorContainer.gameObject);
+        Destroy(palmAnchorContainer.gameObject); // TODO: consider just setting the anchor container to inactive so we could use it later if we want.
+    }
+
+    private void PopulateCoconuts(NewTreeAssembly newTreeAssembly)
+    {
+        // skip if coconut prefab is missing;
+        if (coconutPrefab == null) { return; }
+        for (int i = 0; i < newTreeAssembly.treeConfig.nCoconuts; i++)
+        {
+            Vector2 rndPosition = RNG.RandomChoice(newTreeAssembly.palmAnchorPositions);
+            Transform coconut = GameObject.Instantiate(coconutPrefab, rndPosition, Quaternion.identity, newTreeAssembly.newTree);
+        }
     }
 
 
@@ -264,6 +285,7 @@ public class TreeFactory : ScriptableObject
         {
             Vector2 rndPosition = RNG.RandomChoice(newTreeAssembly.palmAnchorPositions);
             vineFactory.GenerateVine(rndPosition, vinesContainer, vineFactoryConfigOverride ?? newTreeAssembly.treeConfig.vineFactoryConfig);
+
         }
     }
 
