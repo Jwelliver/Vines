@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7231680182425418481}
   - component: {fileID: 1358186353222492978}
   - component: {fileID: -2650993404143187542}
-  m_Layer: 3
+  m_Layer: 14
   m_Name: VineRoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
