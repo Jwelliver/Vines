@@ -199,27 +199,27 @@ public class LevelGenerator : MonoBehaviour
         OnInitLevelGenComplete?.Invoke(); // todo: replacing above with this as temp;
     }
 
-    IEnumerator FinishInitLevelGen(Action OnInitLevelGenComplete = null)
-    {
-        Debug.Log("FinishInitLevelGen > 1");
-        // Set FF Time
-        Time.timeScale = 3;
-        //TODO: Vinesuspension needs to be handled elsewhere; Also needs to support endless (i.e. vines added after init load)
-        // Just waits some time before setting timeScale back to 1 and 
-        yield return new WaitForSecondsRealtime(3);
-        Debug.Log("FinishInitLevelGen > 2 wait over");
-        //Suspend All vine segments;
-        VineSuspenseManager.SuspendAllNotVisible();
-        Debug.Log("FinishInitLevelGen > 3 Vines unsuspended");
-        //Set suspendOnStart to true so all future vineInstances (e.g. from endless) are suspended on start. // TODO: Note: This may not be needed since they should autosuspend once loaded if not visible.
-        VineSuspenseManager.suspendOnStart = true;
+    // IEnumerator FinishInitLevelGen(Action OnInitLevelGenComplete = null) // ? 110123 commented out as we're testing a different vine suspension system that doesn't utilize the static vineSuspenseManager methods; and shouldn't require the "warm up" period provided by this method;
+    // {
+    //     Debug.Log("FinishInitLevelGen > 1");
+    //     // Set FF Time
+    //     Time.timeScale = 3;
+    //     //TODO: Vinesuspension needs to be handled elsewhere; Also needs to support endless (i.e. vines added after init load)
+    //     // Just waits some time before setting timeScale back to 1 and 
+    //     yield return new WaitForSecondsRealtime(3);
+    //     Debug.Log("FinishInitLevelGen > 2 wait over");
+    //     //Suspend All vine segments;
+    //     VineSuspenseManager.SuspendAllNotVisible();
+    //     Debug.Log("FinishInitLevelGen > 3 Vines unsuspended");
+    //     //Set suspendOnStart to true so all future vineInstances (e.g. from endless) are suspended on start. // TODO: Note: This may not be needed since they should autosuspend once loaded if not visible.
+    //     VineSuspenseManager.suspendOnStart = true;
 
-        //Reset TimeScale;
-        Time.timeScale = 1;
-        Debug.Log("FinishInitLevelGen > 4 TimeScale returned to normal;");
+    //     //Reset TimeScale;
+    //     Time.timeScale = 1;
+    //     Debug.Log("FinishInitLevelGen > 4 TimeScale returned to normal;");
 
-        OnInitLevelGenComplete?.Invoke();
-    }
+    //     OnInitLevelGenComplete?.Invoke();
+    // }
 
     void InitNormalMode()
     {
