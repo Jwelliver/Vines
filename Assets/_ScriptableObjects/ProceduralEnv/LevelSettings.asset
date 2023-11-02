@@ -40,6 +40,8 @@ MonoBehaviour:
       maxVines: 2
       pctChangeLightShaft: 0.3
       maxLightShafts: 3
+      pctChanceCoconut: 0
+      maxCoconuts: 4
     vineSettings:
       length:
         min: 15
@@ -61,7 +63,7 @@ MonoBehaviour:
         min: 0.3
         max: 0.8
       normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
-      weakSegmentColor: {r: 0.7647059, g: 0.5228865, b: 0, a: 1}
+      weakSegmentColor: {r: 0.4433962, g: 0.32941177, b: 0, a: 1}
     layerIndex: 0
   - id: MainTreesButTaller
     enabled: 1
@@ -83,6 +85,8 @@ MonoBehaviour:
       maxVines: 2
       pctChangeLightShaft: 0.2
       maxLightShafts: 2
+      pctChanceCoconut: 0
+      maxCoconuts: 4
     vineSettings:
       length:
         min: 15
@@ -104,7 +108,7 @@ MonoBehaviour:
         min: 0.3
         max: 0.8
       normalSegmentColor: {r: 1, g: 1, b: 1, a: 1}
-      weakSegmentColor: {r: 0.7647059, g: 0.5228865, b: 0, a: 1}
+      weakSegmentColor: {r: 0.5254902, g: 0.32941177, b: 0, a: 1}
     layerIndex: 0
   - id: course 2
     enabled: 0
@@ -126,6 +130,8 @@ MonoBehaviour:
       maxVines: 2
       pctChangeLightShaft: 0.3
       maxLightShafts: 3
+      pctChanceCoconut: 0
+      maxCoconuts: 4
     vineSettings:
       length:
         min: 15
@@ -169,6 +175,8 @@ MonoBehaviour:
       maxVines: 2
       pctChangeLightShaft: 0.3
       maxLightShafts: 3
+      pctChanceCoconut: 0.3
+      maxCoconuts: 4
     vineSettings:
       length:
         min: 15
@@ -212,6 +220,8 @@ MonoBehaviour:
       maxVines: 3
       pctChangeLightShaft: 0.2
       maxLightShafts: 2
+      pctChanceCoconut: 0.3
+      maxCoconuts: 4
     vineSettings:
       length:
         min: 15
@@ -255,6 +265,8 @@ MonoBehaviour:
       maxVines: 3
       pctChangeLightShaft: 0.4
       maxLightShafts: 3
+      pctChanceCoconut: 0.3
+      maxCoconuts: 4
     vineSettings:
       length:
         min: 30
@@ -298,6 +310,8 @@ MonoBehaviour:
       maxVines: 0
       pctChangeLightShaft: 0
       maxLightShafts: 3
+      pctChanceCoconut: 0.3
+      maxCoconuts: 4
     vineSettings:
       length:
         min: 30
@@ -341,6 +355,8 @@ MonoBehaviour:
       maxVines: 0
       pctChangeLightShaft: 0
       maxLightShafts: 3
+      pctChanceCoconut: 0.3
+      maxCoconuts: 4
     vineSettings:
       length:
         min: 30
