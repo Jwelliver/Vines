@@ -177,15 +177,16 @@ public static class CustomSceneUnload
         }
     }
 
-    static void UnloadGameMain()
+    static void UnloadGameMain() //TODO: This is being called even when reloading same level; Resulting in Jungle SFX being destroyed on first reload of game Main level; To correct, Refactor Persistant audio and it's controllers so that we don't need to destroy it at all;
     {
         // remove persistant audio
-        GameObject[] audioPlayers = GameObject.FindGameObjectsWithTag("PersistantAudio");
-        // Debug.Log("Number of audio players: " + audioPlayers.Length);
-        foreach (GameObject audio in audioPlayers)
-        {
-            GameObject.Destroy(audio);
-        }
+        // ! Commented out below as temp resolve to keep jungle sfx between reloads; Will be fixed after audio refactor; Until then, will only have issue with overlapping audio when going from gameMain to menu
+        // GameObject[] audioPlayers = GameObject.FindGameObjectsWithTag("PersistantAudio");
+        // // Debug.Log("Number of audio players: " + audioPlayers.Length);
+        // foreach (GameObject audio in audioPlayers)
+        // {
+        //     GameObject.Destroy(audio);
+        // }
         Resources.UnloadUnusedAssets();//added 090623 in attempt to address mem issue and crash
     }
 }
