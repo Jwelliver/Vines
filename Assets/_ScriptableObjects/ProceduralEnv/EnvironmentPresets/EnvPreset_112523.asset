@@ -1,0 +1,1028 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652443ffdc1c68f4e95b506d1ec6fadc, type: 3}
+  m_Name: EnvPreset_112523
+  m_EditorClassIdentifier: 
+  id: 112523
+  environmentLayers:
+  - id: CameraForegroundFoliage
+    enabled: 1
+    spacing:
+      min: 30
+      max: 50
+    yOffset: -15
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 0
+    zDistance: -5
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.5
+      max: 0.7
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 5ad04e764bb69e244855dc8111a01a64, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 0.5
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Foreground
+    sortOrder: 10
+    autoSort: 0
+    layerTint: {r: 0.5377358, g: 0.5377358, b: 0.5377358, a: 1}
+    useSortGroup: 0
+  - id: RiverbankGrasses-lg
+    enabled: 1
+    spacing:
+      min: 1
+      max: 2
+    yOffset: 0
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.05
+      max: 0.1
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Default
+    sortOrder: -10
+    autoSort: 1
+    layerTint: {r: 0.58668566, g: 0.754717, b: 0.7108982, a: 1}
+    useSortGroup: 1
+  - id: RiverBankGrasses-sm
+    enabled: 1
+    spacing:
+      min: 1
+      max: 2
+    yOffset: 0
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.025
+      max: 0.05
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Default
+    sortOrder: -11
+    autoSort: 2
+    layerTint: {r: 0.58668566, g: 0.754717, b: 0.7108982, a: 1}
+    useSortGroup: 1
+  - id: RiverBankFoliage
+    enabled: 1
+    spacing:
+      min: 5
+      max: 8
+    yOffset: 0.3
+    yOffsetVariance: 0.15
+    enableParallax: 0
+    useAutoZDistance: 0
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.18
+      max: 0.2
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: ca76f3bc72772a24dac644f8e32c6712, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 0177acee6bf8cef4ab701b3bd6667c16, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 7ec568edcc51cf14985b377c72d9027d, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 1
+      - item: {fileID: 138843971, guid: ed99739fe8480fc4caa36b158202fa3c, type: 3}
+        probability: 0.5
+      - item: {fileID: -805737317, guid: 0c7dce5657c707749815faf9a2a0154f, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: ff63a32623c7f6847b1a5a0ff1d61b78, type: 3}
+        probability: 0.5
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Default
+    sortOrder: -12
+    autoSort: 2
+    layerTint: {r: 1, g: 1, b: 1, a: 1}
+    useSortGroup: 1
+  - id: BehindMainTreesGrasses-lg
+    enabled: 1
+    spacing:
+      min: 1
+      max: 2
+    yOffset: 1.4
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.05
+      max: 0.1
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Default
+    sortOrder: -25
+    autoSort: 0
+    layerTint: {r: 0.58668566, g: 0.754717, b: 0.7108982, a: 1}
+    useSortGroup: 1
+  - id: BehindMainTreesGrasses-sm
+    enabled: 1
+    spacing:
+      min: 1
+      max: 2
+    yOffset: 1.35
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.025
+      max: 0.05
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 0.2
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Default
+    sortOrder: -26
+    autoSort: 0
+    layerTint: {r: 0.58668566, g: 0.754717, b: 0.7108982, a: 1}
+    useSortGroup: 1
+  - id: Foliage - Behind Main Trees - BG row1
+    enabled: 1
+    spacing:
+      min: 3
+      max: 6
+    yOffset: 1.5
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.2
+      max: 0.25
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: f7345fbbd3d40c542937383f6b436e63, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 127aea212dc6dcd48b11f25072838550, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 7e5f79d2ac361d34c9fbfdf6b6ced104, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 09ec76451a4f97b4599ff6f89125055a, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: f38e69edac948be4d9bb92605fd72b11, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 22ac4573a5eff484a918133b515454ec, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: ff63a32623c7f6847b1a5a0ff1d61b78, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: ca76f3bc72772a24dac644f8e32c6712, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: d76cad1b40ea6dd44b9f4ddd84310f2c, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 0177acee6bf8cef4ab701b3bd6667c16, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 88d68b792a8035f498582e9b67ccf510, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 7ec568edcc51cf14985b377c72d9027d, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 9e718c8fe68790a47a1cfef1b0780345, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 3f22d2c508394c74ab2495465e8bc30f, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: eeb3f0fb7dba79e4f879b74a7911b1c7, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Default
+    sortOrder: -13
+    autoSort: 2
+    layerTint: {r: 0.7065682, g: 0.8018868, b: 0.76111174, a: 1}
+    useSortGroup: 1
+  - id: Foliage - filler 1
+    enabled: 1
+    spacing:
+      min: 4
+      max: 8
+    yOffset: 4.5
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.2
+      max: 0.25
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: f7345fbbd3d40c542937383f6b436e63, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 127aea212dc6dcd48b11f25072838550, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 7e5f79d2ac361d34c9fbfdf6b6ced104, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 09ec76451a4f97b4599ff6f89125055a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: f38e69edac948be4d9bb92605fd72b11, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 22ac4573a5eff484a918133b515454ec, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: ff63a32623c7f6847b1a5a0ff1d61b78, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: ca76f3bc72772a24dac644f8e32c6712, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: d76cad1b40ea6dd44b9f4ddd84310f2c, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 0177acee6bf8cef4ab701b3bd6667c16, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 88d68b792a8035f498582e9b67ccf510, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 7ec568edcc51cf14985b377c72d9027d, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 9e718c8fe68790a47a1cfef1b0780345, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 3f22d2c508394c74ab2495465e8bc30f, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: eeb3f0fb7dba79e4f879b74a7911b1c7, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Background
+    sortOrder: -2
+    autoSort: 1
+    layerTint: {r: 0.58668566, g: 0.754717, b: 0.7108982, a: 1}
+    useSortGroup: 1
+  - id: Foliage - filler 2
+    enabled: 1
+    spacing:
+      min: 5
+      max: 10
+    yOffset: 6
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: -0.04
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.2
+      max: 0.25
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: f7345fbbd3d40c542937383f6b436e63, type: 3}
+        probability: 0.3
+      - item: {fileID: 21300000, guid: 127aea212dc6dcd48b11f25072838550, type: 3}
+        probability: 0.3
+      - item: {fileID: 21300000, guid: 7e5f79d2ac361d34c9fbfdf6b6ced104, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 09ec76451a4f97b4599ff6f89125055a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: f38e69edac948be4d9bb92605fd72b11, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 22ac4573a5eff484a918133b515454ec, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: ff63a32623c7f6847b1a5a0ff1d61b78, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: ca76f3bc72772a24dac644f8e32c6712, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: d76cad1b40ea6dd44b9f4ddd84310f2c, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 0177acee6bf8cef4ab701b3bd6667c16, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 88d68b792a8035f498582e9b67ccf510, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 7ec568edcc51cf14985b377c72d9027d, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 9e718c8fe68790a47a1cfef1b0780345, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 3f22d2c508394c74ab2495465e8bc30f, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: eeb3f0fb7dba79e4f879b74a7911b1c7, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Background
+    sortOrder: -3
+    autoSort: 1
+    layerTint: {r: 0.5223567, g: 0.6112139, b: 0.6886792, a: 1}
+    useSortGroup: 1
+  - id: BG Trees (TODO)
+    enabled: 0
+    spacing:
+      min: 8
+      max: 20
+    yOffset: 0
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 0
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.1
+      max: 0.3
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: f7345fbbd3d40c542937383f6b436e63, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 127aea212dc6dcd48b11f25072838550, type: 3}
+        probability: 0.1
+      - item: {fileID: 21300000, guid: 7e5f79d2ac361d34c9fbfdf6b6ced104, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 09ec76451a4f97b4599ff6f89125055a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: f38e69edac948be4d9bb92605fd72b11, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 22ac4573a5eff484a918133b515454ec, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: ff63a32623c7f6847b1a5a0ff1d61b78, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 5ad04e764bb69e244855dc8111a01a64, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: ca76f3bc72772a24dac644f8e32c6712, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: d76cad1b40ea6dd44b9f4ddd84310f2c, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 0177acee6bf8cef4ab701b3bd6667c16, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 88d68b792a8035f498582e9b67ccf510, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 7ec568edcc51cf14985b377c72d9027d, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 9e718c8fe68790a47a1cfef1b0780345, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 3f22d2c508394c74ab2495465e8bc30f, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: eeb3f0fb7dba79e4f879b74a7911b1c7, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Default
+    sortOrder: -21
+    autoSort: 0
+    layerTint: {r: 1, g: 1, b: 1, a: 1}
+    useSortGroup: 1
+  - id: Foliage - Row 2
+    enabled: 1
+    spacing:
+      min: 6
+      max: 12
+    yOffset: 3.3
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 20
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.25
+      max: 0.3
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: f7345fbbd3d40c542937383f6b436e63, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 127aea212dc6dcd48b11f25072838550, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 7e5f79d2ac361d34c9fbfdf6b6ced104, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 09ec76451a4f97b4599ff6f89125055a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: f38e69edac948be4d9bb92605fd72b11, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 22ac4573a5eff484a918133b515454ec, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: ff63a32623c7f6847b1a5a0ff1d61b78, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 5ad04e764bb69e244855dc8111a01a64, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: ca76f3bc72772a24dac644f8e32c6712, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: d76cad1b40ea6dd44b9f4ddd84310f2c, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 0177acee6bf8cef4ab701b3bd6667c16, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 88d68b792a8035f498582e9b67ccf510, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 7ec568edcc51cf14985b377c72d9027d, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 9e718c8fe68790a47a1cfef1b0780345, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 3f22d2c508394c74ab2495465e8bc30f, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: eeb3f0fb7dba79e4f879b74a7911b1c7, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Background
+    sortOrder: -4
+    autoSort: 2
+    layerTint: {r: 0.60754716, g: 0.99295545, b: 1, a: 1}
+    useSortGroup: 1
+  - id: Foliage - Row 3
+    enabled: 1
+    spacing:
+      min: 10
+      max: 15
+    yOffset: 7
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 30
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.3
+      max: 0.5
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: f7345fbbd3d40c542937383f6b436e63, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 127aea212dc6dcd48b11f25072838550, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 7e5f79d2ac361d34c9fbfdf6b6ced104, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 09ec76451a4f97b4599ff6f89125055a, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: f38e69edac948be4d9bb92605fd72b11, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 22ac4573a5eff484a918133b515454ec, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 829cc7ae857ee6a4f96aa0135abfd0ce, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 5ad04e764bb69e244855dc8111a01a64, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: ca76f3bc72772a24dac644f8e32c6712, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: d76cad1b40ea6dd44b9f4ddd84310f2c, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 88d68b792a8035f498582e9b67ccf510, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 171165f0907f55a4db2d346f300b6fed, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: b6004d5995e44e847a2c0c7ff2a16bfe, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: efb85e118b1f67e4ca80cbac9e1a70b0, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 0.25
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 9e718c8fe68790a47a1cfef1b0780345, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 3f22d2c508394c74ab2495465e8bc30f, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: eeb3f0fb7dba79e4f879b74a7911b1c7, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Background
+    sortOrder: -5
+    autoSort: 2
+    layerTint: {r: 0.51135635, g: 0.7924528, b: 0.76098424, a: 1}
+    useSortGroup: 1
+  - id: Foliage - Row 4
+    enabled: 1
+    spacing:
+      min: 15
+      max: 25
+    yOffset: 6.5
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 40
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.5
+      max: 0.6
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: f7345fbbd3d40c542937383f6b436e63, type: 3}
+        probability: 0.3
+      - item: {fileID: 21300000, guid: 127aea212dc6dcd48b11f25072838550, type: 3}
+        probability: 0.3
+      - item: {fileID: 21300000, guid: 7e5f79d2ac361d34c9fbfdf6b6ced104, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 09ec76451a4f97b4599ff6f89125055a, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: f38e69edac948be4d9bb92605fd72b11, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 829cc7ae857ee6a4f96aa0135abfd0ce, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 5ad04e764bb69e244855dc8111a01a64, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: d76cad1b40ea6dd44b9f4ddd84310f2c, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 88d68b792a8035f498582e9b67ccf510, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 9e718c8fe68790a47a1cfef1b0780345, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 3f22d2c508394c74ab2495465e8bc30f, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: eeb3f0fb7dba79e4f879b74a7911b1c7, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Background
+    sortOrder: -6
+    autoSort: 2
+    layerTint: {r: 0.59309363, g: 0.6974902, b: 0.8018868, a: 1}
+    useSortGroup: 1
+  - id: 'LG Foliage - Row 5 '
+    enabled: 1
+    spacing:
+      min: 50
+      max: 70
+    yOffset: 3
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 50
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.7
+      max: 0.8
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: f7345fbbd3d40c542937383f6b436e63, type: 3}
+        probability: 0.3
+      - item: {fileID: 21300000, guid: 127aea212dc6dcd48b11f25072838550, type: 3}
+        probability: 0.3
+      - item: {fileID: 21300000, guid: 7e5f79d2ac361d34c9fbfdf6b6ced104, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 09ec76451a4f97b4599ff6f89125055a, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: f38e69edac948be4d9bb92605fd72b11, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 829cc7ae857ee6a4f96aa0135abfd0ce, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 5ad04e764bb69e244855dc8111a01a64, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: d76cad1b40ea6dd44b9f4ddd84310f2c, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 88d68b792a8035f498582e9b67ccf510, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 9e718c8fe68790a47a1cfef1b0780345, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 3f22d2c508394c74ab2495465e8bc30f, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Background
+    sortOrder: -7
+    autoSort: 2
+    layerTint: {r: 0.48871484, g: 0.69825137, b: 0.8301887, a: 1}
+    useSortGroup: 1
+  - id: Foliage - BG filler 1
+    enabled: 1
+    spacing:
+      min: 6
+      max: 10
+    yOffset: 9
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.2
+      max: 0.25
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: f7345fbbd3d40c542937383f6b436e63, type: 3}
+        probability: 0.3
+      - item: {fileID: 21300000, guid: 127aea212dc6dcd48b11f25072838550, type: 3}
+        probability: 0.3
+      - item: {fileID: 21300000, guid: 7e5f79d2ac361d34c9fbfdf6b6ced104, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 09ec76451a4f97b4599ff6f89125055a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: f38e69edac948be4d9bb92605fd72b11, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 22ac4573a5eff484a918133b515454ec, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: ff63a32623c7f6847b1a5a0ff1d61b78, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 2be4f8824e78a1b439bb2e56bd066db2, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 4260b25773f81ad4497161733bb9252a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: c9bb4c6ce646f3441a6ea01c9258634e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: ca76f3bc72772a24dac644f8e32c6712, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: d76cad1b40ea6dd44b9f4ddd84310f2c, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 0177acee6bf8cef4ab701b3bd6667c16, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 88d68b792a8035f498582e9b67ccf510, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 7ec568edcc51cf14985b377c72d9027d, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: dc953e4295a9b3941aa1eb2f7b82ed9e, type: 3}
+        probability: 0.5
+      - item: {fileID: 21300000, guid: 6a76ece3255f00c4ca24f6bd387f6638, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 9e718c8fe68790a47a1cfef1b0780345, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 3f22d2c508394c74ab2495465e8bc30f, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: aa2be9e5393bf774bb79b981ab4dfbc4, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: eeb3f0fb7dba79e4f879b74a7911b1c7, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 659c9aad3c71f224e9296f769239e961, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 0}
+    sortLayerName: Background
+    sortOrder: -8
+    autoSort: 1
+    layerTint: {r: 1, g: 1, b: 1, a: 1}
+    useSortGroup: 1
+  - id: Bg-Trees-1-lowlevel
+    enabled: 1
+    spacing:
+      min: 2
+      max: 5
+    yOffset: 5
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.25
+      max: 0.4
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: e3b0aa72013771c45abcbf78d7e391d8, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: a0e929867797b904fae580883c44f82a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 6d8a5e2f3e6b1724f9a817cd0ec18c8e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 452436e0c93227046a9de34e6d9be9d1, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 629c9ca03c7b70b49b10b21689aafa91, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 2100000, guid: c627cb8f39ee4cb40b6d004de8bbeb1b, type: 2}
+    sortLayerName: Background
+    sortOrder: -9
+    autoSort: 1
+    layerTint: {r: 0.24820219, g: 0.29410627, b: 0.3962264, a: 1}
+    useSortGroup: 1
+  - id: Bg-Trees-2-midlevel
+    enabled: 1
+    spacing:
+      min: 5
+      max: 10
+    yOffset: 7
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.5
+      max: 0.6
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: e3b0aa72013771c45abcbf78d7e391d8, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: a0e929867797b904fae580883c44f82a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 6d8a5e2f3e6b1724f9a817cd0ec18c8e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 452436e0c93227046a9de34e6d9be9d1, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 629c9ca03c7b70b49b10b21689aafa91, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 2100000, guid: c627cb8f39ee4cb40b6d004de8bbeb1b, type: 2}
+    sortLayerName: Background
+    sortOrder: -10
+    autoSort: 1
+    layerTint: {r: 0.10936275, g: 0.20155746, b: 0.3018868, a: 1}
+    useSortGroup: 1
+  - id: Bg-Trees-3-highlevel
+    enabled: 1
+    spacing:
+      min: 8
+      max: 15
+    yOffset: 8
+    yOffsetVariance: 0.2
+    enableParallax: 1
+    useAutoZDistance: 1
+    zDistance: 0
+    type: 0
+    prefab: {fileID: 3247839654336482083, guid: 5755c7c6328a28043a47152b633d5a12, type: 3}
+    scaleModifier:
+      min: 0.7
+      max: 0.9
+    maxRotation: 20
+    enableRandomFlip: 1
+    spritePool:
+      items:
+      - item: {fileID: 21300000, guid: e3b0aa72013771c45abcbf78d7e391d8, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: a0e929867797b904fae580883c44f82a, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 6d8a5e2f3e6b1724f9a817cd0ec18c8e, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 452436e0c93227046a9de34e6d9be9d1, type: 3}
+        probability: 1
+      - item: {fileID: 21300000, guid: 629c9ca03c7b70b49b10b21689aafa91, type: 3}
+        probability: 1
+    colorPool:
+      items: []
+    materialOverride: {fileID: 2100000, guid: c627cb8f39ee4cb40b6d004de8bbeb1b, type: 2}
+    sortLayerName: Background
+    sortOrder: -11
+    autoSort: 2
+    layerTint: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+    useSortGroup: 1
