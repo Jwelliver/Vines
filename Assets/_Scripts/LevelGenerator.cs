@@ -93,6 +93,43 @@ public class LevelGenerator : MonoBehaviour
         // }
     }
 
+    public LevelSettings GenerateLevelSettings()
+    { //120723 WIP/placeholder for levels-progression mode to return a level settings from a level number
+
+        /*
+            TODO:
+                - finish and implement the below list 
+                - create the objects with the specs to populate and return the level settings
+                - Modify levelgen to get level settings from this method
+                    - Note: Probably should extract this into it's own class and module "LevelSettingsGenerator"
+                - When player returns with the amulet, show level complete screen instead of game-end
+                - 
+        */
+
+        // levelLength should be curLevel*50(meters)
+        // enemies will not attack below level 5
+        // pct brown should go to 5% at level 3; increase by 5% every two levels until at 20%, then it increases by 5% every 5 levels 
+        // tree height variance should be near 0 levels 1-3, then expand.
+        // tree spacing should be 3-5 + level * 0.25 (?) with some sensible cap (until we can get a proper distance calc implemented)
+        // there should only be one tree layer until level 4
+        // 
+
+
+        int currentLevel = PlayerPrefs.GetInt("currentLevel");
+        TreeFactoryConfig treeFactoryConfig = new TreeFactoryConfig
+        {
+
+        };
+        List<TreeLayer> treeLayers = new List<TreeLayer>();
+
+        LevelSettings levelSettings = new LevelSettings
+        {
+
+        };
+
+        return levelSettings;
+    }
+
     private void InitFactories()
     {
         // treeFactory.SetDefaultFactoryConfig(levelSettings.treeSettings);
