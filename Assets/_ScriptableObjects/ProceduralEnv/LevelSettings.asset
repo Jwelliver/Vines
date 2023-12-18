@@ -16,8 +16,8 @@ MonoBehaviour:
   rngSeed: -1
   startPos: {x: 0, y: 0}
   levelLength:
-    min: 500
-    max: 800
+    min: 150
+    max: 300
   direction: 1
   treeLayers:
   - id: MainTrees
